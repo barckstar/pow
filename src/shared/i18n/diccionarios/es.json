@@ -14,10 +14,12 @@
   },
   "hero": {
     "titulo": "Aprendé español.",
-    "tituloAcento": "Hablá como tico.",
+    "tituloAcentoNaranja": "Hablá",
+    "tituloAcentoTeal": "como tico.",
     "subtitulo": "Clases en línea con un profesor costarricense, o presenciales en Manuel Antonio y La Fortuna. El español que de verdad vas a oír cuando llegués a Costa Rica.",
-    "ctaPrimario": "Reservar una clase",
-    "ctaSecundario": "Ver cómo funciona",
+    "ctaOnline": "Clases en línea",
+    "ctaPresencial": "Reservar clase presencial",
+    "ctaReservar": "Reservar una clase",
     "insignia": "Más que un idioma. Es un viaje."
   },
   "experiencias": {

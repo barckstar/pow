@@ -83,7 +83,7 @@ export default async function PaginaOnline({
           </p>
 
           <Link href={rutas.reservar(idioma)} className="boton boton--primario">
-            {t.hero.ctaPrimario}
+            {t.hero.ctaReservar}
           </Link>
         </div>
       </section>

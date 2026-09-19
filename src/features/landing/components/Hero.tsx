@@ -26,10 +26,14 @@ export function Hero({ lang, t }: { lang: Idioma; t: Diccionario }) {
           // `priority` precarga, pero la auditoría de descubrimiento del LCP
           // pedía además la pista de prioridad explícita en la precarga.
           fetchPriority="high"
-          // La foto va detrás de un velo oscuro: por debajo de 75 no se
-          // aprecia diferencia y se ahorran bytes en el recurso que marca
-          // el LCP.
-          quality={55}
+          /*
+           * Calidad por defecto. Se probó con 55 cuando la foto iba detrás
+           * de un velo oscuro, pero ahora el degradado es de crema y la
+           * mitad derecha de la fotografía se ve limpia. Además está medido
+           * que bajar la calidad no movía la puntuación de Lighthouse: el
+           * LCP aquí es latencia, no bytes.
+           */
+          quality={75}
           /*
            * `100vw` y no un ancho fijo para móvil. Se probó
            * `(max-width: 640px) 640px` y el resultado fue el contrario del
@@ -47,19 +51,29 @@ export function Hero({ lang, t }: { lang: Idioma; t: Diccionario }) {
       <div className="hero__texto">
         <h1 className="hero__titulo">
           {t.hero.titulo}
-          <span className="hero__titulo-acento">{t.hero.tituloAcento}</span>
+          {/* El acento va partido en dos colores, como el "Live Experiences."
+              del concept board: naranja y teal. */}
+          <span className="hero__titulo-acento">
+            <span className="hero__acento-naranja">
+              {t.hero.tituloAcentoNaranja}
+            </span>{" "}
+            <span className="hero__acento-teal">{t.hero.tituloAcentoTeal}</span>
+          </span>
         </h1>
 
         <p className="hero__subtitulo">{t.hero.subtitulo}</p>
 
         <div className="hero__botones">
-          {/* Un solo botón sólido. El secundario va en contorno: dos rellenos
-              compitiendo era el defecto del concept board original. */}
-          <Link href={rutas.reservar(lang)} className="boton boton--primario">
-            {t.hero.ctaPrimario}
+          {/*
+            Dos botones sólidos, como el board: uno por cada vía de negocio.
+            No compiten porque no son el mismo paso del embudo, son dos
+            productos distintos, y cada uno lleva el color de su lado.
+          */}
+          <Link href={rutas.online(lang)} className="boton boton--primario">
+            {t.hero.ctaOnline}
           </Link>
-          <Link href={rutas.online(lang)} className="boton boton--contorno">
-            {t.hero.ctaSecundario}
+          <Link href={rutas.reservar(lang)} className="boton boton--acento">
+            {t.hero.ctaPresencial}
           </Link>
         </div>
 

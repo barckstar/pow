@@ -66,6 +66,9 @@ const PARES = [
   { nombre: "Texto sobre superficie teal", frente: CREMA, fondo: TEAL, tamano: "normal" },
   { nombre: "Insignia dorada (tinta sobre dorado)", frente: TINTA, fondo: DORADO, tamano: "normal" },
   { nombre: "Titular del pie (dorado claro sobre teal)", frente: DORADO_TEXTO, fondo: TEAL, tamano: "normal" },
+  { nombre: "Insignia del hero (teal sobre blanco)", frente: TEAL, fondo: BLANCO, tamano: "normal" },
+  { nombre: "Botón de contorno (teal sobre crema)", frente: TEAL, fondo: CREMA, tamano: "normal" },
+  { nombre: "Acento del titular (naranja sobre crema)", frente: NARANJA, fondo: CREMA, tamano: "normal" },
   { nombre: "Iconos de confianza sobre teal", frente: DORADO_TEXTO, fondo: TEAL, tamano: "normal" },
 ];
 

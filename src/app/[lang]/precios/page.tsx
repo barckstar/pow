@@ -67,7 +67,7 @@ export default async function PaginaPrecios({
         )}
 
         <Link href={rutas.reservar(idioma)} className="seccion__enlace">
-          {t.hero.ctaPrimario} →
+          {t.hero.ctaReservar} →
         </Link>
       </div>
     </section>

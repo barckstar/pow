@@ -32,10 +32,19 @@ export const esquemaDiccionario = z
     hero: z
       .object({
         titulo: z.string().min(1),
-        tituloAcento: z.string().min(1),
+        /*
+         * El titular lleva el acento partido en dos colores, como el
+         * "Live Experiences." del concept board: la primera parte en naranja
+         * y la segunda en teal.
+         */
+        tituloAcentoNaranja: z.string().min(1),
+        tituloAcentoTeal: z.string().min(1),
         subtitulo: z.string().min(1),
-        ctaPrimario: z.string().min(1),
-        ctaSecundario: z.string().min(1),
+        /** Los dos CTA del hero: una vía de negocio cada uno. */
+        ctaOnline: z.string().min(1),
+        ctaPresencial: z.string().min(1),
+        /** CTA de reserva para el resto de páginas. */
+        ctaReservar: z.string().min(1),
         insignia: z.string().min(1),
       })
       .strict(),

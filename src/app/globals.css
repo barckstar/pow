@@ -119,6 +119,31 @@ body {
   transform: scaleY(0.6154);
 }
 
+/*
+ * La onda que cierra el área crema. Solo se desplaza y se desvanece: ambas
+ * propiedades van por compositor.
+ */
+.navbar__onda {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2.75rem;
+  width: 100%;
+  display: block;
+  fill: var(--color-crema);
+  pointer-events: none;
+  transform: translateY(var(--nav-h-tope));
+  transition: transform 300ms ease, opacity 300ms ease;
+}
+
+.navbar[data-tope="false"] .navbar__onda {
+  /* Compacto: se retira. A media página una curva crema flotando sobre el
+     contenido se lee como un error, no como un detalle de marca. */
+  opacity: 0;
+  transform: translateY(var(--nav-h-compacto));
+}
+
 .navbar[data-tope="true"] .navbar__fondo {
   /* Arriba del todo el fondo es sólido: no hay nada detrás que desenfocar y
      el blur cuesta composición de balde. */
@@ -149,8 +174,10 @@ body {
   gap: 0.6rem;
   text-decoration: none;
   transform-origin: left top;
-  /* Estado alto: el logo baja a la segunda fila y crece. */
-  transform: translateY(2.7rem) scale(1.4);
+  /* Estado alto: el logo baja a la segunda fila y crece. La altura deja
+     aire por debajo para que la onda crema lo envuelva, que es lo que hace
+     que se lea centrado y no pegado al borde. */
+  transform: translateY(2.35rem) scale(1.3);
 }
 
 .navbar[data-tope="false"] .navbar__logo {
@@ -158,7 +185,9 @@ body {
 }
 
 .navbar__perezoso {
-  height: 2.4rem;
+  /* Más grande que el texto, como en el concept board: el perezoso es la
+     marca y el lockup se apoya en él, no al revés. */
+  height: 2.75rem;
   width: auto;
 }
 
@@ -384,15 +413,17 @@ p {
   transform: translateY(-2px);
 }
 
-.boton--contorno {
-  background-color: transparent;
+/* Segundo CTA del hero, naranja sólido como en el concept board.
+   Blanco sobre #C03F18 da 5,30:1. El naranja original de la lámina
+   (#FB6D3A) daba 2,86:1 y no pasa AA ni en texto grande, así que la
+   identidad se mantiene con el tono accesible. */
+.boton--acento {
+  background-color: var(--color-naranja);
   color: #ffffff;
-  border: 2px solid #ffffff;
 }
 
-.boton--contorno:hover {
-  background-color: #ffffff;
-  color: var(--color-teal);
+.boton--acento:hover {
+  background-color: var(--color-teal);
   transform: translateY(-2px);
 }
 
@@ -662,8 +693,15 @@ p {
      móvil no provoque un salto al esconderse. */
   min-height: min(38rem, calc(100dvh - var(--nav-h-compacto)));
   display: grid;
-  align-items: center;
+  /* En móvil el texto se ancla abajo, sobre la crema; arriba queda la foto. */
+  align-items: end;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    align-items: center;
+  }
 }
 
 .hero__foto {
@@ -676,18 +714,44 @@ p {
   object-position: center 58%;
 }
 
-/* El velo es lo que hace que el texto blanco tenga contraste sobre una foto
-   de la que no controlamos el brillo. Sin él, el titular depende de la
-   suerte del pixel que tenga detrás. */
+/*
+ * El velo, como en el concept board: la crema de marca se desvanece hacia la
+ * foto. El texto va oscuro sobre crema, no blanco sobre un velo oscuro — así
+ * la crema sigue siendo el color dominante del 70/30/10 también en el hero.
+ *
+ * MÓVIL (por defecto): el degradado es vertical. Arriba se ve la foto y la
+ * crema sube desde abajo, donde se ancla el texto. Un degradado lateral no
+ * sirve aquí: a 412 px el titular ocupa todo el ancho y acabaría sobre la
+ * parte oscura de la selva, que es justo donde el texto oscuro se pierde.
+ */
 .hero__velo {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    100deg,
-    color-mix(in srgb, #06282c 82%, transparent) 0%,
-    color-mix(in srgb, #06282c 62%, transparent) 45%,
-    color-mix(in srgb, #06282c 28%, transparent) 100%
+    to top,
+    var(--color-crema) 0%,
+    var(--color-crema) 46%,
+    color-mix(in srgb, var(--color-crema) 55%, transparent) 68%,
+    transparent 92%
   );
+}
+
+@media (min-width: 768px) {
+  /*
+   * ESCRITORIO: degradado lateral, como el board. Se mantiene opaco hasta el
+   * 44 %, que es hasta donde llega el bloque de texto (34 rem dentro de un
+   * contenedor de 80 rem). Más allá empieza a fundirse con la foto. Así el
+   * titular nunca depende del brillo del pixel que le toque detrás.
+   */
+  .hero__velo {
+    background: linear-gradient(
+      95deg,
+      var(--color-crema) 0%,
+      var(--color-crema) 44%,
+      color-mix(in srgb, var(--color-crema) 55%, transparent) 62%,
+      transparent 84%
+    );
+  }
 }
 
 .hero__texto {
@@ -695,8 +759,16 @@ p {
   max-width: 80rem;
   width: 100%;
   margin: 0 auto;
-  padding: 5rem 1.5rem;
-  color: #ffffff;
+  padding: 3rem 1.5rem;
+  /* Texto oscuro sobre la crema: 15,41:1. Antes era blanco sobre velo
+     oscuro, que daba menos contraste y oscurecía toda la portada. */
+  color: var(--color-tinta);
+}
+
+@media (min-width: 768px) {
+  .hero__texto {
+    padding: 5rem 1.5rem;
+  }
 }
 
 .hero__titulo {
@@ -707,7 +779,16 @@ p {
 
 .hero__titulo-acento {
   display: block;
-  color: var(--color-dorado);
+}
+
+/* Naranja y teal sobre la crema: 4,88:1 y 5,49:1. El dorado de marca no
+   pasa AA sobre crema, por eso el acento usa estos dos. */
+.hero__acento-naranja {
+  color: var(--color-naranja);
+}
+
+.hero__acento-teal {
+  color: var(--color-teal);
 }
 
 .hero__subtitulo {
@@ -728,9 +809,9 @@ p {
   display: inline-block;
   font-size: 0.9rem;
   font-weight: 600;
-  background-color: color-mix(in srgb, #ffffff 16%, transparent);
-  backdrop-filter: blur(6px);
-  border: 1px solid color-mix(in srgb, #ffffff 35%, transparent);
+  color: var(--color-teal);
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 28%, transparent);
   padding: 0.5rem 1rem;
   border-radius: 999px;
 }

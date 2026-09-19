@@ -97,6 +97,26 @@ export function Navbar({ lang, t }: Props) {
           la transición es puro transform y no dispara layout. */}
       <div className="navbar__fondo" aria-hidden="true" />
 
+      {/*
+        La onda que remata el área crema, como en el concept board: baja por
+        la izquierda —dejando aire bajo el logo— y sube hacia la derecha para
+        entrar en la foto del hero.
+
+        Va en su propio elemento y no dentro del panel de fondo a propósito:
+        el panel se escala en vertical y la curva saldría aplastada. Aquí solo
+        se desplaza, y se desvanece al compactarse el header porque a media
+        página una curva crema flotando sobre el contenido no tiene sentido.
+      */}
+      <svg
+        className="navbar__onda"
+        viewBox="0 0 1200 44"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="M0,0 H1200 V3 C 880,5 600,42 0,42 Z" />
+      </svg>
+
       <div className="navbar__contenido">
         {/*
           Sin `aria-label`: el enlace ya contiene el nombre de la marca como

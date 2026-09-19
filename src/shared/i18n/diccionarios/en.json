@@ -14,10 +14,12 @@
   },
   "hero": {
     "titulo": "Learn Spanish.",
-    "tituloAcento": "Speak Costa Rican.",
+    "tituloAcentoNaranja": "Speak",
+    "tituloAcentoTeal": "Costa Rican.",
     "subtitulo": "One-to-one online lessons with a Costa Rican teacher, or in person in Manuel Antonio and La Fortuna. The Spanish you will actually hear when you land.",
-    "ctaPrimario": "Book a lesson",
-    "ctaSecundario": "See how it works",
+    "ctaOnline": "Learn Online",
+    "ctaPresencial": "Book In-Person Lesson",
+    "ctaReservar": "Book a lesson",
     "insignia": "More than a language. It's a journey."
   },
   "experiencias": {
