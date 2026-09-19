@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/*
+ * Paleta — regla 70/30/10
+ *
+ *   70 %  crema     fondos de página
+ *   30 %  teal      superficies, tarjetas oscuras, botón primario
+ *   10 %  naranja   CTA, precios, enlaces, estados activos
+ *
+ * Los tonos "decorativos" vienen del concept board original y NO pasan
+ * contraste AA: existen para ilustración, degradados y fondos de icono.
+ * Nunca va texto encima de ellos. Los ratios de cada par en uso los verifica
+ * `npm run verify` (scripts/verificar-contraste.mjs).
+ */
+@theme {
+  --color-crema: #fff4e6;
+  --color-teal: #0f6e78;
+  --color-naranja: #c03f18;
+  --color-tinta: #2a1a12;
+
+  /* Decorativos — sin texto encima, jamás. */
+  --color-mango: #fb6d3a;
+  --color-turquesa: #5cc3c6;
+  --color-dorado: #f4b641;
+  --color-coral: #ffbea3;
+
+  /* Altura del navbar. La compacta reserva el espacio del body, así el CLS
+     es 0 pase lo que pase con el estado del header. Ver Navbar.tsx. */
+  --nav-h-compacto: 4rem;
+  --nav-h-tope: 6.5rem;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-crema);
+  color: var(--color-tinta);
+  /* Fijo, igual a la altura COMPACTA. El header crece hacia abajo sobre el
+     contenido cuando está en el tope, pero no reflowea nada. */
+  padding-top: var(--nav-h-compacto);
+}
+
+/* Foco visible y consistente. El outline por defecto de cada navegador es
+   distinto y a veces invisible sobre la crema. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-naranja);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Quien pidió menos movimiento recibe menos movimiento. No es opcional: es
+   criterio de accesibilidad de Lighthouse y de sentido común para gente con
+   trastornos vestibulares. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

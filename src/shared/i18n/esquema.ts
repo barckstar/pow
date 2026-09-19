@@ -1,0 +1,160 @@
+import { z } from "zod";
+
+/**
+ * Forma del diccionario de interfaz.
+ *
+ * Todo texto VISIBLE del sitio vive aquí o en un JSON de contenido. Ninguna
+ * cadena se escribe a mano dentro de un componente: si no está en el
+ * diccionario, no se puede traducir, y el día que entre alemán habría que
+ * cazarla a grep.
+ *
+ * `.strict()` es intencional: una clave de más significa que alguien tradujo
+ * algo que ya no existe, y eso también conviene saberlo.
+ */
+export const esquemaDiccionario = z
+  .object({
+    nav: z
+      .object({
+        inicio: z.string().min(1),
+        online: z.string().min(1),
+        presencial: z.string().min(1),
+        destinos: z.string().min(1),
+        blog: z.string().min(1),
+        precios: z.string().min(1),
+        comunidad: z.string().min(1),
+        reservar: z.string().min(1),
+        abrirMenu: z.string().min(1),
+        cerrarMenu: z.string().min(1),
+        cambiarIdioma: z.string().min(1),
+      })
+      .strict(),
+
+    hero: z
+      .object({
+        titulo: z.string().min(1),
+        tituloAcento: z.string().min(1),
+        subtitulo: z.string().min(1),
+        ctaPrimario: z.string().min(1),
+        ctaSecundario: z.string().min(1),
+        insignia: z.string().min(1),
+      })
+      .strict(),
+
+    experiencias: z
+      .object({
+        titulo: z.string().min(1),
+        onlineTitulo: z.string().min(1),
+        onlineTexto: z.string().min(1),
+        onlineEnlace: z.string().min(1),
+        presencialTitulo: z.string().min(1),
+        presencialTexto: z.string().min(1),
+        presencialEnlace: z.string().min(1),
+      })
+      .strict(),
+
+    destinos: z
+      .object({
+        titulo: z.string().min(1),
+        intro: z.string().min(1),
+        verTodos: z.string().min(1),
+      })
+      .strict(),
+
+    confianza: z
+      .object({
+        profesorTitulo: z.string().min(1),
+        profesorTexto: z.string().min(1),
+        horarioTitulo: z.string().min(1),
+        horarioTexto: z.string().min(1),
+        reservaTitulo: z.string().min(1),
+        reservaTexto: z.string().min(1),
+        culturaTitulo: z.string().min(1),
+        culturaTexto: z.string().min(1),
+      })
+      .strict(),
+
+    tiquismo: z
+      .object({
+        etiqueta: z.string().min(1),
+        significa: z.string().min(1),
+        ejemplo: z.string().min(1),
+        leerMas: z.string().min(1),
+      })
+      .strict(),
+
+    blog: z
+      .object({
+        titulo: z.string().min(1),
+        intro: z.string().min(1),
+        leer: z.string().min(1),
+        minutos: z.string().min(1),
+        etiquetas: z.string().min(1),
+        vacio: z.string().min(1),
+        anterior: z.string().min(1),
+        siguiente: z.string().min(1),
+        publicado: z.string().min(1),
+        actualizado: z.string().min(1),
+        tambienEn: z.string().min(1),
+      })
+      .strict(),
+
+    reserva: z
+      .object({
+        titulo: z.string().min(1),
+        intro: z.string().min(1),
+        tipoClase: z.string().min(1),
+        fecha: z.string().min(1),
+        hora: z.string().min(1),
+        zonaHoraria: z.string().min(1),
+        tuHora: z.string().min(1),
+        horaCostaRica: z.string().min(1),
+        sinFranjas: z.string().min(1),
+        cargando: z.string().min(1),
+        error: z.string().min(1),
+        continuar: z.string().min(1),
+        deposito: z.string().min(1),
+        depositoTexto: z.string().min(1),
+        pagoSeguro: z.string().min(1),
+      })
+      .strict(),
+
+    pendiente: z
+      .object({
+        etiqueta: z.string().min(1),
+        precio: z.string().min(1),
+        generico: z.string().min(1),
+      })
+      .strict(),
+
+    footer: z
+      .object({
+        lema: z.string().min(1),
+        navegacion: z.string().min(1),
+        legal: z.string().min(1),
+        privacidad: z.string().min(1),
+        terminos: z.string().min(1),
+        creditosFotos: z.string().min(1),
+        derechos: z.string().min(1),
+      })
+      .strict(),
+
+    social: z
+      .object({
+        compartir: z.string().min(1),
+        copiado: z.string().min(1),
+        seguir: z.string().min(1),
+      })
+      .strict(),
+
+    comun: z
+      .object({
+        volverInicio: z.string().min(1),
+        noEncontrado: z.string().min(1),
+        noEncontradoTexto: z.string().min(1),
+        saltarAlContenido: z.string().min(1),
+      })
+      .strict(),
+  })
+  .strict();
+
+export type Diccionario = z.infer<typeof esquemaDiccionario>;

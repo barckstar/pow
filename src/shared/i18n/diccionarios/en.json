@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "inicio": "Home",
+    "online": "Online lessons",
+    "presencial": "In Costa Rica",
+    "destinos": "Destinations",
+    "blog": "Blog",
+    "precios": "Pricing",
+    "comunidad": "Community",
+    "reservar": "Book",
+    "abrirMenu": "Open menu",
+    "cerrarMenu": "Close menu",
+    "cambiarIdioma": "Change language"
+  },
+  "hero": {
+    "titulo": "Learn Spanish.",
+    "tituloAcento": "Speak Costa Rican.",
+    "subtitulo": "One-to-one online lessons with a Costa Rican teacher, or in person in Manuel Antonio and La Fortuna. The Spanish you will actually hear when you land.",
+    "ctaPrimario": "Book a lesson",
+    "ctaSecundario": "See how it works",
+    "insignia": "More than a language. It's a journey."
+  },
+  "experiencias": {
+    "titulo": "Choose how you want to learn",
+    "onlineTitulo": "Online",
+    "onlineTexto": "One-to-one video lessons with a Costa Rican teacher based in Switzerland. Built around your schedule, wherever you are.",
+    "onlineEnlace": "Start online",
+    "presencialTitulo": "In Costa Rica",
+    "presencialTexto": "In-person lessons between volcanoes and the Pacific. You learn the language where it is spoken, which is where it finally sticks.",
+    "presencialEnlace": "See the destinations"
+  },
+  "destinos": {
+    "titulo": "Where the lessons happen",
+    "intro": "Two places in Costa Rica where the lesson leaves the classroom.",
+    "verTodos": "See all destinations"
+  },
+  "confianza": {
+    "profesorTitulo": "Costa Rican teacher",
+    "profesorTexto": "Born and raised there. Not textbook Spanish.",
+    "horarioTitulo": "Flexible hours",
+    "horarioTexto": "You pick the slot, shown in your own time zone.",
+    "reservaTitulo": "Reserve with a deposit",
+    "reservaTexto": "Hold your lesson with a PayPal deposit.",
+    "culturaTitulo": "Culture included",
+    "culturaTexto": "Slang, tone and customs, not just grammar."
+  },
+  "tiquismo": {
+    "etiqueta": "Tiquismo of the day",
+    "significa": "What it means",
+    "ejemplo": "How it is used",
+    "leerMas": "Read the full article"
+  },
+  "blog": {
+    "titulo": "The blog",
+    "intro": "Costa Rican Spanish explained by someone who has spoken it since birth.",
+    "leer": "Read",
+    "minutos": "min read",
+    "etiquetas": "Tags",
+    "vacio": "No articles published in English yet.",
+    "anterior": "Newer",
+    "siguiente": "Older",
+    "publicado": "Published on",
+    "actualizado": "Updated on",
+    "tambienEn": "Also available in Spanish"
+  },
+  "reserva": {
+    "titulo": "Book your lesson",
+    "intro": "Pick a slot and hold it with a deposit. You settle the rest directly with your teacher.",
+    "tipoClase": "Lesson type",
+    "fecha": "Date",
+    "hora": "Time",
+    "zonaHoraria": "Your time zone",
+    "tuHora": "your time",
+    "horaCostaRica": "in Costa Rica",
+    "sinFranjas": "No slots available in these dates. Try another week.",
+    "cargando": "Looking for available times…",
+    "error": "The schedule could not be loaded. Please try again in a moment.",
+    "continuar": "Continue to deposit",
+    "deposito": "Deposit",
+    "depositoTexto": "Charged now to hold your lesson. You pay the rest directly to your teacher.",
+    "pagoSeguro": "Payment processed by PayPal"
+  },
+  "pendiente": {
+    "etiqueta": "Pending",
+    "precio": "Price to be confirmed",
+    "generico": "This information is not confirmed yet."
+  },
+  "footer": {
+    "lema": "More than a platform. It's your journey.",
+    "navegacion": "Navigation",
+    "legal": "Legal",
+    "privacidad": "Privacy",
+    "terminos": "Terms",
+    "creditosFotos": "Photo credits",
+    "derechos": "All rights reserved."
+  },
+  "social": {
+    "compartir": "Share",
+    "copiado": "Link copied",
+    "seguir": "Follow us"
+  },
+  "comun": {
+    "volverInicio": "Back to home",
+    "noEncontrado": "This page does not exist",
+    "noEncontradoTexto": "The link you followed does not lead anywhere. The page may have moved.",
+    "saltarAlContenido": "Skip to content"
+  }
+}

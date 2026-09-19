@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "inicio": "Inicio",
+    "online": "Clases en línea",
+    "presencial": "En Costa Rica",
+    "destinos": "Destinos",
+    "blog": "Blog",
+    "precios": "Precios",
+    "comunidad": "Comunidad",
+    "reservar": "Reservar",
+    "abrirMenu": "Abrir el menú",
+    "cerrarMenu": "Cerrar el menú",
+    "cambiarIdioma": "Cambiar idioma"
+  },
+  "hero": {
+    "titulo": "Aprendé español.",
+    "tituloAcento": "Hablá como tico.",
+    "subtitulo": "Clases en línea con un profesor costarricense, o presenciales en Manuel Antonio y La Fortuna. El español que de verdad vas a oír cuando llegués a Costa Rica.",
+    "ctaPrimario": "Reservar una clase",
+    "ctaSecundario": "Ver cómo funciona",
+    "insignia": "Más que un idioma. Es un viaje."
+  },
+  "experiencias": {
+    "titulo": "Elegí cómo querés aprender",
+    "onlineTitulo": "En línea",
+    "onlineTexto": "Clases uno a uno por videollamada, con un profesor costarricense que vive en Suiza. Se acomoda a tu horario, estés donde estés.",
+    "onlineEnlace": "Empezar en línea",
+    "presencialTitulo": "En Costa Rica",
+    "presencialTexto": "Clases presenciales entre volcanes y playa. Aprendés la lengua en el lugar donde se habla, que es donde de verdad se pega.",
+    "presencialEnlace": "Ver los destinos"
+  },
+  "destinos": {
+    "titulo": "Dónde se dan las clases",
+    "intro": "Dos lugares de Costa Rica donde la clase se sale del aula.",
+    "verTodos": "Ver todos los destinos"
+  },
+  "confianza": {
+    "profesorTitulo": "Profesor costarricense",
+    "profesorTexto": "Nacido y criado ahí. No es español de libro.",
+    "horarioTitulo": "Horario flexible",
+    "horarioTexto": "Vos elegís la franja; se muestra en tu hora.",
+    "reservaTitulo": "Reserva con depósito",
+    "reservaTexto": "Apartás la clase con un depósito por PayPal.",
+    "culturaTitulo": "Cultura incluida",
+    "culturaTexto": "Modismos, tono y costumbres, no solo gramática."
+  },
+  "tiquismo": {
+    "etiqueta": "Tiquismo del día",
+    "significa": "Qué significa",
+    "ejemplo": "Cómo se usa",
+    "leerMas": "Leer el artículo completo"
+  },
+  "blog": {
+    "titulo": "El blog",
+    "intro": "Español costarricense explicado por alguien que lo habla desde que nació.",
+    "leer": "Leer",
+    "minutos": "min de lectura",
+    "etiquetas": "Etiquetas",
+    "vacio": "Todavía no hay artículos publicados en español.",
+    "anterior": "Anteriores",
+    "siguiente": "Siguientes",
+    "publicado": "Publicado el",
+    "actualizado": "Actualizado el",
+    "tambienEn": "También disponible en inglés"
+  },
+  "reserva": {
+    "titulo": "Reservá tu clase",
+    "intro": "Elegí una franja y apartala con un depósito. El resto lo arreglás directamente con el profesor.",
+    "tipoClase": "Tipo de clase",
+    "fecha": "Fecha",
+    "hora": "Hora",
+    "zonaHoraria": "Tu zona horaria",
+    "tuHora": "tu hora",
+    "horaCostaRica": "en Costa Rica",
+    "sinFranjas": "No hay franjas disponibles en estas fechas. Probá con otra semana.",
+    "cargando": "Buscando horarios disponibles…",
+    "error": "No se pudieron cargar los horarios. Volvé a intentarlo en un momento.",
+    "continuar": "Continuar al depósito",
+    "deposito": "Depósito",
+    "depositoTexto": "Se cobra ahora para apartar la clase. El resto se paga directamente con el profesor.",
+    "pagoSeguro": "Pago procesado por PayPal"
+  },
+  "pendiente": {
+    "etiqueta": "Pendiente",
+    "precio": "Precio por confirmar",
+    "generico": "Este dato todavía no está confirmado."
+  },
+  "footer": {
+    "lema": "Más que una plataforma. Es tu viaje.",
+    "navegacion": "Navegación",
+    "legal": "Legal",
+    "privacidad": "Privacidad",
+    "terminos": "Términos",
+    "creditosFotos": "Créditos de las fotos",
+    "derechos": "Todos los derechos reservados."
+  },
+  "social": {
+    "compartir": "Compartir",
+    "copiado": "Enlace copiado",
+    "seguir": "Seguinos"
+  },
+  "comun": {
+    "volverInicio": "Volver al inicio",
+    "noEncontrado": "Esta página no existe",
+    "noEncontradoTexto": "El enlace que seguiste no lleva a ninguna parte. Puede que la página se haya movido.",
+    "saltarAlContenido": "Saltar al contenido"
+  }
+}
