@@ -104,5 +104,45 @@
     "noEncontrado": "Esta página no existe",
     "noEncontradoTexto": "El enlace que seguiste no lleva a ninguna parte. Puede que la página se haya movido.",
     "saltarAlContenido": "Saltar al contenido"
+  },
+  "paginas": {
+    "online": {
+      "titulo": "Clases en línea",
+      "intro": "Clases uno a uno por videollamada con un profesor costarricense. Él está en Suiza, así que hay horarios que le sirven tanto a Europa como a América.",
+      "pasosTitulo": "Cómo funciona",
+      "paso1Titulo": "Elegís la franja",
+      "paso1Texto": "Se te muestran los horarios en tu zona horaria y en la de Costa Rica, para que no haya sorpresas.",
+      "paso2Titulo": "Apartás la clase",
+      "paso2Texto": "Con un depósito por PayPal. El resto lo arreglás directamente con el profesor.",
+      "paso3Titulo": "Te conectás",
+      "paso3Texto": "Recibís el enlace de la videollamada. La clase es conversación desde el primer día, no relleno de ejercicios.",
+      "profesorTitulo": "Quién da las clases",
+      "profesorTexto": "Un costarricense que vive en Suiza. Enseña el español que se habla en Costa Rica: el voseo, los modismos y el tono, no solo la gramática del libro."
+    },
+    "presencial": {
+      "titulo": "Clases en Costa Rica",
+      "intro": "Aprender la lengua en el lugar donde se habla es lo que hace que se pegue.",
+      "texto": "La idea es sencilla: la clase sale del aula. Se conversa caminando por el parque nacional, pidiendo en una soda o preguntando la hora en la pulpería. El vocabulario que aprendés así no se olvida, porque lo usaste el mismo día."
+    },
+    "destinos": {
+      "titulo": "Dónde se dan las clases presenciales",
+      "intro": "Dos lugares de Costa Rica, elegidos porque son los que más justifican el viaje."
+    },
+    "precios": {
+      "titulo": "Precios",
+      "intro": "Aquí van a ir los precios de las clases en línea, las presenciales y el depósito de reserva.",
+      "sinPrecios": "Todavía no hay precios publicados. Preferimos dejar el hueco visible a poner una cifra que después cambie."
+    },
+    "comunidad": {
+      "titulo": "Comunidad",
+      "intro": "Aquí van a estar los grupos de conversación y las redes de la escuela.",
+      "sinRedes": "Las redes de la escuela todavía no están abiertas. Cuando lo estén, aparecen aquí y en el pie de página.",
+      "archivoTitulo": "Todos los tiquismos"
+    },
+    "creditos": {
+      "titulo": "Créditos de las fotos",
+      "intro": "Las fotografías de este sitio vienen de Unsplash y se usan bajo su licencia. Aquí queda registrado quién hizo cada una.",
+      "foto": "Fotografía de"
+    }
   }
 }

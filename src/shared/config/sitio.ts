@@ -22,6 +22,16 @@ export const URL_BASE = "https://costaricaspanishexperience.com";
 export const NOMBRE_SITIO = "Costa Rica Spanish Experience";
 
 /**
+ * Versión corta para el sufijo del <title>.
+ *
+ * El nombre completo ocupa 29 caracteres y, con el separador, deja solo 34
+ * para el título de la página dentro del límite de 65 que usan los
+ * buscadores. Con el corto quedan 44, que ya da para un titular de artículo
+ * decente. `og:site_name` y el JSON-LD siguen llevando el nombre completo.
+ */
+export const NOMBRE_CORTO = "Costa Rica Spanish";
+
+/**
  * Zona horaria del profesor. Vive en Suiza y da las clases en línea desde
  * ahí. Importa porque Suiza aplica horario de verano y Costa Rica no: la
  * diferencia entre ambas cambia dos veces al año.

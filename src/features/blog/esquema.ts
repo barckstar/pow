@@ -13,7 +13,13 @@ import { z } from "zod";
  */
 export const esquemaFrontmatter = z
   .object({
-    titulo: z.string().min(10).max(80),
+    /**
+     * 44 caracteres es el techo real: el <title> le añade " | Costa Rica
+     * Spanish" (21) y el total tiene que caber en los 65 que muestran los
+     * buscadores. `scripts/verificar-metadatos.mjs` lo comprueba sobre el
+     * HTML generado; este límite lo caza antes, al escribir el artículo.
+     */
+    titulo: z.string().min(10).max(44),
     /**
      * Alimenta la meta description. Google recorta por debajo de ~70 y por
      * encima de ~165 caracteres, así que el rango no es decorativo.

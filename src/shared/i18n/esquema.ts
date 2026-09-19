@@ -154,6 +154,58 @@ export const esquemaDiccionario = z
         saltarAlContenido: z.string().min(1),
       })
       .strict(),
+
+    paginas: z
+      .object({
+        online: z
+          .object({
+            titulo: z.string().min(1),
+            intro: z.string().min(1),
+            pasosTitulo: z.string().min(1),
+            paso1Titulo: z.string().min(1),
+            paso1Texto: z.string().min(1),
+            paso2Titulo: z.string().min(1),
+            paso2Texto: z.string().min(1),
+            paso3Titulo: z.string().min(1),
+            paso3Texto: z.string().min(1),
+            profesorTitulo: z.string().min(1),
+            profesorTexto: z.string().min(1),
+          })
+          .strict(),
+        presencial: z
+          .object({
+            titulo: z.string().min(1),
+            intro: z.string().min(1),
+            texto: z.string().min(1),
+          })
+          .strict(),
+        destinos: z
+          .object({ titulo: z.string().min(1), intro: z.string().min(1) })
+          .strict(),
+        precios: z
+          .object({
+            titulo: z.string().min(1),
+            intro: z.string().min(1),
+            sinPrecios: z.string().min(1),
+          })
+          .strict(),
+        comunidad: z
+          .object({
+            titulo: z.string().min(1),
+            intro: z.string().min(1),
+            sinRedes: z.string().min(1),
+            archivoTitulo: z.string().min(1),
+          })
+          .strict(),
+        creditos: z
+          .object({
+            titulo: z.string().min(1),
+            intro: z.string().min(1),
+            foto: z.string().min(1),
+          })
+          .strict(),
+      })
+      .strict(),
   })
   .strict();
 

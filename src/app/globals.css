@@ -422,6 +422,229 @@ p {
   text-decoration: underline;
 }
 
+.seccion__interior--estrecho {
+  max-width: 47rem;
+}
+
+.subseccion__titulo {
+  font-size: 1.35rem;
+  color: var(--color-teal);
+  margin: 2.5rem 0 0.9rem;
+}
+
+/* Hueco visible para un dato que el cliente aún no ha confirmado. Se ve a
+   propósito: un hueco visible se arregla, uno invisible se publica. */
+.hueco {
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  border: 1px dashed color-mix(in srgb, var(--color-naranja) 45%, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.dato-zona {
+  margin: 1.5rem 0;
+}
+
+.pasos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.paso {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.paso__numero {
+  flex-shrink: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background-color: var(--color-teal);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.paso__titulo {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.archivo-tiquismos,
+.creditos {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.archivo-tiquismo,
+.credito {
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 12%, transparent);
+}
+
+.archivo-tiquismo h3 {
+  font-size: 1.2rem;
+  color: var(--color-teal);
+  margin-bottom: 0.4rem;
+}
+
+.archivo-tiquismo__pron {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--color-tinta) 65%, transparent);
+}
+
+.archivo-tiquismo__ejemplo {
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.archivo-tiquismo a,
+.credito a {
+  color: var(--color-naranja);
+}
+
+.credito__autor,
+.credito__archivo {
+  font-size: 0.88rem;
+  margin-top: 0.4rem;
+  color: color-mix(in srgb, var(--color-tinta) 75%, transparent);
+}
+
+/* --- Reserva ------------------------------------------------------------- */
+
+.reserva {
+  margin-top: 2rem;
+}
+
+.reserva__aviso,
+.reserva__pendiente-pago {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 1.25rem 0;
+  font-size: 0.9rem;
+}
+
+.reserva__zona {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.reserva__zona label {
+  font-weight: 600;
+}
+
+.reserva__zona select {
+  font: inherit;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 35%, transparent);
+  background-color: #ffffff;
+  color: var(--color-tinta);
+}
+
+.reserva__dias {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.reserva__dia-titulo {
+  font-size: 1rem;
+  color: var(--color-teal);
+  text-transform: capitalize;
+  margin-bottom: 0.75rem;
+}
+
+.reserva__franjas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+}
+
+.reserva__franja {
+  width: 100%;
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.7rem 0.5rem;
+  border-radius: 0.7rem;
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 25%, transparent);
+  color: var(--color-tinta);
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.reserva__franja:hover:not(:disabled) {
+  border-color: var(--color-naranja);
+  transform: translateY(-2px);
+}
+
+.reserva__franja[aria-pressed="true"] {
+  background-color: var(--color-teal);
+  border-color: var(--color-teal);
+  color: #ffffff;
+}
+
+.reserva__franja:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.reserva__hora {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.reserva__hora-otra {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.reserva__vacio,
+.reserva__resumen {
+  margin: 1.5rem 0;
+}
+
+.reserva__continuar {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-teal) 18%, transparent);
+}
+
+.reserva__resumen {
+  font-weight: 600;
+}
+
 /* ==========================================================================
    HERO
    ========================================================================== */

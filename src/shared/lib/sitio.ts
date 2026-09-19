@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IDIOMAS, LOCALE, type Idioma } from "@/shared/i18n/config";
 import {
+  NOMBRE_CORTO,
   NOMBRE_SITIO,
   OG_POR_DEFECTO,
   URL_BASE,
@@ -51,7 +52,17 @@ export function metadatosDe({
 }): Metadata {
   const url = `${URL_BASE}${ruta}`;
   const imagenAbsoluta = `${URL_BASE}${imagen ?? OG_POR_DEFECTO}`;
-  const tituloCompleto = `${titulo} | ${NOMBRE_SITIO}`;
+
+  /*
+   * El <title> se deja SIN sufijo: lo añade la plantilla `title.template` del
+   * layout. Ponerlo aquí también lo duplicaba —"Precios | Costa Rica Spanish
+   * Experience | Costa Rica Spanish Experience"— y lo cazó
+   * scripts/verificar-metadatos.mjs en su primera corrida.
+   *
+   * Open Graph y Twitter no pasan por esa plantilla, así que ahí sí se compone
+   * a mano.
+   */
+  const tituloCompleto = `${titulo} | ${NOMBRE_CORTO}`;
 
   const languages = Object.fromEntries(
     Object.entries(alternativas ?? { [lang]: ruta }).map(([idioma, r]) => [
@@ -62,7 +73,7 @@ export function metadatosDe({
 
   return {
     metadataBase: new URL(URL_BASE),
-    title: tituloCompleto,
+    title: titulo,
     description: descripcion,
     alternates: {
       canonical: url,

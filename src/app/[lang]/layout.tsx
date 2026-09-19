@@ -6,7 +6,7 @@ import { getDiccionario } from "@/shared/i18n/diccionario";
 import { Navbar } from "@/shared/components/layout/Navbar";
 import { Footer } from "@/shared/components/layout/Footer";
 import { BarraSocial } from "@/shared/components/layout/BarraSocial";
-import { NOMBRE_SITIO, URL_BASE } from "@/shared/config/sitio";
+import { NOMBRE_CORTO, NOMBRE_SITIO, URL_BASE } from "@/shared/config/sitio";
 import "../globals.css";
 
 /*
@@ -30,7 +30,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(URL_BASE),
   title: {
     default: NOMBRE_SITIO,
-    template: `%s | ${NOMBRE_SITIO}`,
+    // El sufijo va con el nombre corto para que el título de cada página
+    // quepa en los 65 caracteres que muestran los buscadores.
+    template: `%s | ${NOMBRE_CORTO}`,
   },
 };
 

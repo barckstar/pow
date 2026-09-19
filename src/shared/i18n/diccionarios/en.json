@@ -104,5 +104,45 @@
     "noEncontrado": "This page does not exist",
     "noEncontradoTexto": "The link you followed does not lead anywhere. The page may have moved.",
     "saltarAlContenido": "Skip to content"
+  },
+  "paginas": {
+    "online": {
+      "titulo": "Online lessons",
+      "intro": "One-to-one video lessons with a Costa Rican teacher. He is based in Switzerland, so there are slots that work for both Europe and the Americas.",
+      "pasosTitulo": "How it works",
+      "paso1Titulo": "Pick a slot",
+      "paso1Texto": "Times are shown in your own zone and in Costa Rica's, so there are no surprises.",
+      "paso2Titulo": "Hold your lesson",
+      "paso2Texto": "With a PayPal deposit. You settle the rest directly with your teacher.",
+      "paso3Titulo": "Show up",
+      "paso3Texto": "You get the video call link. Lessons are conversation from day one, not exercise filler.",
+      "profesorTitulo": "Who teaches",
+      "profesorTexto": "A Costa Rican living in Switzerland. He teaches the Spanish actually spoken in Costa Rica: the voseo, the slang and the tone, not just textbook grammar."
+    },
+    "presencial": {
+      "titulo": "Lessons in Costa Rica",
+      "intro": "Learning a language where it is spoken is what makes it stick.",
+      "texto": "The idea is simple: the lesson leaves the classroom. You talk while walking through the national park, ordering at a soda, or asking the time at the corner shop. Vocabulary learned that way does not fade, because you used it the same day."
+    },
+    "destinos": {
+      "titulo": "Where in-person lessons happen",
+      "intro": "Two places in Costa Rica, chosen because they are the ones that most justify the trip."
+    },
+    "precios": {
+      "titulo": "Pricing",
+      "intro": "This is where pricing for online lessons, in-person lessons and the booking deposit will go.",
+      "sinPrecios": "No prices are published yet. We would rather leave the gap visible than post a figure that changes later."
+    },
+    "comunidad": {
+      "titulo": "Community",
+      "intro": "This is where conversation groups and the school's social accounts will live.",
+      "sinRedes": "The school's social accounts are not open yet. When they are, they will appear here and in the footer.",
+      "archivoTitulo": "Every tiquismo"
+    },
+    "creditos": {
+      "titulo": "Photo credits",
+      "intro": "The photographs on this site come from Unsplash and are used under its licence. Here is a record of who took each one.",
+      "foto": "Photograph by"
+    }
   }
 }

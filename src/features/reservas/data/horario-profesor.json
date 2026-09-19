@@ -1,0 +1,17 @@
+{
+  "confirmado": false,
+  "zona": "Europe/Zurich",
+  "duracionMinutos": 60,
+  "descansoMinutos": 15,
+  "antelacionMinimaHoras": 24,
+  "diasVisibles": 21,
+  "semana": {
+    "lunes": [["17:00", "21:00"]],
+    "martes": [["17:00", "21:00"]],
+    "miercoles": [["17:00", "21:00"]],
+    "jueves": [["17:00", "21:00"]],
+    "viernes": [["16:00", "20:00"]],
+    "sabado": [["09:00", "13:00"]],
+    "domingo": []
+  }
+}
