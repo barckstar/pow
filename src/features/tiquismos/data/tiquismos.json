@@ -1,0 +1,122 @@
+[
+  {
+    "id": "pura-vida",
+    "expresion": "Pura vida",
+    "pronunciacion": "PU-ra VI-da",
+    "significado": {
+      "es": "La expresión más costarricense que existe. Sirve de saludo, de despedida, de gracias, de «todo bien» y de «no hay problema». El tono decide cuál de todas es.",
+      "en": "The most Costa Rican phrase there is. It works as hello, goodbye, thank you, «all good» and «no worries». Tone decides which one you are getting."
+    },
+    "ejemplo": "— ¿Cómo está? — ¡Pura vida!",
+    "ejemploExplicado": {
+      "es": "Aquí funciona como «todo bien, gracias». Si alguien te ayuda y respondés «pura vida», es «gracias».",
+      "en": "Here it means «all good, thanks». If someone helps you and you answer «pura vida», it means «thank you»."
+    },
+    "articulo": "que-significa-pura-vida"
+  },
+  {
+    "id": "mae",
+    "expresion": "Mae",
+    "pronunciacion": "MA-e",
+    "significado": {
+      "es": "El «tío» o «tipo» costarricense. Se usa para dirigirse a alguien con confianza y también como muletilla dentro de la frase. Entre amigos aparece en casi todas las oraciones.",
+      "en": "The Costa Rican «dude» or «mate». Used to address someone casually, and also as filler inside a sentence. Among friends it shows up in nearly every line."
+    },
+    "ejemplo": "Mae, ¿vamos a la playa el sábado?",
+    "ejemploExplicado": {
+      "es": "«Oye, ¿vamos a la playa el sábado?». Es informal: no se usa con alguien a quien tratás de usted.",
+      "en": "«Hey, shall we go to the beach on Saturday?». It is informal: not for someone you address formally."
+    },
+    "articulo": null
+  },
+  {
+    "id": "tuanis",
+    "expresion": "Tuanis",
+    "pronunciacion": "TUA-nis",
+    "significado": {
+      "es": "Bueno, chévere, genial. Califica cosas, planes y personas. Es de las palabras que más delatan que alguien aprendió español en Costa Rica y no en otro país.",
+      "en": "Cool, great, nice. It describes things, plans and people. It is one of the words that most clearly marks someone as having learned Spanish in Costa Rica."
+    },
+    "ejemplo": "Qué tuanis que viniste.",
+    "ejemploExplicado": {
+      "es": "«Qué bueno que viniste». Expresa alegría sincera, no cortesía.",
+      "en": "«So glad you came». It expresses genuine pleasure, not politeness."
+    },
+    "articulo": null
+  },
+  {
+    "id": "diay",
+    "expresion": "¿Diay?",
+    "pronunciacion": "DIAI",
+    "significado": {
+      "es": "Viene de «de ahí». Es a la vez pregunta, muletilla y encogimiento de hombros: «¿y entonces?», «¿qué pasó?», «pues qué le vamos a hacer».",
+      "en": "It comes from «de ahí» (from there). It is a question, a filler and a shrug all at once: «so?», «what happened?», «well, what can you do»."
+    },
+    "ejemplo": "¿Diay, qué le pasó?",
+    "ejemploExplicado": {
+      "es": "«¿Y entonces, qué te pasó?». Dicho solo y con tono bajo, significa resignación.",
+      "en": "«So, what happened to you?». Said alone in a low tone, it means resignation."
+    },
+    "articulo": null
+  },
+  {
+    "id": "brete",
+    "expresion": "Brete",
+    "pronunciacion": "BRE-te",
+    "significado": {
+      "es": "El trabajo, el empleo. «Bretear» es trabajar. Es palabra de todos los días: se oye más que «trabajo» en conversación informal.",
+      "en": "Work, a job. «Bretear» means to work. It is everyday vocabulary: in casual conversation you will hear it more often than «trabajo»."
+    },
+    "ejemplo": "Mañana no puedo, tengo brete.",
+    "ejemploExplicado": {
+      "es": "«Mañana no puedo, tengo que trabajar».",
+      "en": "«I can't tomorrow, I have to work»."
+    },
+    "articulo": null
+  },
+  {
+    "id": "chunche",
+    "expresion": "Chunche",
+    "pronunciacion": "CHUN-che",
+    "significado": {
+      "es": "Cosa, cacharro, esa cosa cuyo nombre no te sale. Vale para cualquier objeto, y es la palabra que te salva cuando te falta vocabulario.",
+      "en": "Thing, gadget, that thing whose name escapes you. It works for any object, and it is the word that saves you when your vocabulary runs out."
+    },
+    "ejemplo": "Pasame ese chunche, por favor.",
+    "ejemploExplicado": {
+      "es": "«Pásame esa cosa, por favor». Fijate en «pasame», sin la -e final: es el voseo costarricense.",
+      "en": "«Pass me that thing, please». Note «pasame» instead of «pásame»: that is Costa Rican voseo."
+    },
+    "articulo": "voseo-costarricense"
+  },
+  {
+    "id": "guila",
+    "expresion": "Güila",
+    "pronunciacion": "GÜI-la",
+    "significado": {
+      "es": "Niño o niña, chiquillo. Es informal y afectuosa, y se usa para ambos géneros aunque la palabra termine en -a.",
+      "en": "Kid, child. It is informal and affectionate, and it is used for any gender even though the word ends in -a."
+    },
+    "ejemplo": "Esa güila habla tres idiomas.",
+    "ejemploExplicado": {
+      "es": "«Esa chiquilla habla tres idiomas». No es despectivo: es cariñoso.",
+      "en": "«That kid speaks three languages». It is not derogatory: it is affectionate."
+    },
+    "articulo": null
+  },
+  {
+    "id": "pulperia",
+    "expresion": "Pulpería",
+    "pronunciacion": "pul-pe-RÍ-a",
+    "significado": {
+      "es": "La tienda pequeña de barrio donde se compra lo del día. No es un supermercado: es la esquina donde además te enterás de todo lo que pasa en el vecindario.",
+      "en": "The small neighbourhood shop where you buy day-to-day things. Not a supermarket: it is the corner store where you also catch up on everything happening nearby."
+    },
+    "ejemplo": "Voy a la pulpería por pan.",
+    "ejemploExplicado": {
+      "es": "«Voy a la tienda de la esquina a comprar pan».",
+      "en": "«I'm going to the corner shop to buy bread»."
+    },
+    "articulo": null
+  }
+]

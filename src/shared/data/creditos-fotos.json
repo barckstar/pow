@@ -1,0 +1,29 @@
+[
+  {
+    "archivo": "/fotos/manuel-antonio.jpg",
+    "autor": "Luiz Cent",
+    "perfil": "https://unsplash.com/@luizcent",
+    "pagina": "https://unsplash.com/photos/rodDBPqBfKA",
+    "fuente": "Unsplash",
+    "licencia": "Unsplash License",
+    "descripcion": "Vista aérea de Punta Catedral en Manuel Antonio: la franja de arena entre dos bahías, con la selva encima."
+  },
+  {
+    "archivo": "/fotos/manuel-antonio-selva.jpg",
+    "autor": "Vincent Branciforti",
+    "perfil": "https://unsplash.com/@vfbranciforti",
+    "pagina": "https://unsplash.com/photos/g0zUgpRaAcs",
+    "fuente": "Unsplash",
+    "licencia": "Unsplash License",
+    "descripcion": "La selva de Manuel Antonio bajando hasta el Pacífico, con un islote en el horizonte."
+  },
+  {
+    "archivo": "/fotos/arenal.jpg",
+    "autor": "Daniel Ingersoll",
+    "perfil": "https://unsplash.com/@daninger4995",
+    "pagina": "https://unsplash.com/photos/1GEY6GsWEk0",
+    "fuente": "Unsplash",
+    "licencia": "Unsplash License",
+    "descripcion": "El cono del Volcán Arenal visto desde La Fortuna, con la base cubierta de selva."
+  }
+]

@@ -9,7 +9,7 @@ import { IDIOMAS, idiomaDesdeCabecera } from "@/shared/i18n/config";
  * no de la URL, así que no queremos que un proxy cachee "/" → "/es" para
  * todo el mundo.
  */
-export function middleware(peticion: NextRequest) {
+export function proxy(peticion: NextRequest) {
   const { pathname } = peticion.nextUrl;
 
   const yaTieneIdioma = IDIOMAS.some(

@@ -54,6 +54,969 @@ body {
   border-radius: 2px;
 }
 
+/* ==========================================================================
+   NAVBAR
+   --------------------------------------------------------------------------
+   Tres estados: alto de dos filas en el tope, compacto de una fila en cuanto
+   se sale del tope, y oculto al bajar.
+
+   El header mide SIEMPRE la altura alta. Lo que cambia de tamaño es un panel
+   de fondo que se escala en vertical, y las dos filas, que se desplazan. Así
+   nada anima `height` y no hay layout por frame: solo transform, que va por
+   GPU. El `padding-top` del body es fijo e igual a la altura compacta, de
+   modo que el CLS es 0 sin importar en qué estado nazca el header.
+   ========================================================================== */
+
+.navbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: var(--nav-h-tope);
+  /* El header ocupa la altura alta siempre, pero cuando está compacto la
+     franja sobrante es aire: los clics tienen que atravesarla. */
+  pointer-events: none;
+  transform: translateY(0);
+  transition: transform 300ms ease;
+}
+
+.navbar[data-oculto="true"] {
+  transform: translateY(-100%);
+}
+
+/*
+ * Los dos estados se escriben con valores LITERALES, no con variables CSS.
+ *
+ * Se intentó primero con variables (`transform: scaleY(var(--escala))`) y no
+ * funciona: una propiedad personalizada sin registrar con `@property` no
+ * vuelve a disparar la transición del `transform` cuando solo cambia la
+ * variable. El transform se queda congelado en el último valor que resolvió
+ * —comprobado en el navegador: la variable computaba a 1 y el transform
+ * seguía en scaleY(0.6154)—. Registrarlas con `@property` lo arreglaría,
+ * pero entonces la animación pasa a recalcular estilo en cada frame y deja
+ * de ir por compositor, que es justo lo que queríamos evitar.
+ */
+.navbar__fondo {
+  position: absolute;
+  inset: 0;
+  transform-origin: top;
+  /* Estado alto: el fondo ocupa el header entero. */
+  transform: scaleY(1);
+  transition: transform 300ms ease;
+  background-color: color-mix(in srgb, var(--color-crema) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-teal) 14%, transparent);
+}
+
+/* Estado compacto: 4rem de 6.5rem. */
+.navbar[data-tope="false"] .navbar__fondo {
+  transform: scaleY(0.6154);
+}
+
+.navbar[data-tope="true"] .navbar__fondo {
+  /* Arriba del todo el fondo es sólido: no hay nada detrás que desenfocar y
+     el blur cuesta composición de balde. */
+  background-color: var(--color-crema);
+  backdrop-filter: none;
+}
+
+.navbar__contenido {
+  position: relative;
+  height: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.navbar__logo,
+.navbar__acciones {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+  transition: transform 300ms ease;
+}
+
+.navbar__logo {
+  left: 1.5rem;
+  top: 0;
+  gap: 0.6rem;
+  text-decoration: none;
+  transform-origin: left top;
+  /* Estado alto: el logo baja a la segunda fila y crece. */
+  transform: translateY(2.7rem) scale(1.4);
+}
+
+.navbar[data-tope="false"] .navbar__logo {
+  transform: translateY(0.65rem) scale(1);
+}
+
+.navbar__perezoso {
+  height: 2.4rem;
+  width: auto;
+}
+
+.navbar__marca {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.navbar__marca-linea1 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-naranja);
+}
+
+.navbar__marca-linea2 {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+}
+
+.navbar__acciones {
+  right: 1.5rem;
+  top: 0;
+  gap: 0.75rem;
+  /* Estado alto: los enlaces ocupan la primera fila, encima del logo. */
+  transform: translateY(0.9rem);
+}
+
+.navbar[data-tope="false"] .navbar__acciones {
+  transform: translateY(1.15rem);
+}
+
+.navbar__enlaces {
+  display: none;
+  align-items: center;
+  gap: 1.35rem;
+}
+
+.navbar__enlace {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-tinta);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.navbar__enlace:hover,
+.navbar__enlace[aria-current="page"] {
+  color: var(--color-naranja);
+  border-bottom-color: var(--color-naranja);
+}
+
+.navbar__idioma {
+  display: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-teal);
+  text-decoration: none;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 35%, transparent);
+  border-radius: 999px;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.navbar__idioma:hover {
+  background-color: var(--color-teal);
+  color: var(--color-crema);
+}
+
+.navbar__cta {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--color-teal);
+  text-decoration: none;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.navbar__cta:hover {
+  background-color: var(--color-naranja);
+  transform: translateY(-1px);
+}
+
+.navbar__hamburguesa {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.55rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar__barra {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--color-tinta);
+  border-radius: 2px;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.navbar__hamburguesa[aria-expanded="true"] .navbar__barra:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__hamburguesa[aria-expanded="true"] .navbar__barra:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__hamburguesa[aria-expanded="true"] .navbar__barra:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.navbar__movil {
+  position: absolute;
+  top: var(--nav-h-compacto);
+  left: 0;
+  right: 0;
+  pointer-events: auto;
+  background-color: var(--color-crema);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-teal) 14%, transparent);
+  padding: 0.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  box-shadow: 0 12px 24px -16px color-mix(in srgb, var(--color-tinta) 40%, transparent);
+}
+
+.navbar__movil nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar__movil-enlace {
+  padding: 0.85rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-tinta);
+  text-decoration: none;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-teal) 10%, transparent);
+}
+
+.navbar__movil-cta {
+  margin-top: 0.85rem;
+  text-align: center;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--color-teal);
+  text-decoration: none;
+  padding: 0.8rem 1.1rem;
+  border-radius: 999px;
+}
+
+/* A partir de aquí caben los seis enlaces, el selector de idioma y el CTA
+   sin apretarse. Por debajo se pasa al menú desplegable. */
+@media (min-width: 1100px) {
+  .navbar__enlaces,
+  .navbar__idioma {
+    display: flex;
+  }
+
+  .navbar__hamburguesa {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   TIPOGRAFÍA Y PIEZAS COMUNES
+   ========================================================================== */
+
+body {
+  font-family: var(--fuente-poppins), system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.boton {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  transition: transform 180ms ease, background-color 180ms ease,
+    color 180ms ease;
+}
+
+.boton--primario {
+  background-color: var(--color-teal);
+  color: #ffffff;
+}
+
+.boton--primario:hover {
+  background-color: var(--color-naranja);
+  transform: translateY(-2px);
+}
+
+.boton--contorno {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.boton--contorno:hover {
+  background-color: #ffffff;
+  color: var(--color-teal);
+  transform: translateY(-2px);
+}
+
+.seccion {
+  padding: 4.5rem 1.5rem;
+}
+
+.seccion__interior {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.seccion__titulo {
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  color: var(--color-teal);
+}
+
+.seccion__intro {
+  margin-top: 0.75rem;
+  max-width: 42rem;
+  color: color-mix(in srgb, var(--color-tinta) 80%, transparent);
+}
+
+.seccion__enlace {
+  display: inline-block;
+  margin-top: 2rem;
+  font-weight: 600;
+  color: var(--color-naranja);
+  text-decoration: none;
+}
+
+.seccion__enlace:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  /* Altura fija desde el primer pintado: el hueco de la foto queda reservado
+     y el CLS es 0. `dvh` en vez de `vh` para que la barra del navegador de
+     móvil no provoque un salto al esconderse. */
+  min-height: min(38rem, calc(100dvh - var(--nav-h-compacto)));
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero__foto {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__imagen {
+  object-fit: cover;
+  object-position: center 58%;
+}
+
+/* El velo es lo que hace que el texto blanco tenga contraste sobre una foto
+   de la que no controlamos el brillo. Sin él, el titular depende de la
+   suerte del pixel que tenga detrás. */
+.hero__velo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb, #06282c 82%, transparent) 0%,
+    color-mix(in srgb, #06282c 62%, transparent) 45%,
+    color-mix(in srgb, #06282c 28%, transparent) 100%
+  );
+}
+
+.hero__texto {
+  position: relative;
+  max-width: 80rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  color: #ffffff;
+}
+
+.hero__titulo {
+  font-size: clamp(2.4rem, 6.2vw, 4.2rem);
+  max-width: 16ch;
+  margin: 0;
+}
+
+.hero__titulo-acento {
+  display: block;
+  color: var(--color-dorado);
+}
+
+.hero__subtitulo {
+  margin-top: 1.25rem;
+  max-width: 34rem;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+}
+
+.hero__botones {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.hero__insignia {
+  margin-top: 2rem;
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: color-mix(in srgb, #ffffff 16%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid color-mix(in srgb, #ffffff 35%, transparent);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+}
+
+/* ==========================================================================
+   FRANJA DE CONFIANZA
+   ========================================================================== */
+
+.confianza {
+  background-color: var(--color-teal);
+  color: var(--color-crema);
+  padding: 2rem 1.5rem;
+}
+
+.confianza__lista {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+.confianza__punto {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+}
+
+.confianza__punto strong {
+  display: block;
+  color: #ffffff;
+}
+
+.confianza__texto {
+  opacity: 0.88;
+}
+
+.confianza__icono svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  color: var(--color-dorado);
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .confianza__lista {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .confianza__lista {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ==========================================================================
+   ELEGÍ TU EXPERIENCIA
+   ========================================================================== */
+
+.experiencias {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+.experiencia {
+  padding: 2rem;
+  border-radius: 1.25rem;
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 12%, transparent);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.experiencia:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -28px color-mix(in srgb, var(--color-tinta) 70%, transparent);
+}
+
+.experiencia__icono {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+.experiencia__icono svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.experiencia[data-variante="online"] .experiencia__icono {
+  background-color: color-mix(in srgb, var(--color-turquesa) 32%, transparent);
+  color: var(--color-teal);
+}
+
+.experiencia[data-variante="presencial"] .experiencia__icono {
+  background-color: color-mix(in srgb, var(--color-coral) 55%, transparent);
+  color: var(--color-naranja);
+}
+
+.experiencia__titulo {
+  font-size: 1.35rem;
+  color: var(--color-teal);
+}
+
+.experiencia__texto {
+  margin: 0.75rem 0 1.25rem;
+  color: color-mix(in srgb, var(--color-tinta) 82%, transparent);
+}
+
+.experiencia__enlace {
+  font-weight: 600;
+  color: var(--color-naranja);
+  text-decoration: none;
+}
+
+.experiencia__enlace:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 900px) {
+  .experiencias {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   DESTINOS
+   ========================================================================== */
+
+.destinos {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: 1fr;
+}
+
+.destino {
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 12%, transparent);
+}
+
+.destino__foto {
+  position: relative;
+  aspect-ratio: 16 / 10;
+}
+
+.destino__imagen {
+  object-fit: cover;
+}
+
+.destino__cuerpo {
+  padding: 1.5rem;
+}
+
+.destino__zona {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-naranja);
+}
+
+.destino__nombre {
+  font-size: 1.5rem;
+  color: var(--color-teal);
+  margin: 0.25rem 0;
+}
+
+.destino__lema {
+  font-weight: 600;
+}
+
+.destino__descripcion {
+  margin-top: 0.6rem;
+  color: color-mix(in srgb, var(--color-tinta) 82%, transparent);
+}
+
+.destino__pendiente {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 900px) {
+  .destinos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   TIQUISMO DEL DÍA
+   ========================================================================== */
+
+.tiquismo {
+  padding: 4.5rem 1.5rem;
+}
+
+.tiquismo__caja {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--color-dorado) 26%, var(--color-crema)) 0%,
+    color-mix(in srgb, var(--color-coral) 40%, var(--color-crema)) 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--color-naranja) 22%, transparent);
+}
+
+.tiquismo__etiqueta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-naranja);
+}
+
+.tiquismo__expresion {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-teal);
+  margin: 0.4rem 0 0;
+}
+
+.tiquismo__pronunciacion {
+  font-size: 0.95rem;
+  color: color-mix(in srgb, var(--color-tinta) 70%, transparent);
+}
+
+.tiquismo__bloque {
+  margin-top: 1.5rem;
+}
+
+.tiquismo__subtitulo {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  margin-bottom: 0.35rem;
+}
+
+.tiquismo__frase {
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.tiquismo__explicacion {
+  margin-top: 0.35rem;
+  color: color-mix(in srgb, var(--color-tinta) 78%, transparent);
+}
+
+.tiquismo__enlace {
+  display: inline-block;
+  margin-top: 1.75rem;
+  font-weight: 600;
+  color: var(--color-naranja);
+  text-decoration: none;
+}
+
+.tiquismo__enlace:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   ENLACE DE SALTO Y AVISO DE PENDIENTE
+   ========================================================================== */
+
+.salto-al-contenido {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -150%);
+  z-index: 100;
+  background-color: var(--color-teal);
+  color: #ffffff;
+  padding: 0.7rem 1.2rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 180ms ease;
+}
+
+.salto-al-contenido:focus-visible {
+  transform: translate(-50%, 0);
+}
+
+/* Marca los datos que el cliente todavía no ha confirmado. Se ven a
+   propósito: un hueco visible se arregla, uno invisible se publica. */
+.pendiente {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-tinta);
+  background-color: var(--color-dorado);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+}
+
+/* ==========================================================================
+   PIE
+   ========================================================================== */
+
+.pie {
+  background-color: var(--color-teal);
+  color: var(--color-crema);
+  padding: 3.5rem 1.5rem 1.5rem;
+  margin-top: 4rem;
+}
+
+.pie__interior {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+}
+
+.pie__perezoso {
+  height: 3.5rem;
+  width: auto;
+}
+
+.pie__lema {
+  margin: 0.75rem 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  max-width: 22rem;
+}
+
+.pie__contacto {
+  color: var(--color-crema);
+}
+
+.pie__titulo {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+  margin-bottom: 0.9rem;
+}
+
+.pie ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.pie a {
+  color: var(--color-crema);
+  text-decoration: none;
+}
+
+.pie a:hover {
+  text-decoration: underline;
+}
+
+.pie__derechos {
+  max-width: 80rem;
+  margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-crema) 22%, transparent);
+  font-size: 0.82rem;
+  opacity: 0.85;
+}
+
+@media (min-width: 768px) {
+  .pie__interior {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+/* ==========================================================================
+   BARRA SOCIAL LATERAL
+   --------------------------------------------------------------------------
+   Oculta por debajo de 768 px: a 375 px un riel fijo tapa contenido. Ahí las
+   redes viven en el menú y en el pie.
+   ========================================================================== */
+
+.social {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .social {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 0.45rem;
+    background-color: var(--color-crema);
+    border: 1px solid color-mix(in srgb, var(--color-teal) 16%, transparent);
+    border-right: none;
+    border-radius: 0.9rem 0 0 0.9rem;
+    box-shadow: -6px 0 20px -14px color-mix(in srgb, var(--color-tinta) 55%, transparent);
+
+    /* Entra deslizándose desde el borde. `transform-origin: right` para que
+       al crecer no se despegue del borde de la pantalla. */
+    transform-origin: right center;
+    transform: translate(110%, -50%) scale(0.92);
+    transition: transform 420ms cubic-bezier(0.2, 0.8, 0.3, 1);
+  }
+
+  .social[data-visible="true"] {
+    transform: translate(0, -50%) scale(0.92);
+  }
+
+  .social[data-visible="true"]:hover,
+  .social[data-visible="true"]:focus-within {
+    transform: translate(0, -50%) scale(1);
+  }
+
+  /* La pieza de marca remata el riel: es la marca, no un icono más. */
+  .social__marca {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background-color: var(--color-turquesa);
+    overflow: hidden;
+    margin-bottom: 0.25rem;
+  }
+
+  .social__marca img {
+    width: 2.1rem;
+    height: auto;
+  }
+
+  .social__icono {
+    position: relative;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: grid;
+    place-items: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 0.55rem;
+    /* En reposo, color de acento del sitio: pertenecen a la paleta. */
+    color: var(--color-naranja);
+    transition: color 180ms ease, transform 180ms ease;
+  }
+
+  .social__icono svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  /* Al pasar el cursor, el color oficial de cada red: se reconocen al
+     instante. La variable entra en línea desde el componente. */
+  .social__icono:hover,
+  .social__icono:focus-visible {
+    color: var(--color-red, var(--color-teal));
+    transform: translateX(-3px) scale(1.1);
+  }
+
+  .social__separador {
+    width: 60%;
+    height: 1px;
+    background-color: color-mix(in srgb, var(--color-teal) 22%, transparent);
+    margin: 0.3rem 0;
+  }
+
+  .social__compartir {
+    --color-red: var(--color-teal);
+  }
+
+  /* La etiqueta usa el color de los CTA, no un gris de sistema. */
+  .social__etiqueta {
+    position: absolute;
+    right: calc(100% + 0.55rem);
+    white-space: nowrap;
+    background-color: var(--color-teal);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.4rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(6px);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .social__icono:hover .social__etiqueta,
+  .social__icono:focus-visible .social__etiqueta {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* Quien pidió menos movimiento recibe menos movimiento. No es opcional: es
    criterio de accesibilidad de Lighthouse y de sentido común para gente con
    trastornos vestibulares. */

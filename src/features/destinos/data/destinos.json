@@ -1,0 +1,40 @@
+[
+  {
+    "id": "manuel-antonio",
+    "nombre": "Manuel Antonio",
+    "zona": "Puntarenas, costa del Pacífico",
+    "lema": {
+      "es": "Selva y playa en la misma clase",
+      "en": "Rainforest and beach in the same lesson"
+    },
+    "descripcion": {
+      "es": "El parque nacional más visitado del país: una punta de selva que baja hasta dos bahías de arena clara. Los monos cariblancos y los perezosos se cruzan en el camino sin que haya que buscarlos.",
+      "en": "The country's most visited national park: a headland of rainforest dropping into two pale-sand bays. Capuchin monkeys and sloths cross your path without you having to look for them."
+    },
+    "foto": "/fotos/manuel-antonio.jpg",
+    "fotoAlt": {
+      "es": "Vista aérea de Punta Catedral en Manuel Antonio, con la franja de arena entre dos bahías de agua turquesa",
+      "en": "Aerial view of Punta Catedral in Manuel Antonio, with the strip of sand between two turquoise bays"
+    },
+    "disponible": false
+  },
+  {
+    "id": "la-fortuna",
+    "nombre": "La Fortuna",
+    "zona": "Alajuela, zona norte",
+    "lema": {
+      "es": "A los pies del Arenal",
+      "en": "At the foot of the Arenal"
+    },
+    "descripcion": {
+      "es": "El pueblo que creció mirando al Volcán Arenal, con su cono casi perfecto de fondo. Aguas termales, catarata y una de las postales más reconocibles de Costa Rica.",
+      "en": "The town that grew up facing the Arenal Volcano and its almost perfect cone. Hot springs, a waterfall, and one of the most recognisable views in Costa Rica."
+    },
+    "foto": "/fotos/arenal.jpg",
+    "fotoAlt": {
+      "es": "El cono del Volcán Arenal visto desde La Fortuna, con la base cubierta de selva y nubes sobre la cima",
+      "en": "The cone of the Arenal Volcano seen from La Fortuna, its base covered in rainforest and clouds over the summit"
+    },
+    "disponible": false
+  }
+]
