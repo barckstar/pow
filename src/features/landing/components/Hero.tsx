@@ -23,6 +23,21 @@ export function Hero({ lang, t }: { lang: Idioma; t: Diccionario }) {
           }
           fill
           priority
+          // `priority` precarga, pero la auditoría de descubrimiento del LCP
+          // pedía además la pista de prioridad explícita en la precarga.
+          fetchPriority="high"
+          // La foto va detrás de un velo oscuro: por debajo de 75 no se
+          // aprecia diferencia y se ahorran bytes en el recurso que marca
+          // el LCP.
+          quality={55}
+          /*
+           * `100vw` y no un ancho fijo para móvil. Se probó
+           * `(max-width: 640px) 640px` y el resultado fue el contrario del
+           * buscado: al declarar un hueco de 640 px CSS, Next lo multiplica
+           * por la densidad de pantalla y acababa sirviendo la variante de
+           * 1200 px (81 KB) en vez de la de 750 (30 KB). El rendimiento de
+           * móvil cayó de 89 a 81.
+           */
           sizes="100vw"
           className="hero__imagen"
         />

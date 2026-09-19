@@ -98,11 +98,14 @@ export function Navbar({ lang, t }: Props) {
       <div className="navbar__fondo" aria-hidden="true" />
 
       <div className="navbar__contenido">
-        <Link
-          href={rutas.inicio(lang)}
-          className="navbar__logo"
-          aria-label={t.nav.inicio}
-        >
+        {/*
+          Sin `aria-label`: el enlace ya contiene el nombre de la marca como
+          texto visible, y un aria-label distinto lo reemplazaría. Un lector
+          de pantalla anunciaría "Inicio" mientras quien usa control por voz
+          dice "Costa Rica" y no pasa nada. Lo detectó Lighthouse
+          (label-content-name-mismatch).
+        */}
+        <Link href={rutas.inicio(lang)} className="navbar__logo">
           <Image
             src="/marca/perezoso.png"
             alt=""

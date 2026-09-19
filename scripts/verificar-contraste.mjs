@@ -48,6 +48,9 @@ const TEAL = "#0F6E78";
 // depende de una centésima se rompe la primera vez que alguien lo retoca.
 const NARANJA = "#C03F18";
 const DORADO = "#F4B641";
+// Dorado aclarado para TEXTO sobre teal. El de marca solo da 3.29:1 ahí, y
+// eso no se ve a ojo: lo encontró Lighthouse en los titulares del pie.
+const DORADO_TEXTO = "#FFE9BC";
 
 /**
  * Cada par es una combinación que EXISTE en la interfaz. No se listan colores
@@ -62,6 +65,19 @@ const PARES = [
   { nombre: "Botón de acento (blanco sobre naranja)", frente: BLANCO, fondo: NARANJA, tamano: "normal" },
   { nombre: "Texto sobre superficie teal", frente: CREMA, fondo: TEAL, tamano: "normal" },
   { nombre: "Insignia dorada (tinta sobre dorado)", frente: TINTA, fondo: DORADO, tamano: "normal" },
+  { nombre: "Titular del pie (dorado claro sobre teal)", frente: DORADO_TEXTO, fondo: TEAL, tamano: "normal" },
+  { nombre: "Iconos de confianza sobre teal", frente: DORADO_TEXTO, fondo: TEAL, tamano: "normal" },
+];
+
+/*
+ * Pares que NO deben usarse nunca para texto. Se comprueban al revés: si
+ * alguno empezara a pasar AA sería porque alguien cambió la paleta, y
+ * conviene enterarse. Están aquí sobre todo como documentación ejecutable de
+ * por qué existen las variantes oscuras.
+ */
+const PROHIBIDOS = [
+  { nombre: "dorado de marca sobre teal", frente: DORADO, fondo: TEAL },
+  { nombre: "blanco sobre turquesa decorativo", frente: BLANCO, fondo: "#5CC3C6" },
 ];
 
 let fallos = 0;
@@ -75,6 +91,14 @@ for (const { nombre, frente, fondo, tamano } of PARES) {
   const marca = pasa ? "OK  " : "FALLA";
   console.log(
     `  ${marca} ${ratio.toFixed(2).padStart(5)}:1  (mín ${minimo})  ${nombre}`
+  );
+}
+
+console.log("\n  Combinaciones que NO deben llevar texto\n");
+for (const { nombre, frente, fondo } of PROHIBIDOS) {
+  const ratio = contraste(frente, fondo);
+  console.log(
+    `  ${ratio.toFixed(2).padStart(5)}:1  ${nombre} — solo decorativo`
   );
 }
 

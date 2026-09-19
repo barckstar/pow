@@ -159,7 +159,14 @@ def main():
     )
 
     # Icono PWA 512. Upscale con LANCZOS; queda suave pero legible.
-    cuadrado.resize((512, 512), Image.LANCZOS).save(destino_app / "icon.png")
+    # La cuantización a 256 colores lo baja de ~257 KB a ~40 KB conservando
+    # la transparencia: el dibujo es plano y no tiene degradados finos.
+    # FASTOCTREE y no MEDIANCUT: es el único método de cuantización que PIL
+    # admite sobre RGBA, y aquí la transparencia hay que conservarla.
+    icono = cuadrado.resize((512, 512), Image.LANCZOS)
+    icono.quantize(colors=256, method=Image.FASTOCTREE).save(
+        destino_app / "icon.png", optimize=True
+    )
 
     # Apple no respeta la transparencia: la rellena de negro. Se compone
     # sobre la crema de marca con un margen, que es como Apple espera el
@@ -167,7 +174,11 @@ def main():
     apple = Image.new("RGBA", (180, 180), CREMA + (255,))
     contenido = cuadrado.resize((150, 150), Image.LANCZOS)
     apple.paste(contenido, (15, 15), contenido)
-    apple.convert("RGB").save(destino_app / "apple-icon.png")
+    # Paleta de 128 colores: el dibujo es plano y no lo nota, pero el archivo
+    # baja de ~30 KB a ~9 KB. Lo descarga todo iPhone que guarde el sitio.
+    apple.convert("RGB").quantize(colors=128, method=Image.MEDIANCUT).save(
+        destino_app / "apple-icon.png", optimize=True
+    )
 
     # Favicon multitamano. A 16 px el perezoso entero es una mancha, asi que
     # esos tamanos usan un recorte a la cara, que es lo unico reconocible.

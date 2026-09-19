@@ -24,6 +24,12 @@
   --color-dorado: #f4b641;
   --color-coral: #ffbea3;
 
+  /* Dorado para TEXTO sobre superficie teal.
+     El dorado de marca solo da 3.29:1 ahí —lo cazó Lighthouse en los
+     titulares del pie—, así que el texto usa esta variante aclarada, que da
+     5.01:1 y sigue leyéndose como dorado. */
+  --color-dorado-texto: #ffe9bc;
+
   /* Altura del navbar. La compacta reserva el espacio del body, así el CLS
      es 0 pase lo que pase con el estado del header. Ver Navbar.tsx. */
   --nav-h-compacto: 4rem;
@@ -768,7 +774,7 @@ p {
 .confianza__icono svg {
   width: 1.6rem;
   height: 1.6rem;
-  color: var(--color-dorado);
+  color: var(--color-dorado-texto);
   flex-shrink: 0;
 }
 
@@ -1314,7 +1320,7 @@ p {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-dorado);
+  color: var(--color-dorado-texto);
   margin-bottom: 0.9rem;
 }
 
@@ -1324,12 +1330,19 @@ p {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
 }
 
 .pie a {
   color: var(--color-crema);
   text-decoration: none;
+}
+
+/* Los enlaces del pie medían 17 px de alto y quedaban por debajo del mínimo
+   de 24x24 que exige la auditoría de tamaño de objetivo táctil. El relleno
+   vertical los lleva a 40 px sin cambiar nada visualmente. */
+.pie li a {
+  display: inline-block;
+  padding: 0.5rem 0;
 }
 
 .pie a:hover {
@@ -1342,7 +1355,8 @@ p {
   padding-top: 1.5rem;
   border-top: 1px solid color-mix(in srgb, var(--color-crema) 22%, transparent);
   font-size: 0.82rem;
-  opacity: 0.85;
+  /* Sin `opacity`: al 0.85 la crema sobre el teal bajaba a 4.44:1 y fallaba
+     AA por seis centésimas. El peso visual lo da el tamaño, no la opacidad. */
 }
 
 @media (min-width: 768px) {

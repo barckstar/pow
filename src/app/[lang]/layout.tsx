@@ -16,7 +16,14 @@ import "../globals.css";
  * lo que Lighthouse penaliza como FOIT.
  */
 const poppins = Poppins({
-  subsets: ["latin", "latin-ext"],
+  /*
+   * Solo `latin`. El subconjunto `latin-ext` cubre caracteres de Europa
+   * central y oriental que ni el español ni el inglés usan, y duplicaba el
+   * número de archivos de fuente: 6 peticiones y 41 KB en la auditoría de
+   * móvil, frente a 3 y ~21 KB. Las vocales acentuadas, la ñ, la ü y los
+   * signos de apertura ¿ ¡ están todos en `latin`.
+   */
+  subsets: ["latin"],
   weight: ["400", "600", "700"],
   display: "swap",
   variable: "--fuente-poppins",

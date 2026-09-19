@@ -23,22 +23,52 @@ type Props = {
   provisional: boolean;
 };
 
+/**
+ * Los formateadores se cachean por zona e idioma.
+ *
+ * Construir un `Intl.DateTimeFormat` es caro —carga datos de localización— y
+ * aquí se formatean dos horas y un día por cada franja. Con tres semanas de
+ * horarios son más de doscientas construcciones por render: en la auditoría
+ * de móvil eso salía como 890 ms de bloqueo del hilo principal. Reutilizarlos
+ * lo convierte en una docena.
+ */
+const FORMATEADORES = new Map<string, Intl.DateTimeFormat>();
+
+function formateador(
+  clase: "hora" | "dia",
+  zona: string,
+  idioma: Idioma
+): Intl.DateTimeFormat {
+  const clave = `${clase}|${zona}|${idioma}`;
+  const cacheado = FORMATEADORES.get(clave);
+  if (cacheado) return cacheado;
+
+  const locale = LOCALE[idioma].replace("_", "-");
+  const nuevo =
+    clase === "hora"
+      ? new Intl.DateTimeFormat(locale, {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+          timeZone: zona,
+        })
+      : new Intl.DateTimeFormat(locale, {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          timeZone: zona,
+        });
+
+  FORMATEADORES.set(clave, nuevo);
+  return nuevo;
+}
+
 function horaEn(iso: string, zona: string, idioma: Idioma): string {
-  return new Intl.DateTimeFormat(LOCALE[idioma].replace("_", "-"), {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-    timeZone: zona,
-  }).format(new Date(iso));
+  return formateador("hora", zona, idioma).format(new Date(iso));
 }
 
 function diaEn(iso: string, zona: string, idioma: Idioma): string {
-  return new Intl.DateTimeFormat(LOCALE[idioma].replace("_", "-"), {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    timeZone: zona,
-  }).format(new Date(iso));
+  return formateador("dia", zona, idioma).format(new Date(iso));
 }
 
 export function SelectorDeFranjas({ franjas, lang, t, provisional }: Props) {
@@ -111,7 +141,10 @@ export function SelectorDeFranjas({ franjas, lang, t, provisional }: Props) {
         <div className="reserva__dias">
           {porDia.map(([dia, lista]) => (
             <section key={dia} className="reserva__dia">
-              <h3 className="reserva__dia-titulo">{dia}</h3>
+              {/* h2 y no h3: el único encabezado por encima en esta página es
+                  el h1 del título, y saltarse un nivel rompe la navegación
+                  por encabezados de los lectores de pantalla. */}
+              <h2 className="reserva__dia-titulo">{dia}</h2>
               <ul className="reserva__franjas">
                 {lista.map((franja) => {
                   const mia = horaEn(franja.inicio, zona, lang);
