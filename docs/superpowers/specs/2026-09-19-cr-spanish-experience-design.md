@@ -43,7 +43,8 @@ Estándar de la casa, idéntico a `gordillos-pizza` / `brasa-y-humo`:
 - Tailwind CSS v4
 - Zod 4 para validar todo JSON en la frontera
 - `schema-dts` para JSON-LD
-- Vitest para las piezas con lógica (husos horarios, generación de franjas)
+- Vitest para las piezas con lógica (husos horarios, generación de franjas, parseo de artículos)
+- `unified` + `remark-parse` + `remark-gfm` + `remark-rehype` + `rehype-react` + `gray-matter` para el blog (§5). **Solo build time; nada de esto llega al navegador.**
 - **Cero librerías de animación.** Todo en CSS, animando únicamente `transform` y `opacity`.
 
 ### Arquitectura
@@ -51,12 +52,15 @@ Estándar de la casa, idéntico a `gordillos-pizza` / `brasa-y-humo`:
 Feature-Based. `src/app/` es solo capa de rutas.
 
 ```
+content/blog/{es,en}/        artículos en Markdown — fuera de src/ (ver §5)
+
 src/
   app/[lang]/...              rutas delgadas
   app/api/paypal/...          rutas de servidor
   features/
     landing/                  hero, secciones del home
     tiquismos/                componente firma (ver §4)
+    blog/                     lectura de .md, esquema, listado, artículo
     destinos/                 Manuel Antonio, La Fortuna
     reservas/                 calendario, husos horarios, formulario
     pagos/                    PayPal
@@ -84,6 +88,10 @@ src/
 /[lang]/precios
 /[lang]/reservar       Selección de franja + depósito PayPal
 /[lang]/comunidad
+/[lang]/blog           Listado de artículos (§5)
+/[lang]/blog/[slug]    Artículo
+/[lang]/blog/tag/[tag] Filtrado por etiqueta
+/[lang]/rss.xml        Feed por idioma
 ```
 
 ### i18n sin librería externa
@@ -124,10 +132,96 @@ Tarjeta que enseña una expresión costarricense real: la expresión, su signifi
 - Los datos viven en `features/tiquismos/data/tiquismos.json`.
 - Da valor a quien todavía no compró y es lo que impide que el sitio se lea como plantilla.
 - La rotación es determinista por día (no `Math.random()`), para que el HTML del servidor y el del cliente coincidan y no haya error de hidratación.
+- **Cada tiquismo puede crecer hasta ser un artículo del blog** (ver §5). El componente enlaza al artículo cuando existe.
 
 ---
 
-## 5. Paleta — 70/30/10 con contraste medido
+## 5. Blog en Markdown
+
+### Por qué existe
+
+Nadie busca "Costa Rica Spanish Experience" en Google. Sí buscan *"what does pura vida mean"*, *"tico slang"*, *"Costa Rican Spanish vs Spanish"*. El blog es el canal de adquisición del negocio, no un adorno: cada artículo es una puerta de entrada al embudo que termina en `/reservar`.
+
+Por eso el blog no es una feature aislada — se conecta con los tiquismos (§4), que son su fuente natural de temas.
+
+### Dónde viven los artículos
+
+Markdown plano, fuera de `src/`, para que se editen sin abrir el editor de código:
+
+```
+content/blog/
+  es/
+    que-significa-pura-vida.md
+    voseo-costarricense.md
+  en/
+    what-does-pura-vida-mean.md
+```
+
+El idioma lo determina **la carpeta**, no un campo. Menos formas de equivocarse.
+
+### Frontmatter validado con Zod
+
+Igual que toda frontera de datos del proyecto: se parsea, no se confía.
+
+```yaml
+---
+titulo: "¿Qué significa realmente 'pura vida'?"
+resumen: "No es solo un saludo..."          # 70–165 car., alimenta la meta description
+fecha: 2026-09-19
+actualizado: 2026-10-02                     # opcional
+portada: /blog/pura-vida.jpg                # opcional
+portadaAlt: "Atardecer en Manuel Antonio"   # obligatorio si hay portada
+etiquetas: [tiquismos, cultura]
+traduccion: what-does-pura-vida-mean        # opcional: slug del par en el otro idioma
+borrador: false
+---
+```
+
+El esquema valida de verdad: slugs únicos por idioma, `resumen` dentro del rango que exige la meta description, fechas parseables, `portadaAlt` no vacío cuando hay portada, y que `traduccion` **apunte a un archivo que exista**. Un enlace roto entre idiomas rompe el build, no el sitio en producción.
+
+### Política de traducción
+
+**Un artículo puede existir en un solo idioma.** Escribir todo dos veces no se sostiene y frenaría la publicación.
+
+- `/es/blog` lista solo los artículos en español; `/en/blog` solo los de inglés.
+- Cuando existe el par, los artículos se enlazan entre sí y emiten `hreflang` recíproco.
+- Cuando no existe, **no se emite `hreflang`** para ese artículo. Declarar una traducción que no existe es peor que no declarar nada.
+- `borrador: true` excluye el artículo del build, del sitemap y del RSS.
+
+### Pipeline de Markdown
+
+`unified` + `remark-parse` + `remark-gfm` + `remark-rehype` + `rehype-react`, con `gray-matter` para el frontmatter.
+
+Son ~6 dependencias en un proyecto que hoy tiene 4, así que la justificación importa: **todas corren solo en el servidor, en build time, y ninguna llega al navegador.** La regla de "nada de librerías" del estándar apunta a peso en el cliente, y aquí el peso en cliente es cero.
+
+Lo que compran:
+
+- **`rehype-react` produce elementos de React, no una cadena de HTML.** Eso permite mapear `img` → `next/image` y `a` → `next/link`. Es la razón de fondo de la elección: una `<img>` cruda en un artículo con fotos destroza el LCP y el CLS, y ahí se va el Lighthouse.
+- Anclas automáticas en los encabezados (`#como-se-usa`), que habilitan tabla de contenidos y enlaces profundos.
+- Tablas, listas de tareas y tachado de GFM.
+
+Sin `dangerouslySetInnerHTML` en ninguna parte.
+
+### Rutas y derivados
+
+```
+/[lang]/blog              listado, paginado de 12
+/[lang]/blog/[slug]       artículo
+/[lang]/blog/tag/[tag]    filtrado por etiqueta
+/[lang]/rss.xml           feed por idioma
+```
+
+Todo estático (`generateStaticParams`): el blog no toca el servidor en runtime.
+
+Cada artículo emite JSON-LD de `BlogPosting`, canónica propia, Open Graph con la portada (o la imagen por defecto del sitio si no tiene), y tiempo de lectura calculado del contenido real — no inventado. El `sitemap.xml` incluye todos los artículos publicados de ambos idiomas.
+
+### Imágenes de artículos
+
+Van en `public/blog/`, preconvertidas a AVIF/WebP por un script, y servidas por `next/image` a través del mapeo de `rehype-react`. Las dimensiones se leen del archivo en build time, así que el hueco queda reservado y el CLS es 0 sin que el autor declare nada en el Markdown.
+
+---
+
+## 6. Paleta — 70/30/10 con contraste medido
 
 La paleta del concept board **no pasa WCAG AA**. Medido con script propio:
 
@@ -155,7 +249,7 @@ Un script (`scripts/verificar-contraste.mjs`) recalcula estos pares y falla si a
 
 ---
 
-## 6. Navbar
+## 7. Navbar
 
 Además del comportamiento que ya es constante en todos los sitios del usuario, este lleva una animación extra pedida explícitamente: **arriba del todo el header es alto y de dos filas, y colapsa a una sola fila compacta apenas se sale del tope.**
 
@@ -192,7 +286,7 @@ Solución:
 
 ---
 
-## 7. Reservas y el calendario que aún no existe
+## 8. Reservas y el calendario que aún no existe
 
 Requisito del usuario: estructura visual lista para conectar cuando exista el proveedor de calendario.
 
@@ -227,7 +321,7 @@ El profesor está en Suiza y los estudiantes en cualquier parte.
 
 ---
 
-## 8. Pagos — PayPal, depósito de reserva
+## 9. Pagos — PayPal, depósito de reserva
 
 Se cobra un **depósito para apartar la clase**, no el total. El resto se arregla directamente con el profesor.
 
@@ -239,7 +333,7 @@ Se cobra un **depósito para apartar la clase**, no el total. El resto se arregl
 
 ---
 
-## 9. Imágenes, logo y marca
+## 10. Imágenes, logo y marca
 
 ### Fotografía
 
@@ -273,7 +367,7 @@ El color por red entra como **variable CSS en línea**, no como clase de Tailwin
 
 ---
 
-## 10. Metadatos, SEO y calidad
+## 11. Metadatos, SEO y calidad
 
 ### Obligatorio desde el primer build
 
@@ -283,7 +377,9 @@ Helper único `metadatosDe({ titulo, descripcion, ruta, lang })` en `src/shared/
 
 Por ruta: `<title>` único (15–65), `meta description` única (70–165), canónica, Open Graph completo con `og:image` 1200×630, `twitter:card` `summary_large_image`, `lang` en `<html>`, exactamente un `<h1>`, `alt` en toda imagen.
 
-Por sitio: `favicon.ico`, PNG 512, `apple-icon` 180, manifest, `sitemap.xml` (con las dos variantes de idioma), `robots.txt`, JSON-LD de `Organization` y `Course`, y `hreflang` entre `/es` y `/en`.
+Por sitio: `favicon.ico`, PNG 512, `apple-icon` 180, manifest, `sitemap.xml` (con las dos variantes de idioma **y todos los artículos publicados**), `robots.txt`, JSON-LD de `Organization` y `Course`, y `hreflang` entre `/es` y `/en`.
+
+Por artículo del blog: JSON-LD de `BlogPosting`, canónica propia, Open Graph con la portada, y entrada en el `rss.xml` de su idioma. El `hreflang` recíproco **solo** cuando la traducción existe de verdad (§5).
 
 `scripts/verificar-metadatos.mjs` corre en `postbuild` **sobre el HTML generado** y **falla el build** si algo falta. Plantilla: `D:\klegium-web\scripts\verificar-metadatos.mjs`.
 
@@ -293,7 +389,7 @@ Se construye desde el inicio, no se parchea. Auditado sobre el **build de produc
 
 ---
 
-## 11. Datos que faltan — no se inventan
+## 12. Datos que faltan — no se inventan
 
 Es un negocio real. Todo lo siguiente queda en `null` y **visible como pendiente en la página**, igual que en `ticoshot`. Lista completa en `D:\pow\PENDIENTE.md`.
 
@@ -305,10 +401,11 @@ Es un negocio real. Todo lo siguiente queda en `null` y **visible como pendiente
 - Dominio, correo y teléfono de contacto
 - Redes sociales reales del negocio
 - Datos de las sedes presenciales en Costa Rica
+- Artículos del blog: se entrega la maquinaria y **dos artículos de ejemplo escritos sobre hechos verificables del español costarricense** (qué significa "pura vida", el voseo). Todo lo que sea experiencia personal del profesor o de sus estudiantes lo escribe él.
 
 ---
 
-## 12. Riesgos conocidos
+## 13. Riesgos conocidos
 
 | Riesgo | Mitigación |
 |---|---|
@@ -316,3 +413,5 @@ Es un negocio real. Todo lo siguiente queda en `null` y **visible como pendiente
 | DST: Suiza cambia hora, Costa Rica no | Conversión centralizada + tests con fechas de ambos lados del cambio |
 | El hero ilustrado del board es pesado y es el LCP | Se usa fotografía real optimizada; se mide el LCP antes de entregar |
 | Sin proveedor de calendario, la disponibilidad es simulada | El puerto aísla el cambio a un archivo; la UI ya es la definitiva |
+| Un blog sin artículos nuevos envejece peor que no tener blog | El listado no muestra "última actualización"; los tiquismos dan una cantera de temas cortos y publicables |
+| El navbar pasa de 6 a 7 enlaces con el blog | La fila alta del tope tiene espacio de sobra; en compacto y en móvil se revisa el corte a 1280 px y 375 px |
