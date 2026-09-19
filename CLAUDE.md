@@ -44,7 +44,7 @@ src/
   proxy.ts                    / → /es | /en por Accept-Language
   app/[lang]/…                rutas
   app/api/paypal/…            rutas de servidor
-  features/{landing,tiquismos,blog,destinos,reservas,pagos}/
+  features/{landing,tiquismos,faq,blog,destinos,reservas,pagos}/
   shared/{components,i18n,config,lib,data}/
 ```
 
@@ -89,7 +89,7 @@ en el navegador.
 
 ### Contenido en JSON
 
-Tiquismos, destinos y créditos de fotos viven en `.json` validado al importar.
+Tiquismos, preguntas frecuentes, destinos y créditos de fotos viven en `.json` validado al importar.
 El parseo corre durante el build: un dato malo rompe la compilación en vez de
 aparecer vacío en el teléfono del cliente.
 

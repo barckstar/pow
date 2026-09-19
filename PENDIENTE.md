@@ -63,13 +63,13 @@ recomendadas y SEO, y **86 en rendimiento**.
 
 El techo es el LCP: ~3,0 s simulados por la fotografía a pantalla completa del
 hero. **Está medido que no es cuestión de peso**: la imagen se redujo de 30 KB
-a 16 KB y la puntuación no se movió (87 antes, 87 despues del cambio de peso). Lo que pesa es la
+a 16 KB y la puntuación no se movió (87 antes, 87 después del cambio). Lo que pesa es la
 cadena de latencia que Lighthouse simula en móvil — 150 ms de ida y vuelta y
 CPU cuatro veces más lenta.
 
 Las tres salidas posibles, en orden de coste:
 
-1. **Aceptar 87 en móvil.** Es una puntuación normal para una página con foto
+1. **Aceptar 86 en móvil.** Es una puntuación normal para una página con foto
    a sangre; el sitio carga la imagen en 286 ms sin simulación.
 2. **Sacar la foto del camino del LCP**: hero con degradado de la paleta y la
    fotografía entrando después. Sube la puntuación y cambia el diseño.
