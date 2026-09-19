@@ -780,6 +780,241 @@ p {
 }
 
 /* ==========================================================================
+   BLOG
+   ========================================================================== */
+
+.blog__etiquetas {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.blog__etiqueta,
+.tarjeta-articulo__etiquetas a,
+.articulo__etiquetas a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-teal);
+  background-color: color-mix(in srgb, var(--color-turquesa) 22%, transparent);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.blog__etiqueta:hover,
+.tarjeta-articulo__etiquetas a:hover,
+.articulo__etiquetas a:hover {
+  background-color: var(--color-teal);
+  color: #ffffff;
+}
+
+.blog__vacio {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  border: 1px dashed color-mix(in srgb, var(--color-teal) 30%, transparent);
+}
+
+.blog__rejilla {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: 1fr;
+}
+
+.tarjeta-articulo {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 12%, transparent);
+}
+
+.tarjeta-articulo__foto {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+}
+
+.tarjeta-articulo__imagen {
+  object-fit: cover;
+}
+
+.tarjeta-articulo__cuerpo {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.tarjeta-articulo__meta,
+.articulo__meta {
+  font-size: 0.82rem;
+  color: color-mix(in srgb, var(--color-tinta) 65%, transparent);
+}
+
+.tarjeta-articulo__titulo {
+  font-size: 1.25rem;
+}
+
+.tarjeta-articulo__titulo a {
+  color: var(--color-teal);
+  text-decoration: none;
+}
+
+.tarjeta-articulo__titulo a:hover {
+  color: var(--color-naranja);
+}
+
+.tarjeta-articulo__resumen {
+  color: color-mix(in srgb, var(--color-tinta) 82%, transparent);
+  flex: 1;
+}
+
+.tarjeta-articulo__etiquetas,
+.articulo__etiquetas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+@media (min-width: 720px) {
+  .blog__rejilla {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .blog__rejilla {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- Artículo ------------------------------------------------------------ */
+
+.articulo {
+  max-width: 47rem;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem;
+}
+
+.articulo__titulo {
+  font-size: clamp(1.9rem, 4.6vw, 2.9rem);
+  color: var(--color-teal);
+  margin: 0.5rem 0;
+}
+
+.articulo__resumen {
+  font-size: 1.1rem;
+  color: color-mix(in srgb, var(--color-tinta) 80%, transparent);
+  margin-bottom: 1rem;
+}
+
+.articulo__traduccion {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.articulo__traduccion a {
+  color: var(--color-naranja);
+}
+
+.articulo__portada {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin: 2rem 0;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.articulo__portada-imagen {
+  object-fit: cover;
+}
+
+.articulo__cuerpo {
+  font-size: 1.05rem;
+}
+
+.articulo__cuerpo h2 {
+  font-size: 1.6rem;
+  color: var(--color-teal);
+  margin: 2.5rem 0 0.75rem;
+}
+
+.articulo__cuerpo h3 {
+  font-size: 1.25rem;
+  margin: 2rem 0 0.6rem;
+}
+
+.articulo__cuerpo p {
+  margin: 1rem 0;
+}
+
+.articulo__cuerpo ul,
+.articulo__cuerpo ol {
+  margin: 1rem 0 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.articulo__cuerpo a {
+  color: var(--color-naranja);
+}
+
+.articulo__cuerpo strong {
+  font-weight: 600;
+  color: var(--color-teal);
+}
+
+.articulo__cuerpo table {
+  width: 100%;
+  margin: 1.75rem 0;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.articulo__cuerpo th,
+.articulo__cuerpo td {
+  text-align: left;
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-teal) 15%, transparent);
+}
+
+.articulo__cuerpo th {
+  background-color: color-mix(in srgb, var(--color-turquesa) 16%, transparent);
+  color: var(--color-teal);
+  font-weight: 600;
+}
+
+.articulo__imagen {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  margin: 2rem 0;
+}
+
+.articulo__pie {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-teal) 15%, transparent);
+}
+
+.articulo__pie a {
+  font-weight: 600;
+  color: var(--color-naranja);
+  text-decoration: none;
+}
+
+/* ==========================================================================
    ENLACE DE SALTO Y AVISO DE PENDIENTE
    ========================================================================== */
 
