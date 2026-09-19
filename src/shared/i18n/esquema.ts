@@ -91,6 +91,13 @@ export const esquemaDiccionario = z
       })
       .strict(),
 
+    faq: z
+      .object({
+        titulo: z.string().min(1),
+        intro: z.string().min(1),
+      })
+      .strict(),
+
     blog: z
       .object({
         titulo: z.string().min(1),

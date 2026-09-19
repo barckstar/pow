@@ -119,30 +119,6 @@ body {
   transform: scaleY(0.6154);
 }
 
-/*
- * La onda que cierra el área crema. Solo se desplaza y se desvanece: ambas
- * propiedades van por compositor.
- */
-.navbar__onda {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 2.75rem;
-  width: 100%;
-  display: block;
-  fill: var(--color-crema);
-  pointer-events: none;
-  transform: translateY(var(--nav-h-tope));
-  transition: transform 300ms ease, opacity 300ms ease;
-}
-
-.navbar[data-tope="false"] .navbar__onda {
-  /* Compacto: se retira. A media página una curva crema flotando sobre el
-     contenido se lee como un error, no como un detalle de marca. */
-  opacity: 0;
-  transform: translateY(var(--nav-h-compacto));
-}
 
 .navbar[data-tope="true"] .navbar__fondo {
   /* Arriba del todo el fondo es sólido: no hay nada detrás que desenfocar y
@@ -174,8 +150,8 @@ body {
   gap: 0.6rem;
   text-decoration: none;
   transform-origin: left top;
-  /* Estado alto: el logo baja a la segunda fila y crece. La altura deja
-     aire por debajo para que la onda crema lo envuelva, que es lo que hace
+  /* Estado alto: el logo baja a la segunda fila y crece. Queda sobre la
+     esquina que la fotografía deja libre con su redondeo, que es lo que hace
      que se lea centrado y no pegado al borde. */
   transform: translateY(2.35rem) scale(1.3);
 }
@@ -707,6 +683,21 @@ p {
 .hero__foto {
   position: absolute;
   inset: 0;
+  /*
+   * La curva del concept board. Es la esquina superior izquierda de la propia
+   * fotografía la que se retira, dejando asomar la crema de la página por
+   * debajo del logo.
+   *
+   * Radio ELÍPTICO —38rem de ancho por 7rem de alto— para que el barrido sea
+   * largo y bajo en vez de un giro brusco. El header tapa los primeros 40 px,
+   * así que el alto tiene que ser generoso para que se vea la curva.
+   *
+   * Se intentó antes con una pestaña de crema superpuesta y no funcionaba:
+   * el degradado del hero ya es crema opaca en ese tercio, así que la pestaña
+   * quedaba invisible sobre su propio color.
+   */
+  border-top-left-radius: 38rem 7rem;
+  overflow: hidden;
 }
 
 .hero__imagen {
@@ -744,6 +735,13 @@ p {
    * titular nunca depende del brillo del pixel que le toque detrás.
    */
   .hero__velo {
+    /*
+     * Se probó inclinarlo a 118deg para que la foto subiera por la izquierda.
+     * No sirve: al girar el degradado sobre una caja ancha y baja, su línea
+     * se alarga tanto que el corte del 44 % se va fuera de la pantalla y la
+     * crema acaba cubriendo la fotografía entera. Vuelve a ser casi
+     * horizontal; la curva del board la da el redondeo de `.hero__foto`.
+     */
     background: linear-gradient(
       95deg,
       var(--color-crema) 0%,
@@ -756,10 +754,14 @@ p {
 
 .hero__texto {
   position: relative;
+  /* Por encima de las olas, que llevan z-index 1. */
+  z-index: 2;
   max-width: 80rem;
   width: 100%;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  /* El relleno inferior deja sitio a las olas: en móvil el texto se ancla
+     abajo y sin esto la insignia quedaría dentro del agua. */
+  padding: 3rem 1.5rem 7rem;
   /* Texto oscuro sobre la crema: 15,41:1. Antes era blanco sobre velo
      oscuro, que daba menos contraste y oscurecía toda la portada. */
   color: var(--color-tinta);
@@ -767,7 +769,7 @@ p {
 
 @media (min-width: 768px) {
   .hero__texto {
-    padding: 5rem 1.5rem;
+    padding: 5rem 1.5rem 8rem;
   }
 }
 
@@ -814,6 +816,50 @@ p {
   border: 1px solid color-mix(in srgb, var(--color-teal) 28%, transparent);
   padding: 0.5rem 1rem;
   border-radius: 999px;
+}
+
+/* ==========================================================================
+   OLAS
+   --------------------------------------------------------------------------
+   Cierran el hero y entran en la franja teal. Solo se anima `transform`.
+   ========================================================================== */
+
+/*
+  El SVG mide el 200 % y su path va repetido: al correrlo un 50 % exacto el
+  segundo ejemplar cae donde estaba el primero y el bucle no tiene costura.
+  Cualquier otro porcentaje deja un salto visible cada vuelta.
+*/
+@keyframes deriva-ola {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.olas {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  pointer-events: none;
+  /* Por encima del velo, por debajo del texto del hero. */
+  z-index: 1;
+}
+
+.olas__capa {
+  position: absolute;
+  inset-inline: 0;
+  overflow: hidden;
+}
+
+.ola {
+  display: block;
+  height: 100%;
+  /* Doble de ancho: aquí viven los dos ejemplares del path. */
+  width: 200%;
+  animation: deriva-ola var(--ola-duracion, 24s) linear infinite;
+  will-change: transform;
 }
 
 /* ==========================================================================
@@ -1087,6 +1133,89 @@ p {
 
 .tiquismo__enlace:hover {
   text-decoration: underline;
+}
+
+/* ==========================================================================
+   PREGUNTAS FRECUENTES
+   --------------------------------------------------------------------------
+   `<details>`/`<summary>` nativos: abren sin JavaScript y ya vienen
+   accesibles. Solo hay que quitarle al summary el triángulo del navegador y
+   poner el signo propio.
+   ========================================================================== */
+
+.faq {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faq__item {
+  border-radius: 1rem;
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 14%, transparent);
+  overflow: hidden;
+}
+
+.faq__pregunta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.35rem;
+  font-weight: 600;
+  color: var(--color-teal);
+  cursor: pointer;
+  list-style: none;
+}
+
+/* El triángulo por defecto, en sus dos formas: WebKit y el resto. */
+.faq__pregunta::-webkit-details-marker {
+  display: none;
+}
+
+.faq__pregunta::marker {
+  content: "";
+}
+
+.faq__pregunta:hover {
+  background-color: color-mix(in srgb, var(--color-turquesa) 12%, transparent);
+}
+
+/* Signo de más que gira a equis. Dos barras con `transform`, sin imágenes. */
+.faq__signo {
+  position: relative;
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.faq__signo::before,
+.faq__signo::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--color-naranja);
+  transition: transform 220ms ease;
+}
+
+.faq__signo::after {
+  transform: rotate(90deg);
+}
+
+.faq__item[open] .faq__signo::after {
+  transform: rotate(0deg);
+}
+
+.faq__respuesta {
+  padding: 0 1.35rem 1.35rem;
+  color: color-mix(in srgb, var(--color-tinta) 85%, transparent);
+}
+
+.faq__pendiente {
+  margin-top: 0.85rem;
 }
 
 /* ==========================================================================

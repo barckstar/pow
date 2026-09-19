@@ -9,6 +9,7 @@ import { Hero } from "@/features/landing/components/Hero";
 import { Experiencias } from "@/features/landing/components/Experiencias";
 import { Confianza } from "@/features/landing/components/Confianza";
 import { TiquismoDelDia } from "@/features/tiquismos/components/TiquismoDelDia";
+import { Faq } from "@/features/faq/components/Faq";
 import { TarjetaDestino } from "@/features/destinos/components/TarjetaDestino";
 import { DESTINOS } from "@/features/destinos/esquema";
 
@@ -85,6 +86,10 @@ export default async function PaginaInicio({
       </section>
 
       <TiquismoDelDia lang={idioma} t={t} />
+
+      {/* El FAQ va al final: resuelve la última objeción justo antes de que
+          alguien se vaya, y aporta el JSON-LD de FAQPage. */}
+      <Faq lang={idioma} t={t} />
     </>
   );
 }

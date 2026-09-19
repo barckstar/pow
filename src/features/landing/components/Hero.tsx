@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Olas } from "@/shared/components/ui/Olas";
 import { rutas } from "@/shared/config/sitio";
 import type { Idioma } from "@/shared/i18n/config";
 import type { Diccionario } from "@/shared/i18n/esquema";
@@ -47,6 +48,10 @@ export function Hero({ lang, t }: { lang: Idioma; t: Diccionario }) {
         />
         <div className="hero__velo" aria-hidden="true" />
       </div>
+
+      {/* Las olas cierran el hero y se funden con la franja teal de abajo:
+          la capa de adelante es exactamente ese color. */}
+      <Olas />
 
       <div className="hero__texto">
         <h1 className="hero__titulo">

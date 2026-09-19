@@ -52,6 +52,10 @@
     "ejemplo": "How it is used",
     "leerMas": "Read the full article"
   },
+  "faq": {
+    "titulo": "Frequently asked questions",
+    "intro": "What people ask most before booking. If something is not confirmed yet, we say so."
+  },
   "blog": {
     "titulo": "The blog",
     "intro": "Costa Rican Spanish explained by someone who has spoken it since birth.",

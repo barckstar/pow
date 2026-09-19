@@ -52,6 +52,10 @@
     "ejemplo": "Cómo se usa",
     "leerMas": "Leer el artículo completo"
   },
+  "faq": {
+    "titulo": "Preguntas frecuentes",
+    "intro": "Lo que más nos preguntan antes de reservar. Si algo todavía no está confirmado, lo decimos."
+  },
   "blog": {
     "titulo": "El blog",
     "intro": "Español costarricense explicado por alguien que lo habla desde que nació.",

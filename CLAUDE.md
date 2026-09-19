@@ -150,8 +150,8 @@ Medido sobre el build de producción (`next start`), mediana de tres corridas.
 
 | | Rendimiento | Accesibilidad | Prácticas | SEO | CLS |
 |---|---|---|---|---|---|
-| Escritorio | **100** | **100** | **100** | **100** | 0 |
-| Móvil | **87** | **100** | **100** | **100** | 0 |
+| Escritorio | **99** | **100** | **100** | **100** | 0 |
+| Móvil | **86** | **100** | **100** | **100** | 0 |
 
 **El rendimiento en móvil no llega al estándar de 95.** El techo es el LCP
 (~3,0 s simulados) de la fotografía a pantalla completa del hero. Está medido
