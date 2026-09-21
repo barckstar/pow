@@ -88,6 +88,12 @@ export const esquemaDiccionario = z
         /** La etiqueta del aviso de anuncio pagado. Ver el esquema de
             destinos: el aviso es obligación legal, no cortesía. */
         anuncio: z.string().min(1),
+        /** El botón de cada ficha, que lleva al formulario con ese destino. */
+        solicitar: z.string().min(1),
+        /** Rótulo de la segunda foto, la de la clase. */
+        enClase: z.string().min(1),
+        /** Se antepone al nombre de la escuela socia. */
+        escuela: z.string().min(1),
       })
       .strict(),
 
@@ -226,6 +232,29 @@ export const esquemaDiccionario = z
         destinos: z
           .object({ titulo: z.string().min(1), intro: z.string().min(1) })
           .strict(),
+        solicitud: z
+          .object({
+            titulo: z.string().min(1),
+            /** Con destino elegido: se le pega el nombre detrás. */
+            tituloCon: z.string().min(1),
+            intro: z.string().min(1),
+            destino: z.string().min(1),
+            nombre: z.string().min(1),
+            edad: z.string().min(1),
+            idiomas: z.string().min(1),
+            idiomasAyuda: z.string().min(1),
+            telefono: z.string().min(1),
+            correo: z.string().min(1),
+            estancia: z.string().min(1),
+            motivo: z.string().min(1),
+            /** Primera opción de los desplegables. */
+            elegir: z.string().min(1),
+            enviar: z.string().min(1),
+            avisoTitulo: z.string().min(1),
+            avisoTexto: z.string().min(1),
+            privacidad: z.string().min(1),
+          })
+          .strict(),
         precios: z
           .object({
             titulo: z.string().min(1),
@@ -246,6 +275,8 @@ export const esquemaDiccionario = z
             titulo: z.string().min(1),
             intro: z.string().min(1),
             foto: z.string().min(1),
+            /** Para las fotos cedidas cuyo permiso aún no está por escrito. */
+            permisoPendiente: z.string().min(1),
           })
           .strict(),
       })

@@ -608,6 +608,15 @@ p {
   color: var(--color-naranja);
 }
 
+.credito__pendiente {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
 .credito__autor,
 .credito__archivo {
   font-size: 0.88rem;
@@ -1802,17 +1811,92 @@ p {
   background-color: var(--color-naranja);
 }
 
+/*
+ * La segunda fotografía: una clase de verdad en ese destino.
+ *
+ * ============ ALTO FIJO, Y NO ES PEREZA ============
+ * Las entregó el cliente sacadas de las webs de las escuelas, y vienen con
+ * lados de todo tipo: una es 1600×694 —un banner— y otra 510×288. Dejadas a su
+ * proporción, cada tarjeta de la rejilla mide distinto y la fila se descuadra.
+ *
+ * Con `aspect-ratio` fijo y `cover` se recortan todas al mismo hueco. Se pierde
+ * parte del encuadre, que en una foto de gente alrededor de una mesa no es
+ * grave; lo grave sería la rejilla rota.
+ * ===================================================
+ */
+.destino__clase {
+  margin: 1.25rem 0 0;
+}
+
+.destino__clase-imagen {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.destino__clase-pie {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: color-mix(in srgb, var(--color-tinta) 68%, transparent);
+}
+
+.destino__escuela {
+  font-weight: 600;
+  color: var(--color-teal);
+}
+
+/* El botón que lleva al formulario con el destino ya elegido. Es la acción de
+   toda la tarjeta, así que va sólido y a lo ancho, no como enlace de texto. */
+.destino__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--color-naranja);
+  /* Blanco sobre #C03F18: 5,30:1. */
+  color: #ffffff;
+  transition: background-color 200ms ease;
+}
+
+.destino__cta:hover {
+  background-color: var(--color-teal);
+}
+
+.destino__flecha {
+  transition: transform 200ms ease;
+}
+
+.destino__cta:hover .destino__flecha {
+  transform: translateX(3px);
+}
+
+/*
+ * Se queda en DOS columnas y no sube a tres en ningún ancho.
+ *
+ * Son cuatro destinos: en tres columnas la segunda fila saldría con uno solo y
+ * un hueco al lado. Dos y dos cuadra, y de paso cada ficha es más ancha, que
+ * le viene bien a una tarjeta que lleva dos fotografías, tres destacados y un
+ * botón.
+ */
 @media (min-width: 700px) {
   .destinos {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 1100px) {
-  .destinos {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
 
 /* ==========================================================================
    TIQUISMO DEL DÍA
@@ -1996,6 +2080,123 @@ p {
   .tiquismo__caja {
     padding: 3rem 2.75rem 2.5rem;
   }
+}
+
+/* ==========================================================================
+   FORMULARIO DE SOLICITUD
+   --------------------------------------------------------------------------
+   Server Component puro: ni una línea de JavaScript. Lo único que valida es el
+   navegador con `type`, `required`, `min` y `max`.
+   ========================================================================== */
+
+.solicitud {
+  margin-top: 2rem;
+}
+
+/*
+ * El aviso de que el envío no está conectado.
+ *
+ * Va ARRIBA, antes del primer campo. Enterarse de esto después de rellenar
+ * ocho campos es peor que no poder rellenarlos.
+ */
+.solicitud__aviso {
+  padding: 1.1rem 1.25rem;
+  border-radius: 1rem;
+  border-left: 4px solid var(--color-dorado);
+  background-color: color-mix(in srgb, var(--color-dorado) 14%, #ffffff);
+}
+
+.solicitud__aviso p {
+  margin: 0;
+}
+
+.solicitud__aviso-titulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem !important;
+  font-weight: 600;
+}
+
+.solicitud__campos {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: 1fr;
+  margin: 1.75rem 0;
+}
+
+@media (min-width: 640px) {
+  .solicitud__campos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Destino e idiomas ocupan la fila entera: uno porque es la decisión
+     principal y el otro porque su respuesta es larga. */
+  .solicitud__campo--ancho {
+    grid-column: 1 / -1;
+  }
+}
+
+.solicitud__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+}
+
+.solicitud__campo label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-teal);
+}
+
+.solicitud__campo input,
+.solicitud__campo select {
+  font: inherit;
+  /* Sin esto, un `<select>` se ensancha hasta caber su opción más larga y se
+     lleva por delante la rejilla en un teléfono. */
+  max-width: 100%;
+  color: var(--color-tinta);
+  background-color: #ffffff;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 26%, transparent);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.solicitud__campo input:hover,
+.solicitud__campo select:hover {
+  border-color: color-mix(in srgb, var(--color-teal) 45%, transparent);
+}
+
+.solicitud__campo input:focus-visible,
+.solicitud__campo select:focus-visible {
+  border-color: var(--color-naranja);
+}
+
+.solicitud__ayuda {
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--color-tinta) 62%, transparent);
+}
+
+/*
+ * El botón deshabilitado.
+ *
+ * Se deja VISIBLE y con su forma, no escondido: la página tiene que enseñar
+ * que el paso existe. `not-allowed` y la opacidad son lo que dice, sin texto,
+ * que hoy no se puede pulsar; el porqué lo dice el aviso de arriba, al que el
+ * botón apunta con `aria-describedby`.
+ */
+.solicitud button[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.solicitud__privacidad {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--color-tinta) 66%, transparent);
 }
 
 /* ==========================================================================
@@ -2379,6 +2580,14 @@ p {
 
 /* Marca los datos que el cliente todavía no ha confirmado. Se ven a
    propósito: un hueco visible se arregla, uno invisible se publica. */
+/* Para cuando la etiqueta va dentro de una línea de texto pequeño —el pie de
+   la foto de clase— y a tamaño normal se comería la línea entera. */
+.pendiente--chica {
+  font-size: 0.62rem;
+  padding: 0.12rem 0.4rem;
+  letter-spacing: 0.06em;
+}
+
 .pendiente {
   display: inline-block;
   font-size: 0.72rem;

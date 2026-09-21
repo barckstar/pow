@@ -61,7 +61,10 @@ export default async function PaginaPresencial({
         titulo={p.hero.titulo}
         acento={p.hero.acento}
         subtitulo={p.hero.subtitulo}
-        cta={{ href: rutas.reservar(idioma), texto: t.hero.ctaReservar }}
+        cta={{
+          href: rutas.destinos(idioma),
+          texto: t.experiencias.presencialEnlace,
+        }}
       />
 
       <section className="seccion con-adornos">
@@ -91,13 +94,15 @@ export default async function PaginaPresencial({
             <span>{t.pendiente.generico}</span>
           </p>
 
-          <Link href={rutas.online(idioma)} className="boton boton--primario">
-            {t.experiencias.onlineEnlace}
+          {/* El paso siguiente de ESTA página es elegir destino, no irse a
+              las clases en línea, que es la otra vía. */}
+          <Link href={rutas.destinos(idioma)} className="boton boton--primario">
+            {t.destinos.verTodos}
           </Link>
 
           <p className="seccion__enlace-suelto">
-            <Link href={rutas.destinos(idioma)} className="seccion__enlace">
-              {t.destinos.verTodos} →
+            <Link href={rutas.online(idioma)} className="seccion__enlace">
+              {t.experiencias.onlineEnlace} →
             </Link>
           </p>
         </div>

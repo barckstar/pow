@@ -14,7 +14,8 @@ tener que reconstruirlo de memoria.
 
 | Tipo | Fuente | Licencia | ¿Atribución obligatoria? |
 |---|---|---|---|
-| Fotografías | Unsplash | Unsplash License | **No**, pero se registra igual |
+| Paisajes y lugares (10) | Unsplash | Unsplash License | **No**, pero se registra igual |
+| Clases (5) | Cedidas por el cliente | ⚠️ **Permiso sin confirmar** | Sí, y falta |
 | Iconos y adornos | Dibujados aquí | Propios | No aplica |
 | Logo (perezoso) | Del cliente | Del cliente | No aplica |
 
@@ -22,10 +23,11 @@ tener que reconstruirlo de memoria.
 
 ## 1. Las fotografías — Unsplash
 
-Las ocho fotografías del sitio vienen de [Unsplash](https://unsplash.com) y se
-descargan con `node scripts/descargar-fotos.mjs`. El script deja la autoría de
-cada una en `src/shared/data/creditos-fotos.json`, y esa lista es lo que pinta
-la página `/creditos`.
+Diez de las quince fotografías del sitio vienen de
+[Unsplash](https://unsplash.com) y se descargan con
+`node scripts/descargar-fotos.mjs`. El script deja la autoría de cada una en
+`src/shared/data/creditos-fotos.json`, que es una de las dos listas que pinta
+la página `/creditos`. Las otras cinco son las de clase — siguiente apartado.
 
 ### Qué permite la Unsplash License
 
@@ -78,6 +80,44 @@ lleva la advertencia escrita al lado de la lista.
    composición centrada se parte por la mitad en un teléfono.
 
 ---
+
+## 1 bis. Las fotos de clase — cedidas por el cliente
+
+Las cinco fotografías de estudiantes en clase **no son de Unsplash**. Las
+entregó el cliente por WhatsApp el 21 de septiembre de 2026 y salen de las webs
+de las escuelas socias. Viven en `src/shared/data/creditos-cedidas.json`, en un
+archivo aparte porque `descargar-fotos.mjs` reescribe el otro entero cada vez
+que corre.
+
+### Los dos permisos que hacen falta, y que no son el mismo
+
+1. **El de la escuela**, que tiene los derechos de autor sobre la fotografía.
+2. **El de cada persona que aparece**, que tiene derechos sobre su propia
+   imagen. Una autorización de la escuela no cubre esto: la escuela no puede
+   ceder un derecho que no es suyo.
+
+En las cinco hay caras reconocibles. **Ninguno de los dos permisos está por
+escrito todavía.** El cliente pidió publicarlas igual y asumió esa
+responsabilidad; queda anotado aquí, en `PENDIENTE.md` y en el propio dato
+(`"permisoConfirmado": false`), y `/creditos` lo muestra con la etiqueta
+amarilla.
+
+Si alguna escuela reclama, la salida es quitar esa foto: la ficha del destino
+sigue funcionando sin ella, porque el atractivo va en otra imagen.
+
+### Y la resolución
+
+Tres de las cinco están por debajo de lo utilizable a ancho de tarjeta:
+
+| Foto | Tamaño | Sirve |
+|---|---|---|
+| Manuel Antonio | 1600×694 | Sí, aunque es un recorte de banner |
+| La Fortuna | 1360×954 | Sí |
+| Máximo Nivel | 800×500 | Justo |
+| San José | 800×600 | Justo |
+| Sámara | 510×288 | **No** — se ve blanda |
+
+Pedirlas de nuevo a las escuelas está en `PENDIENTE.md`.
 
 ## 2. Los iconos tropicales — dibujados aquí
 

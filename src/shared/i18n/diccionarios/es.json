@@ -2,8 +2,8 @@
   "nav": {
     "inicio": "Inicio",
     "online": "Clases en línea",
-    "presencial": "En persona",
-    "destinos": "Lugares",
+    "presencial": "En Costa Rica",
+    "destinos": "Destinos",
     "blog": "Blog",
     "precios": "Precios",
     "comunidad": "Comunidad",
@@ -16,9 +16,9 @@
     "titulo": "Aprendé español.",
     "tituloAcentoNaranja": "Hablá",
     "tituloAcentoTeal": "como tico.",
-    "subtitulo": "Clases en línea con un profesor costarricense, o en persona, cara a cara. El español que de verdad vas a oír cuando llegués a Costa Rica.",
+    "subtitulo": "Clases en línea con un profesor costarricense, o inmersión en Costa Rica: Manuel Antonio, Sámara, La Fortuna y San José. El español que de verdad vas a oír cuando llegués.",
     "ctaOnline": "Clases en línea",
-    "ctaPresencial": "Clases en persona",
+    "ctaPresencial": "Ir a Costa Rica",
     "ctaReservar": "Reservar una clase",
     "insignia": "Más que un idioma. Es un viaje."
   },
@@ -27,15 +27,18 @@
     "onlineTitulo": "En línea",
     "onlineTexto": "Clases uno a uno por videollamada, con un profesor costarricense que vive en Suiza. Se acomoda a tu horario, estés donde estés.",
     "onlineEnlace": "Empezar en línea",
-    "presencialTitulo": "En persona",
-    "presencialTexto": "Cara a cara, sin pantalla de por medio. La misma conversación desde el primer día, con los gestos y el ritmo que una videollamada se deja por el camino.",
-    "presencialEnlace": "Ver cómo funciona"
+    "presencialTitulo": "En Costa Rica",
+    "presencialTexto": "Inmersión en el país, en cuatro destinos. Estudiás por la mañana y practicás el resto del día con la gente de ahí, que es donde de verdad se pega el idioma.",
+    "presencialEnlace": "Ver los destinos"
   },
   "destinos": {
-    "titulo": "Costa Rica, lugar por lugar",
-    "intro": "Los sitios que la gente viene a ver. No son sedes de clase: son el país del que trata todo esto.",
-    "verTodos": "Ver todos los lugares",
-    "anuncio": "Anuncio"
+    "titulo": "Elegí tu destino",
+    "intro": "Cuatro lugares de Costa Rica donde se puede estudiar en inmersión. Elegí uno y contanos qué buscás.",
+    "verTodos": "Ver los cuatro destinos",
+    "anuncio": "Anuncio",
+    "solicitar": "Quiero ir a",
+    "enClase": "Una clase ahí",
+    "escuela": "Escuela"
   },
   "confianza": {
     "profesorTitulo": "Profesor costarricense",
@@ -134,20 +137,20 @@
     },
     "presencial": {
       "hero": {
-        "titulo": "Clases en persona.",
-        "acento": "Como se habla en la calle.",
-        "subtitulo": "Cara a cara, sin pantalla de por medio. El español de la esquina, la pulpería y la parada del bus, que es el que nadie te enseña en un libro.",
+        "titulo": "Aprendé español.",
+        "acento": "Viviendo en Costa Rica.",
+        "subtitulo": "Inmersión en Manuel Antonio, Sámara, La Fortuna o San José. Clase por la mañana y el país entero de aula por la tarde.",
         "fotoAlt": "Una calle en cuesta de San José, con las casas pintadas de colores y los cables del tendido cruzando de lado a lado"
       },
-      "titulo": "Clases en persona",
-      "intro": "Cara a cara se aprende distinto, y más rápido.",
-      "texto": "La clase no es un cuestionario: es una conversación. En persona entran el gesto, el tono y las interrupciones, que son tres cosas que una videollamada recorta y que en un idioma real pesan tanto como las palabras. Se corrige sobre la marcha, en el momento en que decís algo, no al final de la hora.",
-      "dondeTitulo": "Dónde se dan",
-      "dondeTexto": "El lugar todavía no está decidido. Cuando lo esté, aparece aquí con la dirección y los horarios; mientras tanto preferimos dejar el hueco a la vista antes que anunciar una sede que no existe. Las clases en línea sí están disponibles hoy."
+      "titulo": "Cómo es la inmersión",
+      "intro": "Vivir donde se habla el idioma es lo que hace que se pegue.",
+      "texto": "La fórmula es siempre la misma: clase por la mañana en grupos pequeños y el resto del día fuera, pidiendo en una soda, preguntando la hora en la pulpería o negociando el bus. El vocabulario que aprendés así no se olvida, porque lo usaste el mismo día. Se puede ir quince días o dos meses; cuanto más largo, más se nota.",
+      "dondeTitulo": "Las escuelas",
+      "dondeTexto": "En cada destino se trabaja con una escuela de inmersión de la zona. Los acuerdos se están cerrando, así que todavía no publicamos horarios ni precios de cada una: contá en el formulario qué buscás y te decimos qué hay disponible en ese destino."
     },
     "destinos": {
-      "titulo": "Lugares de Costa Rica",
-      "intro": "Cinco sitios que justifican el viaje, con lo que de verdad hay en cada uno. Si alguna ficha llega a ser un anuncio pagado, lo va a decir encima de la foto."
+      "titulo": "Destinos de inmersión en Costa Rica",
+      "intro": "Cuatro sitios, cada uno con su escuela y su motivo para elegirlo. En todos se estudia por la mañana y se sale a practicar después."
     },
     "precios": {
       "titulo": "Precios",
@@ -163,7 +166,27 @@
     "creditos": {
       "titulo": "Créditos de las fotos",
       "intro": "Las fotografías de este sitio vienen de Unsplash y se usan bajo su licencia. Aquí queda registrado quién hizo cada una.",
-      "foto": "Fotografía de"
+      "foto": "Fotografía de",
+      "permisoPendiente": "Cedida por el cliente. Falta el permiso por escrito de la escuela y de las personas que aparecen."
+    },
+    "solicitud": {
+      "titulo": "Contá qué buscás",
+      "tituloCon": "Quiero ir a",
+      "intro": "Con esto se sabe qué escuela y qué nivel te sirven. No lleva más de un minuto y no hay que pagar nada para mandarlo.",
+      "destino": "Destino",
+      "nombre": "Nombre",
+      "edad": "Edad",
+      "idiomas": "Idiomas que hablás",
+      "idiomasAyuda": "Por ejemplo: inglés nativo, francés básico.",
+      "telefono": "Teléfono",
+      "correo": "Correo electrónico",
+      "estancia": "Cuánto planás quedarte",
+      "motivo": "Por qué querés aprender",
+      "elegir": "Elegí una opción",
+      "enviar": "Enviar la solicitud",
+      "avisoTitulo": "El envío todavía no está conectado",
+      "avisoTexto": "Podés ver el formulario entero, pero el botón está desactivado a propósito: falta decidir a dónde llegan los datos y publicar el aviso de privacidad. Preferimos dejarlo a la vista antes que recoger tu teléfono sin poder decirte qué se hace con él.",
+      "privacidad": "Cuando se active, los datos servirán solo para responderte sobre las clases. Ni se venden ni se ceden a terceros."
     }
   }
 }

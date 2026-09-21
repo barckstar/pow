@@ -2,8 +2,8 @@
   "nav": {
     "inicio": "Home",
     "online": "Online lessons",
-    "presencial": "In person",
-    "destinos": "Places",
+    "presencial": "In Costa Rica",
+    "destinos": "Destinations",
     "blog": "Blog",
     "precios": "Pricing",
     "comunidad": "Community",
@@ -16,9 +16,9 @@
     "titulo": "Learn Spanish.",
     "tituloAcentoNaranja": "Speak",
     "tituloAcentoTeal": "Costa Rican.",
-    "subtitulo": "One-to-one online lessons with a Costa Rican teacher, or in person, face to face. The Spanish you will actually hear when you land.",
+    "subtitulo": "One-to-one online lessons with a Costa Rican teacher, or immersion in Costa Rica: Manuel Antonio, Sámara, La Fortuna and San José. The Spanish you will actually hear when you land.",
     "ctaOnline": "Learn Online",
-    "ctaPresencial": "In-Person Lessons",
+    "ctaPresencial": "Go to Costa Rica",
     "ctaReservar": "Book a lesson",
     "insignia": "More than a language. It's a journey."
   },
@@ -27,15 +27,18 @@
     "onlineTitulo": "Online",
     "onlineTexto": "One-to-one video lessons with a Costa Rican teacher based in Switzerland. Built around your schedule, wherever you are.",
     "onlineEnlace": "Start online",
-    "presencialTitulo": "In person",
-    "presencialTexto": "Face to face, no screen in between. The same conversation from day one, with the gestures and the rhythm a video call leaves behind.",
-    "presencialEnlace": "See how it works"
+    "presencialTitulo": "In Costa Rica",
+    "presencialTexto": "Immersion in the country, across four destinations. You study in the morning and practise the rest of the day with the people who live there, which is where a language finally sticks.",
+    "presencialEnlace": "See the destinations"
   },
   "destinos": {
-    "titulo": "Costa Rica, place by place",
-    "intro": "The places people come to see. Not lesson venues: the country this is all about.",
-    "verTodos": "See every place",
-    "anuncio": "Ad"
+    "titulo": "Choose your destination",
+    "intro": "Four places in Costa Rica where you can study by immersion. Pick one and tell us what you are after.",
+    "verTodos": "See all four destinations",
+    "anuncio": "Ad",
+    "solicitar": "I want to go to",
+    "enClase": "A lesson there",
+    "escuela": "School"
   },
   "confianza": {
     "profesorTitulo": "Costa Rican teacher",
@@ -134,20 +137,20 @@
     },
     "presencial": {
       "hero": {
-        "titulo": "In-person lessons.",
-        "acento": "The Spanish of the street.",
-        "subtitulo": "Face to face, no screen in between. The Spanish of the corner shop and the bus stop — the one no textbook teaches you.",
+        "titulo": "Learn Spanish.",
+        "acento": "Living in Costa Rica.",
+        "subtitulo": "Immersion in Manuel Antonio, Sámara, La Fortuna or San José. A lesson in the morning and the whole country as your classroom afterwards.",
         "fotoAlt": "A steep street in San José, houses painted in bright colours and power lines crossing from side to side"
       },
-      "titulo": "In-person lessons",
-      "intro": "Face to face you learn differently, and faster.",
-      "texto": "A lesson is not a questionnaire: it is a conversation. In person you get the gesture, the tone and the interruptions — three things a video call trims away and that in a real language weigh as much as the words. You are corrected on the spot, the moment you say something, not at the end of the hour.",
-      "dondeTitulo": "Where they happen",
-      "dondeTexto": "The location has not been decided yet. Once it is, it appears here with the address and the times; until then we would rather leave the gap visible than advertise a venue that does not exist. Online lessons are available today."
+      "titulo": "What immersion looks like",
+      "intro": "Living where the language is spoken is what makes it stick.",
+      "texto": "The shape is always the same: a small-group lesson in the morning and the rest of the day outside, ordering at a soda, asking the time at the corner shop, or working out the bus. Vocabulary learned that way does not fade, because you used it the same day. You can go for fifteen days or two months; the longer you stay, the more it shows.",
+      "dondeTitulo": "The schools",
+      "dondeTexto": "In each destination we work with a local immersion school. Those agreements are still being closed, so we are not publishing timetables or prices for each one yet: tell us in the form what you are after and we will tell you what is available at that destination."
     },
     "destinos": {
-      "titulo": "Places in Costa Rica",
-      "intro": "Five places that justify the trip, with what is actually in each one. If a card ever becomes a paid ad, it will say so on top of the photo."
+      "titulo": "Immersion destinations in Costa Rica",
+      "intro": "Four places, each with its own school and its own reason to pick it. In all of them you study in the morning and go out to practise afterwards."
     },
     "precios": {
       "titulo": "Pricing",
@@ -163,7 +166,27 @@
     "creditos": {
       "titulo": "Photo credits",
       "intro": "The photographs on this site come from Unsplash and are used under its licence. Here is a record of who took each one.",
-      "foto": "Photograph by"
+      "foto": "Photograph by",
+      "permisoPendiente": "Provided by the client. Written permission from the school and from the people pictured is still missing."
+    },
+    "solicitud": {
+      "titulo": "Tell us what you are after",
+      "tituloCon": "I want to go to",
+      "intro": "This is what tells us which school and which level suit you. It takes under a minute and costs nothing to send.",
+      "destino": "Destination",
+      "nombre": "Name",
+      "edad": "Age",
+      "idiomas": "Languages you speak",
+      "idiomasAyuda": "For example: native English, basic French.",
+      "telefono": "Phone",
+      "correo": "Email",
+      "estancia": "How long you plan to stay",
+      "motivo": "Why you want to learn",
+      "elegir": "Choose an option",
+      "enviar": "Send the enquiry",
+      "avisoTitulo": "Sending is not connected yet",
+      "avisoTexto": "You can see the whole form, but the button is disabled on purpose: we still have to decide where the data goes and publish a privacy notice. We would rather leave that visible than take your phone number without being able to tell you what happens to it.",
+      "privacidad": "Once it is live, what you send will only be used to answer you about lessons. It is neither sold nor passed to third parties."
     }
   }
 }

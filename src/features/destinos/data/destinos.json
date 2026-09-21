@@ -8,8 +8,8 @@
       "en": "Rainforest and beach ten minutes apart"
     },
     "descripcion": {
-      "es": "El parque nacional más visitado del país, y el más pequeño de los grandes: una punta de selva que baja hasta dos bahías de arena clara. Los monos cariblancos y los perezosos se cruzan en el camino sin que haya que buscarlos.",
-      "en": "The country's most visited national park, and the smallest of the famous ones: a headland of rainforest dropping into two pale-sand bays. Capuchin monkeys and sloths cross your path without you having to look for them."
+      "es": "El parque nacional más visitado del país, y el más pequeño de los grandes: una punta de selva que baja hasta dos bahías de arena clara. Se estudia por la mañana y se practica por la tarde, que es media hora de caminata.",
+      "en": "The country's most visited national park, and the smallest of the famous ones: a headland of rainforest dropping into two pale-sand bays. You study in the morning and practise in the afternoon, half an hour's walk away."
     },
     "destacados": {
       "es": [
@@ -27,6 +27,56 @@
     "fotoAlt": {
       "es": "Vista aérea de Punta Catedral en Manuel Antonio, con la franja de arena entre dos bahías de agua turquesa",
       "en": "Aerial view of Punta Catedral in Manuel Antonio, with the strip of sand between two turquoise bays"
+    },
+    "fotoClase": "/fotos/clase-manuel-antonio.jpg",
+    "fotoClaseAlt": {
+      "es": "Un profesor escribiendo «yo quiero estudiar español» en una pizarra, con dos estudiantes sentadas a la mesa",
+      "en": "A teacher writing «yo quiero estudiar español» on a blackboard, with two students at the table"
+    },
+    "escuela": {
+      "nombre": "Manuel Antonio Spanish School",
+      "confirmada": false
+    },
+    "patrocinado": false,
+    "anunciante": null
+  },
+  {
+    "id": "samara",
+    "nombre": "Sámara",
+    "zona": "Guanacaste, península de Nicoya",
+    "lema": {
+      "es": "El pueblo de playa donde todavía se habla despacio",
+      "en": "The beach town where people still speak slowly"
+    },
+    "descripcion": {
+      "es": "Una bahía protegida por un arrecife, así que el mar entra manso y se puede nadar todo el año. Es de los pocos pueblos de playa de Guanacaste que no se volvió del todo turístico: en la pulpería y en la soda se sigue hablando español.",
+      "en": "A bay sheltered by a reef, so the sea comes in calm and you can swim all year. It is one of the few Guanacaste beach towns that never turned fully touristy: at the corner shop and the soda, people still speak Spanish."
+    },
+    "destacados": {
+      "es": [
+        "La bahía, mansa por el arrecife",
+        "Playa Barrigona y Playa Carrillo, al lado",
+        "La península de Nicoya, una zona azul del mundo"
+      ],
+      "en": [
+        "The bay, calm thanks to the reef",
+        "Playa Barrigona and Playa Carrillo, next door",
+        "The Nicoya peninsula, one of the world's blue zones"
+      ]
+    },
+    "foto": "/fotos/samara-barrigona.jpg",
+    "fotoAlt": {
+      "es": "Playa Barrigona desde el aire, cerca de Sámara: la selva de la península de Nicoya bajando hasta la arena blanca",
+      "en": "Playa Barrigona from the air, near Sámara: the Nicoya peninsula rainforest running down to white sand"
+    },
+    "fotoClase": "/fotos/clase-samara.jpg",
+    "fotoClaseAlt": {
+      "es": "Tres estudiantes y una profesora trabajando con periódicos sobre una mesa de madera",
+      "en": "Three students and a teacher working with newspapers on a wooden table"
+    },
+    "escuela": {
+      "nombre": "Intercultura Costa Rica Spanish Schools",
+      "confirmada": false
     },
     "patrocinado": false,
     "anunciante": null
@@ -60,101 +110,55 @@
       "es": "El cono del Volcán Arenal visto desde La Fortuna, con la base cubierta de selva y nubes sobre la cima",
       "en": "The cone of the Arenal Volcano seen from La Fortuna, its base covered in rainforest and clouds over the summit"
     },
-    "patrocinado": false,
-    "anunciante": null
-  },
-  {
-    "id": "monteverde",
-    "nombre": "Monteverde",
-    "zona": "Puntarenas, cordillera de Tilarán",
-    "lema": {
-      "es": "El bosque que vive dentro de una nube",
-      "en": "The forest that lives inside a cloud"
+    "fotoClase": "/fotos/clase-la-fortuna.jpg",
+    "fotoClaseAlt": {
+      "es": "Clase al aire libre en un corredor de madera, con la vegetación de la zona norte detrás",
+      "en": "An open-air lesson on a wooden porch, with the northern lowland vegetation behind"
     },
-    "descripcion": {
-      "es": "Bosque nuboso en lo alto de la cordillera de Tilarán: la humedad se queda colgada de las ramas y cada árbol carga encima su propio jardín de musgo, helechos y orquídeas. Se camina por puentes colgantes, a la altura de las copas.",
-      "en": "Cloud forest high on the Tilarán range: the damp hangs off the branches and every tree carries its own garden of moss, ferns and orchids. You walk it on hanging bridges, up at canopy height."
-    },
-    "destacados": {
-      "es": [
-        "La Reserva del Bosque Nuboso",
-        "Los puentes colgantes sobre las copas",
-        "El quetzal, con suerte y en temporada"
-      ],
-      "en": [
-        "The Cloud Forest Reserve",
-        "Hanging bridges over the canopy",
-        "The quetzal, with luck and in season"
-      ]
-    },
-    "foto": "/fotos/monteverde.jpg",
-    "fotoAlt": {
-      "es": "El bosque nuboso de Monteverde al atardecer, con las cordilleras encadenándose entre la neblina",
-      "en": "The Monteverde cloud forest at dusk, ridge after ridge fading into the mist"
+    "escuela": {
+      "nombre": "Spanish Immersion Costa Rica",
+      "confirmada": false
     },
     "patrocinado": false,
     "anunciante": null
   },
   {
-    "id": "rio-celeste",
-    "nombre": "Río Celeste",
-    "zona": "Alajuela, Parque Nacional Volcán Tenorio",
+    "id": "san-jose",
+    "nombre": "San José",
+    "zona": "Valle Central",
     "lema": {
-      "es": "Un río que cambia de color a mitad de camino",
-      "en": "A river that changes colour halfway down"
+      "es": "La ciudad donde el país se oye entero",
+      "en": "The city where you hear the whole country"
     },
     "descripcion": {
-      "es": "Dos quebradas de agua transparente se juntan en un punto llamado el Teñidero y salen de ahí azul turquesa. No es tinte ni es leyenda: son partículas minerales del volcán Tenorio, del tamaño justo para devolver ese azul y ningún otro color.",
-      "en": "Two streams of clear water meet at a spot called El Teñidero and come out of it turquoise. It is neither dye nor legend: mineral particles from the Tenorio volcano, exactly the right size to scatter back that blue and no other colour."
+      "es": "No es la Costa Rica de la postal y por eso funciona para aprender: es una ciudad de verdad, con sus barrios, su tráfico y su prisa. Aquí no hay nadie cambiando al inglés para ayudarte, que es exactamente lo que acelera el aprendizaje.",
+      "en": "It is not the postcard Costa Rica, and that is why it works for learning: a real city, with its neighbourhoods, its traffic and its hurry. Nobody here switches to English to help you out, which is exactly what speeds things up."
     },
     "destacados": {
       "es": [
-        "La catarata y su poza turquesa",
-        "El Teñidero, donde el río se vuelve azul",
-        "Los borbollones de agua caliente del volcán"
+        "El Mercado Central, de 1880",
+        "Los museos del Oro y del Jade",
+        "Todo el país a menos de tres horas en bus"
       ],
       "en": [
-        "The waterfall and its turquoise pool",
-        "El Teñidero, where the river turns blue",
-        "The volcano's bubbling hot springs"
+        "The Mercado Central, from 1880",
+        "The Gold and Jade museums",
+        "The whole country within three hours by bus"
       ]
     },
-    "foto": "/fotos/rio-celeste.jpg",
+    "foto": "/fotos/calle-san-jose.jpg",
     "fotoAlt": {
-      "es": "La catarata del Río Celeste cayendo entre paredes de selva sobre una poza de agua turquesa",
-      "en": "The Río Celeste waterfall dropping between walls of rainforest into a turquoise pool"
+      "es": "Una calle en cuesta de San José, con las casas pintadas de colores y los cables del tendido cruzando de lado a lado",
+      "en": "A steep street in San José, houses painted in bright colours and power lines crossing from side to side"
     },
-    "patrocinado": false,
-    "anunciante": null
-  },
-  {
-    "id": "puerto-viejo",
-    "nombre": "Puerto Viejo",
-    "zona": "Limón, Caribe sur",
-    "lema": {
-      "es": "El otro lado del país, y el otro español",
-      "en": "The country's other coast, and its other Spanish"
+    "fotoClase": "/fotos/clase-san-jose.jpg",
+    "fotoClaseAlt": {
+      "es": "Clase de grupo pequeño alrededor de una mesa, con el profesor señalando una lámina de vocabulario",
+      "en": "A small group lesson around a table, the teacher pointing at a vocabulary sheet"
     },
-    "descripcion": {
-      "es": "La costa caribeña se parece poco al resto de Costa Rica, y se oye distinta. Aquí conviven el español y el criollo limonense, que viene del inglés jamaiquino. Para alguien que está aprendiendo el idioma es el mejor recordatorio de que un país puede hablar de varias maneras a la vez.",
-      "en": "The Caribbean coast looks little like the rest of Costa Rica, and it sounds different too. Spanish lives here alongside Limonese Creole, which comes from Jamaican English. For anyone learning the language it is the best reminder that one country can speak several ways at once."
-    },
-    "destacados": {
-      "es": [
-        "Las playas de Cocles y Punta Uva",
-        "El refugio de Gandoca-Manzanillo",
-        "El criollo limonense, que es otra lengua"
-      ],
-      "en": [
-        "The beaches of Cocles and Punta Uva",
-        "The Gandoca-Manzanillo refuge",
-        "Limonese Creole, which is a language of its own"
-      ]
-    },
-    "foto": "/fotos/puerto-viejo.jpg",
-    "fotoAlt": {
-      "es": "La costa de Cocles junto a Puerto Viejo vista desde el aire, con la selva llegando hasta la arena",
-      "en": "The Cocles coastline next to Puerto Viejo seen from the air, rainforest running right down to the sand"
+    "escuela": {
+      "nombre": "Intercultura San José",
+      "confirmada": false
     },
     "patrocinado": false,
     "anunciante": null

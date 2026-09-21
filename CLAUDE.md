@@ -19,12 +19,19 @@ Dos líneas:
 | Línea | Dónde | Quién |
 |---|---|---|
 | Online | remoto, desde Suiza | el profesor |
-| En persona | **sin decidir** — se anuncia el modo, no el sitio | el profesor |
+| Inmersión | Manuel Antonio, Sámara, La Fortuna, San José | escuelas socias |
 
-La vía presencial **ya no se anuncia como «en Costa Rica»**. Vende el modo
-—cara a cara— y el lugar sale con su etiqueta de pendiente, en la página y en
-los metadatos. Manuel Antonio y La Fortuna siguen en el sitio, pero en
-`/destinos`, como fichas turísticas que no prometen ninguna clase.
+La vía presencial **es inmersión en Costa Rica**, en cuatro destinos, con una
+escuela socia en cada uno. Lo aclaró el cliente por WhatsApp el 21/09/2026, y
+eso revirtió la versión anterior, en la que el lugar era un pendiente y la
+página vendía solo el modo.
+
+**Lo que sigue pendiente es la escuela, no el país.** El cliente escribió que
+«la info de las escuelas en CR tengo que conseguirla bien»: los nombres están
+en `destinos.json` con `"confirmada": false` y la ficha los enseña con la
+etiqueta amarilla, no como un hecho.
+
+El embudo es: ficha de destino → `/solicitud/<destino>` → formulario.
 
 **Fuera de alcance:** Colombia, México, El Salvador y España (estaban en el
 concept board original, sin datos reales detrás). La app móvil. El LMS.
@@ -49,7 +56,7 @@ src/
   proxy.ts                    / → /es | /en por Accept-Language
   app/[lang]/…                rutas
   app/api/paypal/…            rutas de servidor
-  features/{landing,tiquismos,faq,blog,destinos,reservas,pagos}/
+  features/{landing,tiquismos,faq,blog,destinos,solicitud,reservas,pagos}/
   shared/components/ui/
     Olas.tsx                olas del hero de la PORTADA, y solo de ahí
     HeroPagina.tsx          hero compartido de /online y /presencial
@@ -148,14 +155,38 @@ en el navegador.
 Tiquismos, preguntas frecuentes, lugares y créditos de fotos viven en `.json`
 validado al importar.
 
-`destinos.json` **ya no son sedes de clase**: son fichas de lugares turísticos.
-El esquema contempla ya los anuncios pagados con un `.refine()` que hace
+`destinos.json` son los cuatro destinos de inmersión, y cada uno lleva DOS
+fotografías: el atractivo y una clase de verdad ahí. El cliente pidió las dos
+—«fotos de los destinos pero también imágenes de los estudiantes»— y tiene
+razón: una playa sola vende un viaje, no una escuela.
+
+El esquema contempla además los anuncios pagados con un `.refine()` que hace
 imposible guardar un anuncio sin anunciante o un anunciante sin marcar el
 anuncio — el aviso de publicidad es obligación legal, no cortesía, y no se
 puede añadir «después».
 
 El parseo corre durante el build: un dato malo rompe la compilación en vez de
 aparecer vacío en el teléfono del cliente.
+
+### Formulario de solicitud
+
+Los campos los dictó el cliente: nombre, edad, idiomas, **teléfono**, **correo**,
+cuánto tiempo planea estar (15 días / 1 mes / mes y medio / 2 meses) y motivo
+(idiomas / trabajo / viajes / cultura / familia). Las dos listas viven en
+`features/solicitud/data/opciones.json`, validadas.
+
+**El botón está `disabled` a propósito y no es un olvido.** En cuanto un
+teléfono y un correo viajen a algún sitio, esto pasa a tratar datos personales:
+hay que elegir dónde se guardan, cuánto tiempo y quién los ve, y publicar aviso
+de privacidad y consentimiento. Ni siquiera hay correo de contacto confirmado.
+El formulario se ve entero y encima lleva el aviso de por qué. Conectarlo es
+añadir el `action` y quitar dos líneas.
+
+**El destino va en la RUTA, no en la query.** Estuvo como `?destino=…` y leer
+`searchParams` en el servidor obliga a Next a renderizar bajo demanda: sin HTML
+estático, `verificar-metadatos.mjs` no tiene nada que revisar y la página nueva
+se quedaba fuera de la única red que caza un metadato ausente. Como segmento son
+diez páginas prerenderizadas, cada una con su título nombrando el destino.
 
 ### Calendario — puerto y adaptadores
 
@@ -192,9 +223,20 @@ y **rompe el build** si algo falta.
 
 ### Imágenes
 
-Las nueve fotografías vienen de **Unsplash** (licencia de uso comercial, sin
+Diez fotografías vienen de **Unsplash** (licencia de uso comercial, sin
 atribución obligatoria; se registra igual). Cada una se verifica dos veces:
 que sea el sitio que dice ser, y que aguante el recorte de `object-fit: cover`.
+
+⚠️ **Las cinco fotos de clase NO son de Unsplash.** Las entregó el cliente,
+salen de las webs de las escuelas socias y llevan personas reconocibles.
+Publicarlas necesita dos permisos que no son el mismo: el de la escuela
+—derechos de autor— y el de quien aparece —derechos de imagen—. El cliente
+pidió publicarlas ya y asumió esa responsabilidad; el dato queda escrito en
+`creditos-cedidas.json` con `"permisoConfirmado": false`, y `/creditos` lo dice.
+
+Los créditos son **dos archivos** y no uno: `descargar-fotos.mjs` reescribe
+`creditos-fotos.json` entero cada vez que corre, así que una entrada añadida a
+mano ahí desaparecería sin dejar rastro.
 
 ⚠️ La búsqueda de Unsplash mezcla fotos gratuitas con las de **Unsplash+**, que
 son de pago. Se distinguen por el autor: «Unsplash+ Community», usuario `plus`.

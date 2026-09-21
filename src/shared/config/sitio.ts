@@ -88,4 +88,25 @@ export const rutas = {
   precios: (l: Idioma) => `/${l}/precios`,
   comunidad: (l: Idioma) => `/${l}/comunidad`,
   reservar: (l: Idioma) => `/${l}/reservar`,
+  /**
+   * El formulario de solicitud de inmersión.
+   *
+   * ============ EL DESTINO VA EN LA RUTA, NO EN LA QUERY ============
+   * Estuvo como `?destino=manuel-antonio`, que parecía más simple: una página
+   * en vez de cinco. Y tenía un coste que solo se ve al construir:
+   *
+   * Leer `searchParams` en el servidor OBLIGA a Next a renderizar la ruta bajo
+   * demanda. Deja de generarse HTML estático, y sin HTML estático
+   * `scripts/verificar-metadatos.mjs` no tiene nada que revisar — o sea que
+   * justo la página nueva se quedaba fuera de la única red que tiene este
+   * sitio para cazar un metadato que falte.
+   *
+   * Como segmento, las cinco variantes por idioma se prerenderizan, el
+   * verificador las cubre, y de paso cada una puede llevar su propio título y
+   * su propia descripción nombrando el destino, que es mejor para buscar que
+   * cinco páginas iguales.
+   * ==================================================================
+   */
+  solicitud: (l: Idioma, destino?: string) =>
+    destino ? `/${l}/solicitud/${destino}` : `/${l}/solicitud`,
 } as const;

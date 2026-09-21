@@ -1,0 +1,42 @@
+[
+  {
+    "archivo": "/fotos/clase-manuel-antonio.jpg",
+    "autor": "Manuel Antonio Spanish School",
+    "fuente": "Cedida por el cliente",
+    "licencia": "Permiso pendiente de confirmar",
+    "descripcion": "Una clase en Manuel Antonio: el profesor explicando «yo quiero estudiar español» en la pizarra, con dos estudiantes.",
+    "permisoConfirmado": false
+  },
+  {
+    "archivo": "/fotos/clase-manuel-antonio-2.jpg",
+    "autor": "Máximo Nivel Manuel Antonio",
+    "fuente": "Cedida por el cliente",
+    "licencia": "Permiso pendiente de confirmar",
+    "descripcion": "Una clase en grupo alrededor de una mesa en Manuel Antonio, con la profesora de pie y material sobre la mesa.",
+    "permisoConfirmado": false
+  },
+  {
+    "archivo": "/fotos/clase-samara.jpg",
+    "autor": "Intercultura Costa Rica Spanish Schools",
+    "fuente": "Cedida por el cliente",
+    "licencia": "Permiso pendiente de confirmar",
+    "descripcion": "Una clase en Sámara: tres estudiantes y la profesora trabajando con periódicos sobre una mesa de madera.",
+    "permisoConfirmado": false
+  },
+  {
+    "archivo": "/fotos/clase-la-fortuna.jpg",
+    "autor": "Spanish Immersion Costa Rica",
+    "fuente": "Cedida por el cliente",
+    "licencia": "Permiso pendiente de confirmar",
+    "descripcion": "Clase al aire libre en La Fortuna, en un corredor con mesas de madera y la vegetación detrás.",
+    "permisoConfirmado": false
+  },
+  {
+    "archivo": "/fotos/clase-san-jose.jpg",
+    "autor": "Intercultura San José",
+    "fuente": "Cedida por el cliente",
+    "licencia": "Permiso pendiente de confirmar",
+    "descripcion": "Clase de grupo pequeño en San José, con el profesor señalando una lámina de vocabulario.",
+    "permisoConfirmado": false
+  }
+]

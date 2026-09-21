@@ -1,0 +1,42 @@
+{
+  "estancia": [
+    {
+      "id": "15-dias",
+      "etiqueta": { "es": "15 días", "en": "15 days" }
+    },
+    {
+      "id": "1-mes",
+      "etiqueta": { "es": "1 mes", "en": "1 month" }
+    },
+    {
+      "id": "mes-y-medio",
+      "etiqueta": { "es": "Mes y medio", "en": "Six weeks" }
+    },
+    {
+      "id": "2-meses",
+      "etiqueta": { "es": "2 meses", "en": "2 months" }
+    }
+  ],
+  "motivo": [
+    {
+      "id": "idiomas",
+      "etiqueta": { "es": "Pasión por los idiomas", "en": "Love of languages" }
+    },
+    {
+      "id": "trabajo",
+      "etiqueta": { "es": "Trabajo", "en": "Work" }
+    },
+    {
+      "id": "viajes",
+      "etiqueta": { "es": "Viajes", "en": "Travel" }
+    },
+    {
+      "id": "cultura",
+      "etiqueta": { "es": "Cultura", "en": "Culture" }
+    },
+    {
+      "id": "familia",
+      "etiqueta": { "es": "Familia", "en": "Family" }
+    }
+  ]
+}

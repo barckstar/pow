@@ -19,7 +19,9 @@ Un hueco visible se arregla. Uno invisible se publica.
 | **Correo y teléfono** de contacto | `CONTACTO` en `sitio.ts` | El pie muestra la etiqueta de pendiente |
 | **Redes sociales** del negocio | `REDES` en `sitio.ts` | La barra lateral solo lleva la marca y el botón de compartir; `/comunidad` lo dice |
 | **Dominio** | `URL_BASE` en `sitio.ts` | Provisional. Afecta a canónicas, `og:url` y sitemap |
-| **Dónde se dan las clases en persona** | `paginas.presencial.dondeTexto` en los diccionarios | `/presencial` vende el modo —cara a cara— y dice que el lugar está por decidir, con la etiqueta amarilla. **Este es el dato que bloquea esa vía entera** |
+| **Acuerdos con las cuatro escuelas** | `escuela.confirmada` en `destinos.json` | El nombre sale en la ficha con la etiqueta amarilla. El cliente escribió que «la info de las escuelas tengo que conseguirla bien» |
+| **A dónde llegan las solicitudes** | `features/solicitud/` | El formulario se ve entero y el botón está `disabled`, con el aviso de por qué. Faltan proveedor, aviso de privacidad y correo de destino |
+| **Permiso de las fotos de clase** | `creditos-cedidas.json` | Las cinco están publicadas por decisión del cliente, con `"permisoConfirmado": false`. Falta el permiso por escrito de cada escuela y de las personas que salen |
 | **Reseñas de estudiantes** | sin sección todavía | No hay sección de reseñas. **Se transcriben de fuentes reales, no se inventan** |
 
 ## 2. Credenciales
@@ -42,10 +44,19 @@ Un hueco visible se arregla. Uno invisible se publica.
   imagen con licencia para cada texto es la forma segura de que el profesor
   deje de escribir. Cuando falta, la tarjeta pinta un panel de la paleta del
   mismo alto, así la rejilla no se descuadra.
-- **Anunciantes de los lugares**: la sección `/destinos` está preparada para
-  vender espacio a hoteles y operadores. Hoy las cinco fichas son contenido
-  propio (`"patrocinado": false`). El aviso visible ya está hecho y con
-  estilo; falta el primer anunciante.
+- **Anunciantes de los destinos**: `/destinos` está preparada para vender
+  espacio a hoteles y operadores. Hoy las cuatro fichas son contenido propio
+  (`"patrocinado": false`). El aviso visible ya está hecho y con estilo; falta
+  el primer anunciante.
+- **Fotos de clase de más resolución**. Tres de las cinco que mandó el cliente
+  no dan la talla: Sámara es 510×288, San José 800×600 y la segunda de Manuel
+  Antonio 800×500. A ancho de tarjeta se ven blandas. Pedirlas a las escuelas.
+- **La segunda escuela de Manuel Antonio**. El cliente nombró dos ahí —Manuel
+  Antonio Spanish School y Máximo Nivel— y el esquema solo admite una por
+  destino. Hay que decidir si se elige una o si un destino puede tener varias.
+- **El blog de Chris**. Dijo que tiene uno y que «ahí casi solo se habla de la
+  parte de las clases en línea». El enlace no llegó; puede servir de fuente de
+  contenido para `/blog`.
 - **Audio de los tiquismos**: el componente los contempla; faltan las
   grabaciones del profesor.
 - **Más tiquismos**. Hay ocho, y el de la portada rota a diario sin repetir
@@ -113,9 +124,15 @@ Es una decisión de diseño, no una optimización. Queda para el usuario.
 - Heroes con fotografía en `/online` (lapa roja) y `/presencial` (una calle de
   San José).
 - Trece adornos tropicales propios repartidos por secciones, apagados en móvil.
-- `/destinos` convertida en cinco fichas de lugares, con el hueco legal para
-  anuncios pagados ya hecho y verificado por esquema.
+- `/destinos` con los cuatro destinos de inmersión que pidió el cliente, cada
+  uno con foto del atractivo, foto de clase, escuela marcada como pendiente y
+  botón al formulario. Hueco legal para anuncios pagados, verificado por
+  esquema.
+- Formulario de solicitud con los ocho campos que dictó el cliente, en diez
+  páginas estáticas (cuatro destinos + una genérica, por idioma). El envío,
+  desactivado a propósito y con el aviso a la vista.
 - Barra de scroll con los colores de la paleta.
 - Rotación diaria de tiquismos: baraja por ciclos, sin repetir ninguno
   antes de tres días.
-- 67 tests en verde, 25 pares de contraste en AA y ESLint sin avisos.
+- 67 tests en verde, 25 pares de contraste en AA, ESLint sin avisos y 36
+  páginas con los metadatos verificados.

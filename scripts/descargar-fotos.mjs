@@ -126,6 +126,29 @@ const FOTOS = [
     descripcion:
       "La calle de un pueblo costarricense a contraluz, con palmeras, rótulos y los cables del tendido cruzando el cielo.",
   },
+  /*
+   * Sámara.
+   *
+   * ============ ES BARRIGONA, Y SE DICE ============
+   * Unsplash no tiene ninguna foto que su autor confirme como playa Sámara: la
+   * búsqueda devuelve una sola, y sin decir dónde está hecha. Esta es Playa
+   * Barrigona, del mismo tramo de costa y a unos diez kilómetros —eso sí lo
+   * dice el autor—.
+   *
+   * Se usa igual, pero el pie y el texto alternativo dicen Barrigona, no
+   * Sámara. Poner un sitio por otro en la web de una escuela costarricense es
+   * el tipo de error que un tico detecta en dos segundos.
+   * =================================================
+   */
+  {
+    archivo: "samara-barrigona.jpg",
+    idImagen: "1643122542225-6a618183b16d",
+    pagina: "https://unsplash.com/photos/daZIoyJhk8A",
+    autor: "Luis Diego Aguilar",
+    perfil: "https://unsplash.com/@luisdy18",
+    descripcion:
+      "Playa Barrigona desde el aire, en la península de Nicoya a unos diez kilómetros de Sámara: la selva bajando hasta la arena blanca.",
+  },
   {
     archivo: "monteverde.jpg",
     idImagen: "1580495024618-3fb7d34affbd",
