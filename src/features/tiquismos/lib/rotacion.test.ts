@@ -33,13 +33,38 @@ describe("tiquismo del día", () => {
   });
 
   /*
-   * La costura entre vueltas es el único sitio donde podían salir dos días
-   * seguidos iguales, y es el fallo que el visitante ve sin llevar la cuenta.
-   * Se barren 800 días, o sea cien vueltas con sus cien costuras.
+   * La propiedad que de verdad nota el visitante, y la más estricta del
+   * módulo: ningún tiquismo puede volver antes de TRES días.
+   *
+   * Dentro de una vuelta sale sola —no hay repetidos— y el riesgo está en la
+   * costura entre vueltas. Se barren 800 días, o sea cien vueltas con sus cien
+   * costuras. Con la versión anterior esta prueba fallaba: «Brete» salía el 1
+   * y el 3 de octubre.
    */
-  it("nunca repite dos días seguidos", () => {
+  it("ninguno vuelve antes de tres días", () => {
     for (let d = -400; d < 400; d += 1) {
-      expect(indiceDelDia(enDia(d), 8)).not.toBe(indiceDelDia(enDia(d + 1), 8));
+      const hoy = indiceDelDia(enDia(d), 8);
+      expect(hoy).not.toBe(indiceDelDia(enDia(d + 1), 8));
+      expect(hoy).not.toBe(indiceDelDia(enDia(d + 2), 8));
+    }
+  });
+
+  /*
+   * Con listas cortas no hay sitio para la regla de tres días, pero la de no
+   * repetir dos días seguidos tiene que seguir cumpliéndose.
+   *
+   * Desde tres. Con DOS tiquismos es imposible: el arreglo solo puede tocar
+   * las posiciones intermedias —la última es lo que mira el ciclo siguiente—,
+   * y en una baraja de dos no hay posición intermedia. Con dos, además, no
+   * repetir obliga a alternar, o sea que no queda azar ninguno que repartir.
+   */
+  it("con listas cortas al menos no repite dos días seguidos", () => {
+    for (const total of [3, 4, 5, 6, 7]) {
+      for (let d = 0; d < 120; d += 1) {
+        expect(indiceDelDia(enDia(d), total)).not.toBe(
+          indiceDelDia(enDia(d + 1), total)
+        );
+      }
     }
   });
 

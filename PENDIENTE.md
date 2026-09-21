@@ -48,6 +48,11 @@ Un hueco visible se arregla. Uno invisible se publica.
   estilo; falta el primer anunciante.
 - **Audio de los tiquismos**: el componente los contempla; faltan las
   grabaciones del profesor.
+- **Más tiquismos**. Hay ocho, y el de la portada rota a diario sin repetir
+  ninguno antes de tres días — que es el máximo que se puede garantizar con
+  ocho. Con veinte, la separación mínima sube sola y el sitio deja de dar la
+  sensación de que se repite. Es contenido que escribe el profesor y va en
+  `src/features/tiquismos/data/tiquismos.json`.
 - **Logo en alta resolución**: el perezoso actual está recortado del concept
   board, donde mide 155×120 px. Alcanza de sobra para el navbar y la barra
   social, pero el icono de 512 para PWA sale de un reescalado y se nota.
@@ -111,4 +116,6 @@ Es una decisión de diseño, no una optimización. Queda para el usuario.
 - `/destinos` convertida en cinco fichas de lugares, con el hueco legal para
   anuncios pagados ya hecho y verificado por esquema.
 - Barra de scroll con los colores de la paleta.
-- 63 tests en verde y 20 pares de contraste verificados en AA.
+- Rotación diaria de tiquismos: baraja por ciclos, sin repetir ninguno
+  antes de tres días.
+- 67 tests en verde, 25 pares de contraste en AA y ESLint sin avisos.

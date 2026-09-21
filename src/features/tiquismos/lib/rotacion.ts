@@ -29,6 +29,8 @@
  *   - Cambia todos los días.
  *   - El orden es impredecible y distinto en cada vuelta.
  *   - Dentro de una vuelta NINGUNO se repite hasta que han salido todos.
+ *   - Y ninguno vuelve antes de tres días, ni siquiera cruzando de una vuelta
+ *     a la siguiente. Ver `barajaDelCiclo`.
  *
  * Y sigue siendo una función pura de la fecha, así que la hidratación cuadra.
  * =====================================================================
@@ -82,26 +84,46 @@ function mezclaCruda(ciclo: number, total: number): number[] {
  * La baraja que se usa de verdad: la cruda, con la costura arreglada.
  *
  * ============ LA COSTURA ENTRE DOS VUELTAS ============
- * Dentro de un ciclo no hay repeticiones por construcción. El único sitio
- * donde pueden salir dos días seguidos iguales es el SALTO de una vuelta a la
- * siguiente: la última carta de una baraja y la primera de la otra se sortean
- * por separado y nada impide que coincidan. Con ocho tiquismos pasaría una vez
- * cada nueve semanas más o menos — poco, pero es justo el fallo que se nota,
- * porque es el único que el visitante puede ver sin llevar la cuenta.
+ * Dentro de un ciclo no hay repeticiones por construcción. El problema está en
+ * el SALTO de una vuelta a la siguiente: las dos barajas se sortean por
+ * separado y nada impide que la última carta de una y las primeras de la otra
+ * coincidan.
  *
- * Se arregla intercambiando las dos PRIMERAS cartas cuando hay choque.
+ * Se vio en la tabla de los primeros días: «Brete» salía el 1 y el 3 de
+ * octubre. Cumplía la regla de no repetir dos días seguidos y aun así se leía
+ * como que el sitio se repite, que es justo lo que había que evitar.
  *
- * Y se intercambian las dos primeras, y no la primera con la última, por una
- * razón que no es de estilo: la posición final no se toca, así que la última
- * carta de un ciclo sigue siendo la de su mezcla cruda. Si la comprobación
- * cambiara también el final, el ciclo siguiente tendría que mirar un valor ya
- * corregido, ese al anterior, y así hacia atrás: una recursión sin fondo para
- * pintar una tarjeta. Tocando solo el principio, cada ciclo se resuelve
- * mirando UNA mezcla cruda y nada más.
+ * Así que la regla es más dura: NINGÚN tiquismo puede volver antes de tres
+ * días. Para eso, al empezar una vuelta:
  *
- * Con menos de tres cartas no se aplica: intercambiar las dos primeras de una
- * baraja de dos SÍ cambia la última, y la recursión volvería. Con uno o dos
- * tiquismos tampoco hay nada que repartir.
+ *   - la primera carta no puede ser ninguna de las dos últimas de la vuelta
+ *     anterior (eso cubre las distancias 1 y 2),
+ *   - la segunda carta no puede ser la última de la anterior (distancia 2).
+ *
+ * Dentro de la vuelta la distancia mínima ya es de un ciclo entero, así que
+ * con esas dos condiciones el mínimo global queda en tres días.
+ *
+ * ============ POR QUÉ LOS ARREGLOS NO TOCAN EL FINAL ============
+ * Los intercambios buscan siempre entre las posiciones 1 y `total-2`, nunca la
+ * última. Es deliberado: la última carta de un ciclo es lo que el ciclo
+ * SIGUIENTE mira para hacer esta misma comprobación. Si un arreglo la
+ * cambiase, el ciclo siguiente tendría que mirar un valor ya corregido, ese al
+ * anterior, y así hacia atrás: una recursión sin fondo para pintar una
+ * tarjeta.
+ *
+ * Tocando solo el principio, cada ciclo se resuelve mirando UNA mezcla cruda y
+ * nada más.
+ *
+ * ============ HASTA DÓNDE LLEGA LA GARANTÍA ============
+ * Con cinco cartas o más se cumple la regla de tres días.
+ *
+ * Con tres o cuatro no hay sitio para maniobrar y solo se garantiza no repetir
+ * dos días seguidos.
+ *
+ * Con DOS no se garantiza nada, y no es un descuido: el arreglo solo puede
+ * tocar las posiciones intermedias, y en una baraja de dos no hay ninguna.
+ * Además, con dos cartas «no repetir» obliga a alternar, o sea que no quedaría
+ * azar que repartir. El sitio tiene ocho.
  * ======================================================
  */
 function barajaDelCiclo(ciclo: number, total: number): number[] {
@@ -109,9 +131,30 @@ function barajaDelCiclo(ciclo: number, total: number): number[] {
   if (total < 3) return cartas;
 
   const anterior = mezclaCruda(ciclo - 1, total);
-  if (cartas[0] === anterior[total - 1]) {
-    [cartas[0], cartas[1]] = [cartas[1], cartas[0]];
+  const ultima = anterior[total - 1];
+  const penultima = anterior[total - 2];
+
+  /** Cambia la carta de `posicion` por la primera válida que encuentre. */
+  function apartar(posicion: number, prohibidas: number[]) {
+    if (!prohibidas.includes(cartas[posicion])) return;
+
+    for (let j = posicion + 1; j <= total - 2; j += 1) {
+      if (!prohibidas.includes(cartas[j])) {
+        [cartas[posicion], cartas[j]] = [cartas[j], cartas[posicion]];
+        return;
+      }
+    }
   }
+
+  if (total < 5) {
+    // Sin sitio para la regla de tres días: al menos, que no salga dos veces
+    // seguidas.
+    apartar(0, [ultima]);
+    return cartas;
+  }
+
+  apartar(0, [ultima, penultima]);
+  apartar(1, [ultima]);
 
   return cartas;
 }
