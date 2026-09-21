@@ -22,8 +22,9 @@ npm run dev
 Abre <http://localhost:3000>, que redirige a `/es` o `/en` según el
 `Accept-Language` del navegador.
 
-No hace falta ninguna variable de entorno para desarrollar. Las de PayPal solo
-se necesitan para probar los pagos, y están documentadas en
+**No hace falta ninguna variable de entorno**, ni para desarrollar ni para
+desplegar. La reserva, el cobro y los enlaces de videollamada los lleva
+Calendly desde su panel; el detalle está en
 [`docs/variables-de-entorno.md`](docs/variables-de-entorno.md).
 
 ## Comandos
@@ -33,10 +34,10 @@ se necesitan para probar los pagos, y están documentadas en
 | `npm run dev` | Servidor de desarrollo |
 | `npm run build` | Build de producción **y** verificación de metadatos |
 | `npm start` | Sirve el build |
-| `npm test` | Vitest, 66 pruebas |
+| `npm test` | Vitest, 43 pruebas |
 | `npm run typecheck` | TypeScript en modo estricto |
 | `npm run lint` | ESLint |
-| `npm run verify` | Contraste WCAG de los 25 pares de color en uso |
+| `npm run verify` | Contraste WCAG de los 27 pares de color en uso |
 
 Tres scripts de un solo uso:
 
@@ -59,9 +60,8 @@ scripts/                      utilidades y los dos verificadores del build
 src/
   proxy.ts                    / → /es | /en por Accept-Language
   app/[lang]/…                rutas (capa delgada)
-  app/api/paypal/…            rutas de servidor
-  features/…                  landing, tiquismos, faq, blog, destinos,
-                              reservas, pagos
+  features/…                  landing, online, tiquismos, faq, blog,
+                              destinos, solicitud, reservas
   shared/…                    componentes, i18n, config, utilidades, datos
 ```
 
@@ -77,11 +77,11 @@ una foto sin texto alternativo rompen la compilación en vez de aparecer vacías
 en el teléfono de alguien.
 
 **El color se verifica, no se elige a ojo.** La paleta sigue un reparto 70/30/10
-y `npm run verify` recalcula los 25 pares en uso y falla si alguno baja de
+y `npm run verify` recalcula los 27 pares en uso y falla si alguno baja de
 4,5:1. Ya cazó dos fallos que no se veían mirando la pantalla.
 
 **Los metadatos también.** `scripts/verificar-metadatos.mjs` corre en
-`postbuild` sobre el HTML generado de las 26 páginas y rompe el build si a
+`postbuild` sobre el HTML generado de las 40 páginas y rompe el build si a
 alguna le falta el título, la descripción, la canónica, el `og:image` o los
 `hreflang`.
 

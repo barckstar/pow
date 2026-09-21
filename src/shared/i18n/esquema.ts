@@ -146,19 +146,26 @@ export const esquemaDiccionario = z
       .object({
         titulo: z.string().min(1),
         intro: z.string().min(1),
-        tipoClase: z.string().min(1),
-        fecha: z.string().min(1),
-        hora: z.string().min(1),
+        /* Los tres pasos del proceso, que ahora corre Calendly entero. */
+        paso1Titulo: z.string().min(1),
+        paso1Texto: z.string().min(1),
+        paso2Titulo: z.string().min(1),
+        paso2Texto: z.string().min(1),
+        paso3Titulo: z.string().min(1),
+        paso3Texto: z.string().min(1),
+        /** El botón que carga el widget. */
+        abrir: z.string().min(1),
+        /** Quién es Calendly y qué recibe. Se lee ANTES de cargarlo. */
+        avisoTerceros: z.string().min(1),
+        /** Título accesible del iframe que monta Calendly. */
+        tituloWidget: z.string().min(1),
+        /* Mientras no haya cuenta de Calendly. */
+        pendienteTitulo: z.string().min(1),
+        pendienteTexto: z.string().min(1),
+        /* Los usa `/precios` para el depósito y `/online` para la zona. */
         zonaHoraria: z.string().min(1),
-        tuHora: z.string().min(1),
-        horaCostaRica: z.string().min(1),
-        sinFranjas: z.string().min(1),
-        cargando: z.string().min(1),
-        error: z.string().min(1),
-        continuar: z.string().min(1),
         deposito: z.string().min(1),
         depositoTexto: z.string().min(1),
-        pagoSeguro: z.string().min(1),
       })
       .strict(),
 

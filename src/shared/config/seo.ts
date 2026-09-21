@@ -92,6 +92,26 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
         "Tell us the destination, how long you plan to stay and why you want to learn, and we will tell you which school and level suit you.",
     },
   },
+  /*
+   * Estaba escrito dentro de la propia página y se trae aquí, que es donde
+   * viven todos: juntos se ve de un vistazo que ninguno se repite, y Google
+   * penaliza los títulos duplicados entre páginas de un mismo sitio.
+   *
+   * La descripción dice las tres cosas del proceso —franja, pago y enlace—
+   * porque es exactamente lo que alguien quiere saber antes de entrar.
+   */
+  reservar: {
+    es: {
+      titulo: "Reservá tu clase de español",
+      descripcion:
+        "Elegí día y hora en tu zona horaria, apartá la clase con el depósito por PayPal y recibí el enlace de la videollamada por correo.",
+    },
+    en: {
+      titulo: "Book your Spanish lesson",
+      descripcion:
+        "Pick a day and time in your own timezone, hold the lesson with a PayPal deposit, and get the video call link by email.",
+    },
+  },
   precios: {
     es: {
       titulo: "Precios de las clases",

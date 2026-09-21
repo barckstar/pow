@@ -63,9 +63,8 @@ scripts/                      recortar-logo, descargar-fotos, generar-og,
 src/
   proxy.ts                    / → /es | /en por Accept-Language
   app/[lang]/…                rutas
-  app/api/paypal/…            rutas de servidor
   features/{landing,online,tiquismos,faq,blog,destinos,solicitud,
-              reservas,pagos}/
+              reservas}/
   shared/components/ui/
     Olas.tsx                olas del hero de la PORTADA, y solo de ahí
     HeroPagina.tsx          hero compartido de /online y /costa-rica
@@ -197,26 +196,42 @@ estático, `verificar-metadatos.mjs` no tiene nada que revisar y la página nuev
 se quedaba fuera de la única red que caza un metadato ausente. Como segmento son
 diez páginas prerenderizadas, cada una con su título nombrando el destino.
 
-### Calendario — puerto y adaptadores
+### Reservar — lo hace Calendly, no el sitio
 
-La interfaz habla con `ProveedorCalendario`, nunca con un proveedor. Hay dos
-implementaciones: `local.ts` (genera franjas del horario semanal, funciona
-hoy) y `remoto.ts` (contrato firmado, `TODO` marcados). **Cambiar de una a
-otra es una línea en `calendario/index.ts`.**
+Las cuatro cosas de una reserva las hace **Calendly**: la franja con sus husos
+horarios, el formulario de datos, el **cobro del depósito** (admite PayPal, y
+sin pagar no se confirma la franja) y el **enlace de Zoom**, que crea su
+integración y manda por correo con la invitación de calendario.
 
-### Husos horarios
+Lo que aporta el sitio son dos cosas:
 
-El profesor está en `Europe/Zurich`, que aplica horario de verano; Costa Rica
-**no lo aplica nunca**. La diferencia no es fija: 7 horas en invierno europeo
-y 8 en verano. Toda conversión pasa por `features/reservas/lib/horas.ts`, con
-tests a ambos lados del cambio. Si esto se rompe, el estudiante llega a la
-clase con una hora de diferencia.
+**Los tres pasos escritos antes del widget.** Calendly no los cuenta: el
+visitante llega, ve un calendario y no sabe que va a pagar ahí ni que el enlace
+le llega solo. Diez segundos de lectura que ahorran la pregunta que más se
+responde a mano en un negocio así.
 
-### PayPal
+**Carga al hacer clic, no de entrada.** `features/reservas/components/Calendly.tsx`
+pinta un botón propio y no pide un solo byte a Calendly hasta que se pulsa.
+Embebido sin más, su JavaScript de terceros se descarga en toda visita a
+`/reservar` y se come el presupuesto de rendimiento — y en móvil el sitio ya
+está en 86 con un estándar de 95. Es el patrón con el que se incrustan los
+vídeos de YouTube sin hundir la puntuación. De regalo resuelve media cuestión
+de privacidad: si el script no se carga, no hay cookies de terceros que
+consentir, y quien pulsa lee justo encima a dónde van sus datos.
 
-El monto lo pone **siempre el servidor**. Nunca se acepta el del cliente.
-Mientras `DEPOSITO` sea `null` las rutas devuelven `503` explicando qué falta.
-Variables de entorno en [`docs/variables-de-entorno.md`](docs/variables-de-entorno.md).
+Mientras `CALENDLY` sea `null` en `sitio.ts`, la página explica el proceso y
+dice que todavía no se puede reservar. No se pinta un calendario que no aparta
+nada.
+
+**Lo que se quitó al decidir esto:** el selector de franjas propio, el puerto
+de calendario con sus dos adaptadores, la librería de husos horarios con sus
+tests del cambio de hora y las dos rutas de servidor de PayPal. Unas 500 líneas
+que funcionaban. Mantener una segunda forma de reservar —que además no cobraba
+ni creaba la reunión— era garantizar que las dos divergieran. Está en el
+historial, en el commit `0dcca7e`.
+
+⚠️ Cobrar y conectar Zoom son **funciones de plan de pago** de Calendly. Sin
+cobro, cualquiera aparta una franja sin pagar.
 
 ### Metadatos
 

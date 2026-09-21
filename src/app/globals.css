@@ -624,120 +624,55 @@ p {
   color: color-mix(in srgb, var(--color-tinta) 75%, transparent);
 }
 
-/* --- Reserva ------------------------------------------------------------- */
+/* --- Reserva: el calendario de Calendly ----------------------------------
+   Aquí ya no hay selector de franjas: la reserva, el cobro y el enlace de Zoom
+   los hace Calendly entero. Lo único que queda del lado del sitio es el botón
+   que lo carga y el hueco donde se monta.
 
-.reserva {
+   Todo el CSS del selector anterior —zona horaria, días, franjas, resumen— se
+   fue con él. Está en el historial, en el commit `0dcca7e`.
+   ------------------------------------------------------------------------- */
+
+.calendly {
   margin-top: 2rem;
 }
 
-.reserva__aviso,
-.reserva__pendiente-pago {
+/* Se lee ANTES de pulsar el botón: quién es Calendly y qué recibe. */
+.calendly__aviso {
+  max-width: 44rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.92rem;
+  color: color-mix(in srgb, var(--color-tinta) 74%, transparent);
+}
+
+/*
+ * El hueco del widget.
+ *
+ * El alto mínimo va aquí y no lo pone Calendly: su iframe no tiene altura
+ * propia hasta que carga, y sin reservar el espacio la página pega un salto
+ * justo cuando aparece. Eso es CLS, que en este sitio está en 0 y conviene que
+ * siga.
+ */
+.calendly__widget {
+  min-height: 42rem;
+  margin-top: 2rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.calendly__widget:focus-visible {
+  outline: 2px solid var(--color-naranja);
+  outline-offset: 4px;
+}
+
+/* La etiqueta de pendiente en línea, que usan `/online` y `/costa-rica`. */
+.reserva__aviso {
+  margin-top: 1rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
-  flex-wrap: wrap;
-  margin: 1.25rem 0;
   font-size: 0.9rem;
-}
-
-.reserva__zona {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.reserva__zona label {
-  font-weight: 600;
-}
-
-.reserva__zona select {
-  font: inherit;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.6rem;
-  border: 1px solid color-mix(in srgb, var(--color-teal) 35%, transparent);
-  background-color: #ffffff;
-  color: var(--color-tinta);
-}
-
-.reserva__dias {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-}
-
-.reserva__dia-titulo {
-  font-size: 1rem;
-  color: var(--color-teal);
-  text-transform: capitalize;
-  margin-bottom: 0.75rem;
-}
-
-.reserva__franjas {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 0.6rem;
-  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
-}
-
-.reserva__franja {
-  width: 100%;
-  font: inherit;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  padding: 0.7rem 0.5rem;
-  border-radius: 0.7rem;
-  background-color: #ffffff;
-  border: 1px solid color-mix(in srgb, var(--color-teal) 25%, transparent);
-  color: var(--color-tinta);
-  transition: border-color 160ms ease, transform 160ms ease;
-}
-
-.reserva__franja:hover:not(:disabled) {
-  border-color: var(--color-naranja);
-  transform: translateY(-2px);
-}
-
-.reserva__franja[aria-pressed="true"] {
-  background-color: var(--color-teal);
-  border-color: var(--color-teal);
-  color: #ffffff;
-}
-
-.reserva__franja:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  text-decoration: line-through;
-}
-
-.reserva__hora {
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-
-.reserva__hora-otra {
-  font-size: 0.75rem;
-  opacity: 0.8;
-}
-
-.reserva__vacio,
-.reserva__resumen {
-  margin: 1.5rem 0;
-}
-
-.reserva__continuar {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid color-mix(in srgb, var(--color-teal) 18%, transparent);
-}
-
-.reserva__resumen {
-  font-weight: 600;
 }
 
 /* ==========================================================================

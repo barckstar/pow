@@ -13,9 +13,9 @@ Un hueco visible se arregla. Uno invisible se publica.
 | Dato | Dónde va | Qué pasa mientras falta |
 |---|---|---|
 | **Precios** de las clases online y presenciales | `src/features/precios/` | `/precios` muestra el aviso en vez de una tabla |
-| **Monto del depósito** de reserva | `DEPOSITO` en `src/shared/config/sitio.ts` | `/reservar` no ofrece pagar; las rutas de PayPal devuelven 503 |
+| **Cuenta de Calendly** | `CALENDLY` en `src/shared/config/sitio.ts` | `/reservar` explica los tres pasos y dice que no se puede reservar todavía. **Bloquea la vía en línea entera** |
+| **Monto del depósito** de reserva | `DEPOSITO` en `sitio.ts`, y en Calendly | `/precios` no enseña cifra. Va en los dos sitios: Calendly cobra, el sitio lo anuncia |
 | **Nombre, foto y biografía del profesor** | `/online` | La página habla de él en genérico y marca el pendiente |
-| **Horario real del profesor** | `src/features/reservas/data/horario-profesor.json` | Hay un horario provisional (`"confirmado": false`) y la página lo dice |
 | **Correo y teléfono** de contacto | `CONTACTO` en `sitio.ts` | El pie muestra la etiqueta de pendiente |
 | **Redes sociales** del negocio | `REDES` en `sitio.ts` | La barra lateral solo lleva la marca y el botón de compartir; `/comunidad` lo dice |
 | **Dominio** | `URL_BASE` en `sitio.ts` | Provisional. Afecta a canónicas, `og:url` y sitemap |
@@ -28,13 +28,21 @@ Un hueco visible se arregla. Uno invisible se publica.
 
 ## 2. Credenciales
 
-- **PayPal**: cuenta de negocio verificada para las credenciales de
-  producción. Hoy el código está preparado para sandbox.
-  Ver [`docs/variables-de-entorno.md`](docs/variables-de-entorno.md).
-- **Calendario**: falta decidir el proveedor (los candidatos hablados son
-  Cal.com y Google Calendar). El adaptador está escrito con el contrato ya
-  firmado en `src/features/reservas/lib/calendario/remoto.ts`; conectarlo es
-  rellenar tres métodos y cambiar una línea en `calendario/index.ts`.
+El sitio ya **no necesita ninguna variable de entorno**. Lo que hace falta son
+tres cosas fuera del repositorio, y las tres se configuran en el mismo sitio:
+
+- **Calendly**, con el plan que cubra dos funciones de pago: **cobrar dentro
+  del flujo de reserva** y la **integración con Zoom**. Sin la primera,
+  cualquiera aparta una franja sin pagar; sin la segunda, el enlace de la
+  videollamada hay que mandarlo a mano.
+- **PayPal**: cuenta de negocio verificada, para conectarla *a Calendly*. Ya no
+  hace falta ninguna credencial en el código.
+- **Zoom**: cuenta que se conecta a Calendly desde su panel.
+
+El proveedor de calendario **ya está decidido** —era una decisión abierta y lo
+eligió el cliente: Calendly— y con ella se quitó el puerto de calendario, el
+selector de franjas propio y las rutas de PayPal.
+Ver [`docs/variables-de-entorno.md`](docs/variables-de-entorno.md).
 
 ## 3. Contenido
 
@@ -112,10 +120,9 @@ Es una decisión de diseño, no una optimización. Queda para el usuario.
   precios, comunidad, reservar, créditos y 404.
 - Blog en Markdown con frontmatter validado, RSS por idioma, filtrado por
   etiqueta y `hreflang` recíproco solo donde la traducción existe.
-- Conversión de husos horarios Suiza↔Costa Rica con tests del cambio de
-  horario de verano.
-- Puerto de calendario con adaptador local funcionando y remoto contratado.
-- Rutas de PayPal con el monto validado en servidor.
+- `/reservar` con los tres pasos explicados y el calendario de Calendly
+  cargándose solo al pulsar, para no gastar rendimiento en quien pasa de
+  largo.
 - Metadatos completos verificados por script en `postbuild` (26 páginas).
 - Paleta 70/30/10 con contraste WCAG AA medido y verificado por script.
 - Preguntas frecuentes con `<details>` nativos y JSON-LD de `FAQPage`.
@@ -137,5 +144,5 @@ Es una decisión de diseño, no una optimización. Queda para el usuario.
 - Barra de scroll con los colores de la paleta.
 - Rotación diaria de tiquismos: baraja por ciclos, sin repetir ninguno
   antes de tres días.
-- 67 tests en verde, 25 pares de contraste en AA, ESLint sin avisos y 36
+- 43 tests en verde, 27 pares de contraste en AA, ESLint sin avisos y 40
   páginas con los metadatos verificados.

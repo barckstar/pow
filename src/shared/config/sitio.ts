@@ -38,15 +38,43 @@ export const NOMBRE_CORTO = "Costa Rica Spanish";
  */
 export const ZONA_PROFESOR = "Europe/Zurich";
 
-/** Zona horaria de las clases presenciales. Costa Rica no aplica DST nunca. */
-export const ZONA_COSTA_RICA = "America/Costa_Rica";
-
 /**
  * Depósito que se cobra para apartar una clase.
  * PENDIENTE: el monto no está confirmado por el cliente. Mientras sea `null`
  * la ruta de reserva muestra el aviso de pendiente y no ofrece pagar.
  */
 export const DEPOSITO: { monto: number; moneda: string } | null = null;
+
+/**
+ * El calendario de reservas.
+ *
+ * ============ CALENDLY LO HACE TODO, Y ESO FUE UNA DECISIÓN ============
+ * Reserva, formulario, cobro y enlace de Zoom: las cuatro cosas las hace
+ * Calendly, no este sitio.
+ *
+ *   - La FRANJA y los HUSOS HORARIOS los gestiona Calendly.
+ *   - El FORMULARIO —nombre, correo y las preguntas que se quieran— es el suyo.
+ *   - El COBRO va dentro de su flujo: sin pagar no se confirma la franja, que
+ *     es lo que pidió el cliente. Admite PayPal.
+ *   - El ENLACE DE ZOOM lo crea su integración con Zoom y lo manda por correo
+ *     a la dirección que la persona escribió, junto con la invitación de
+ *     calendario y los recordatorios.
+ *
+ * Antes de esto el sitio tenía su propio selector de franjas, su puerto de
+ * calendario con dos adaptadores, una librería de conversión de husos horarios
+ * con tests del cambio de hora y dos rutas de servidor para PayPal. Todo eso
+ * se quitó al tomar esta decisión: mantener una segunda forma de reservar, que
+ * además no cobraba ni creaba la reunión, era garantizar que las dos
+ * divergieran. Está en el historial, en el commit `0dcca7e`, por si hubiera
+ * que volver.
+ * =======================================================================
+ *
+ * Mientras sea `null`, `/reservar` explica el proceso y dice que todavía no
+ * se puede reservar, en vez de enseñar un calendario que no lleva a ningún
+ * sitio. Hace falta la cuenta de Calendly con el plan que cubra cobros e
+ * integración con Zoom.
+ */
+export const CALENDLY: { url: string } | null = null;
 
 /**
  * Redes sociales del negocio.

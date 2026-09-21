@@ -3,41 +3,14 @@ import { notFound } from "next/navigation";
 import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
-import { rutas, ZONA_COSTA_RICA } from "@/shared/config/sitio";
+import { rutas, CALENDLY, ZONA_PROFESOR } from "@/shared/config/sitio";
+import { SEO } from "@/shared/config/seo";
+import { Calendly } from "@/features/reservas/components/Calendly";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
-import {
-  calendario,
-  HORARIO,
-  HORARIO_PROVISIONAL,
-} from "@/features/reservas/lib/calendario";
-import {
-  SelectorDeFranjas,
-  type FranjaSerializada,
-} from "@/features/reservas/components/SelectorDeFranjas";
-
-const TEXTOS = {
-  es: {
-    titulo: "Reservá tu clase de español",
-    descripcion:
-      "Elegí el día y la hora de tu clase de español costarricense. Los horarios se muestran en tu zona horaria y en la de Costa Rica.",
-  },
-  en: {
-    titulo: "Book your Spanish lesson",
-    descripcion:
-      "Pick the day and time for your Costa Rican Spanish lesson. Times are shown in your own time zone and in Costa Rica's.",
-  },
-} as const;
 
 export function generateStaticParams() {
   return IDIOMAS.map((lang) => ({ lang }));
 }
-
-/*
- * Se revalida cada hora: las franjas dependen de la hora actual (antelación
- * mínima), así que un HTML congelado en el build ofrecería huecos que ya
- * pasaron.
- */
-export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -48,14 +21,27 @@ export async function generateMetadata({
   if (!esIdioma(lang)) return {};
 
   return metadatosDe({
-    titulo: TEXTOS[lang].titulo,
-    descripcion: TEXTOS[lang].descripcion,
+    ...SEO.reservar[lang],
     ruta: rutas.reservar(lang),
     lang,
     alternativas: mismaRutaEnTodosLosIdiomas(rutas.reservar),
   });
 }
 
+/**
+ * La reserva de una clase en línea.
+ *
+ * ============ LA PÁGINA EXPLICA; CALENDLY HACE ============
+ * Los tres pasos —franja, pago y enlace de Zoom— los ejecuta Calendly entero.
+ * Lo que aporta esta página es contarlos ANTES de abrir el widget, porque el
+ * widget no los cuenta: el visitante llega, ve un calendario y no sabe que va
+ * a tener que pagar ahí mismo ni que el enlace le va a llegar solo.
+ *
+ * Tres pasos escritos arriba cuestan diez segundos de lectura y evitan la
+ * pregunta «¿y cómo me conecto?», que es la que más se responde a mano en un
+ * negocio así.
+ * =========================================================
+ */
 export default async function PaginaReservar({
   params,
 }: {
@@ -66,36 +52,61 @@ export default async function PaginaReservar({
 
   const idioma: Idioma = lang;
   const t = await getDiccionario(idioma);
+  const r = t.reserva;
 
-  const desde = new Date();
-  const hasta = new Date(desde.getTime() + HORARIO.diasVisibles * 86_400_000);
-  const franjas = await calendario().disponibilidad(
-    desde,
-    hasta,
-    ZONA_COSTA_RICA
-  );
-
-  // Las fechas no cruzan la frontera servidor/cliente como objetos.
-  const serializadas: FranjaSerializada[] = franjas.map((f) => ({
-    inicio: f.inicio.toISOString(),
-    fin: f.fin.toISOString(),
-    disponible: f.disponible,
-  }));
+  const pasos = [
+    { titulo: r.paso1Titulo, texto: r.paso1Texto },
+    { titulo: r.paso2Titulo, texto: r.paso2Texto },
+    { titulo: r.paso3Titulo, texto: r.paso3Texto },
+  ];
 
   return (
     <section className="seccion con-adornos">
       <DecoradosSeccion variante="reservar" />
 
       <div className="seccion__interior seccion__interior--estrecho">
-        <h1 className="seccion__titulo">{t.reserva.titulo}</h1>
-        <p className="seccion__intro">{t.reserva.intro}</p>
+        <h1 className="seccion__titulo">{r.titulo}</h1>
+        <p className="seccion__intro">{r.intro}</p>
 
-        <SelectorDeFranjas
-          franjas={serializadas}
-          lang={idioma}
-          t={t}
-          provisional={HORARIO_PROVISIONAL}
-        />
+        <ol className="pasos">
+          {pasos.map((paso, indice) => (
+            <li key={paso.titulo} className="paso">
+              <span className="paso__numero" aria-hidden="true">
+                {indice + 1}
+              </span>
+              <div>
+                <h2 className="paso__titulo">{paso.titulo}</h2>
+                <p>{paso.texto}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        {/*
+          Sin cuenta de Calendly no se pinta un calendario de mentira: se dice
+          que no se puede reservar todavía. Es la misma regla que el resto del
+          sitio — un hueco visible se arregla, uno invisible se publica.
+        */}
+        {CALENDLY ? (
+          <Calendly
+            url={CALENDLY.url}
+            etiquetaBoton={r.abrir}
+            avisoTerceros={r.avisoTerceros}
+            titulo={r.tituloWidget}
+          />
+        ) : (
+          <div className="aviso-pendiente">
+            <p className="aviso-pendiente__titulo">
+              <span className="pendiente">{t.pendiente.etiqueta}</span>
+              <span>{r.pendienteTitulo}</span>
+            </p>
+            <p>{r.pendienteTexto}</p>
+          </div>
+        )}
+
+        <p className="dato-zona">
+          <strong>{r.zonaHoraria}:</strong> {ZONA_PROFESOR.replace(/_/g, " ")}
+        </p>
       </div>
     </section>
   );

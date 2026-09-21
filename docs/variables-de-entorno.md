@@ -1,43 +1,50 @@
 # Variables de entorno
 
-> No hay `.env.example` en el repositorio: el workspace tiene una regla que
-> prohíbe tocar archivos `.env*`. Este documento cumple la misma función.
-> Creá `.env.local` a mano con estas claves.
+**Hoy no hace falta ninguna.** El sitio compila, corre y se despliega sin un
+solo secreto.
 
-```bash
-# --- PayPal ---------------------------------------------------------------
-# Solo se leen en el servidor, en src/features/pagos/lib/paypal.ts.
-# Nunca llegan al navegador: si el secreto se expusiera, cualquiera podría
-# crear órdenes a nombre del negocio.
-#
-# Se sacan de https://developer.paypal.com/dashboard/applications
-PAYPAL_CLIENT_ID=
-PAYPAL_CLIENT_SECRET=
+No siempre fue así, y el cambio merece una línea: la reserva llegó a estar
+construida aquí dentro —selector de franjas, rutas de servidor para PayPal y
+las credenciales que eso pedía— y ahora la lleva **Calendly** entera. Con ella
+se fueron las dos claves de PayPal y la del calendario.
 
-# "sandbox" o "produccion"
-PAYPAL_ENTORNO=sandbox
+---
 
-# --- Calendario -----------------------------------------------------------
-# Sin proveedor decidido todavía. Cuando lo haya, la clave va aquí y la lee
-# src/features/reservas/lib/calendario/remoto.ts
-CALENDARIO_API_KEY=
-```
+## Lo que sí hay que configurar, y dónde
 
-## Qué pasa si faltan
+No son variables de entorno: son cuentas y ajustes fuera del repositorio.
 
-El sitio **compila y funciona sin ninguna de ellas**. Las rutas de PayPal
-devuelven `503` con un mensaje explicando que los pagos no están configurados,
-y la página de reserva muestra el aviso de pendiente en vez de un botón de
-pago que no llevaría a ninguna parte.
+| Qué | Dónde se configura | Dónde entra en el código |
+|---|---|---|
+| Enlace del calendario | Panel de Calendly | `CALENDLY` en `src/shared/config/sitio.ts` |
+| Cobro del depósito | Calendly → Payments → PayPal | nada: lo hace Calendly |
+| Enlace de la videollamada | Calendly → Integrations → Zoom | nada: lo hace Calendly |
+| Monto del depósito | Calendly, y además `DEPOSITO` en `sitio.ts` | `/precios`, para enseñarlo |
 
-Eso es deliberado: es preferible un hueco visible a un botón que falla.
+El monto aparece **dos veces a propósito**: Calendly es quien cobra, y
+`DEPOSITO` es lo que el sitio le enseña al visitante en `/precios` antes de
+que llegue a reservar. Si se cambia uno hay que cambiar el otro — es el único
+dato duplicado del proyecto y está aquí anotado para que no se olvide.
 
-## Para producción
+## Lo que hace falta de Calendly
 
-1. Crear la app de PayPal con la cuenta de **negocio** (las credenciales de
-   producción requieren cuenta verificada).
-2. Poner `PAYPAL_ENTORNO=produccion`.
-3. Confirmar el monto del depósito en `src/shared/config/sitio.ts` — hoy está
-   en `null` a propósito.
+Cobrar dentro del flujo de reserva y conectar Zoom **son funciones de plan de
+pago**. Hay que comprobar qué nivel cubre las dos antes de contratar: sin
+cobro, cualquiera aparta una franja sin pagar, que es justo lo que el cliente
+pidió evitar.
 
-Ver [`PENDIENTE.md`](../PENDIENTE.md) para la lista completa de lo que falta.
+## Qué pasa mientras no esté
+
+Mientras `CALENDLY` sea `null`, `/reservar` explica los tres pasos y dice que
+todavía no se puede reservar en línea, con la etiqueta amarilla de pendiente.
+No se pinta un calendario que no aparta nada.
+
+## Si algún día vuelve el PayPal propio
+
+La implementación anterior —rutas de servidor con el monto validado siempre en
+el servidor, nunca aceptando el del cliente— está en el historial, en el commit
+`0dcca7e`. Las claves que pedía eran `PAYPAL_CLIENT_ID`,
+`PAYPAL_CLIENT_SECRET` y `PAYPAL_ENTORNO`.
+
+> El workspace prohíbe tocar archivos `.env*`, así que si algún día hacen falta
+> variables, se documentan aquí y el `.env.local` se crea a mano.
