@@ -1,6 +1,25 @@
 import { z } from "zod";
 
 /**
+ * El hero de una página interior.
+ *
+ * Se declara UNA vez y se reutiliza en `/online` y en `/presencial`. Escrito
+ * a mano en cada una, el día que se añada un campo —una segunda línea de
+ * acento, un pie de foto— habría que acordarse de las dos, y el esquema
+ * estricto solo avisaría de la que se editó.
+ */
+const esquemaHeroPagina = z
+  .object({
+    titulo: z.string().min(1),
+    /** La segunda línea del titular, en color. */
+    acento: z.string().min(1),
+    subtitulo: z.string().min(1),
+    /** Obligatorio: la foto del hero es contenido, no decoración. */
+    fotoAlt: z.string().min(10),
+  })
+  .strict();
+
+/**
  * Forma del diccionario de interfaz.
  *
  * Todo texto VISIBLE del sitio vive aquí o en un JSON de contenido. Ninguna
@@ -66,6 +85,9 @@ export const esquemaDiccionario = z
         titulo: z.string().min(1),
         intro: z.string().min(1),
         verTodos: z.string().min(1),
+        /** La etiqueta del aviso de anuncio pagado. Ver el esquema de
+            destinos: el aviso es obligación legal, no cortesía. */
+        anuncio: z.string().min(1),
       })
       .strict(),
 
@@ -175,6 +197,7 @@ export const esquemaDiccionario = z
       .object({
         online: z
           .object({
+            hero: esquemaHeroPagina,
             titulo: z.string().min(1),
             intro: z.string().min(1),
             pasosTitulo: z.string().min(1),
@@ -190,9 +213,14 @@ export const esquemaDiccionario = z
           .strict(),
         presencial: z
           .object({
+            hero: esquemaHeroPagina,
             titulo: z.string().min(1),
             intro: z.string().min(1),
             texto: z.string().min(1),
+            /** Dónde se dan. Es el dato que el cliente no ha confirmado, así
+                que la sección existe para DECIR que no está confirmado. */
+            dondeTitulo: z.string().min(1),
+            dondeTexto: z.string().min(1),
           })
           .strict(),
         destinos: z

@@ -26,35 +26,43 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
         "One-to-one Costa Rican Spanish lessons over video, with slots that work for both Europe and the Americas and no small print.",
     },
   },
+  /*
+   * Ni el título ni la descripción nombran ya una ciudad ni un país.
+   *
+   * No es cosmética: mientras la sede no esté confirmada, un título que
+   * prometa «en Costa Rica» atrae búsquedas que la página no puede responder,
+   * y quien llega se va en cuanto lee que el lugar está por decidir. Lo que se
+   * vende aquí es el modo —cara a cara—, y eso es lo que se indexa.
+   */
   presencial: {
     es: {
-      titulo: "Clases presenciales en Costa Rica",
+      titulo: "Clases de español en persona",
       descripcion:
-        "Clases de español presenciales en Costa Rica: la conversación sale del aula y se practica en el parque, la soda y la pulpería.",
+        "Clases de español costarricense cara a cara: el gesto, el tono y las interrupciones que una videollamada recorta. La sede, por confirmar.",
     },
     en: {
-      titulo: "In-person lessons in Costa Rica",
+      titulo: "In-person Spanish lessons",
       descripcion:
-        "In-person Spanish lessons in Costa Rica: conversation leaves the classroom and happens in the park, the soda and the corner shop.",
+        "Costa Rican Spanish lessons face to face: the gesture, the tone and the interruptions a video call trims away. Venue still to be confirmed.",
     },
   },
   destinos: {
     es: {
-      titulo: "Destinos: Manuel Antonio y La Fortuna",
+      titulo: "Lugares de Costa Rica que ver",
       descripcion:
-        "Los dos lugares de Costa Rica donde se dan las clases presenciales: Manuel Antonio, entre selva y playa, y La Fortuna, a los pies del Arenal.",
+        "Manuel Antonio, La Fortuna, Monteverde, Río Celeste y Puerto Viejo: cinco lugares de Costa Rica con lo que de verdad hay en cada uno.",
     },
     en: {
-      titulo: "Destinations: Manuel Antonio and La Fortuna",
+      titulo: "Places to see in Costa Rica",
       descripcion:
-        "The two places in Costa Rica where in-person lessons happen: Manuel Antonio, between rainforest and beach, and La Fortuna, below the Arenal.",
+        "Manuel Antonio, La Fortuna, Monteverde, Río Celeste and Puerto Viejo: five places in Costa Rica with what is actually in each one.",
     },
   },
   precios: {
     es: {
       titulo: "Precios de las clases",
       descripcion:
-        "Precios de las clases de español en línea y presenciales, y del depósito de reserva. Sin cifras inventadas mientras no estén confirmadas.",
+        "Precios de las clases de español en línea y en persona, y del depósito de reserva. Sin cifras inventadas mientras no estén confirmadas.",
     },
     en: {
       titulo: "Lesson pricing",

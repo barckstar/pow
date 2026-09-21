@@ -4,6 +4,7 @@ import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
 import { rutas, ZONA_COSTA_RICA } from "@/shared/config/sitio";
+import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 import {
   calendario,
   HORARIO,
@@ -82,7 +83,9 @@ export default async function PaginaReservar({
   }));
 
   return (
-    <section className="seccion">
+    <section className="seccion con-adornos">
+      <DecoradosSeccion variante="reservar" />
+
       <div className="seccion__interior seccion__interior--estrecho">
         <h1 className="seccion__titulo">{t.reserva.titulo}</h1>
         <p className="seccion__intro">{t.reserva.intro}</p>

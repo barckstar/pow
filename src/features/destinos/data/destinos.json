@@ -2,21 +2,34 @@
   {
     "id": "manuel-antonio",
     "nombre": "Manuel Antonio",
-    "zona": "Puntarenas, costa del Pacífico",
+    "zona": "Puntarenas, Pacífico central",
     "lema": {
-      "es": "Selva y playa en la misma clase",
-      "en": "Rainforest and beach in the same lesson"
+      "es": "Selva y playa a diez minutos a pie",
+      "en": "Rainforest and beach ten minutes apart"
     },
     "descripcion": {
-      "es": "El parque nacional más visitado del país: una punta de selva que baja hasta dos bahías de arena clara. Los monos cariblancos y los perezosos se cruzan en el camino sin que haya que buscarlos.",
-      "en": "The country's most visited national park: a headland of rainforest dropping into two pale-sand bays. Capuchin monkeys and sloths cross your path without you having to look for them."
+      "es": "El parque nacional más visitado del país, y el más pequeño de los grandes: una punta de selva que baja hasta dos bahías de arena clara. Los monos cariblancos y los perezosos se cruzan en el camino sin que haya que buscarlos.",
+      "en": "The country's most visited national park, and the smallest of the famous ones: a headland of rainforest dropping into two pale-sand bays. Capuchin monkeys and sloths cross your path without you having to look for them."
+    },
+    "destacados": {
+      "es": [
+        "El Parque Nacional Manuel Antonio",
+        "Punta Catedral, la isla que se pegó a tierra",
+        "Monos cariblancos a pie de sendero"
+      ],
+      "en": [
+        "Manuel Antonio National Park",
+        "Punta Catedral, the island that joined the mainland",
+        "Capuchin monkeys right on the trail"
+      ]
     },
     "foto": "/fotos/manuel-antonio.jpg",
     "fotoAlt": {
       "es": "Vista aérea de Punta Catedral en Manuel Antonio, con la franja de arena entre dos bahías de agua turquesa",
       "en": "Aerial view of Punta Catedral in Manuel Antonio, with the strip of sand between two turquoise bays"
     },
-    "disponible": false
+    "patrocinado": false,
+    "anunciante": null
   },
   {
     "id": "la-fortuna",
@@ -27,14 +40,123 @@
       "en": "At the foot of the Arenal"
     },
     "descripcion": {
-      "es": "El pueblo que creció mirando al Volcán Arenal, con su cono casi perfecto de fondo. Aguas termales, catarata y una de las postales más reconocibles de Costa Rica.",
-      "en": "The town that grew up facing the Arenal Volcano and its almost perfect cone. Hot springs, a waterfall, and one of the most recognisable views in Costa Rica."
+      "es": "El pueblo que creció mirando al Volcán Arenal, con su cono casi perfecto de fondo. Aguas termales que bajan calientes del volcán, una catarata metida en la selva y una de las postales más reconocibles de Costa Rica.",
+      "en": "The town that grew up facing the Arenal Volcano and its almost perfect cone. Hot springs running warm off the volcano, a waterfall buried in the rainforest, and one of the most recognisable views in Costa Rica."
+    },
+    "destacados": {
+      "es": [
+        "El cono del Volcán Arenal",
+        "Las aguas termales del río Tabacón",
+        "La catarata de La Fortuna, entre paredes de selva"
+      ],
+      "en": [
+        "The cone of the Arenal Volcano",
+        "The hot springs of the Tabacón river",
+        "La Fortuna waterfall, between walls of rainforest"
+      ]
     },
     "foto": "/fotos/arenal.jpg",
     "fotoAlt": {
       "es": "El cono del Volcán Arenal visto desde La Fortuna, con la base cubierta de selva y nubes sobre la cima",
       "en": "The cone of the Arenal Volcano seen from La Fortuna, its base covered in rainforest and clouds over the summit"
     },
-    "disponible": false
+    "patrocinado": false,
+    "anunciante": null
+  },
+  {
+    "id": "monteverde",
+    "nombre": "Monteverde",
+    "zona": "Puntarenas, cordillera de Tilarán",
+    "lema": {
+      "es": "El bosque que vive dentro de una nube",
+      "en": "The forest that lives inside a cloud"
+    },
+    "descripcion": {
+      "es": "Bosque nuboso en lo alto de la cordillera de Tilarán: la humedad se queda colgada de las ramas y cada árbol carga encima su propio jardín de musgo, helechos y orquídeas. Se camina por puentes colgantes, a la altura de las copas.",
+      "en": "Cloud forest high on the Tilarán range: the damp hangs off the branches and every tree carries its own garden of moss, ferns and orchids. You walk it on hanging bridges, up at canopy height."
+    },
+    "destacados": {
+      "es": [
+        "La Reserva del Bosque Nuboso",
+        "Los puentes colgantes sobre las copas",
+        "El quetzal, con suerte y en temporada"
+      ],
+      "en": [
+        "The Cloud Forest Reserve",
+        "Hanging bridges over the canopy",
+        "The quetzal, with luck and in season"
+      ]
+    },
+    "foto": "/fotos/monteverde.jpg",
+    "fotoAlt": {
+      "es": "El bosque nuboso de Monteverde al atardecer, con las cordilleras encadenándose entre la neblina",
+      "en": "The Monteverde cloud forest at dusk, ridge after ridge fading into the mist"
+    },
+    "patrocinado": false,
+    "anunciante": null
+  },
+  {
+    "id": "rio-celeste",
+    "nombre": "Río Celeste",
+    "zona": "Alajuela, Parque Nacional Volcán Tenorio",
+    "lema": {
+      "es": "Un río que cambia de color a mitad de camino",
+      "en": "A river that changes colour halfway down"
+    },
+    "descripcion": {
+      "es": "Dos quebradas de agua transparente se juntan en un punto llamado el Teñidero y salen de ahí azul turquesa. No es tinte ni es leyenda: son partículas minerales del volcán Tenorio, del tamaño justo para devolver ese azul y ningún otro color.",
+      "en": "Two streams of clear water meet at a spot called El Teñidero and come out of it turquoise. It is neither dye nor legend: mineral particles from the Tenorio volcano, exactly the right size to scatter back that blue and no other colour."
+    },
+    "destacados": {
+      "es": [
+        "La catarata y su poza turquesa",
+        "El Teñidero, donde el río se vuelve azul",
+        "Los borbollones de agua caliente del volcán"
+      ],
+      "en": [
+        "The waterfall and its turquoise pool",
+        "El Teñidero, where the river turns blue",
+        "The volcano's bubbling hot springs"
+      ]
+    },
+    "foto": "/fotos/rio-celeste.jpg",
+    "fotoAlt": {
+      "es": "La catarata del Río Celeste cayendo entre paredes de selva sobre una poza de agua turquesa",
+      "en": "The Río Celeste waterfall dropping between walls of rainforest into a turquoise pool"
+    },
+    "patrocinado": false,
+    "anunciante": null
+  },
+  {
+    "id": "puerto-viejo",
+    "nombre": "Puerto Viejo",
+    "zona": "Limón, Caribe sur",
+    "lema": {
+      "es": "El otro lado del país, y el otro español",
+      "en": "The country's other coast, and its other Spanish"
+    },
+    "descripcion": {
+      "es": "La costa caribeña se parece poco al resto de Costa Rica, y se oye distinta. Aquí conviven el español y el criollo limonense, que viene del inglés jamaiquino. Para alguien que está aprendiendo el idioma es el mejor recordatorio de que un país puede hablar de varias maneras a la vez.",
+      "en": "The Caribbean coast looks little like the rest of Costa Rica, and it sounds different too. Spanish lives here alongside Limonese Creole, which comes from Jamaican English. For anyone learning the language it is the best reminder that one country can speak several ways at once."
+    },
+    "destacados": {
+      "es": [
+        "Las playas de Cocles y Punta Uva",
+        "El refugio de Gandoca-Manzanillo",
+        "El criollo limonense, que es otra lengua"
+      ],
+      "en": [
+        "The beaches of Cocles and Punta Uva",
+        "The Gandoca-Manzanillo refuge",
+        "Limonese Creole, which is a language of its own"
+      ]
+    },
+    "foto": "/fotos/puerto-viejo.jpg",
+    "fotoAlt": {
+      "es": "La costa de Cocles junto a Puerto Viejo vista desde el aire, con la selva llegando hasta la arena",
+      "en": "The Cocles coastline next to Puerto Viejo seen from the air, rainforest running right down to the sand"
+    },
+    "patrocinado": false,
+    "anunciante": null
   }
 ]

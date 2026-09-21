@@ -2,6 +2,7 @@ import type { FAQPage, WithContext } from "schema-dts";
 import { FAQ } from "../esquema";
 import type { Idioma } from "@/shared/i18n/config";
 import type { Diccionario } from "@/shared/i18n/esquema";
+import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 
 /**
  * Preguntas frecuentes.
@@ -31,7 +32,9 @@ export function Faq({ lang, t }: { lang: Idioma; t: Diccionario }) {
   };
 
   return (
-    <section className="seccion" aria-labelledby="faq-titulo">
+    <section className="seccion con-adornos" aria-labelledby="faq-titulo">
+      <DecoradosSeccion variante="faq" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

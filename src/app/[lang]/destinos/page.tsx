@@ -7,6 +7,7 @@ import { rutas } from "@/shared/config/sitio";
 import { SEO } from "@/shared/config/seo";
 import { DESTINOS } from "@/features/destinos/esquema";
 import { TarjetaDestino } from "@/features/destinos/components/TarjetaDestino";
+import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 
 export function generateStaticParams() {
   return IDIOMAS.map((lang) => ({ lang }));
@@ -41,12 +42,14 @@ export default async function PaginaDestinos({
   const t = await getDiccionario(idioma);
 
   return (
-    <section className="seccion">
+    <section className="seccion con-adornos">
+      <DecoradosSeccion variante="destinosPagina" />
+
       <div className="seccion__interior">
         <h1 className="seccion__titulo">{t.paginas.destinos.titulo}</h1>
         <p className="seccion__intro">{t.paginas.destinos.intro}</p>
 
-        <div className="destinos">
+        <div className="destinos revelar">
           {DESTINOS.map((destino, indice) => (
             <TarjetaDestino
               key={destino.id}

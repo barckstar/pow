@@ -2,6 +2,8 @@
 titulo: "El voseo costarricense: cuándo se usa «vos»"
 resumen: "En Costa Rica conviven vos, usted y tú, y la elección dice algo sobre la relación. Cuándo usar cada uno para no sonar raro ni distante."
 fecha: 2026-09-18
+portada: /fotos/pueblo-tico.jpg
+portadaAlt: "La calle de un pueblo costarricense a contraluz, con palmeras y los cables del tendido cruzando el cielo"
 etiquetas: [gramatica, tiquismos]
 borrador: false
 ---

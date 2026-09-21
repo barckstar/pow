@@ -2,8 +2,8 @@
   "nav": {
     "inicio": "Home",
     "online": "Online lessons",
-    "presencial": "In Costa Rica",
-    "destinos": "Destinations",
+    "presencial": "In person",
+    "destinos": "Places",
     "blog": "Blog",
     "precios": "Pricing",
     "comunidad": "Community",
@@ -16,9 +16,9 @@
     "titulo": "Learn Spanish.",
     "tituloAcentoNaranja": "Speak",
     "tituloAcentoTeal": "Costa Rican.",
-    "subtitulo": "One-to-one online lessons with a Costa Rican teacher, or in person in Manuel Antonio and La Fortuna. The Spanish you will actually hear when you land.",
+    "subtitulo": "One-to-one online lessons with a Costa Rican teacher, or in person, face to face. The Spanish you will actually hear when you land.",
     "ctaOnline": "Learn Online",
-    "ctaPresencial": "Book In-Person Lesson",
+    "ctaPresencial": "In-Person Lessons",
     "ctaReservar": "Book a lesson",
     "insignia": "More than a language. It's a journey."
   },
@@ -27,14 +27,15 @@
     "onlineTitulo": "Online",
     "onlineTexto": "One-to-one video lessons with a Costa Rican teacher based in Switzerland. Built around your schedule, wherever you are.",
     "onlineEnlace": "Start online",
-    "presencialTitulo": "In Costa Rica",
-    "presencialTexto": "In-person lessons between volcanoes and the Pacific. You learn the language where it is spoken, which is where it finally sticks.",
-    "presencialEnlace": "See the destinations"
+    "presencialTitulo": "In person",
+    "presencialTexto": "Face to face, no screen in between. The same conversation from day one, with the gestures and the rhythm a video call leaves behind.",
+    "presencialEnlace": "See how it works"
   },
   "destinos": {
-    "titulo": "Where the lessons happen",
-    "intro": "Two places in Costa Rica where the lesson leaves the classroom.",
-    "verTodos": "See all destinations"
+    "titulo": "Costa Rica, place by place",
+    "intro": "The places people come to see. Not lesson venues: the country this is all about.",
+    "verTodos": "See every place",
+    "anuncio": "Ad"
   },
   "confianza": {
     "profesorTitulo": "Costa Rican teacher",
@@ -113,7 +114,13 @@
   },
   "paginas": {
     "online": {
-      "titulo": "Online lessons",
+      "hero": {
+        "titulo": "Online lessons.",
+        "acento": "Costa Rica, on your screen.",
+        "subtitulo": "One to one over video with a Costa Rican teacher. Conversation from day one, on your schedule, wherever you are.",
+        "fotoAlt": "A scarlet macaw up close, pale beak and the white patch around its eye, against blurred green foliage"
+      },
+      "titulo": "What an online lesson is like",
       "intro": "One-to-one video lessons with a Costa Rican teacher. He is based in Switzerland, so there are slots that work for both Europe and the Americas.",
       "pasosTitulo": "How it works",
       "paso1Titulo": "Pick a slot",
@@ -126,13 +133,21 @@
       "profesorTexto": "A Costa Rican living in Switzerland. He teaches the Spanish actually spoken in Costa Rica: the voseo, the slang and the tone, not just textbook grammar."
     },
     "presencial": {
-      "titulo": "Lessons in Costa Rica",
-      "intro": "Learning a language where it is spoken is what makes it stick.",
-      "texto": "The idea is simple: the lesson leaves the classroom. You talk while walking through the national park, ordering at a soda, or asking the time at the corner shop. Vocabulary learned that way does not fade, because you used it the same day."
+      "hero": {
+        "titulo": "In-person lessons.",
+        "acento": "The Spanish of the street.",
+        "subtitulo": "Face to face, no screen in between. The Spanish of the corner shop and the bus stop — the one no textbook teaches you.",
+        "fotoAlt": "A steep street in San José, houses painted in bright colours and power lines crossing from side to side"
+      },
+      "titulo": "In-person lessons",
+      "intro": "Face to face you learn differently, and faster.",
+      "texto": "A lesson is not a questionnaire: it is a conversation. In person you get the gesture, the tone and the interruptions — three things a video call trims away and that in a real language weigh as much as the words. You are corrected on the spot, the moment you say something, not at the end of the hour.",
+      "dondeTitulo": "Where they happen",
+      "dondeTexto": "The location has not been decided yet. Once it is, it appears here with the address and the times; until then we would rather leave the gap visible than advertise a venue that does not exist. Online lessons are available today."
     },
     "destinos": {
-      "titulo": "Where in-person lessons happen",
-      "intro": "Two places in Costa Rica, chosen because they are the ones that most justify the trip."
+      "titulo": "Places in Costa Rica",
+      "intro": "Five places that justify the trip, with what is actually in each one. If a card ever becomes a paid ad, it will say so on top of the photo."
     },
     "precios": {
       "titulo": "Pricing",

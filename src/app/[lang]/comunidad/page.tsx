@@ -7,6 +7,7 @@ import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
 import { REDES, rutas } from "@/shared/config/sitio";
 import { SEO } from "@/shared/config/seo";
 import { TIQUISMOS } from "@/features/tiquismos/esquema";
+import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 
 export function generateStaticParams() {
   return IDIOMAS.map((lang) => ({ lang }));
@@ -47,7 +48,9 @@ export default async function PaginaComunidad({
    * que alguien puede venir a leer.
    */
   return (
-    <section className="seccion">
+    <section className="seccion con-adornos">
+      <DecoradosSeccion variante="comunidad" />
+
       <div className="seccion__interior seccion__interior--estrecho">
         <h1 className="seccion__titulo">{t.paginas.comunidad.titulo}</h1>
         <p className="seccion__intro">{t.paginas.comunidad.intro}</p>

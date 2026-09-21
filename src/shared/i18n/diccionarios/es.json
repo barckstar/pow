@@ -2,8 +2,8 @@
   "nav": {
     "inicio": "Inicio",
     "online": "Clases en línea",
-    "presencial": "En Costa Rica",
-    "destinos": "Destinos",
+    "presencial": "En persona",
+    "destinos": "Lugares",
     "blog": "Blog",
     "precios": "Precios",
     "comunidad": "Comunidad",
@@ -16,9 +16,9 @@
     "titulo": "Aprendé español.",
     "tituloAcentoNaranja": "Hablá",
     "tituloAcentoTeal": "como tico.",
-    "subtitulo": "Clases en línea con un profesor costarricense, o presenciales en Manuel Antonio y La Fortuna. El español que de verdad vas a oír cuando llegués a Costa Rica.",
+    "subtitulo": "Clases en línea con un profesor costarricense, o en persona, cara a cara. El español que de verdad vas a oír cuando llegués a Costa Rica.",
     "ctaOnline": "Clases en línea",
-    "ctaPresencial": "Reservar clase presencial",
+    "ctaPresencial": "Clases en persona",
     "ctaReservar": "Reservar una clase",
     "insignia": "Más que un idioma. Es un viaje."
   },
@@ -27,14 +27,15 @@
     "onlineTitulo": "En línea",
     "onlineTexto": "Clases uno a uno por videollamada, con un profesor costarricense que vive en Suiza. Se acomoda a tu horario, estés donde estés.",
     "onlineEnlace": "Empezar en línea",
-    "presencialTitulo": "En Costa Rica",
-    "presencialTexto": "Clases presenciales entre volcanes y playa. Aprendés la lengua en el lugar donde se habla, que es donde de verdad se pega.",
-    "presencialEnlace": "Ver los destinos"
+    "presencialTitulo": "En persona",
+    "presencialTexto": "Cara a cara, sin pantalla de por medio. La misma conversación desde el primer día, con los gestos y el ritmo que una videollamada se deja por el camino.",
+    "presencialEnlace": "Ver cómo funciona"
   },
   "destinos": {
-    "titulo": "Dónde se dan las clases",
-    "intro": "Dos lugares de Costa Rica donde la clase se sale del aula.",
-    "verTodos": "Ver todos los destinos"
+    "titulo": "Costa Rica, lugar por lugar",
+    "intro": "Los sitios que la gente viene a ver. No son sedes de clase: son el país del que trata todo esto.",
+    "verTodos": "Ver todos los lugares",
+    "anuncio": "Anuncio"
   },
   "confianza": {
     "profesorTitulo": "Profesor costarricense",
@@ -113,7 +114,13 @@
   },
   "paginas": {
     "online": {
-      "titulo": "Clases en línea",
+      "hero": {
+        "titulo": "Clases en línea.",
+        "acento": "Costa Rica, en tu pantalla.",
+        "subtitulo": "Uno a uno por videollamada con un profesor costarricense. Conversación desde el primer día, en tu horario, estés donde estés.",
+        "fotoAlt": "Una lapa roja de cerca, con el pico claro y el parche blanco alrededor del ojo, sobre follaje verde desenfocado"
+      },
+      "titulo": "Cómo son las clases en línea",
       "intro": "Clases uno a uno por videollamada con un profesor costarricense. Él está en Suiza, así que hay horarios que le sirven tanto a Europa como a América.",
       "pasosTitulo": "Cómo funciona",
       "paso1Titulo": "Elegís la franja",
@@ -126,13 +133,21 @@
       "profesorTexto": "Un costarricense que vive en Suiza. Enseña el español que se habla en Costa Rica: el voseo, los modismos y el tono, no solo la gramática del libro."
     },
     "presencial": {
-      "titulo": "Clases en Costa Rica",
-      "intro": "Aprender la lengua en el lugar donde se habla es lo que hace que se pegue.",
-      "texto": "La idea es sencilla: la clase sale del aula. Se conversa caminando por el parque nacional, pidiendo en una soda o preguntando la hora en la pulpería. El vocabulario que aprendés así no se olvida, porque lo usaste el mismo día."
+      "hero": {
+        "titulo": "Clases en persona.",
+        "acento": "Como se habla en la calle.",
+        "subtitulo": "Cara a cara, sin pantalla de por medio. El español de la esquina, la pulpería y la parada del bus, que es el que nadie te enseña en un libro.",
+        "fotoAlt": "Una calle en cuesta de San José, con las casas pintadas de colores y los cables del tendido cruzando de lado a lado"
+      },
+      "titulo": "Clases en persona",
+      "intro": "Cara a cara se aprende distinto, y más rápido.",
+      "texto": "La clase no es un cuestionario: es una conversación. En persona entran el gesto, el tono y las interrupciones, que son tres cosas que una videollamada recorta y que en un idioma real pesan tanto como las palabras. Se corrige sobre la marcha, en el momento en que decís algo, no al final de la hora.",
+      "dondeTitulo": "Dónde se dan",
+      "dondeTexto": "El lugar todavía no está decidido. Cuando lo esté, aparece aquí con la dirección y los horarios; mientras tanto preferimos dejar el hueco a la vista antes que anunciar una sede que no existe. Las clases en línea sí están disponibles hoy."
     },
     "destinos": {
-      "titulo": "Dónde se dan las clases presenciales",
-      "intro": "Dos lugares de Costa Rica, elegidos porque son los que más justifican el viaje."
+      "titulo": "Lugares de Costa Rica",
+      "intro": "Cinco sitios que justifican el viaje, con lo que de verdad hay en cada uno. Si alguna ficha llega a ser un anuncio pagado, lo va a decir encima de la foto."
     },
     "precios": {
       "titulo": "Precios",

@@ -6,6 +6,7 @@ import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
 import { DEPOSITO, rutas } from "@/shared/config/sitio";
 import { SEO } from "@/shared/config/seo";
+import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 
 export function generateStaticParams() {
   return IDIOMAS.map((lang) => ({ lang }));
@@ -44,7 +45,9 @@ export default async function PaginaPrecios({
    * rellena con una suposición.
    */
   return (
-    <section className="seccion">
+    <section className="seccion con-adornos">
+      <DecoradosSeccion variante="precios" />
+
       <div className="seccion__interior seccion__interior--estrecho">
         <h1 className="seccion__titulo">{t.paginas.precios.titulo}</h1>
         <p className="seccion__intro">{t.paginas.precios.intro}</p>

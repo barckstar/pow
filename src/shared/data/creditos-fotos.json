@@ -25,5 +25,59 @@
     "fuente": "Unsplash",
     "licencia": "Unsplash License",
     "descripcion": "El cono del Volcán Arenal visto desde La Fortuna, con la base cubierta de selva."
+  },
+  {
+    "archivo": "/fotos/lapa-roja.jpg",
+    "autor": "Omar Mena",
+    "perfil": "https://unsplash.com/@menaomar",
+    "pagina": "https://unsplash.com/photos/vh6V3QHcsNY",
+    "fuente": "Unsplash",
+    "licencia": "Unsplash License",
+    "descripcion": "Una lapa roja de cerca, con el pico claro y el ojo blanco, sobre follaje desenfocado. Fotografiada en Isla Tortuga."
+  },
+  {
+    "archivo": "/fotos/calle-san-jose.jpg",
+    "autor": "Robin Canfield",
+    "perfil": "https://unsplash.com/@robincanfield",
+    "pagina": "https://unsplash.com/photos/phFxZTQCO3s",
+    "fuente": "Unsplash",
+    "licencia": "Unsplash License",
+    "descripcion": "Una calle de San José en cuesta, con las casas de colores y los cables cruzando de lado a lado."
+  },
+  {
+    "archivo": "/fotos/pueblo-tico.jpg",
+    "autor": "35MM North",
+    "perfil": "https://unsplash.com/@35mm_north",
+    "pagina": "https://unsplash.com/photos/51I_5jfjvK4",
+    "fuente": "Unsplash",
+    "licencia": "Unsplash License",
+    "descripcion": "La calle de un pueblo costarricense a contraluz, con palmeras, rótulos y los cables del tendido cruzando el cielo."
+  },
+  {
+    "archivo": "/fotos/monteverde.jpg",
+    "autor": "James Ting",
+    "perfil": "https://unsplash.com/@jamesting",
+    "pagina": "https://unsplash.com/photos/0L1NA9DMdrw",
+    "fuente": "Unsplash",
+    "licencia": "Unsplash License",
+    "descripcion": "El bosque nuboso de Monteverde al atardecer, con las cordilleras encadenadas entre la neblina."
+  },
+  {
+    "archivo": "/fotos/rio-celeste.jpg",
+    "autor": "José Cuerva",
+    "perfil": "https://unsplash.com/@josecuerva",
+    "pagina": "https://unsplash.com/photos/wtDod_LxD5o",
+    "fuente": "Unsplash",
+    "licencia": "Unsplash License",
+    "descripcion": "La catarata del Río Celeste cayendo sobre la poza de agua turquesa, en el Parque Nacional Volcán Tenorio."
+  },
+  {
+    "archivo": "/fotos/puerto-viejo.jpg",
+    "autor": "Luis Diego Aguilar",
+    "perfil": "https://unsplash.com/@luisdy18",
+    "pagina": "https://unsplash.com/photos/bSJWEfOrHps",
+    "fuente": "Unsplash",
+    "licencia": "Unsplash License",
+    "descripcion": "La costa de Cocles, junto a Puerto Viejo, vista desde el aire: la selva llegando hasta la arena."
   }
 ]

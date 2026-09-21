@@ -30,10 +30,14 @@
      5.01:1 y sigue leyéndose como dorado. */
   --color-dorado-texto: #ffe9bc;
 
-  /* Altura del navbar. La compacta reserva el espacio del body, así el CLS
-     es 0 pase lo que pase con el estado del header. Ver Navbar.tsx. */
-  --nav-h-compacto: 4rem;
-  --nav-h-tope: 6.5rem;
+  /*
+   * Altura del navbar. UNA sola, y el `padding-top` del body es exactamente
+   * esta: el CLS es 0 por construcción, no por haber cuadrado dos números.
+   *
+   * Antes eran dos —4 rem compacta y 6,5 rem en el tope— porque la barra
+   * cambiaba de tamaño al hacer scroll. Eso se quitó. Ver la sección NAVBAR.
+   */
+  --nav-h: 4.25rem;
 }
 
 :root {
@@ -47,9 +51,64 @@ html {
 body {
   background-color: var(--color-crema);
   color: var(--color-tinta);
-  /* Fijo, igual a la altura COMPACTA. El header crece hacia abajo sobre el
-     contenido cuando está en el tope, pero no reflowea nada. */
-  padding-top: var(--nav-h-compacto);
+  padding-top: var(--nav-h);
+}
+
+/* ==========================================================================
+   LA BARRA DE SCROLL
+   --------------------------------------------------------------------------
+   Es la única parte de la ventana que se quedaba con los grises del sistema.
+   En una página que es crema de arriba abajo, una barra gris a la derecha es
+   lo primero que delata que el diseño termina en el borde del contenido.
+
+   Se declara DOS VECES a propósito, y no es duplicación:
+
+     - `scrollbar-color` es el estándar. Lo entienden Firefox y Chrome desde
+       la 121. Solo admite dos colores —pulgar y riel— y nada más: ni ancho en
+       píxeles, ni redondeo, ni estados.
+     - `::-webkit-scrollbar` es el pseudoelemento antiguo. Lo entienden Safari
+       y el Chrome de antes de la 121, y sí admite forma y estados. En un
+       Chrome moderno queda desactivado en cuanto `scrollbar-color` está
+       presente, así que no se pisan: cada navegador aplica el que entiende.
+
+   Solo con el estándar, Safari se queda con la barra gris del sistema. Solo
+   con el pseudoelemento, Firefox se queda igual. Hacen falta los dos.
+   ========================================================================== */
+
+html {
+  /* Pulgar y riel. `thin` porque la barra por defecto de Windows es ancha y
+     con este color pasaría de ser un detalle a ser un elemento de la página. */
+  scrollbar-color: var(--color-teal) color-mix(in srgb, var(--color-teal) 10%, var(--color-crema));
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: color-mix(in srgb, var(--color-teal) 10%, var(--color-crema));
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-teal);
+  border-radius: 999px;
+  /* El borde del color del riel deja un aire alrededor del pulgar sin tener
+     que tocar el ancho de la barra: `background-clip: content-box` hace que
+     el color no se pinte debajo del borde. */
+  border: 3px solid color-mix(in srgb, var(--color-teal) 10%, var(--color-crema));
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-naranja);
+  background-clip: content-box;
+}
+
+/* Cruce de dos barras. Sin esto queda un cuadradito gris del sistema. */
+::-webkit-scrollbar-corner {
+  background-color: var(--color-crema);
 }
 
 /* Foco visible y consistente. El outline por defecto de cada navegador es
@@ -63,24 +122,39 @@ body {
 /* ==========================================================================
    NAVBAR
    --------------------------------------------------------------------------
-   Tres estados: alto de dos filas en el tope, compacto de una fila en cuanto
-   se sale del tope, y oculto al bajar.
+   UNA SOLA ALTURA. Lo único que hace al hacer scroll es esconderse al bajar y
+   volver al subir.
 
-   El header mide SIEMPRE la altura alta. Lo que cambia de tamaño es un panel
-   de fondo que se escala en vertical, y las dos filas, que se desplazan. Así
-   nada anima `height` y no hay layout por frame: solo transform, que va por
-   GPU. El `padding-top` del body es fijo e igual a la altura compacta, de
-   modo que el CLS es 0 sin importar en qué estado nazca el header.
+   ============ SE QUITÓ EL ZOOM, ENTERO ============
+   La versión anterior tenía tres estados: alto de dos filas en el tope,
+   compacto de una fila al salir, y oculto al bajar. El paso de alto a compacto
+   escalaba el panel de fondo en vertical y desplazaba las dos filas, y el logo
+   además crecía a `scale(1.3)`.
+
+   Se quitó primero el `scale` del logo y no bastó, porque el zoom que se veía
+   no era solo el del logo: era la BARRA ENTERA cambiando de tamaño en cada
+   scroll. En una página que ya tiene olas, adornos animados y tarjetas que
+   aparecen al entrar, el encabezado moviéndose además de todo eso era ruido
+   encima de ruido.
+
+   Lo que se conserva del diseño anterior, porque no cuesta movimiento:
+     - ESCONDERSE al bajar. Devuelve pantalla en el móvil, y es un
+       desplazamiento fuera de la vista, no un cambio de tamaño.
+     - El fondo SÓLIDO en el tope y translúcido con desenfoque al salir. Es un
+       cambio de color, no de geometría: no mueve un píxel de sitio.
+
+   Y desaparece de paso el problema que obligaba a escribir los dos estados con
+   valores literales —una variable CSS sin registrar con `@property` no vuelve
+   a disparar la transición de un `transform`—, porque ya no hay ningún
+   `transform` que dependa del scroll salvo el de esconderse, que es de todo o
+   nada.
    ========================================================================== */
 
 .navbar {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
-  height: var(--nav-h-tope);
-  /* El header ocupa la altura alta siempre, pero cuando está compacto la
-     franja sobrante es aire: los clics tienen que atravesarla. */
-  pointer-events: none;
+  height: var(--nav-h);
   transform: translateY(0);
   transition: transform 300ms ease;
 }
@@ -90,115 +164,120 @@ body {
 }
 
 /*
- * Los dos estados se escriben con valores LITERALES, no con variables CSS.
+ * ============ EL CRISTAL, Y POR QUÉ NO ES MÁS TRANSPARENTE ============
+ * El límite no lo pone el gusto, lo pone el NARANJA de la marca. «COSTA RICA»
+ * va en `--color-naranja` a 0,72 rem, o sea texto pequeño, que en AA necesita
+ * 4,5:1. Medido con el fondo en el peor caso posible —una fotografía negra
+ * detrás—:
  *
- * Se intentó primero con variables (`transform: scaleY(var(--escala))`) y no
- * funciona: una propiedad personalizada sin registrar con `@property` no
- * vuelve a disparar la transición del `transform` cuando solo cambia la
- * variable. El transform se queda congelado en el último valor que resolvió
- * —comprobado en el navegador: la variable computaba a 1 y el transform
- * seguía en scaleY(0.6154)—. Registrarlas con `@property` lo arreglaría,
- * pero entonces la animación pasa a recalcular estilo en cada frame y deja
- * de ir por compositor, que es justo lo que queríamos evitar.
+ *     100 % crema → 4,88:1     95 % → 4,37:1  ✗
+ *      97 % crema → 4,57:1     92 % → 4,07:1  ✗
+ *      96 % crema → 4,46:1  ✗  88 % → 3,72:1  ✗
+ *
+ * O sea: sobre un fondo cualquiera, por debajo del 97 % la marca deja de pasar
+ * AA. Un navbar de cristal de verdad sería ilegible cada vez que pasara por
+ * encima de una foto oscura —y las hay: el bosque de Monteverde, la selva del
+ * Río Celeste—.
+ *
+ * La salida no es subir la opacidad hasta que no se note, sino ACOTAR LO QUE
+ * HAY DETRÁS, y por eso los dos estados no llevan el mismo número:
+ *
+ *   - EN EL TOPE va al 90 %, que es donde el cristal se ve de verdad. Ahí
+ *     detrás solo puede haber un hero, y todos los heroes llevan un velo de
+ *     crema al 75 % justo en la franja del navbar (ver `.hero__foto::after`).
+ *     El resultado compuesto es 0,90 + 0,10 × 0,75 = 97,5 % de crema, o sea
+ *     4,58:1. Garantizado por construcción, no por suerte.
+ *
+ *   - AL BAJAR sube al 97 %, porque ahí detrás puede pasar cualquier cosa: una
+ *     tarjeta blanca, la crema de la página o la foto de un lugar. 4,57:1 sobre
+ *     negro, que es el peor fondo que existe.
+ *
+ * Lo que hace que siga leyE9ndose como cristal en los dos casos no es el 3 % que
+ * se transparenta: es el `saturate(180%)`, que exagera el color de lo que pasa
+ * por debajo, y el desenfoque, que lo convierte en manchas en movimiento.
+ * Ambos van por compositor.
+ * =====================================================================
  */
 .navbar__fondo {
   position: absolute;
   inset: 0;
-  transform-origin: top;
-  /* Estado alto: el fondo ocupa el header entero. */
-  transform: scaleY(1);
-  transition: transform 300ms ease;
-  background-color: color-mix(in srgb, var(--color-crema) 88%, transparent);
-  backdrop-filter: blur(12px);
+  background-color: color-mix(in srgb, var(--color-crema) 97%, transparent);
+  backdrop-filter: blur(18px) saturate(180%);
   border-bottom: 1px solid
     color-mix(in srgb, var(--color-teal) 14%, transparent);
+  /* Solo cambia el color. Nada de esto mueve la maqueta. */
+  transition: background-color 300ms ease, border-color 300ms ease;
 }
-
-/* Estado compacto: 4rem de 6.5rem. */
-.navbar[data-tope="false"] .navbar__fondo {
-  transform: scaleY(0.6154);
-}
-
 
 .navbar[data-tope="true"] .navbar__fondo {
-  /* Arriba del todo el fondo es sólido: no hay nada detrás que desenfocar y
-     el blur cuesta composición de balde. */
-  background-color: var(--color-crema);
-  backdrop-filter: none;
+  background-color: color-mix(in srgb, var(--color-crema) 90%, transparent);
+  border-bottom-color: transparent;
 }
 
+/*
+ * Una fila, y el centrado lo hace `align-items: center`.
+ *
+ * Antes las dos filas iban posicionadas en absoluto, con un desplazamiento
+ * calculado a mano para cada estado. Con una sola altura eso sobra: el
+ * centrado vertical sale del flex, y no hay número que ajustar ni que se pueda
+ * desajustar.
+ */
 .navbar__contenido {
   position: relative;
   height: 100%;
   max-width: 80rem;
   margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-.navbar__logo,
-.navbar__acciones {
-  position: absolute;
+  padding: 0 1.25rem;
   display: flex;
   align-items: center;
-  pointer-events: auto;
-  transition: transform 300ms ease;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .navbar__logo {
-  left: 1.5rem;
-  top: 0;
-  gap: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   text-decoration: none;
-  transform-origin: left top;
-  /* Estado alto: el logo baja a la segunda fila y crece. Queda sobre la
-     esquina que la fotografía deja libre con su redondeo, que es lo que hace
-     que se lea centrado y no pegado al borde. */
-  transform: translateY(2.35rem) scale(1.3);
-}
-
-.navbar[data-tope="false"] .navbar__logo {
-  transform: translateY(0.65rem) scale(1);
+  /* Que ceda antes que las acciones: si algo se tiene que apretar en una
+     pantalla estrecha, que sea la marca y no el botón de reservar. */
+  min-width: 0;
 }
 
 .navbar__perezoso {
-  /* Más grande que el texto, como en el concept board: el perezoso es la
-     marca y el lockup se apoya en él, no al revés. */
-  height: 2.75rem;
+  height: 2.25rem;
   width: auto;
+  flex-shrink: 0;
 }
 
 .navbar__marca {
   display: flex;
   flex-direction: column;
   line-height: 1.05;
+  min-width: 0;
 }
 
 .navbar__marca-linea1 {
-  font-size: 0.72rem;
+  font-size: 0.66rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-naranja);
 }
 
 .navbar__marca-linea2 {
-  font-size: 0.66rem;
+  font-size: 0.6rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--color-teal);
 }
 
 .navbar__acciones {
-  right: 1.5rem;
-  top: 0;
-  gap: 0.75rem;
-  /* Estado alto: los enlaces ocupan la primera fila, encima del logo. */
-  transform: translateY(0.9rem);
-}
-
-.navbar[data-tope="false"] .navbar__acciones {
-  transform: translateY(1.15rem);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
 }
 
 .navbar__enlaces {
@@ -231,7 +310,7 @@ body {
   color: var(--color-teal);
   text-decoration: none;
   padding: 0.3rem 0.5rem;
-  border: 1px solid color-mix(in srgb, var(--color-teal) 35%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-teal) 30%, transparent);
   border-radius: 999px;
   transition: background-color 160ms ease, color 160ms ease;
 }
@@ -242,19 +321,21 @@ body {
 }
 
 .navbar__cta {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
   font-size: 0.88rem;
   font-weight: 600;
-  color: #ffffff;
-  background-color: var(--color-teal);
   text-decoration: none;
-  padding: 0.55rem 1.1rem;
-  border-radius: 999px;
-  transition: transform 160ms ease, background-color 160ms ease;
+  background-color: var(--color-teal);
+  /* Blanco sobre teal: 5,96:1. */
+  color: #ffffff;
+  white-space: nowrap;
+  transition: background-color 160ms ease;
 }
 
 .navbar__cta:hover {
   background-color: var(--color-naranja);
-  transform: translateY(-1px);
 }
 
 .navbar__hamburguesa {
@@ -276,7 +357,7 @@ body {
   width: 100%;
   background-color: var(--color-tinta);
   border-radius: 2px;
-  transition: transform 200ms ease, opacity 200ms ease;
+  transition: transform 220ms ease, opacity 220ms ease;
 }
 
 .navbar__hamburguesa[aria-expanded="true"] .navbar__barra:nth-child(1) {
@@ -291,51 +372,33 @@ body {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-.navbar__movil {
-  position: absolute;
-  top: var(--nav-h-compacto);
-  left: 0;
-  right: 0;
-  pointer-events: auto;
-  background-color: var(--color-crema);
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--color-teal) 14%, transparent);
-  padding: 0.5rem 1.5rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  box-shadow: 0 12px 24px -16px color-mix(in srgb, var(--color-tinta) 40%, transparent);
+/*
+ * Por debajo de 420 px la marca se aprieta. No se esconde el texto —el enlace
+ * se quedaría sin nombre accesible, porque el perezoso va con `alt=""`—: se
+ * encoge, que es lo que permite que quepan marca, botón de reservar y
+ * hamburguesa en la misma fila de un teléfono de 375.
+ */
+@media (min-width: 420px) {
+  .navbar__perezoso {
+    height: 2.5rem;
+  }
+
+  .navbar__marca-linea1 {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+  }
+
+  .navbar__marca-linea2 {
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+  }
 }
 
-.navbar__movil nav {
-  display: flex;
-  flex-direction: column;
-}
-
-.navbar__movil-enlace {
-  padding: 0.85rem 0;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-tinta);
-  text-decoration: none;
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--color-teal) 10%, transparent);
-}
-
-.navbar__movil-cta {
-  margin-top: 0.85rem;
-  text-align: center;
-  font-weight: 600;
-  color: #ffffff;
-  background-color: var(--color-teal);
-  text-decoration: none;
-  padding: 0.8rem 1.1rem;
-  border-radius: 999px;
-}
-
-/* A partir de aquí caben los seis enlaces, el selector de idioma y el CTA
-   sin apretarse. Por debajo se pasa al menú desplegable. */
 @media (min-width: 1100px) {
+  .navbar__contenido {
+    padding: 0 1.5rem;
+  }
+
   .navbar__enlaces,
   .navbar__idioma {
     display: flex;
@@ -419,6 +482,10 @@ p {
 
 .seccion__intro {
   margin-top: 0.75rem;
+  /* La entradilla es el resumen de la sección; lo que venga detrás es otra
+     cosa y necesita respirar. Sin este hueco, en `/presencial` la entradilla
+     y el primer párrafo se leían como un solo bloque. */
+  margin-bottom: 1.25rem;
   max-width: 42rem;
   color: color-mix(in srgb, var(--color-tinta) 80%, transparent);
 }
@@ -433,6 +500,12 @@ p {
 
 .seccion__enlace:hover {
   text-decoration: underline;
+}
+
+/* Un enlace de texto que va SOLO en su línea, debajo de un botón. Sin el
+   bloque propio se pega al botón de encima y se leen como un solo grupo. */
+.seccion__enlace-suelto {
+  margin-top: 1.25rem;
 }
 
 .seccion__interior--estrecho {
@@ -667,7 +740,7 @@ p {
   /* Altura fija desde el primer pintado: el hueco de la foto queda reservado
      y el CLS es 0. `dvh` en vez de `vh` para que la barra del navegador de
      móvil no provoque un salto al esconderse. */
-  min-height: min(38rem, calc(100dvh - var(--nav-h-compacto)));
+  min-height: min(38rem, calc(100dvh - var(--nav-h)));
   display: grid;
   /* En móvil el texto se ancla abajo, sobre la crema; arriba queda la foto. */
   align-items: end;
@@ -684,25 +757,63 @@ p {
   position: absolute;
   inset: 0;
   /*
-   * La curva del concept board. Es la esquina superior izquierda de la propia
-   * fotografía la que se retira, dejando asomar la crema de la página por
-   * debajo del logo.
+   * ============ SE FUE LA CURVA DEL CONCEPT BOARD ============
+   * Aquí había un `border-top-left-radius: 38rem 7rem`: la esquina superior
+   * izquierda de la propia fotografía se retiraba y dejaba asomar la crema de
+   * la página por debajo del logo. Era el gesto del board.
    *
-   * Radio ELÍPTICO —38rem de ancho por 7rem de alto— para que el barrido sea
-   * largo y bajo en vez de un giro brusco. El header tapa los primeros 40 px,
-   * así que el alto tiene que ser generoso para que se vea la curva.
+   * El problema es que ese redondeo es un BORDE, y un borde entre la crema de
+   * la página y la misma crema velando una foto pálida no desaparece: deja un
+   * arco fino cruzando media pantalla. Se veía en `/online` sin ninguna duda
+   * —lo señaló el cliente— y aquí, más flojo pero se veía.
    *
-   * Se intentó antes con una pestaña de crema superpuesta y no funcionaba:
-   * el degradado del hero ya es crema opaca en ese tercio, así que la pestaña
-   * quedaba invisible sobre su propio color.
+   * Lo sustituye el velo de arriba (`::after`), que hace lo MISMO que buscaba
+   * el board —la fotografía asomando por debajo de la crema, no pegada al
+   * navbar— pero con un degradado, que por definición no tiene borde que se
+   * pueda ver.
+   * ============================================================
    */
-  border-top-left-radius: 38rem 7rem;
   overflow: hidden;
 }
 
 .hero__imagen {
   object-fit: cover;
   object-position: center 58%;
+}
+
+/*
+ * ============ EL VELO DE DEBAJO DEL NAVBAR ============
+ * Una franja de crema sobre la fotografía, del alto del navbar y un poco más,
+ * que se desvanece hacia abajo. Hace tres cosas de una vez:
+ *
+ *   1. ACOTA EL FONDO DEL NAVBAR. Es lo que permite que la barra sea de
+ *      cristal al 90 % sin que la marca baje de AA. Ver la nota del navbar: el
+ *      número del 75 % de aquí entra en esa cuenta, así que no se toca uno sin
+ *      recalcular el otro.
+ *   2. TAPA LA CURVA DE LA ESQUINA. El redondeo de la esquina superior
+ *      izquierda dejaba un arco finísimo cruzando la pantalla, visible porque
+ *      la crema de la página y la crema del velo no quedan exactamente al
+ *      mismo tono. Con la franja encima, ese borde cae dentro de lo opaco.
+ *   3. La fotografía parece EMERGER de la crema en vez de estar cortada por el
+ *      navbar, que es el mismo gesto que ya hacía el velo lateral.
+ *
+ * Va en un `::after` y no en un elemento más: es decoración pura, no tiene
+ * nada que anunciar y no merece un nodo en el árbol.
+ * ======================================================
+ */
+.hero__foto::after,
+.hero-pagina__foto::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: calc(var(--nav-h) + 5rem);
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-crema) 92%, transparent) 0,
+    color-mix(in srgb, var(--color-crema) 75%, transparent) var(--nav-h),
+    transparent 100%
+  );
 }
 
 /*
@@ -760,8 +871,10 @@ p {
   width: 100%;
   margin: 0 auto;
   /* El relleno inferior deja sitio a las olas: en móvil el texto se ancla
-     abajo y sin esto la insignia quedaría dentro del agua. */
-  padding: 3rem 1.5rem 7rem;
+     abajo y sin esto la insignia quedaría dentro del agua. Subió de 7 a 8,5
+     rem cuando las olas crecieron — la capa del fondo llega ahora a 8,5 rem
+     en móvil y a 11,5 en escritorio. */
+  padding: 3rem 1.5rem 8.5rem;
   /* Texto oscuro sobre la crema: 15,41:1. Antes era blanco sobre velo
      oscuro, que daba menos contraste y oscurecía toda la portada. */
   color: var(--color-tinta);
@@ -769,7 +882,7 @@ p {
 
 @media (min-width: 768px) {
   .hero__texto {
-    padding: 5rem 1.5rem 8rem;
+    padding: 5rem 1.5rem 10.5rem;
   }
 }
 
@@ -819,6 +932,151 @@ p {
 }
 
 /* ==========================================================================
+   HERO DE PÁGINA INTERIOR
+   --------------------------------------------------------------------------
+   El de `/online` y `/presencial`. Mismo lenguaje que la portada —foto a lo
+   ancho, velo de crema, olas abajo— pero más bajo: en una página interior el
+   contenido tiene que asomar sin hacer scroll, cosa que en la portada no
+   importa porque el hero ES el contenido.
+   ========================================================================== */
+
+.hero-pagina {
+  position: relative;
+  min-height: min(26rem, calc(100dvh - var(--nav-h)));
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .hero-pagina {
+    min-height: 30rem;
+    align-items: center;
+  }
+}
+
+.hero-pagina__foto {
+  position: absolute;
+  inset: 0;
+  /*
+   * ============ AQUÍ NO VA LA CURVA DE ARRIBA ============
+   * La portada sí la lleva —es el gesto del concept board— y ahí funciona
+   * porque la fotografía es oscura y saturada en esa esquina. En las páginas
+   * interiores no: detrás hay follaje desenfocado y cielo, casi del tono de la
+   * crema, y el borde del redondeo se veía como un ARCO de un píxel cruzando
+   * media pantalla. No era un fallo de render: eran dos cremas casi iguales
+   * pero no idénticas, la de la página y la de la foto velada.
+   *
+   * Se probó dejando solo el de abajo a la derecha y apareció el MISMO arco en
+   * la otra esquina, por lo mismo: la fotografía también es pálida ahí. Así
+   * que aquí no hay ninguna esquina redondeada. La fotografía no termina en un
+   * borde —ni recto ni curvo—: se DISUELVE en la crema por arriba y por abajo,
+   * que es el único remate que no puede dejar una línea, porque no hay línea.
+   *
+   * Es además el mismo gesto que ya hacía el velo lateral, solo que en
+   * vertical.
+   * =======================================================
+   */
+  overflow: hidden;
+}
+
+/*
+ * El desvanecido de abajo. Hermano del `::after` de arriba y por la misma
+ * razón: ningún borde duro contra la crema de la página.
+ *
+ * Solo en los heroes interiores. La portada no lo lleva porque ahí abajo están
+ * las olas, que ya hacen ese trabajo y lo hacen mejor.
+ */
+.hero-pagina__foto::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 9rem;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    var(--color-crema) 0,
+    color-mix(in srgb, var(--color-crema) 55%, transparent) 45%,
+    transparent 100%
+  );
+}
+
+.hero-pagina__imagen {
+  object-fit: cover;
+  object-position: center 55%;
+}
+
+/* MÓVIL: degradado vertical. La crema sube desde abajo, donde se ancla el
+   texto. Lateral no sirve a 412 px: el titular ocupa todo el ancho y acabaría
+   sobre la parte oscura de la foto. */
+.hero-pagina__velo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--color-crema) 0%,
+    var(--color-crema) 44%,
+    color-mix(in srgb, var(--color-crema) 55%, transparent) 66%,
+    transparent 92%
+  );
+}
+
+@media (min-width: 768px) {
+  /* ESCRITORIO: degradado lateral, opaco hasta donde llega el bloque de
+     texto. Así el titular nunca depende del brillo del píxel que le toque
+     detrás. */
+  .hero-pagina__velo {
+    background: linear-gradient(
+      95deg,
+      var(--color-crema) 0%,
+      var(--color-crema) 42%,
+      color-mix(in srgb, var(--color-crema) 55%, transparent) 60%,
+      transparent 84%
+    );
+  }
+}
+
+.hero-pagina__texto {
+  position: relative;
+  /* Por encima de las olas, que llevan z-index 1. */
+  z-index: 2;
+  max-width: 80rem;
+  width: 100%;
+  margin: 0 auto;
+  /* Sin olas el relleno de abajo baja de 7 rem a 4: eran las olas las que
+     pedían ese sitio, y sin ellas el hero quedaba con un palmo de aire vacío
+     debajo del botón. */
+  padding: 3rem 1.5rem 4rem;
+  color: var(--color-tinta);
+}
+
+@media (min-width: 768px) {
+  .hero-pagina__texto {
+    padding: 4rem 1.5rem 4.5rem;
+  }
+}
+
+.hero-pagina__titulo {
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  max-width: 17ch;
+  margin: 0;
+}
+
+/* Teal sobre la crema: 5,49:1. El dorado de marca no pasa AA aquí, por eso el
+   acento es este y no el del concept board. */
+.hero-pagina__acento {
+  display: block;
+  color: var(--color-teal);
+}
+
+.hero-pagina__subtitulo {
+  margin: 1.1rem 0 2rem;
+  max-width: 36rem;
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+}
+
+/* ==========================================================================
    OLAS
    --------------------------------------------------------------------------
    Cierran el hero y entran en la franja teal. Solo se anima `transform`.
@@ -847,10 +1105,55 @@ p {
   z-index: 1;
 }
 
+/*
+ * Las tres capas, de atras hacia adelante.
+ *
+ * ============ LAS ALTURAS SALEN DE TICOSHOT ============
+ * Alli las capas miden 64, 80 y 96 px en movil y 96, 112 y 128 en escritorio, y
+ * se ven bien. Aqui estaban en 56, 72 y 88 fijos: mas bajas, y sobre todo sin
+ * crecer en pantalla ancha. Una ola de 88 px de alto estirada a 2560 de ancho
+ * deja de ser una ola y pasa a ser una raya.
+ *
+ * Las separaciones (`bottom`) desplazan las crestas entre si. Si las tres
+ * arrancaran a la misma altura, el parallax no se veria: se verian tres olas
+ * calcadas moviendose a distinta velocidad.
+ * ======================================================
+ */
 .olas__capa {
   position: absolute;
   inset-inline: 0;
   overflow: hidden;
+}
+
+.olas__capa[data-capa="0"] {
+  bottom: 2.5rem;
+  height: 6rem;
+}
+
+.olas__capa[data-capa="1"] {
+  bottom: 1.25rem;
+  height: 5rem;
+}
+
+.olas__capa[data-capa="2"] {
+  bottom: 0;
+  height: 4rem;
+}
+
+@media (min-width: 640px) {
+  .olas__capa[data-capa="0"] {
+    bottom: 3.5rem;
+    height: 8rem;
+  }
+
+  .olas__capa[data-capa="1"] {
+    bottom: 1.75rem;
+    height: 7rem;
+  }
+
+  .olas__capa[data-capa="2"] {
+    height: 5.5rem;
+  }
 }
 
 .ola {
@@ -859,7 +1162,234 @@ p {
   /* Doble de ancho: aquí viven los dos ejemplares del path. */
   width: 200%;
   animation: deriva-ola var(--ola-duracion, 24s) linear infinite;
-  will-change: transform;
+  /*
+   * SIN `will-change: transform`. Estaba y era la causa de los escalones en la
+   * cresta: promociona la capa a una textura de GPU rasterizada UNA vez, y
+   * esta capa mide el 200 % de la ventana —en una pantalla ancha con densidad
+   * 2 se pasa del tamaño máximo de textura, el navegador la rasteriza reducida
+   * y la estira—. La animación de `transform` se compone en GPU igual sin la
+   * pista, pero rasterizando a la escala real. Ver Olas.tsx.
+   */
+}
+
+/* ==========================================================================
+   REVELADO AL ENTRAR EN PANTALLA
+   ========================================================================== */
+
+@keyframes revelar {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+ * Animación DIRIGIDA POR EL SCROLL, sin una línea de JavaScript.
+ *
+ * `animation-timeline: view()` ata el avance de la animación a la posición del
+ * elemento dentro de la ventana. No hay `IntersectionObserver`, no hay estado
+ * en React, no hay un componente cliente y no viaja un solo byte al navegador
+ * por esto. Encaja con la regla del proyecto de cero librerías de animación.
+ *
+ * ============ EL ESTADO INICIAL VA DENTRO DEL @supports ============
+ * Y es lo único importante de este bloque. Safari todavía no implementa las
+ * animaciones por scroll. Escrito al revés —`opacity: 0` en la clase, por
+ * fuera, y la animación dentro del `@supports`— ese navegador se quedaría con
+ * la opacidad cero y SIN nada que la devuelva: el contenido invisible para
+ * siempre. Es el fallo clásico de este patrón, y la razón de que la regla
+ * entera, opacidad incluida, viva dentro.
+ *
+ * Donde no se soporta, el elemento se ve normal desde el primer pintado, que
+ * es exactamente lo que tiene que pasar.
+ * ===================================================================
+ *
+ * No se pone en nada que además tenga un `transform` al pasar el cursor: una
+ * animación con `both` fija el transform final y ganaría a la transición del
+ * hover, que se quedaría muerta. Por eso va en los CONTENEDORES de las
+ * rejillas de tarjetas y no en las tarjetas.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .revelar {
+      animation: revelar linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 35%;
+    }
+  }
+}
+
+/* ==========================================================================
+   ADORNOS TROPICALES
+   --------------------------------------------------------------------------
+   Los dibujos viven en `shared/components/ui/Decorados.tsx`; aquí va solo lo
+   repetible: la capa, el recorte y las animaciones.
+
+   Todo mueve SOLO `transform` y `opacity`, que van en el compositor. Cualquier
+   animación que tocara ancho, alto o posición obligaría a recalcular la
+   maqueta en cada fotograma, y con doce adornos en pantalla eso se siente en
+   un teléfono.
+
+   La duración y el retraso llegan por variable desde el componente, así que
+   dos adornos con la misma animación no se mueven a coro. El valor por defecto
+   de cada una es LENTO a propósito: son fondo, y un fondo que late rápido
+   compite con lo que se está leyendo.
+   ========================================================================== */
+
+/*
+ * La sección que lleva adornos necesita las dos cosas:
+ *   - `relative`, para que la capa se ancle a ella y no a la página.
+ *   - `isolate`, para que el z-index negativo de la capa se quede DENTRO. Sin
+ *     esto, un `-1` se escapa al contexto de la página y el adorno acaba
+ *     detrás del fondo del body, o sea invisible.
+ */
+.con-adornos {
+  position: relative;
+  isolation: isolate;
+}
+
+/*
+ * ============ EN MÓVIL NO HAY ADORNOS ============
+ * No es una renuncia: es que el problema que resuelven no existe ahí. El
+ * contenido vive en una columna de 80 rem centrada; en una pantalla ancha
+ * sobran cien y pico de píxeles a cada lado —ese es el hueco vacío que hay que
+ * llenar— y en una de 400 px no sobra nada. Los mismos dibujos en un teléfono
+ * no rellenan un hueco: se meten detrás del texto que se está leyendo.
+ *
+ * Y de paso el móvil, que es donde el rendimiento de este sitio está al
+ * límite, se ahorra hasta cinco capas de compositor por sección.
+ * =================================================
+ */
+.capa-adornos {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .capa-adornos {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    /* Un adorno cerca del borde asoma fuera; sin recorte el documento gana
+       ancho y aparece scroll horizontal. Ya pasó con las olas del hero. */
+    overflow: hidden;
+  }
+}
+
+.adorno {
+  position: absolute;
+  display: block;
+  line-height: 0;
+}
+
+.adorno svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.adorno__dibujo {
+  display: block;
+}
+
+/* Respira: crece y vuelve. */
+@keyframes deco-respirar {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Gira entero, muy despacio. Para la rueda de carreta y el sol. */
+@keyframes deco-giro {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Se mece: no da la vuelta, solo bascula. Para hojas y ramas. */
+@keyframes deco-vaiven {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+}
+
+/* Sube y baja. */
+@keyframes deco-flotar {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+/*
+  Cruza de izquierda a derecha y VUELVE.
+
+  Vuelve en vez de reaparecer por el otro lado: un adorno que desaparece por un
+  borde y reaparece por el opuesto obliga a que la capa sea más ancha que la
+  pantalla, y aquí son elementos sueltos, no una cinta. El vaivén lento se lee
+  como deriva, que es lo que se busca.
+*/
+@keyframes deco-deriva {
+  0%,
+  100% {
+    transform: translate3d(-16px, 0, 0);
+  }
+  50% {
+    transform: translate3d(16px, 0, 0);
+  }
+}
+
+/* Parpadeo con un cuarto de vuelta. Para las estrellas. */
+@keyframes deco-destello {
+  0%,
+  100% {
+    transform: scale(0.85) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.12) rotate(18deg);
+    opacity: 1;
+  }
+}
+
+.deco-respirar {
+  animation: deco-respirar var(--deco-duracion, 9s) ease-in-out
+    var(--deco-retraso, 0s) infinite;
+}
+.deco-giro {
+  animation: deco-giro var(--deco-duracion, 48s) linear var(--deco-retraso, 0s)
+    infinite;
+}
+.deco-vaiven {
+  animation: deco-vaiven var(--deco-duracion, 11s) ease-in-out
+    var(--deco-retraso, 0s) infinite;
+}
+.deco-flotar {
+  animation: deco-flotar var(--deco-duracion, 10s) ease-in-out
+    var(--deco-retraso, 0s) infinite;
+}
+.deco-deriva {
+  animation: deco-deriva var(--deco-duracion, 20s) ease-in-out
+    var(--deco-retraso, 0s) infinite;
+}
+.deco-destello {
+  animation: deco-destello var(--deco-duracion, 5s) ease-in-out
+    var(--deco-retraso, 0s) infinite;
 }
 
 /* ==========================================================================
@@ -870,6 +1400,19 @@ p {
   background-color: var(--color-teal);
   color: var(--color-crema);
   padding: 2rem 1.5rem;
+  /*
+   * Sube un píxel para meterse DEBAJO del hero.
+   *
+   * El hero tiene `overflow: hidden`, así que las olas no pueden sangrar
+   * fuera para tapar la juntura. Y la juntura existe: la altura del hero sale
+   * de un `min()` con `dvh`, que casi nunca da un número entero, y en la fila
+   * de píxeles fraccionaria se colaba la fotografía entre la ola y esta
+   * franja. Era la línea clara que se veía cruzando la pantalla.
+   *
+   * El solape es invisible porque la capa de adelante de la ola es exactamente
+   * este mismo teal.
+   */
+  margin-top: -1px;
 }
 
 .confianza__lista {
@@ -928,31 +1471,86 @@ p {
   grid-template-columns: 1fr;
 }
 
+/*
+ * `isolate` no es decorativo: la marca de agua va con z-index negativo y sin
+ * un contexto de apilamiento propio se escaparía por detrás del fondo de la
+ * tarjeta, o sea que no se vería nada. `overflow: hidden` es lo que la recorta
+ * contra la esquina redondeada.
+ */
 .experiencia {
-  padding: 2rem;
-  border-radius: 1.25rem;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 2.5rem 2rem 2rem;
+  border-radius: 1.5rem;
   background-color: #ffffff;
   border: 1px solid color-mix(in srgb, var(--color-teal) 12%, transparent);
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  transition: transform 260ms ease, box-shadow 260ms ease,
+    border-color 260ms ease;
 }
 
 .experiencia:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -28px color-mix(in srgb, var(--color-tinta) 70%, transparent);
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--color-teal) 28%, transparent);
+  box-shadow: 0 26px 50px -30px
+    color-mix(in srgb, var(--color-tinta) 75%, transparent);
+}
+
+/* La cinta de color de arriba: lo que distingue las dos tarjetas de lejos. */
+.experiencia__cinta {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+}
+
+/*
+ * La marca de agua.
+ *
+ * Sale POR LA ESQUINA a propósito: un dibujo entero centrado en la tarjeta
+ * compite con el texto; uno cortado por el borde se lee como textura. Crece un
+ * poco al pasar el cursor, que es la única animación de la tarjeta además del
+ * levantamiento.
+ */
+.experiencia__marca {
+  position: absolute;
+  right: -2.5rem;
+  bottom: -3rem;
+  width: 13rem;
+  z-index: -1;
+  line-height: 0;
+  transition: transform 420ms ease, opacity 420ms ease;
+}
+
+.experiencia__marca svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.experiencia:hover .experiencia__marca {
+  transform: scale(1.08) rotate(-4deg);
 }
 
 .experiencia__icono {
   display: grid;
   place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 0.9rem;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 1rem;
   margin-bottom: 1.1rem;
 }
 
 .experiencia__icono svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.experiencia[data-variante="online"] .experiencia__cinta {
+  background: linear-gradient(
+    90deg,
+    var(--color-teal),
+    var(--color-turquesa)
+  );
 }
 
 .experiencia[data-variante="online"] .experiencia__icono {
@@ -960,34 +1558,81 @@ p {
   color: var(--color-teal);
 }
 
+.experiencia[data-variante="online"] .experiencia__marca {
+  color: var(--color-turquesa);
+  opacity: 0.4;
+}
+
+.experiencia[data-variante="presencial"] .experiencia__cinta {
+  background: linear-gradient(90deg, var(--color-naranja), var(--color-mango));
+}
+
 .experiencia[data-variante="presencial"] .experiencia__icono {
   background-color: color-mix(in srgb, var(--color-coral) 55%, transparent);
   color: var(--color-naranja);
 }
 
+.experiencia[data-variante="presencial"] .experiencia__marca {
+  color: var(--color-coral);
+  opacity: 0.62;
+}
+
 .experiencia__titulo {
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   color: var(--color-teal);
+  margin: 0;
 }
 
 .experiencia__texto {
-  margin: 0.75rem 0 1.25rem;
+  margin: 0.75rem 0 1.5rem;
+  max-width: 34ch;
   color: color-mix(in srgb, var(--color-tinta) 82%, transparent);
 }
 
+/*
+ * El enlace pasa a ser un botón de contorno. Antes era una línea de texto con
+ * una flecha: el único sitio del sitio donde la acción principal de un bloque
+ * no se veía como acción.
+ */
 .experiencia__enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: 999px;
   font-weight: 600;
-  color: var(--color-naranja);
   text-decoration: none;
+  color: var(--color-naranja);
+  background-color: color-mix(in srgb, var(--color-naranja) 8%, #ffffff);
+  border: 1px solid color-mix(in srgb, var(--color-naranja) 30%, transparent);
+  transition: background-color 200ms ease, color 200ms ease,
+    border-color 200ms ease;
 }
 
 .experiencia__enlace:hover {
-  text-decoration: underline;
+  background-color: var(--color-naranja);
+  border-color: var(--color-naranja);
+  /* Blanco sobre #C03F18: 6,17:1. */
+  color: #ffffff;
+}
+
+/* La flecha se separa un pelo al pasar el cursor. Va en su propio `<span>`
+   porque animar el `gap` del contenedor provoca layout en cada fotograma. */
+.experiencia__flecha {
+  transition: transform 200ms ease;
+}
+
+.experiencia__enlace:hover .experiencia__flecha {
+  transform: translateX(3px);
 }
 
 @media (min-width: 900px) {
   .experiencias {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .experiencia {
+    padding: 2.75rem 2.25rem 2.25rem;
   }
 }
 
@@ -1002,23 +1647,96 @@ p {
   grid-template-columns: 1fr;
 }
 
+/*
+ * `height: 100%` y la columna flexible: las fichas ya no son dos sino cinco,
+ * y los textos no miden lo mismo. Sin esto, en una fila de tres la tarjeta más
+ * corta queda con un escalón de aire debajo y la rejilla se ve rota. Con la
+ * columna flexible, el cuerpo crece y la lista de destacados se pega abajo.
+ */
 .destino {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   border-radius: 1.25rem;
   overflow: hidden;
   background-color: #ffffff;
   border: 1px solid color-mix(in srgb, var(--color-teal) 12%, transparent);
+  transition: transform 260ms ease, box-shadow 260ms ease,
+    border-color 260ms ease;
+}
+
+.destino:hover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--color-teal) 28%, transparent);
+  box-shadow: 0 26px 50px -32px
+    color-mix(in srgb, var(--color-tinta) 75%, transparent);
 }
 
 .destino__foto {
   position: relative;
   aspect-ratio: 16 / 10;
+  overflow: hidden;
 }
 
+/*
+ * La foto se acerca un poco al pasar el cursor. El zoom va en la IMAGEN y el
+ * recorte en el contenedor: animar el tamaño del contenedor movería la
+ * maqueta de la tarjeta entera en cada fotograma.
+ */
 .destino__imagen {
   object-fit: cover;
+  transition: transform 600ms ease;
+}
+
+.destino:hover .destino__imagen {
+  transform: scale(1.04);
+}
+
+/*
+ * El aviso de anuncio pagado.
+ *
+ * Va sobre la fotografía, arriba a la izquierda, con fondo sólido y no un
+ * velo: tiene que leerse sea cual sea la foto que le toque debajo. Tinta sobre
+ * el dorado de marca da 9,12:1.
+ *
+ * No hay ninguna ficha patrocinada todavía; el estilo existe para que el día
+ * que entre la primera no haya que inventarlo con prisa. Ver el esquema.
+ */
+.destino__anuncio {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.3rem 0.7rem 0.3rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  background-color: var(--color-dorado);
+  color: var(--color-tinta);
+}
+
+.destino__anuncio-etiqueta {
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: var(--color-tinta);
+  color: var(--color-crema);
+}
+
+.destino__anuncio a {
+  color: inherit;
+  font-weight: 600;
 }
 
 .destino__cuerpo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 1.5rem;
 }
 
@@ -1045,17 +1763,54 @@ p {
   color: color-mix(in srgb, var(--color-tinta) 82%, transparent);
 }
 
-.destino__pendiente {
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.85rem;
+/*
+ * Los tres destacados.
+ *
+ * `margin-top: auto` los empuja al fondo de la tarjeta: es lo que hace que en
+ * una fila de tres las listas queden alineadas entre sí aunque las
+ * descripciones de arriba midan distinto.
+ *
+ * El punto es un `::before` propio y no el marcador de la lista porque el
+ * marcador del navegador no se puede colorear aparte del texto en todos los
+ * casos, y aquí el punto va en naranja y el texto en tinta.
+ */
+.destino__destacados {
+  margin: 1.25rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-teal) 12%, transparent);
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+  margin-top: auto;
+  font-size: 0.9rem;
 }
 
-@media (min-width: 900px) {
+.destino__destacados li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: color-mix(in srgb, var(--color-tinta) 88%, transparent);
+}
+
+.destino__destacados li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background-color: var(--color-naranja);
+}
+
+@media (min-width: 700px) {
   .destinos {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .destinos {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -1067,72 +1822,180 @@ p {
   padding: 4.5rem 1.5rem;
 }
 
+/*
+ * ============ BLANCA, NO NARANJA ============
+ * Antes el fondo era un degradado de dorado a coral. Tres cálidos a la misma
+ * altura sobre la crema no hacen una pieza, hacen una mancha: la caja se veía
+ * sin forma y el texto flotando encima.
+ *
+ * Ahora la superficie es blanca —que devuelve la crema a su 70 % del reparto—
+ * y el calor lo ponen tres acentos con trabajo que hacer: la cinta de arriba,
+ * la etiqueta y el filete del ejemplo.
+ * ============================================
+ */
 .tiquismo__caja {
+  position: relative;
+  overflow: hidden;
   max-width: 44rem;
   margin: 0 auto;
-  padding: 2.5rem;
-  border-radius: 1.5rem;
-  background: linear-gradient(
-    140deg,
-    color-mix(in srgb, var(--color-dorado) 26%, var(--color-crema)) 0%,
-    color-mix(in srgb, var(--color-coral) 40%, var(--color-crema)) 100%
-  );
-  border: 1px solid color-mix(in srgb, var(--color-naranja) 22%, transparent);
+  padding: 2.75rem 2rem 2.25rem;
+  border-radius: 1.75rem;
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 14%, transparent);
+  box-shadow: 0 30px 60px -45px
+    color-mix(in srgb, var(--color-tinta) 80%, transparent);
 }
 
+.tiquismo__cinta {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--color-naranja),
+    var(--color-dorado) 55%,
+    var(--color-turquesa)
+  );
+}
+
+/* La etiqueta es una pastilla, no una línea suelta: así se lee como el
+   encabezado de una ficha y no como el principio del párrafo. */
 .tiquismo__etiqueta {
-  font-size: 0.75rem;
+  display: inline-block;
+  margin: 0;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  /*
+   * Naranja sobre coral al 28 % de blanco: 4,66:1.
+   *
+   * Empezó en el 45 % y daba 4,37:1 — por debajo de AA—. No se vio a ojo: lo
+   * cazó `npm run verify`, que es exactamente para lo que está. Y no se dejó
+   * en el 35 %, que da 4,50:1 clavado: un valor que pasa por una centésima se
+   * rompe la primera vez que alguien lo retoca.
+   */
   color: var(--color-naranja);
+  background-color: color-mix(in srgb, var(--color-coral) 28%, #ffffff);
+}
+
+/*
+ * La palabra y su pronunciación en la MISMA línea de base cuando caben.
+ * Separadas, la pronunciación parecía un pie de foto; al lado se lee como lo
+ * que es, la transcripción de la palabra que tiene delante.
+ */
+.tiquismo__palabra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.85rem;
+  margin-top: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-teal) 12%, transparent);
 }
 
 .tiquismo__expresion {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  line-height: 1.05;
   color: var(--color-teal);
-  margin: 0.4rem 0 0;
+  margin: 0;
 }
 
 .tiquismo__pronunciacion {
-  font-size: 0.95rem;
-  color: color-mix(in srgb, var(--color-tinta) 70%, transparent);
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--color-tinta) 62%, transparent);
 }
 
-.tiquismo__bloque {
-  margin-top: 1.5rem;
+/* Una `<dl>` de verdad: término y definición emparejados. */
+.tiquismo__ficha {
+  margin: 0;
 }
 
 .tiquismo__subtitulo {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-teal);
-  margin-bottom: 0.35rem;
+  margin-top: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.tiquismo__significado {
+  margin: 0;
+  color: color-mix(in srgb, var(--color-tinta) 88%, transparent);
+}
+
+/*
+ * El ejemplo en su propio panel.
+ *
+ * Es lo ÚNICO que el visitante se va a llevar de memoria de toda la sección.
+ * En la versión anterior competía en peso con la explicación que lleva debajo
+ * y las dos se perdían. El filete de la izquierda y el fondo tenue lo separan
+ * sin necesidad de subirle el tamaño.
+ */
+.tiquismo__ejemplo {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  border-radius: 0 0.9rem 0.9rem 0;
+  border-left: 4px solid var(--color-naranja);
+  background-color: color-mix(in srgb, var(--color-dorado) 12%, #ffffff);
 }
 
 .tiquismo__frase {
-  font-size: 1.15rem;
+  margin: 0;
+  font-size: 1.2rem;
   font-weight: 600;
   font-style: italic;
+  color: var(--color-tinta);
 }
 
 .tiquismo__explicacion {
-  margin-top: 0.35rem;
-  color: color-mix(in srgb, var(--color-tinta) 78%, transparent);
+  margin: 0.4rem 0 0;
+  font-size: 0.95rem;
+  color: color-mix(in srgb, var(--color-tinta) 74%, transparent);
 }
 
 .tiquismo__enlace {
-  display: inline-block;
-  margin-top: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.9rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: 999px;
   font-weight: 600;
-  color: var(--color-naranja);
   text-decoration: none;
+  color: var(--color-naranja);
+  background-color: color-mix(in srgb, var(--color-naranja) 8%, #ffffff);
+  border: 1px solid color-mix(in srgb, var(--color-naranja) 30%, transparent);
+  transition: background-color 200ms ease, color 200ms ease,
+    border-color 200ms ease;
 }
 
 .tiquismo__enlace:hover {
-  text-decoration: underline;
+  background-color: var(--color-naranja);
+  border-color: var(--color-naranja);
+  /* Blanco sobre #C03F18: 6,17:1. */
+  color: #ffffff;
+}
+
+.tiquismo__flecha {
+  transition: transform 200ms ease;
+}
+
+.tiquismo__enlace:hover .tiquismo__flecha {
+  transform: translateX(3px);
+}
+
+@media (min-width: 640px) {
+  .tiquismo__caja {
+    padding: 3rem 2.75rem 2.5rem;
+  }
 }
 
 /* ==========================================================================
@@ -1276,6 +2139,44 @@ p {
   position: relative;
   display: block;
   aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+/*
+ * El panel para los artículos SIN portada.
+ *
+ * Mismo alto que una foto, así que la rejilla no se descuadra cuando una
+ * tarjeta lleva imagen y la de al lado no. El degradado va en los decorativos
+ * de la paleta —nunca llevan texto encima, y aquí tampoco— y la hoja sale por
+ * la esquina para que se lea como textura y no como un icono centrado.
+ */
+.tarjeta-articulo__foto[data-sin-foto="true"] {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-turquesa) 34%, var(--color-crema)),
+    color-mix(in srgb, var(--color-dorado) 30%, var(--color-crema))
+  );
+}
+
+.tarjeta-articulo__dibujo {
+  position: absolute;
+  right: -1.5rem;
+  bottom: -2rem;
+  width: 11rem;
+  line-height: 0;
+  color: var(--color-teal);
+  opacity: 0.3;
+  transition: transform 500ms ease;
+}
+
+.tarjeta-articulo__dibujo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tarjeta-articulo:hover .tarjeta-articulo__dibujo {
+  transform: rotate(-6deg) scale(1.06);
 }
 
 .tarjeta-articulo__imagen {

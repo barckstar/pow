@@ -7,10 +7,27 @@
  * pedir permiso, y esto es un negocio real, no una maqueta. La atribución no
  * es obligatoria según la licencia, pero se registra igual: saber de dónde
  * salió cada imagen es lo que permite reemplazarla o defenderla después.
+ * Las condiciones y el porqué de cada decisión están en `docs/imagenes.md`.
  *
- * Cada foto se verificó A OJO antes de elegirla: una búsqueda por "Arenal"
- * devuelve montañas que no son el Arenal, y publicar un volcán equivocado en
- * el sitio de una escuela costarricense es el tipo de error que se nota.
+ * ============ CUIDADO CON UNSPLASH+ ============
+ * La búsqueda de Unsplash mezcla en los mismos resultados las fotos gratuitas
+ * y las de UNSPLASH+, que son de pago y NO llevan la Unsplash License. Se ven
+ * iguales en la rejilla. La forma de distinguirlas es el autor: las de pago
+ * salen a nombre de «Unsplash+ Community», con el usuario `plus`.
+ *
+ * Pasó eligiendo la lapa: el primer resultado de «scarlet macaw costa rica»
+ * era una de Unsplash+ y se descartó por eso, no por la foto.
+ * ===============================================
+ *
+ * ============ CADA FOTO SE VERIFICA DOS VECES ============
+ *   1. QUE SEA EL SITIO. Una búsqueda por «Arenal» devuelve montañas que no
+ *      son el Arenal, y publicar un volcán equivocado en el sitio de una
+ *      escuela costarricense es el tipo de error que se nota. Cuando el autor
+ *      lo dice en la descripción de la foto, esa es la prueba; si no lo dice,
+ *      la foto no entra.
+ *   2. QUE SE VEA BIEN RECORTADA. Todas van con `object-fit: cover`, así que
+ *      una composición centrada se parte por la mitad en móvil.
+ * =========================================================
  *
  * Uso:  node scripts/descargar-fotos.mjs
  */
@@ -52,6 +69,89 @@ const FOTOS = [
     perfil: "https://unsplash.com/@daninger4995",
     descripcion:
       "El cono del Volcán Arenal visto desde La Fortuna, con la base cubierta de selva.",
+  },
+  /*
+   * La lapa roja: la pidió el cliente por su nombre y es la portada de
+   * `/online`, que hasta ahora era la única página sin una sola fotografía.
+   *
+   * El autor confirma en la descripción de Unsplash que está hecha en Isla
+   * Tortuga, Costa Rica. Importa: media internet etiqueta como «lapa de Costa
+   * Rica» guacamayos fotografiados en Perú o en un zoológico de Florida.
+   *
+   * Y encaja con el velo del hero sin tocar nada: el ave ocupa la mitad
+   * derecha y la izquierda es follaje desenfocado, que es justo donde cae el
+   * bloque de texto.
+   */
+  {
+    archivo: "lapa-roja.jpg",
+    idImagen: "1625877030477-84ff2e9833e4",
+    pagina: "https://unsplash.com/photos/vh6V3QHcsNY",
+    autor: "Omar Mena",
+    perfil: "https://unsplash.com/@menaomar",
+    descripcion:
+      "Una lapa roja de cerca, con el pico claro y el ojo blanco, sobre follaje desenfocado. Fotografiada en Isla Tortuga.",
+  },
+  /*
+   * Una calle de San José, para `/presencial`.
+   *
+   * No es una postal y por eso está: la página ya no vende «Costa Rica», vende
+   * hablar cara a cara. Una playa a pantalla completa prometía otra cosa. Esta
+   * es la calle donde de verdad suena el español que enseña la escuela.
+   */
+  {
+    archivo: "calle-san-jose.jpg",
+    idImagen: "1590268879033-e53b7bcc3338",
+    pagina: "https://unsplash.com/photos/phFxZTQCO3s",
+    autor: "Robin Canfield",
+    perfil: "https://unsplash.com/@robincanfield",
+    descripcion:
+      "Una calle de San José en cuesta, con las casas de colores y los cables cruzando de lado a lado.",
+  },
+  /*
+   * Una calle de un pueblo costarricense, para el artículo del voseo.
+   *
+   * El artículo trata de cómo se habla de verdad —vos, usted, tú— y no de
+   * un paisaje. Una playa de postal ahí sería relleno bonito; una calle con
+   * gente, rótulos y cables es el sitio donde esa conversación pasa.
+   *
+   * El autor describe la foto como un pueblo surfero de Costa Rica a
+   * contraluz, con un motociclista pasando entre rótulos de tours.
+   */
+  {
+    archivo: "pueblo-tico.jpg",
+    idImagen: "1778874294856-a3e32a698216",
+    pagina: "https://unsplash.com/photos/51I_5jfjvK4",
+    autor: "35MM North",
+    perfil: "https://unsplash.com/@35mm_north",
+    descripcion:
+      "La calle de un pueblo costarricense a contraluz, con palmeras, rótulos y los cables del tendido cruzando el cielo.",
+  },
+  {
+    archivo: "monteverde.jpg",
+    idImagen: "1580495024618-3fb7d34affbd",
+    pagina: "https://unsplash.com/photos/0L1NA9DMdrw",
+    autor: "James Ting",
+    perfil: "https://unsplash.com/@jamesting",
+    descripcion:
+      "El bosque nuboso de Monteverde al atardecer, con las cordilleras encadenadas entre la neblina.",
+  },
+  {
+    archivo: "rio-celeste.jpg",
+    idImagen: "1574784065106-3d480a192511",
+    pagina: "https://unsplash.com/photos/wtDod_LxD5o",
+    autor: "José Cuerva",
+    perfil: "https://unsplash.com/@josecuerva",
+    descripcion:
+      "La catarata del Río Celeste cayendo sobre la poza de agua turquesa, en el Parque Nacional Volcán Tenorio.",
+  },
+  {
+    archivo: "puerto-viejo.jpg",
+    idImagen: "1643400811908-ed46db6c8066",
+    pagina: "https://unsplash.com/photos/bSJWEfOrHps",
+    autor: "Luis Diego Aguilar",
+    perfil: "https://unsplash.com/@luisdy18",
+    descripcion:
+      "La costa de Cocles, junto a Puerto Viejo, vista desde el aire: la selva llegando hasta la arena.",
   },
 ];
 

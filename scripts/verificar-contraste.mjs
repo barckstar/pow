@@ -52,6 +52,51 @@ const DORADO = "#F4B641";
 // eso no se ve a ojo: lo encontró Lighthouse en los titulares del pie.
 const DORADO_TEXTO = "#FFE9BC";
 
+/*
+ * Mezclas que la hoja de estilos calcula con `color-mix()` y que el navegador
+ * resuelve solo. Aquí van PRECALCULADAS porque este script no interpreta CSS:
+ * si alguien cambia el porcentaje en `globals.css` y no lo cambia aquí, el
+ * script seguiría diciendo que todo está bien mientras mide otra cosa.
+ *
+ * Por eso cada una lleva anotada su receta exacta al lado. Comprobarlas es
+ * una resta.
+ */
+/** `color-mix(in srgb, var(--color-coral) 28%, #ffffff)` — fondo de la
+    etiqueta del tiquismo del día. Estuvo en el 45 % y daba 4,37:1; lo cazó
+    este script antes de que llegara a una auditoría. */
+const CORAL_SOBRE_BLANCO = "#FFEDE5";
+/** `color-mix(in srgb, var(--color-naranja) 8%, #ffffff)` — relleno en reposo
+    de los botones de contorno de las tarjetas. */
+const NARANJA_TENUE = "#FAF0ED";
+/** `color-mix(in srgb, var(--color-dorado) 12%, #ffffff)` — panel del ejemplo
+    del tiquismo. */
+const DORADO_TENUE = "#FEF6E8";
+
+/*
+ * ============ EL NAVBAR DE CRISTAL ============
+ * El navbar es translúcido y lo que tiene detrás no se controla. Así que se
+ * mide contra el PEOR FONDO QUE EXISTE, que es el negro: si pasa ahí, pasa
+ * sobre cualquier fotografía.
+ *
+ * Son dos estados con dos opacidades distintas, y la diferencia no es de
+ * gusto:
+ *
+ *   - AL BAJAR va al 97 %, porque detrás puede pasar una foto oscura —el
+ *     bosque de Monteverde, la selva del Río Celeste— mientras se hace scroll.
+ *   - EN EL TOPE va al 90 %, que se ve bastante más de cristal, y ahí se puede
+ *     porque detrás solo hay un hero, y todos los heroes llevan un velo de
+ *     crema al 75 % en esa franja. El compuesto es 0,90 + 0,10 × 0,75 = 97,5 %.
+ *
+ * Si alguien cambia una de las dos cifras en `globals.css` y no la otra, este
+ * script lo caza. Ese es todo el motivo de que estén aquí.
+ * ==============================================
+ */
+/** Navbar compacto: 97 % de crema sobre negro. */
+const CRISTAL_BAJANDO = "#F7EDDF";
+/** Navbar en el tope: 90 % de crema, sobre el velo del hero al 75 %, sobre
+    negro. O sea 97,5 % de crema efectivo. */
+const CRISTAL_EN_TOPE = "#F9EEE0";
+
 /**
  * Cada par es una combinación que EXISTE en la interfaz. No se listan colores
  * decorativos: esos nunca llevan texto encima, y esa es justamente la regla
@@ -70,6 +115,24 @@ const PARES = [
   { nombre: "Botón de contorno (teal sobre crema)", frente: TEAL, fondo: CREMA, tamano: "normal" },
   { nombre: "Acento del titular (naranja sobre crema)", frente: NARANJA, fondo: CREMA, tamano: "normal" },
   { nombre: "Iconos de confianza sobre teal", frente: DORADO_TEXTO, fondo: TEAL, tamano: "normal" },
+
+  // Tarjetas rediseñadas: tiquismo del día, experiencias y fichas de lugar.
+  { nombre: "Etiqueta del tiquismo (naranja sobre coral claro)", frente: NARANJA, fondo: CORAL_SOBRE_BLANCO, tamano: "normal" },
+  { nombre: "Palabra del tiquismo (teal sobre blanco)", frente: TEAL, fondo: BLANCO, tamano: "grande" },
+  { nombre: "Ejemplo del tiquismo (tinta sobre dorado tenue)", frente: TINTA, fondo: DORADO_TENUE, tamano: "normal" },
+  { nombre: "Botón de tarjeta en reposo (naranja sobre naranja tenue)", frente: NARANJA, fondo: NARANJA_TENUE, tamano: "normal" },
+  { nombre: "Texto de tarjeta sobre blanco", frente: TINTA, fondo: BLANCO, tamano: "normal" },
+  { nombre: "Zona de la ficha (naranja sobre blanco)", frente: NARANJA, fondo: BLANCO, tamano: "normal" },
+  { nombre: "Aviso de anuncio (crema sobre tinta)", frente: CREMA, fondo: TINTA, tamano: "normal" },
+  { nombre: "Anunciante (tinta sobre dorado)", frente: TINTA, fondo: DORADO, tamano: "normal" },
+
+  // Navbar de cristal. El naranja de la marca es el par más ajustado del
+  // sitio entero: es lo que fija cuánta transparencia se puede permitir.
+  { nombre: "Marca naranja sobre el cristal al bajar", frente: NARANJA, fondo: CRISTAL_BAJANDO, tamano: "normal" },
+  { nombre: "Marca teal sobre el cristal al bajar", frente: TEAL, fondo: CRISTAL_BAJANDO, tamano: "normal" },
+  { nombre: "Enlaces del navbar al bajar (tinta)", frente: TINTA, fondo: CRISTAL_BAJANDO, tamano: "normal" },
+  { nombre: "Marca naranja sobre el cristal en el tope", frente: NARANJA, fondo: CRISTAL_EN_TOPE, tamano: "normal" },
+  { nombre: "Marca teal sobre el cristal en el tope", frente: TEAL, fondo: CRISTAL_EN_TOPE, tamano: "normal" },
 ];
 
 /*

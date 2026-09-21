@@ -12,6 +12,7 @@ import { TiquismoDelDia } from "@/features/tiquismos/components/TiquismoDelDia";
 import { Faq } from "@/features/faq/components/Faq";
 import { TarjetaDestino } from "@/features/destinos/components/TarjetaDestino";
 import { DESTINOS } from "@/features/destinos/esquema";
+import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 
 const TEXTOS = {
   es: {
@@ -61,14 +62,16 @@ export default async function PaginaInicio({
       <Confianza t={t} />
       <Experiencias lang={idioma} t={t} />
 
-      <section className="seccion" aria-labelledby="destinos-titulo">
+      <section className="seccion con-adornos" aria-labelledby="destinos-titulo">
+        <DecoradosSeccion variante="destinos" />
+
         <div className="seccion__interior">
           <h2 className="seccion__titulo" id="destinos-titulo">
             {t.destinos.titulo}
           </h2>
           <p className="seccion__intro">{t.destinos.intro}</p>
 
-          <div className="destinos">
+          <div className="destinos revelar">
             {DESTINOS.map((destino) => (
               <TarjetaDestino
                 key={destino.id}

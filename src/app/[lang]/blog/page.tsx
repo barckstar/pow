@@ -7,6 +7,7 @@ import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
 import { rutas } from "@/shared/config/sitio";
 import { etiquetasDe, leerArticulos } from "@/features/blog/lib/leer";
 import { TarjetaArticulo } from "@/features/blog/components/TarjetaArticulo";
+import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 
 const TEXTOS = {
   es: {
@@ -56,7 +57,9 @@ export default async function PaginaBlog({
   const etiquetas = await etiquetasDe(idioma);
 
   return (
-    <section className="seccion">
+    <section className="seccion con-adornos">
+      <DecoradosSeccion variante="blog" />
+
       <div className="seccion__interior">
         <h1 className="seccion__titulo">{t.blog.titulo}</h1>
         <p className="seccion__intro">{t.blog.intro}</p>
