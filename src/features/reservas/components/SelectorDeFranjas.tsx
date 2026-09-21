@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { ZONA_COSTA_RICA } from "@/shared/config/sitio";
 import { LOCALE, type Idioma } from "@/shared/i18n/config";
 import type { Diccionario } from "@/shared/i18n/esquema";
@@ -33,6 +33,59 @@ type Props = {
  * lo convierte en una docena.
  */
 const FORMATEADORES = new Map<string, Intl.DateTimeFormat>();
+
+/* ──────────────────── La zona horaria del visitante ──────────────────── */
+
+/**
+ * ============ POR QUÉ `useSyncExternalStore` Y NO UN EFECTO ============
+ * Esto empezó siendo `useState(ZONA_COSTA_RICA)` corregido por un `useEffect`
+ * que llamaba a `setZona`. Funcionaba, pero es el patrón que React desaconseja
+ * expresamente —y que ESLint marcaba como error—: un `setState` síncrono dentro
+ * de un efecto provoca un render en cascada, el componente se pinta entero dos
+ * veces y con tres semanas de franjas eso se nota.
+ *
+ * La zona del navegador es exactamente lo que `useSyncExternalStore` existe
+ * para leer: un valor que vive FUERA de React, que el servidor no puede
+ * conocer, y que en el cliente ya está disponible en el primer render.
+ *
+ * `getServerSnapshot` devuelve `null`, no la zona de Costa Rica. Esa
+ * distinción es la que deja saber si el valor ya se leyó o no, que es lo que
+ * antes hacía el estado `detectada`: mientras sea `null`, el HTML del servidor
+ * muestra las horas de Costa Rica y el indicador de carga; en cuanto hidrata,
+ * pasa a la real y el indicador desaparece. Sin un estado más y sin efecto.
+ * =======================================================================
+ */
+
+/** La zona no cambia mientras la página esté abierta: no hay a qué suscribirse. */
+function sinCambios(): () => void {
+  return () => {};
+}
+
+/**
+ * `getSnapshot` se llama en cada render, y construir un `Intl.DateTimeFormat`
+ * carga datos de localización. Se lee una vez y se guarda.
+ *
+ * `undefined` marca "todavía no leído" y `null` "leído y no disponible", para
+ * no repetir el intento en un navegador que no lo soporte.
+ */
+let zonaCacheada: string | null | undefined;
+
+function zonaDelNavegador(): string | null {
+  if (zonaCacheada === undefined) {
+    try {
+      zonaCacheada = Intl.DateTimeFormat().resolvedOptions().timeZone || null;
+    } catch {
+      // Sin soporte se queda la de Costa Rica, que es un valor razonable.
+      zonaCacheada = null;
+    }
+  }
+  return zonaCacheada;
+}
+
+/** En el servidor no hay navegador que preguntar. */
+function sinZona(): null {
+  return null;
+}
 
 function formateador(
   clase: "hora" | "dia",
@@ -73,24 +126,20 @@ function diaEn(iso: string, zona: string, idioma: Idioma): string {
 
 export function SelectorDeFranjas({ franjas, lang, t, provisional }: Props) {
   /*
-   * La zona empieza en la de Costa Rica y se corrige en el primer efecto con
-   * la real del visitante. Hacerlo así —y no leyendo `Intl` durante el
-   * render— es lo que evita que el HTML del servidor y el del cliente
-   * discrepen y React tire un error de hidratación.
+   * Tres piezas, y el orden importa:
+   *
+   *   1. La del navegador, leída fuera de React. `null` en el servidor.
+   *   2. La que el visitante elija a mano en el selector, si elige alguna.
+   *   3. La que se usa, que es la elegida, o la detectada, o Costa Rica.
+   *
+   * Así una elección manual gana siempre sobre la detección, y no hace falta
+   * ningún efecto que sincronice nada.
    */
-  const [zona, setZona] = useState(ZONA_COSTA_RICA);
-  const [detectada, setDetectada] = useState(false);
-  const [elegida, setElegida] = useState<string | null>(null);
+  const detectada = useSyncExternalStore(sinCambios, zonaDelNavegador, sinZona);
+  const [zonaElegida, setZonaElegida] = useState<string | null>(null);
+  const zona = zonaElegida ?? detectada ?? ZONA_COSTA_RICA;
 
-  useEffect(() => {
-    try {
-      const propia = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      if (propia) setZona(propia);
-    } catch {
-      // Sin soporte se queda la de Costa Rica, que es un valor razonable.
-    }
-    setDetectada(true);
-  }, []);
+  const [elegida, setElegida] = useState<string | null>(null);
 
   const porDia = useMemo(() => {
     const grupos = new Map<string, FranjaSerializada[]>();
@@ -119,7 +168,7 @@ export function SelectorDeFranjas({ franjas, lang, t, provisional }: Props) {
         <select
           id="zona-horaria"
           value={zona}
-          onChange={(evento) => setZona(evento.target.value)}
+          onChange={(evento) => setZonaElegida(evento.target.value)}
         >
           {/* La zona detectada va primero aunque no esté en la lista corta:
               el visitante tiene que verse reflejado. */}

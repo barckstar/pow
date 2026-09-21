@@ -16,15 +16,49 @@ type Props = {
 
 export function Navbar({ lang, t }: Props) {
   const [estado, setEstado] = useState({ enTope: true, oculto: false });
-  const [menuAbierto, setMenuAbierto] = useState(false);
   const ultimaY = useRef<number>(0);
   const menuAbiertoRef = useRef<boolean>(false);
   const estadoRef = useRef(estado);
   const pathname = usePathname();
 
-  // El listener se registra una sola vez; lee el estado del menú por ref para
-  // no tener que volver a suscribirse cada vez que el menú se abre o cierra.
-  menuAbiertoRef.current = menuAbierto;
+  /*
+   * ============ EL MENÚ SE CIERRA SOLO, SIN EFECTO ============
+   * Al navegar, el menú móvil tiene que cerrarse: si no, se queda abierto
+   * encima de la página nueva.
+   *
+   * Estaba resuelto con `useEffect(() => setMenuAbierto(false), [pathname])`.
+   * Funcionaba y es el patrón que React desaconseja —y que ESLint marcaba como
+   * error—: un `setState` dentro de un efecto pinta el componente dos veces, y
+   * además deja un fotograma con el menú abierto sobre la página nueva.
+   *
+   * Aquí el estado guarda EN QUÉ RUTA se abrió. Si la ruta actual es otra, el
+   * menú está cerrado por definición: no hay nada que sincronizar porque el
+   * valor se deriva. Se cierra en el mismo render de la navegación.
+   * ============================================================
+   */
+  const [menu, setMenu] = useState({ abierto: false, ruta: pathname });
+  const menuAbierto = menu.abierto && menu.ruta === pathname;
+
+  const alternarMenu = () =>
+    setMenu({ abierto: !menuAbierto, ruta: pathname });
+
+  /*
+   * El listener del scroll se registra UNA sola vez y lee el estado del menú
+   * por ref, para no tener que volver a suscribirse cada vez que se abre o se
+   * cierra.
+   *
+   * La escritura del ref va en un efecto y no en el cuerpo del render: durante
+   * el render un componente tiene que ser una función pura de sus props y su
+   * estado, y escribir un ref ahí rompe eso —React puede descartar un render a
+   * medias, y el ref se quedaría con un valor que nunca llegó a pintarse—. Lo
+   * marcaba ESLint con `react-hooks/refs`.
+   *
+   * Que el ref se actualice después del pintado no afecta: quien lo lee es un
+   * listener de scroll, que por definición ocurre más tarde.
+   */
+  useEffect(() => {
+    menuAbiertoRef.current = menuAbierto;
+  }, [menuAbierto]);
 
   useEffect(() => {
     function alHacerScroll() {
@@ -68,12 +102,6 @@ export function Navbar({ lang, t }: Props) {
     return () => window.removeEventListener("scroll", alHacerScroll);
   }, []);
 
-  // Al navegar, el menú se cierra solo. Sin esto queda abierto sobre la página
-  // nueva.
-  useEffect(() => {
-    setMenuAbierto(false);
-  }, [pathname]);
-
   const enlaces = [
     { href: rutas.online(lang), texto: t.nav.online },
     { href: rutas.presencial(lang), texto: t.nav.presencial },
@@ -93,8 +121,9 @@ export function Navbar({ lang, t }: Props) {
       data-oculto={estado.oculto && !menuAbierto}
       aria-label={NOMBRE_SITIO_CORTO}
     >
-      {/* Panel de fondo: se escala en vertical en vez de cambiar de alto, así
-          la transición es puro transform y no dispara layout. */}
+      {/* Panel de fondo. Va aparte del header para poder ser translúcido y
+          desenfocado sin arrastrar en ello al logo ni a los enlaces: la
+          opacidad de un elemento se aplica a todos sus hijos. */}
       <div className="navbar__fondo" aria-hidden="true" />
 
       <div className="navbar__contenido">
@@ -153,7 +182,7 @@ export function Navbar({ lang, t }: Props) {
             aria-expanded={menuAbierto}
             aria-controls="menu-movil"
             aria-label={menuAbierto ? t.nav.cerrarMenu : t.nav.abrirMenu}
-            onClick={() => setMenuAbierto((abierto) => !abierto)}
+            onClick={alternarMenu}
           >
             <span className="navbar__barra" />
             <span className="navbar__barra" />
