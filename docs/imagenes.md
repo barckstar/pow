@@ -14,7 +14,7 @@ tener que reconstruirlo de memoria.
 
 | Tipo | Fuente | Licencia | ¿Atribución obligatoria? |
 |---|---|---|---|
-| Paisajes y lugares (10) | Unsplash | Unsplash License | **No**, pero se registra igual |
+| Paisajes y lugares (7) | Unsplash | Unsplash License | **No**, pero se registra igual |
 | Clases (5) | Cedidas por el cliente | ⚠️ **Permiso sin confirmar** | Sí, y falta |
 | Iconos y adornos | Dibujados aquí | Propios | No aplica |
 | Logo (perezoso) | Del cliente | Del cliente | No aplica |
@@ -23,7 +23,7 @@ tener que reconstruirlo de memoria.
 
 ## 1. Las fotografías — Unsplash
 
-Diez de las quince fotografías del sitio vienen de
+Siete de las doce fotografías del sitio vienen de
 [Unsplash](https://unsplash.com) y se descargan con
 `node scripts/descargar-fotos.mjs`. El script deja la autoría de cada una en
 `src/shared/data/creditos-fotos.json`, que es una de las dos listas que pinta

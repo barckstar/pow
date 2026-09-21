@@ -42,6 +42,18 @@ const DESTINO = join(RAIZ, "public", "fotos");
 const ANCHO = 2400;
 const CALIDAD = 75;
 
+/*
+ * ============ MONTEVERDE, RIO CELESTE Y PUERTO VIEJO SE QUITARON ============
+ * Estaban aqui de cuando `/destinos` eran cinco fichas turisticas. El cliente
+ * aclaro cuales son los destinos de inmersion —Manuel Antonio, Samara, La
+ * Fortuna y San Jose— y esas tres se quedaron sin ninguna pagina que las use.
+ *
+ * Se borran en vez de dejarlas descargandose: `/creditos` dice que lista las
+ * fotografias DE ESTE SITIO, y tres que no salen en ninguna pagina convierten
+ * esa lista en una aproximacion. Los identificadores de Unsplash estan en el
+ * historial de git por si el cliente anade uno de esos destinos.
+ * ============================================================================
+ */
 const FOTOS = [
   {
     archivo: "manuel-antonio.jpg",
@@ -148,33 +160,6 @@ const FOTOS = [
     perfil: "https://unsplash.com/@luisdy18",
     descripcion:
       "Playa Barrigona desde el aire, en la península de Nicoya a unos diez kilómetros de Sámara: la selva bajando hasta la arena blanca.",
-  },
-  {
-    archivo: "monteverde.jpg",
-    idImagen: "1580495024618-3fb7d34affbd",
-    pagina: "https://unsplash.com/photos/0L1NA9DMdrw",
-    autor: "James Ting",
-    perfil: "https://unsplash.com/@jamesting",
-    descripcion:
-      "El bosque nuboso de Monteverde al atardecer, con las cordilleras encadenadas entre la neblina.",
-  },
-  {
-    archivo: "rio-celeste.jpg",
-    idImagen: "1574784065106-3d480a192511",
-    pagina: "https://unsplash.com/photos/wtDod_LxD5o",
-    autor: "José Cuerva",
-    perfil: "https://unsplash.com/@josecuerva",
-    descripcion:
-      "La catarata del Río Celeste cayendo sobre la poza de agua turquesa, en el Parque Nacional Volcán Tenorio.",
-  },
-  {
-    archivo: "puerto-viejo.jpg",
-    idImagen: "1643400811908-ed46db6c8066",
-    pagina: "https://unsplash.com/photos/bSJWEfOrHps",
-    autor: "Luis Diego Aguilar",
-    perfil: "https://unsplash.com/@luisdy18",
-    descripcion:
-      "La costa de Cocles, junto a Puerto Viejo, vista desde el aire: la selva llegando hasta la arena.",
   },
 ];
 

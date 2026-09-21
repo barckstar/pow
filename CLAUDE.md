@@ -223,7 +223,7 @@ y **rompe el build** si algo falta.
 
 ### Imágenes
 
-Diez fotografías vienen de **Unsplash** (licencia de uso comercial, sin
+Siete fotografías vienen de **Unsplash** (licencia de uso comercial, sin
 atribución obligatoria; se registra igual). Cada una se verifica dos veces:
 que sea el sitio que dice ser, y que aguante el recorte de `object-fit: cover`.
 

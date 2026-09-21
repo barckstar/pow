@@ -135,12 +135,12 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
     es: {
       titulo: "Créditos de las fotografías",
       descripcion:
-        "Autoría y licencia de cada fotografía usada en el sitio. Todas vienen de Unsplash y se usan bajo su licencia de uso comercial.",
+        "Autoría y licencia de cada fotografía usada en el sitio: los paisajes de Unsplash y las fotos de clase cedidas por las escuelas socias.",
     },
     en: {
       titulo: "Photography credits",
       descripcion:
-        "Authorship and licence of every photograph used on this site. All of them come from Unsplash under its commercial-use licence.",
+        "Authorship and licence of every photograph on this site: the landscapes from Unsplash and the classroom photos provided by the partner schools.",
     },
   },
 };

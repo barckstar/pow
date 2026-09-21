@@ -61,32 +61,5 @@
     "fuente": "Unsplash",
     "licencia": "Unsplash License",
     "descripcion": "Playa Barrigona desde el aire, en la península de Nicoya a unos diez kilómetros de Sámara: la selva bajando hasta la arena blanca."
-  },
-  {
-    "archivo": "/fotos/monteverde.jpg",
-    "autor": "James Ting",
-    "perfil": "https://unsplash.com/@jamesting",
-    "pagina": "https://unsplash.com/photos/0L1NA9DMdrw",
-    "fuente": "Unsplash",
-    "licencia": "Unsplash License",
-    "descripcion": "El bosque nuboso de Monteverde al atardecer, con las cordilleras encadenadas entre la neblina."
-  },
-  {
-    "archivo": "/fotos/rio-celeste.jpg",
-    "autor": "José Cuerva",
-    "perfil": "https://unsplash.com/@josecuerva",
-    "pagina": "https://unsplash.com/photos/wtDod_LxD5o",
-    "fuente": "Unsplash",
-    "licencia": "Unsplash License",
-    "descripcion": "La catarata del Río Celeste cayendo sobre la poza de agua turquesa, en el Parque Nacional Volcán Tenorio."
-  },
-  {
-    "archivo": "/fotos/puerto-viejo.jpg",
-    "autor": "Luis Diego Aguilar",
-    "perfil": "https://unsplash.com/@luisdy18",
-    "pagina": "https://unsplash.com/photos/bSJWEfOrHps",
-    "fuente": "Unsplash",
-    "licencia": "Unsplash License",
-    "descripcion": "La costa de Cocles, junto a Puerto Viejo, vista desde el aire: la selva llegando hasta la arena."
   }
 ]
