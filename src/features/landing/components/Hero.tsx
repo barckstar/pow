@@ -84,7 +84,7 @@ export function Hero({ lang, t }: { lang: Idioma; t: Diccionario }) {
             paso es elegir a cuál de los cuatro sitios se quiere ir; el
             formulario viene después, ya con el destino puesto.
           */}
-          <Link href={rutas.destinos(lang)} className="boton boton--acento">
+          <Link href={rutas.costaRica(lang)} className="boton boton--acento">
             {t.hero.ctaPresencial}
           </Link>
         </div>

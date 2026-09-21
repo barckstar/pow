@@ -82,7 +82,7 @@ export default async function PaginaInicio({
             ))}
           </div>
 
-          <Link href={rutas.destinos(idioma)} className="seccion__enlace">
+          <Link href={rutas.costaRica(idioma)} className="seccion__enlace">
             {t.destinos.verTodos} →
           </Link>
         </div>

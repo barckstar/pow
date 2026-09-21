@@ -16,22 +16,30 @@ que es decisión de producto y aparece en la interfaz, no solo en el copy.
 
 Dos líneas:
 
-| Línea | Dónde | Quién |
+| Línea | Qué es | Estado |
 |---|---|---|
-| Online | remoto, desde Suiza | el profesor |
-| Inmersión | Manuel Antonio, Sámara, La Fortuna, San José | escuelas socias |
+| **Online** | clases uno a uno por videollamada, desde Suiza | **es el producto** |
+| Inmersión en CR | escuela + hospedaje + viajar, en cuatro destinos | en preparación |
 
-La vía presencial **es inmersión en Costa Rica**, en cuatro destinos, con una
-escuela socia en cada uno. Lo aclaró el cliente por WhatsApp el 21/09/2026, y
-eso revirtió la versión anterior, en la que el lugar era un pendiente y la
-página vendía solo el modo.
+**Lo online es el corazón del negocio, y no es una interpretación.** El propio
+cliente lo escribió en el artículo que mandó: «while Costa Rica immersion
+experiences will also be part of the project **in the future**, the heart of
+CSE is personalized online Spanish learning». Ese artículo está publicado en el
+blog en los dos idiomas y su contenido alimenta `/online`.
 
-**Lo que sigue pendiente es la escuela, no el país.** El cliente escribió que
-«la info de las escuelas en CR tengo que conseguirla bien»: los nombres están
-en `destinos.json` con `"confirmada": false` y la ficha los enseña con la
-etiqueta amarilla, no como un hecho.
+La vía de inmersión es **un solo tema**, no dos. `/presencial` y `/destinos`
+eran páginas separadas y se fusionaron en `/costa-rica` porque el cliente lo
+dijo así: «los destinos y aprender en Costa Rica están pensados como un mismo
+tema». Son tres patas que van juntas: **la clase** en una escuela de la zona,
+**el hospedaje** que resuelve esa escuela, y **el viaje**, que es donde se
+practica.
 
-El embudo es: ficha de destino → `/solicitud/<destino>` → formulario.
+**Lo que sigue sin cerrar:** la lista de destinos —los cuatro de hoy son los
+que el cliente puso «por ejemplo»—, los acuerdos con cada escuela
+(`"confirmada": false`) y las condiciones del hospedaje. La página lo dice en
+un aviso antes de las tarjetas.
+
+El embudo es: `/costa-rica` → ficha de destino → `/solicitud/<destino>`.
 
 **Fuera de alcance:** Colombia, México, El Salvador y España (estaban en el
 concept board original, sin datos reales detrás). La app móvil. El LMS.
@@ -56,10 +64,11 @@ src/
   proxy.ts                    / → /es | /en por Accept-Language
   app/[lang]/…                rutas
   app/api/paypal/…            rutas de servidor
-  features/{landing,tiquismos,faq,blog,destinos,solicitud,reservas,pagos}/
+  features/{landing,online,tiquismos,faq,blog,destinos,solicitud,
+              reservas,pagos}/
   shared/components/ui/
     Olas.tsx                olas del hero de la PORTADA, y solo de ahí
-    HeroPagina.tsx          hero compartido de /online y /presencial
+    HeroPagina.tsx          hero compartido de /online y /costa-rica
     Decorados.tsx           13 dibujos tropicales en SVG, propios
     DecoradosSeccion.tsx    una receta de adornos por sección
   shared/{i18n,config,lib,data}/

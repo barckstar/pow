@@ -41,7 +41,7 @@ export function Experiencias({ lang, t }: { lang: Idioma; t: Diccionario }) {
       variante: "online" as const,
     },
     {
-      href: rutas.presencial(lang),
+      href: rutas.costaRica(lang),
       titulo: t.experiencias.presencialTitulo,
       texto: t.experiencias.presencialTexto,
       enlace: t.experiencias.presencialEnlace,

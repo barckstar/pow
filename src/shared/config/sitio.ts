@@ -80,8 +80,24 @@ export const OG_POR_DEFECTO = "/og/por-defecto.jpg";
 export const rutas = {
   inicio: (l: Idioma) => `/${l}`,
   online: (l: Idioma) => `/${l}/online`,
-  presencial: (l: Idioma) => `/${l}/presencial`,
-  destinos: (l: Idioma) => `/${l}/destinos`,
+  /*
+   * ============ `/presencial` Y `/destinos` ERAN LA MISMA PÁGINA ============
+   * Estaban separadas: una explicaba la modalidad y la otra listaba los
+   * sitios. El cliente lo dijo claro — «los destinos y aprender en Costa Rica
+   * están pensados como un mismo tema»— y tiene razón: lo que vende no es una
+   * modalidad ni una lista de playas, es UNA cosa, aprender el idioma
+   * viajando por el país.
+   *
+   * Dos páginas para un solo tema tenían el problema de siempre: el visitante
+   * tiene que leer las dos para entender la oferta, y ninguna de las dos se
+   * explica sola. Ahora es una: el concepto, cómo funciona y los destinos,
+   * seguidos.
+   *
+   * La ruta se llama `/costa-rica` y no `/presencial` porque una URL también
+   * se lee: «presencial» es una palabra de dentro de casa.
+   * ========================================================================
+   */
+  costaRica: (l: Idioma) => `/${l}/costa-rica`,
   blog: (l: Idioma) => `/${l}/blog`,
   articulo: (l: Idioma, slug: string) => `/${l}/blog/${slug}`,
   etiqueta: (l: Idioma, tag: string) => `/${l}/blog/tag/${tag}`,

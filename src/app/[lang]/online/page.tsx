@@ -9,6 +9,17 @@ import { SEO } from "@/shared/config/seo";
 import { HeroPagina } from "@/shared/components/ui/HeroPagina";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 import { TiquismoDelDia } from "@/features/tiquismos/components/TiquismoDelDia";
+import { CLASES } from "@/features/online/esquema";
+
+/**
+ * El artículo del cliente sobre las clases en línea, al que enlaza esta
+ * página. Los dos slugs son distintos porque cada idioma tiene el suyo; el
+ * cruce entre ambos lo lleva el `traduccion` del frontmatter.
+ */
+const ARTICULO = {
+  es: "por-que-funcionan-las-clases-en-linea",
+  en: "why-online-spanish-classes",
+} as const;
 
 /** La lapa roja. Es la portada de esta página y su imagen de Open Graph. */
 const FOTO = "/fotos/lapa-roja.jpg";
@@ -87,6 +98,51 @@ export default async function PaginaOnline({
               </li>
             ))}
           </ol>
+
+          {/*
+            Todo lo que sigue sale del artículo que escribió el cliente y que
+            está publicado en el blog. Se transcribe, no se amplía: la página y
+            el artículo tienen que decir lo mismo, y si mañana él cambia una
+            situación se cambia en `clases.json` y sale en los dos sitios.
+          */}
+          <h3 className="subseccion__titulo">{p.practicaTitulo}</h3>
+          <p>{p.practicaTexto}</p>
+          <ul className="fichas">
+            {CLASES.habilidades.map((h) => (
+              <li key={h.id} className="ficha ficha--fuerte">
+                {h.etiqueta[idioma]}
+              </li>
+            ))}
+          </ul>
+
+          <p>{p.situacionesTexto}</p>
+          <ul className="fichas">
+            {CLASES.situaciones.map((s) => (
+              <li key={s.id} className="ficha">
+                {s.etiqueta[idioma]}
+              </li>
+            ))}
+          </ul>
+
+          <h3 className="subseccion__titulo">{p.medidaTitulo}</h3>
+          <p>{p.medidaTexto}</p>
+          <ul className="fichas">
+            {CLASES.motivos.map((m) => (
+              <li key={m.id} className="ficha">
+                {m.etiqueta[idioma]}
+              </li>
+            ))}
+          </ul>
+          <p>{p.medidaCierre}</p>
+
+          <p className="seccion__enlace-suelto">
+            <Link
+              href={rutas.articulo(idioma, ARTICULO[idioma])}
+              className="seccion__enlace"
+            >
+              {p.leerArticulo} →
+            </Link>
+          </p>
 
           <h3 className="subseccion__titulo">{p.profesorTitulo}</h3>
           <p>{p.profesorTexto}</p>

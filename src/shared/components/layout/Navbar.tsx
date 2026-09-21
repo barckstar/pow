@@ -104,8 +104,7 @@ export function Navbar({ lang, t }: Props) {
 
   const enlaces = [
     { href: rutas.online(lang), texto: t.nav.online },
-    { href: rutas.presencial(lang), texto: t.nav.presencial },
-    { href: rutas.destinos(lang), texto: t.nav.destinos },
+    { href: rutas.costaRica(lang), texto: t.nav.costaRica },
     { href: rutas.blog(lang), texto: t.nav.blog },
     { href: rutas.precios(lang), texto: t.nav.precios },
     { href: rutas.comunidad(lang), texto: t.nav.comunidad },

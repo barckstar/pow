@@ -19,7 +19,9 @@ Un hueco visible se arregla. Uno invisible se publica.
 | **Correo y teléfono** de contacto | `CONTACTO` en `sitio.ts` | El pie muestra la etiqueta de pendiente |
 | **Redes sociales** del negocio | `REDES` en `sitio.ts` | La barra lateral solo lleva la marca y el botón de compartir; `/comunidad` lo dice |
 | **Dominio** | `URL_BASE` en `sitio.ts` | Provisional. Afecta a canónicas, `og:url` y sitemap |
-| **Acuerdos con las cuatro escuelas** | `escuela.confirmada` en `destinos.json` | El nombre sale en la ficha con la etiqueta amarilla. El cliente escribió que «la info de las escuelas tengo que conseguirla bien» |
+| **Qué destinos son de verdad** | `destinos.json` | Los cuatro de hoy son los que el cliente puso «por ejemplo». `/costa-rica` lo avisa antes de las tarjetas |
+| **Acuerdos con las escuelas** | `escuela.confirmada` en `destinos.json` | El nombre sale en la ficha con la etiqueta amarilla. El cliente escribió que «la info de las escuelas tengo que conseguirla bien» |
+| **Condiciones del hospedaje** | `paginas.costaRica.hospedajeTexto` | La página dice que lo resuelve la escuela, sin concretar modalidad ni precio, porque no se sabe |
 | **A dónde llegan las solicitudes** | `features/solicitud/` | El formulario se ve entero y el botón está `disabled`, con el aviso de por qué. Faltan proveedor, aviso de privacidad y correo de destino |
 | **Permiso de las fotos de clase** | `creditos-cedidas.json` | Las cinco están publicadas por decisión del cliente, con `"permisoConfirmado": false`. Falta el permiso por escrito de cada escuela y de las personas que salen |
 | **Reseñas de estudiantes** | sin sección todavía | No hay sección de reseñas. **Se transcriben de fuentes reales, no se inventan** |
@@ -54,9 +56,10 @@ Un hueco visible se arregla. Uno invisible se publica.
 - **La segunda escuela de Manuel Antonio**. El cliente nombró dos ahí —Manuel
   Antonio Spanish School y Máximo Nivel— y el esquema solo admite una por
   destino. Hay que decidir si se elige una o si un destino puede tener varias.
-- **El blog de Chris**. Dijo que tiene uno y que «ahí casi solo se habla de la
-  parte de las clases en línea». El enlace no llegó; puede servir de fuente de
-  contenido para `/blog`.
+- **Más artículos del cliente**. Mandó el primero («Why Online Spanish Classes
+  Are the Smartest Way to Learn Spanish in 2026»), ya publicado en los dos
+  idiomas y usado como fuente de `/online`. Todo lo que sea experiencia
+  personal suya o de sus estudiantes lo escribe él.
 - **Audio de los tiquismos**: el componente los contempla; faltan las
   grabaciones del profesor.
 - **Más tiquismos**. Hay ocho, y el de la portada rota a diario sin repetir

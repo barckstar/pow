@@ -152,6 +152,25 @@ const FOTOS = [
    * el tipo de error que un tico detecta en dos segundos.
    * =================================================
    */
+  /*
+   * La portada de `/costa-rica`: alguien cruzando un puente colgante en la
+   * selva.
+   *
+   * Es la única del sitio elegida por lo que PASA en ella y no por el lugar:
+   * la página vende aprender el idioma viajando, y esto es exactamente eso.
+   * De paso, no depende de que los cuatro destinos sigan siendo esos cuatro
+   * —el cliente todavía los está cerrando—, así que no hay que cambiarla si
+   * cambia la lista.
+   */
+  {
+    archivo: "puente-colgante.jpg",
+    idImagen: "1628212093754-39237668d1cd",
+    pagina: "https://unsplash.com/photos/ddBcLFDAO4g",
+    autor: "J. Amill Santiago",
+    perfil: "https://unsplash.com/@thetaikun",
+    descripcion:
+      "Alguien cruzando un puente colgante sobre el bosque nuboso de La Fortuna, con la selva abriéndose por debajo.",
+  },
   {
     archivo: "samara-barrigona.jpg",
     idImagen: "1643122542225-6a618183b16d",

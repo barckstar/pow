@@ -1,0 +1,22 @@
+{
+  "habilidades": [
+    { "id": "hablar", "etiqueta": { "es": "Hablar", "en": "Speaking" } },
+    { "id": "entender", "etiqueta": { "es": "Entender lo que se oye", "en": "Listening" } },
+    { "id": "pronunciacion", "etiqueta": { "es": "Pronunciación", "en": "Pronunciation" } },
+    { "id": "comunicacion", "etiqueta": { "es": "Comunicación real", "en": "Real-life communication" } }
+  ],
+  "situaciones": [
+    { "id": "viajar", "etiqueta": { "es": "Viajar", "en": "Travelling" } },
+    { "id": "comida", "etiqueta": { "es": "Pedir comida", "en": "Ordering food" } },
+    { "id": "gente", "etiqueta": { "es": "Conocer gente", "en": "Meeting people" } },
+    { "id": "trabajo", "etiqueta": { "es": "El trabajo", "en": "Work" } },
+    { "id": "dia-a-dia", "etiqueta": { "es": "El día a día", "en": "Everyday conversation" } }
+  ],
+  "motivos": [
+    { "id": "latinoamerica", "etiqueta": { "es": "Viajar por Latinoamérica", "en": "Travelling Latin America" } },
+    { "id": "trabajo", "etiqueta": { "es": "Mejorar el español del trabajo", "en": "Spanish for work" } },
+    { "id": "familia", "etiqueta": { "es": "Hablar con la familia", "en": "Talking to family" } },
+    { "id": "mudanza", "etiqueta": { "es": "Prepararse para mudarse", "en": "Preparing to relocate" } },
+    { "id": "gusto", "etiqueta": { "es": "Por el gusto de aprender", "en": "The pleasure of learning" } }
+  ]
+}

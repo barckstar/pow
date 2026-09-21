@@ -60,39 +60,24 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
     },
   },
   /*
-   * Vuelven a nombrar Costa Rica, y los cuatro destinos con ellos.
+   * Una sola entrada para lo que antes eran dos páginas.
    *
-   * Estuvieron sin nombrarla mientras el lugar de las presenciales era un
-   * pendiente. El cliente aclaró que la vía presencial ES inmersión en el
-   * país, en Manuel Antonio, Sámara, La Fortuna y San José, así que eso es lo
-   * que se indexa: son los cuatro términos por los que alguien que planea el
-   * viaje va a buscar.
-   *
-   * Lo que sigue pendiente es la escuela de cada destino, y eso no se indexa
-   * ni se promete: se dice en la página.
+   * El título carga los dos términos por los que busca la gente que está
+   * planeando esto —aprender español y Costa Rica— y la descripción dice las
+   * tres patas: clase, hospedaje y viaje. Los nombres de los destinos NO van
+   * aquí: el cliente todavía está cerrando cuáles son, y un metadato que
+   * promete cuatro sitios concretos se queda mintiendo en cuanto cambie uno.
    */
-  presencial: {
+  costaRica: {
     es: {
-      titulo: "Inmersión en español en Costa Rica",
+      titulo: "Aprendé español viajando por Costa Rica",
       descripcion:
-        "Aprendé español viviendo en Costa Rica: clase por la mañana y el país de aula el resto del día, en Manuel Antonio, Sámara, La Fortuna o San José.",
+        "Clase por la mañana en una escuela del lugar, el hospedaje resuelto y el resto del día practicando por el país. Inmersión de quince días a dos meses.",
     },
     en: {
-      titulo: "Spanish immersion in Costa Rica",
+      titulo: "Learn Spanish travelling Costa Rica",
       descripcion:
-        "Learn Spanish living in Costa Rica: a lesson in the morning and the country as your classroom after, in Manuel Antonio, Sámara, La Fortuna or San José.",
-    },
-  },
-  destinos: {
-    es: {
-      titulo: "Destinos de inmersión en Costa Rica",
-      descripcion:
-        "Manuel Antonio, Sámara, La Fortuna y San José: cuatro destinos donde estudiar español en inmersión, con lo que hay en cada uno y por qué elegirlo.",
-    },
-    en: {
-      titulo: "Spanish immersion destinations",
-      descripcion:
-        "Manuel Antonio, Sámara, La Fortuna and San José: four places to study Spanish by immersion, what is in each one and why you might pick it.",
+        "A lesson each morning at a local school, lodging sorted, and the rest of the day practising around the country. Immersion from fifteen days to two months.",
     },
   },
   solicitud: {

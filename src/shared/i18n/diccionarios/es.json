@@ -2,8 +2,7 @@
   "nav": {
     "inicio": "Inicio",
     "online": "Clases en línea",
-    "presencial": "En Costa Rica",
-    "destinos": "Destinos",
+    "costaRica": "En Costa Rica",
     "blog": "Blog",
     "precios": "Precios",
     "comunidad": "Comunidad",
@@ -133,24 +132,34 @@
       "paso3Titulo": "Te conectás",
       "paso3Texto": "Recibís el enlace de la videollamada. La clase es conversación desde el primer día, no relleno de ejercicios.",
       "profesorTitulo": "Quién da las clases",
-      "profesorTexto": "Un costarricense que vive en Suiza. Enseña el español que se habla en Costa Rica: el voseo, los modismos y el tono, no solo la gramática del libro."
+      "profesorTexto": "Un costarricense que vive en Suiza. Enseña el español que se habla en Costa Rica: el voseo, los modismos y el tono, no solo la gramática del libro.",
+      "practicaTitulo": "Qué se practica",
+      "practicaTexto": "La enseñanza de siempre se apoya demasiado en el libro, y mucha gente estudia años y se queda trabada en cuanto tiene una conversación delante. Aquí el peso está en cuatro cosas:",
+      "situacionesTexto": "Y se ensayan situaciones en las que de verdad vas a estar, no ejercicios de relleno:",
+      "medidaTitulo": "A la medida de tu objetivo",
+      "medidaTexto": "Cada persona aprende distinto y por un motivo distinto. Estos son los más habituales:",
+      "medidaCierre": "La clase se adapta a tu nivel, a tu objetivo y a lo que te interesa. En vez de un temario genérico es una conversación que va a donde tiene que ir.",
+      "leerArticulo": "Leer el artículo completo"
     },
-    "presencial": {
+    "costaRica": {
       "hero": {
         "titulo": "Aprendé español.",
-        "acento": "Viviendo en Costa Rica.",
-        "subtitulo": "Inmersión en Manuel Antonio, Sámara, La Fortuna o San José. Clase por la mañana y el país entero de aula por la tarde.",
-        "fotoAlt": "Una calle en cuesta de San José, con las casas pintadas de colores y los cables del tendido cruzando de lado a lado"
+        "acento": "Viajando por Costa Rica.",
+        "subtitulo": "Clase por la mañana en una escuela del lugar, el hospedaje resuelto, y el resto del día el país entero de aula. De quince días a dos meses.",
+        "fotoAlt": "Alguien con mochila cruzando un puente colgante sobre el bosque nuboso, con la selva abriéndose por debajo"
       },
-      "titulo": "Cómo es la inmersión",
-      "intro": "Vivir donde se habla el idioma es lo que hace que se pegue.",
-      "texto": "La fórmula es siempre la misma: clase por la mañana en grupos pequeños y el resto del día fuera, pidiendo en una soda, preguntando la hora en la pulpería o negociando el bus. El vocabulario que aprendés así no se olvida, porque lo usaste el mismo día. Se puede ir quince días o dos meses; cuanto más largo, más se nota.",
-      "dondeTitulo": "Las escuelas",
-      "dondeTexto": "En cada destino se trabaja con una escuela de inmersión de la zona. Los acuerdos se están cerrando, así que todavía no publicamos horarios ni precios de cada una: contá en el formulario qué buscás y te decimos qué hay disponible en ese destino."
-    },
-    "destinos": {
-      "titulo": "Destinos de inmersión en Costa Rica",
-      "intro": "Cuatro sitios, cada uno con su escuela y su motivo para elegirlo. En todos se estudia por la mañana y se sale a practicar después."
+      "comoTitulo": "Cómo funciona",
+      "comoIntro": "No es un curso al que se viaja: es un viaje en el que se aprende. Son tres cosas y van juntas.",
+      "claseTitulo": "La clase",
+      "claseTexto": "Por la mañana y en grupos pequeños, en una escuela de la zona con profesores costarricenses. El idioma que enseñan es el que vas a oír al salir por la puerta, no el del libro.",
+      "hospedajeTitulo": "El hospedaje",
+      "hospedajeTexto": "Lo resuelve la escuela, así que no hay que buscar nada por tu cuenta ni llegar a un sitio sin saber dónde dormís. Es también parte de la inmersión: se sigue hablando español fuera del aula.",
+      "viajeTitulo": "El viaje",
+      "viajeTexto": "Las tardes y los fines de semana son el país: el parque nacional, la soda, el bus, la pulpería. Ahí es donde el vocabulario de la mañana se convierte en algo que sale solo.",
+      "destinosTitulo": "Elegí tu destino",
+      "destinosIntro": "Cada sitio tiene su escuela y su motivo para elegirlo. Elegí uno y contanos qué buscás.",
+      "pendienteTitulo": "Qué falta por cerrar",
+      "pendienteTexto": "Los destinos de abajo son los que el cliente puso de ejemplo y la lista todavía no está cerrada; los acuerdos con cada escuela y las condiciones del hospedaje tampoco. Preferimos enseñarlo así antes que anunciar sedes y precios que después cambien."
     },
     "precios": {
       "titulo": "Precios",

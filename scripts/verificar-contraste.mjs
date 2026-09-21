@@ -97,6 +97,10 @@ const CRISTAL_BAJANDO = "#F7EDDF";
     negro. O sea 97,5 % de crema efectivo. */
 const CRISTAL_EN_TOPE = "#F9EEE0";
 
+/** `color-mix(in srgb, var(--color-turquesa) 22%, #ffffff)` — fondo de las
+    fichas de habilidades en `/online`. */
+const TURQUESA_TENUE = "#DBF2F2";
+
 /**
  * Cada par es una combinación que EXISTE en la interfaz. No se listan colores
  * decorativos: esos nunca llevan texto encima, y esa es justamente la regla
@@ -133,6 +137,10 @@ const PARES = [
   { nombre: "Enlaces del navbar al bajar (tinta)", frente: TINTA, fondo: CRISTAL_BAJANDO, tamano: "normal" },
   { nombre: "Marca naranja sobre el cristal en el tope", frente: NARANJA, fondo: CRISTAL_EN_TOPE, tamano: "normal" },
   { nombre: "Marca teal sobre el cristal en el tope", frente: TEAL, fondo: CRISTAL_EN_TOPE, tamano: "normal" },
+
+  // Fichas de `/online`, que salen del artículo del cliente.
+  { nombre: "Ficha de habilidad (teal sobre turquesa tenue)", frente: TEAL, fondo: TURQUESA_TENUE, tamano: "normal" },
+  { nombre: "Ficha de situación (tinta sobre blanco)", frente: TINTA, fondo: BLANCO, tamano: "normal" },
 ];
 
 /*

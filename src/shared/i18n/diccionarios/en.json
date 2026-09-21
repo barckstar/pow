@@ -2,8 +2,7 @@
   "nav": {
     "inicio": "Home",
     "online": "Online lessons",
-    "presencial": "In Costa Rica",
-    "destinos": "Destinations",
+    "costaRica": "In Costa Rica",
     "blog": "Blog",
     "precios": "Pricing",
     "comunidad": "Community",
@@ -133,24 +132,34 @@
       "paso3Titulo": "Show up",
       "paso3Texto": "You get the video call link. Lessons are conversation from day one, not exercise filler.",
       "profesorTitulo": "Who teaches",
-      "profesorTexto": "A Costa Rican living in Switzerland. He teaches the Spanish actually spoken in Costa Rica: the voseo, the slang and the tone, not just textbook grammar."
+      "profesorTexto": "A Costa Rican living in Switzerland. He teaches the Spanish actually spoken in Costa Rica: the voseo, the slang and the tone, not just textbook grammar.",
+      "practicaTitulo": "What you practise",
+      "practicaTexto": "Traditional teaching leans too heavily on the textbook, and plenty of people study for years and still freeze in an actual conversation. Here the weight sits on four things:",
+      "situacionesTexto": "And the lessons rehearse situations you will actually be in, not filler exercises:",
+      "medidaTitulo": "Shaped around your goal",
+      "medidaTexto": "Everyone learns differently, and for a different reason. These are the usual ones:",
+      "medidaCierre": "The lesson adapts to your level, your goal and what interests you. Instead of a generic syllabus it is a conversation that goes where it needs to go.",
+      "leerArticulo": "Read the full article"
     },
-    "presencial": {
+    "costaRica": {
       "hero": {
         "titulo": "Learn Spanish.",
-        "acento": "Living in Costa Rica.",
-        "subtitulo": "Immersion in Manuel Antonio, Sámara, La Fortuna or San José. A lesson in the morning and the whole country as your classroom afterwards.",
-        "fotoAlt": "A steep street in San José, houses painted in bright colours and power lines crossing from side to side"
+        "acento": "Travelling Costa Rica.",
+        "subtitulo": "A lesson each morning at a local school, lodging sorted, and the rest of the day with the whole country as your classroom. From fifteen days to two months.",
+        "fotoAlt": "Someone with a backpack crossing a hanging bridge over the cloud forest, the jungle opening up below"
       },
-      "titulo": "What immersion looks like",
-      "intro": "Living where the language is spoken is what makes it stick.",
-      "texto": "The shape is always the same: a small-group lesson in the morning and the rest of the day outside, ordering at a soda, asking the time at the corner shop, or working out the bus. Vocabulary learned that way does not fade, because you used it the same day. You can go for fifteen days or two months; the longer you stay, the more it shows.",
-      "dondeTitulo": "The schools",
-      "dondeTexto": "In each destination we work with a local immersion school. Those agreements are still being closed, so we are not publishing timetables or prices for each one yet: tell us in the form what you are after and we will tell you what is available at that destination."
-    },
-    "destinos": {
-      "titulo": "Immersion destinations in Costa Rica",
-      "intro": "Four places, each with its own school and its own reason to pick it. In all of them you study in the morning and go out to practise afterwards."
+      "comoTitulo": "How it works",
+      "comoIntro": "This is not a course you travel to: it is a trip you learn on. Three things, and they come together.",
+      "claseTitulo": "The lesson",
+      "claseTexto": "Mornings, in small groups, at a local school with Costa Rican teachers. The Spanish they teach is the one you will hear the moment you step outside, not the textbook one.",
+      "hospedajeTitulo": "The lodging",
+      "hospedajeTexto": "The school sorts it, so you are not hunting for a place yourself or landing somewhere without knowing where you sleep. It is part of the immersion too: Spanish keeps going outside the classroom.",
+      "viajeTitulo": "The trip",
+      "viajeTexto": "Afternoons and weekends are the country: the national park, the soda, the bus, the corner shop. That is where the morning's vocabulary turns into something that comes out on its own.",
+      "destinosTitulo": "Choose your destination",
+      "destinosIntro": "Each place has its own school and its own reason to pick it. Pick one and tell us what you are after.",
+      "pendienteTitulo": "What is still being settled",
+      "pendienteTexto": "The destinations below are the ones the client gave as examples and the list is not closed yet; neither are the agreements with each school nor the lodging arrangements. We would rather show it like this than advertise venues and prices that later change."
     },
     "precios": {
       "titulo": "Pricing",

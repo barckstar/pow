@@ -40,7 +40,7 @@ export function PaginaDeSolicitud({
         <FormularioSolicitud lang={lang} t={t} destinoElegido={destino?.id} />
 
         <p className="seccion__enlace-suelto">
-          <Link href={rutas.destinos(lang)} className="seccion__enlace">
+          <Link href={rutas.costaRica(lang)} className="seccion__enlace">
             ← {t.destinos.verTodos}
           </Link>
         </p>

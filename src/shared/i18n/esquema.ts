@@ -36,8 +36,8 @@ export const esquemaDiccionario = z
       .object({
         inicio: z.string().min(1),
         online: z.string().min(1),
-        presencial: z.string().min(1),
-        destinos: z.string().min(1),
+        /** Una sola entrada: `/presencial` y `/destinos` son la misma pagina. */
+        costaRica: z.string().min(1),
         blog: z.string().min(1),
         precios: z.string().min(1),
         comunidad: z.string().min(1),
@@ -215,22 +215,37 @@ export const esquemaDiccionario = z
             paso3Texto: z.string().min(1),
             profesorTitulo: z.string().min(1),
             profesorTexto: z.string().min(1),
+            /* Lo que se practica y en qué situaciones. Las listas viven en
+               `features/online/data/clases.json`; aquí solo los rótulos. */
+            practicaTitulo: z.string().min(1),
+            practicaTexto: z.string().min(1),
+            situacionesTexto: z.string().min(1),
+            medidaTitulo: z.string().min(1),
+            medidaTexto: z.string().min(1),
+            medidaCierre: z.string().min(1),
+            /** Enlace al artículo del cliente sobre esto mismo. */
+            leerArticulo: z.string().min(1),
           })
           .strict(),
-        presencial: z
+        costaRica: z
           .object({
             hero: esquemaHeroPagina,
-            titulo: z.string().min(1),
-            intro: z.string().min(1),
-            texto: z.string().min(1),
-            /** Dónde se dan. Es el dato que el cliente no ha confirmado, así
-                que la sección existe para DECIR que no está confirmado. */
-            dondeTitulo: z.string().min(1),
-            dondeTexto: z.string().min(1),
+            /** Las tres patas de la oferta. */
+            comoTitulo: z.string().min(1),
+            comoIntro: z.string().min(1),
+            claseTitulo: z.string().min(1),
+            claseTexto: z.string().min(1),
+            hospedajeTitulo: z.string().min(1),
+            hospedajeTexto: z.string().min(1),
+            viajeTitulo: z.string().min(1),
+            viajeTexto: z.string().min(1),
+            /** La sección de los destinos, dentro de esta misma página. */
+            destinosTitulo: z.string().min(1),
+            destinosIntro: z.string().min(1),
+            /** Lo que todavía no está cerrado: la lista y las escuelas. */
+            pendienteTitulo: z.string().min(1),
+            pendienteTexto: z.string().min(1),
           })
-          .strict(),
-        destinos: z
-          .object({ titulo: z.string().min(1), intro: z.string().min(1) })
           .strict(),
         solicitud: z
           .object({

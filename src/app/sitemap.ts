@@ -18,8 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const rutasFijas: ((l: Idioma) => string)[] = [
     rutas.inicio,
     rutas.online,
-    rutas.presencial,
-    rutas.destinos,
+    rutas.costaRica,
     rutas.blog,
     rutas.precios,
     rutas.comunidad,
