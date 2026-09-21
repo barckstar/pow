@@ -19,7 +19,7 @@ Un hueco visible se arregla. Uno invisible se publica.
 | **Correo y teléfono** de contacto | `CONTACTO` en `sitio.ts` | El pie muestra la etiqueta de pendiente |
 | **Redes sociales** del negocio | `REDES` en `sitio.ts` | La barra lateral solo lleva la marca y el botón de compartir; `/comunidad` lo dice |
 | **Dominio** | `URL_BASE` en `sitio.ts` | Provisional. Afecta a canónicas, `og:url` y sitemap |
-| **Sedes presenciales** confirmadas | `src/features/destinos/data/destinos.json` | Las dos tarjetas llevan `"disponible": false` y lo indican |
+| **Dónde se dan las clases en persona** | `paginas.presencial.dondeTexto` en los diccionarios | `/presencial` vende el modo —cara a cara— y dice que el lugar está por decidir, con la etiqueta amarilla. **Este es el dato que bloquea esa vía entera** |
 | **Reseñas de estudiantes** | sin sección todavía | No hay sección de reseñas. **Se transcriben de fuentes reales, no se inventan** |
 
 ## 2. Credenciales
@@ -38,6 +38,14 @@ Un hueco visible se arregla. Uno invisible se publica.
   ejemplo** escritos sobre hechos verificables del español costarricense
   («pura vida» y el voseo). Todo lo que sea experiencia personal del profesor
   o de sus estudiantes **lo escribe él**.
+  La portada de un artículo es **opcional a propósito**: obligar a buscar una
+  imagen con licencia para cada texto es la forma segura de que el profesor
+  deje de escribir. Cuando falta, la tarjeta pinta un panel de la paleta del
+  mismo alto, así la rejilla no se descuadra.
+- **Anunciantes de los lugares**: la sección `/destinos` está preparada para
+  vender espacio a hoteles y operadores. Hoy las cinco fichas son contenido
+  propio (`"patrocinado": false`). El aviso visible ya está hecho y con
+  estilo; falta el primer anunciante.
 - **Audio de los tiquismos**: el componente los contempla; faltan las
   grabaciones del profesor.
 - **Logo en alta resolución**: el perezoso actual está recortado del concept
@@ -85,7 +93,6 @@ Es una decisión de diseño, no una optimización. Queda para el usuario.
   precios, comunidad, reservar, créditos y 404.
 - Blog en Markdown con frontmatter validado, RSS por idioma, filtrado por
   etiqueta y `hreflang` recíproco solo donde la traducción existe.
-- Navbar de tres estados con CLS 0, verificado en el navegador.
 - Conversión de husos horarios Suiza↔Costa Rica con tests del cambio de
   horario de verano.
 - Puerto de calendario con adaptador local funcionando y remoto contratado.
@@ -95,6 +102,13 @@ Es una decisión de diseño, no una optimización. Queda para el usuario.
 - Preguntas frecuentes con `<details>` nativos y JSON-LD de `FAQPage`.
   Las cuatro preguntas cuya respuesta depende de un dato sin confirmar se
   muestran con la etiqueta de pendiente y **quedan fuera del JSON-LD**.
-- Olas animadas cerrando el hero, en bucle sin costura y solo con
+- Olas animadas cerrando el hero de la portada, en bucle sin costura y solo con
   `transform`.
-- 63 tests en verde.
+- Navbar de una sola altura, sin zoom, con CLS 0 por construcción.
+- Heroes con fotografía en `/online` (lapa roja) y `/presencial` (una calle de
+  San José).
+- Trece adornos tropicales propios repartidos por secciones, apagados en móvil.
+- `/destinos` convertida en cinco fichas de lugares, con el hueco legal para
+  anuncios pagados ya hecho y verificado por esquema.
+- Barra de scroll con los colores de la paleta.
+- 63 tests en verde y 20 pares de contraste verificados en AA.

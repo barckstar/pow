@@ -19,7 +19,12 @@ Dos líneas:
 | Línea | Dónde | Quién |
 |---|---|---|
 | Online | remoto, desde Suiza | el profesor |
-| Presencial | Manuel Antonio y La Fortuna | por confirmar |
+| En persona | **sin decidir** — se anuncia el modo, no el sitio | el profesor |
+
+La vía presencial **ya no se anuncia como «en Costa Rica»**. Vende el modo
+—cara a cara— y el lugar sale con su etiqueta de pendiente, en la página y en
+los metadatos. Manuel Antonio y La Fortuna siguen en el sitio, pero en
+`/destinos`, como fichas turísticas que no prometen ninguna clase.
 
 **Fuera de alcance:** Colombia, México, El Salvador y España (estaban en el
 concept board original, sin datos reales detrás). La app móvil. El LMS.
@@ -45,7 +50,12 @@ src/
   app/[lang]/…                rutas
   app/api/paypal/…            rutas de servidor
   features/{landing,tiquismos,faq,blog,destinos,reservas,pagos}/
-  shared/{components,i18n,config,lib,data}/
+  shared/components/ui/
+    Olas.tsx                olas del hero de la PORTADA, y solo de ahí
+    HeroPagina.tsx          hero compartido de /online y /presencial
+    Decorados.tsx           13 dibujos tropicales en SVG, propios
+    DecoradosSeccion.tsx    una receta de adornos por sección
+  shared/{i18n,config,lib,data}/
 ```
 
 ## Decisiones que conviene no deshacer
@@ -65,20 +75,66 @@ Los colores del concept board (`#FB6D3A`, `#5CC3C6`, `#F4B641`, `#FFBEA3`)
 
 `npm run verify` recalcula los pares y falla si alguno baja de 4.5:1.
 
-### Navbar — tres estados
+### Navbar — una sola altura
 
-Alto de dos filas en el tope, compacto de una fila al salir, oculto al bajar.
-Umbral de 6 px, se oculta solo pasados 150 px, nunca con el menú móvil
-abierto, listener `{ passive: true }`.
+Alto fijo (`--nav-h`), **sin zoom**. Lo único que hace al hacer scroll es
+esconderse al bajar y volver al subir: umbral de 6 px, se oculta solo pasados
+150 px, nunca con el menú móvil abierto, listener `{ passive: true }`.
+
+Tuvo tres estados —alto de dos filas en el tope, compacto al salir, oculto al
+bajar— y **se quitaron por petición del cliente**. Quitar solo el `scale(1.3)`
+del logo no bastó: el zoom que se veía era la barra entera cambiando de tamaño.
+
+Se conservan dos cosas del diseño anterior, porque no cuestan movimiento:
+esconderse al bajar, y el fondo sólido en el tope frente a translúcido con
+desenfoque al salir (cambio de color, no de geometría).
+
+El `padding-top` del `<body>` es exactamente `--nav-h`, así que el CLS es 0 por
+construcción y no por haber cuadrado dos números.
 
 **No usar variables CSS dentro de un `transform` con transición.** Una
 propiedad personalizada sin registrar con `@property` no vuelve a disparar el
 `transform` cuando solo cambia la variable: se queda congelado en el último
-valor resuelto. Los dos estados van con valores literales.
+valor resuelto. Ya no aplica a ningún estado del navbar, pero la trampa sigue
+ahí para quien anime otra cosa.
 
-El header mide siempre la altura alta y lo que cambia de tamaño es un panel de
-fondo que se escala. El `padding-top` del `<body>` es fijo e igual a la altura
-compacta, así el CLS es 0 en los tres estados.
+### Olas — solo en la portada
+
+Cierran el hero de `/` y se funden con la franja teal que viene debajo. Se
+probaron en `/online` y `/presencial` y **se quitaron**: una firma que aparece
+en todas partes deja de ser una firma.
+
+La geometría está copiada de `D:\ticoshot`, que la tiene resuelta. Dos cosas se
+habían desviado y producían una franja sucia sobre la fotografía:
+
+- **Opacidad de las capas de atrás.** Al 0,38 no se ve una ola, se ve la selva
+  de la foto a través de la ola. Van al 0,55 y 0,7, como ticoshot.
+- **Amplitud de la onda.** Había quedado en el 27 % del lienzo; una curva así,
+  estirada a lo ancho de la pantalla, es una recta horizontal, que es el peor
+  caso para el antialiasing. Es del 36 %, como ticoshot.
+
+Lo que **no** se copia es la velocidad: allí 17 s, aquí 34, porque el cliente
+pidió bajarles el movimiento.
+
+El cuerpo del path baja más abajo que el `viewBox` a propósito: así el borde
+inferior es un corte duro y no una fila de píxeles semitransparentes por la que
+se cuela la foto. Y `.confianza` sube 1 px (`margin-top: -1px`) para tapar la
+juntura fraccionaria que deja la altura del hero en `dvh`.
+
+### Adornos tropicales
+
+Trece dibujos SVG **propios** —lapa roja, tucán, volcán, rueda de carreta,
+rama de café, monstera, palmera, hibisco, mariposa, ola, sol, hoja de palma,
+estrella— repartidos por las secciones con una receta por sección en
+`DecoradosSeccion.tsx`. Ninguna receta pasa de cinco piezas.
+
+Son propios y no un paquete descargado porque casi todas las licencias
+gratuitas de iconos exigen atribución visible. Ver
+[`docs/imagenes.md`](docs/imagenes.md).
+
+**En móvil la capa entera se apaga** (`@media (min-width: 1024px)`). El hueco
+que rellenan solo existe cuando la ventana es más ancha que la columna de
+contenido; en un teléfono no rellenan nada, se meten detrás del texto.
 
 ### i18n
 
@@ -89,7 +145,15 @@ en el navegador.
 
 ### Contenido en JSON
 
-Tiquismos, preguntas frecuentes, destinos y créditos de fotos viven en `.json` validado al importar.
+Tiquismos, preguntas frecuentes, lugares y créditos de fotos viven en `.json`
+validado al importar.
+
+`destinos.json` **ya no son sedes de clase**: son fichas de lugares turísticos.
+El esquema contempla ya los anuncios pagados con un `.refine()` que hace
+imposible guardar un anuncio sin anunciante o un anunciante sin marcar el
+anuncio — el aviso de publicidad es obligación legal, no cortesía, y no se
+puede añadir «después».
+
 El parseo corre durante el build: un dato malo rompe la compilación en vez de
 aparecer vacío en el teléfono del cliente.
 
@@ -125,6 +189,18 @@ en los dos sitios lo duplicaba.
 
 `scripts/verificar-metadatos.mjs` corre en `postbuild` sobre el HTML generado
 y **rompe el build** si algo falta.
+
+### Imágenes
+
+Las nueve fotografías vienen de **Unsplash** (licencia de uso comercial, sin
+atribución obligatoria; se registra igual). Cada una se verifica dos veces:
+que sea el sitio que dice ser, y que aguante el recorte de `object-fit: cover`.
+
+⚠️ La búsqueda de Unsplash mezcla fotos gratuitas con las de **Unsplash+**, que
+son de pago. Se distinguen por el autor: «Unsplash+ Community», usuario `plus`.
+
+Todo el detalle, incluido por qué no se generan imágenes con IA, en
+[`docs/imagenes.md`](docs/imagenes.md).
 
 ## Comandos
 
