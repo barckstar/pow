@@ -316,14 +316,50 @@ node scripts/descargar-fotos.mjs    # fotos de Unsplash + créditos
 
 Medido sobre el build de producción (`next start`), mediana de tres corridas.
 
+**Portada** (`/es`):
+
 | | Rendimiento | Accesibilidad | Prácticas | SEO | CLS |
 |---|---|---|---|---|---|
 | Escritorio | **99** | **100** | **100** | **100** | 0 |
 | Móvil | **86** | **100** | **100** | **100** | 0 |
 
-**El rendimiento en móvil no llega al estándar de 95.** El techo es el LCP
-(~3,0 s simulados) de la fotografía a pantalla completa del hero. Está medido
-que no es un problema de bytes: reducir la imagen de 30 KB a 16 KB no movió la
-puntuación. Son la latencia y la cadena de dependencias que simula Lighthouse
-en móvil. Subir de 95 exige sacar la foto del camino del LCP, que es una
-decisión de diseño. Ver `PENDIENTE.md`.
+**Reservar** (`/es/reservar`), que es la única página con un embebido de
+terceros:
+
+| | Rendimiento | Accesibilidad | Prácticas | SEO | CLS |
+|---|---|---|---|---|---|
+| Escritorio | **99** | **100** | **78** | **100** | 0,069 |
+| Móvil | **97** | **100** | **79** | **100** | 0 |
+
+**El rendimiento en móvil de la portada no llega al estándar de 95.** El techo
+es el LCP (~3,0 s simulados) de la fotografía a pantalla completa del hero.
+Está medido que no es un problema de bytes: reducir la imagen de 30 KB a 16 KB
+no movió la puntuación. Son la latencia y la cadena de dependencias que simula
+Lighthouse en móvil. Subir de 95 exige sacar la foto del camino del LCP, que es
+una decisión de diseño. Ver `PENDIENTE.md`.
+
+**Las prácticas de `/reservar` no llegan a 95, y no se pueden arreglar con el
+calendario a la vista.** Lo que falla es un solo control, `third-party-cookies`
+(peso 5 de los 6 que se pierden): al cargar el widget, Calendly deja cuatro
+cookies de terceros —`__cf_bm` y `_cfuvid` de Cloudflare, `OptanonConsent` de
+OneTrust y `m` de Stripe—. No hay parámetro del embebido que lo evite; es lo
+que es embeber Calendly.
+
+El botón que había antes SÍ lo evitaba, porque nada se cargaba hasta que
+alguien pulsaba, y ese clic hacía además de consentimiento. El cliente pidió
+quitarlo. Es su decisión y el resto del sitio —las otras 39 páginas— sigue en
+100. Lo que queda anotado es la consecuencia, que además de puntuación es de
+privacidad: **ahora esas cookies se dejan al bajar hasta el calendario, sin que
+nadie haya consentido nada.** Con alumnos en Europa o en Suiza eso hay que
+resolverlo antes de publicar, y la salida no es esconder el banner de Calendly.
+Está en `PENDIENTE.md`.
+
+**El CLS de 0,069 en escritorio lo produce `data-resize`.** Calendly mide su
+contenido y ajusta la caja —de los 46 rem reservados a los ~41 que necesita— y
+eso mueve lo que hay debajo. Se probó quitar el atributo: el CLS se va a 0 y a
+cambio el `iframe` se queda la rueda del ratón, así que quien baja por la
+página con el cursor encima del calendario deja de bajar por la página. Peor
+negocio. Se podría afinar reservando exactamente el alto en el que se queda,
+pero ese número cambia con la descripción del evento y con la cuenta —y la
+cuenta va a cambiar—, así que sería cuadrar dos números que se descuadran
+solos. 0,069 está dentro del «bueno» de Google, que es 0,1.

@@ -225,6 +225,23 @@ export function Calendly({
         La `key` lo remonta al cambiar de duración: sin ella React reutilizaría
         el nodo, Calendly ya lo habría inicializado con la URL anterior y el
         calendario no cambiaría.
+
+        ============ `data-resize` SE QUEDA, Y POR QUÉ ============
+        Se probó quitarlo. Sin él, el `iframe` ocupa la caja fija y SE
+        DESPLAZA POR DENTRO: quien baja por la página con el cursor encima
+        del calendario deja de bajar por la página y se pone a recorrer el
+        calendario. En una caja de 46 rem, en la página que cierra la venta,
+        eso es peor que cualquier puntuación.
+
+        Con él, Calendly mide su contenido y ajusta la caja. El precio es un
+        salto de maquetación al cargar —0,069 de CLS— y el precio se paga
+        donde toca: reservando de entrada el alto en el que el widget se
+        queda, para que el ajuste no mueva nada. Los números están en
+        `globals.css` y están MEDIDOS, no estimados.
+
+        Los cambios de alto al elegir un día no cuentan: un salto a menos de
+        500 ms de una interacción está excluido del CLS por definición.
+        ===========================================================
       */}
       <div
         key={elegida.id}
@@ -236,6 +253,14 @@ export function Calendly({
         }
         data-url={cargar ? conColores(elegida.calendly) : undefined}
         data-resize="true"
+        /*
+         * `role="region"` no es decoración: `aria-label` sobre un `<div>` sin
+         * rol es un atributo PROHIBIDO por ARIA —lo marca axe con
+         * `aria-prohibited-attr`— y los lectores de pantalla sencillamente
+         * ignoran la etiqueta. Con el rol, el hueco es una zona con nombre a
+         * la que se puede saltar, que es justo lo que es.
+         */
+        role="region"
         aria-label={`${titulo}: ${elegida.etiqueta[lang]}`}
       />
 

@@ -14,7 +14,8 @@ Un hueco visible se arregla. Uno invisible se publica.
 |---|---|---|
 | **Precios** de las clases online y presenciales | `src/features/precios/` | `/precios` muestra el aviso en vez de una tabla |
 | **Enlaces de Calendly del negocio** | `src/features/reservas/data/clases.json` | Hoy hay UNO y apunta a una cuenta de prueba personal. Antes de publicar tiene que apuntar a la cuenta **del cliente**, la que tiene el plan de pago. **Si no, las reservas caen en el calendario de otra persona** |
-| **Qué duraciones se ofrecen** | el mismo archivo | Se habló de 1 h, 2 h y 5 h. Cada una es un tipo de evento en Calendly con su enlace; la página ya enseña el selector en cuanto haya más de una |
+| **Qué duraciones se ofrecen** | el mismo archivo | Hoy hay una, de **60 min**, leída del propio widget. Se habló de 1 h, 2 h y 5 h: cada una es un tipo de evento en Calendly con su enlace, y la página enseña el selector sola en cuanto haya más de una |
+| **Consentimiento de cookies** | `features/reservas/components/Calendly.tsx` | Al quitar el botón, el widget carga al bajar hasta él y Calendly deja cuatro cookies de terceros **sin que nadie haya consentido**. Con alumnos en Europa o Suiza hay que poner una puerta antes de publicar. Cuesta 22 puntos de «Prácticas» en `/reservar`, pero lo que importa es lo otro |
 | **Monto del depósito** de reserva | `DEPOSITO` en `sitio.ts`, y en Calendly | `/precios` no enseña cifra. Va en los dos sitios: Calendly cobra, el sitio lo anuncia |
 | **Nombre, foto y biografía del profesor** | `/online` | La página habla de él en genérico y marca el pendiente |
 | **Correo y teléfono** de contacto | `CONTACTO` en `sitio.ts` | El pie muestra la etiqueta de pendiente |
