@@ -64,23 +64,34 @@ export default async function PaginaReservar({
     <section className="seccion con-adornos">
       <DecoradosSeccion variante="reservar" />
 
-      <div className="seccion__interior seccion__interior--estrecho">
-        <h1 className="seccion__titulo">{r.titulo}</h1>
-        <p className="seccion__intro">{r.intro}</p>
+      {/*
+        La columna ANCHA, no la estrecha.
 
-        <ol className="pasos">
-          {pasos.map((paso, indice) => (
-            <li key={paso.titulo} className="paso">
-              <span className="paso__numero" aria-hidden="true">
-                {indice + 1}
-              </span>
-              <div>
-                <h2 className="paso__titulo">{paso.titulo}</h2>
-                <p>{paso.texto}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        El texto sigue midiendo lo de siempre —lo envuelve `reservar__texto`—
+        pero el calendario necesita sitio: Calendly pone el mes y la lista de
+        horas uno al lado del otro a partir de unos 1000 px, y por debajo los
+        apila y mete su propio scroll dentro de un hueco pequeño. En la columna
+        de 47 rem no cabía y se veía una ventanita con barra de desplazamiento.
+      */}
+      <div className="seccion__interior">
+        <div className="reservar__texto">
+          <h1 className="seccion__titulo">{r.titulo}</h1>
+          <p className="seccion__intro">{r.intro}</p>
+
+          <ol className="pasos">
+            {pasos.map((paso, indice) => (
+              <li key={paso.titulo} className="paso">
+                <span className="paso__numero" aria-hidden="true">
+                  {indice + 1}
+                </span>
+                <div>
+                  <h2 className="paso__titulo">{paso.titulo}</h2>
+                  <p>{paso.texto}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
 
         {/*
           Sin cuenta de Calendly no se pinta un calendario de mentira: se dice
@@ -95,7 +106,7 @@ export default async function PaginaReservar({
             titulo={r.tituloWidget}
           />
         ) : (
-          <div className="aviso-pendiente">
+          <div className="aviso-pendiente reservar__texto">
             <p className="aviso-pendiente__titulo">
               <span className="pendiente">{t.pendiente.etiqueta}</span>
               <span>{r.pendienteTitulo}</span>
@@ -104,7 +115,7 @@ export default async function PaginaReservar({
           </div>
         )}
 
-        <p className="dato-zona">
+        <p className="dato-zona reservar__texto">
           <strong>{r.zonaHoraria}:</strong> {ZONA_PROFESOR.replace(/_/g, " ")}
         </p>
       </div>

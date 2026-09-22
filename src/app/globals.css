@@ -645,19 +645,70 @@ p {
   color: color-mix(in srgb, var(--color-tinta) 74%, transparent);
 }
 
+/* La columna de lectura dentro de la sección ancha de `/reservar`. El texto
+   mide lo de siempre; el calendario, no. */
+.reservar__texto {
+  max-width: 47rem;
+}
+
 /*
  * El hueco del widget.
  *
- * El alto mínimo va aquí y no lo pone Calendly: su iframe no tiene altura
- * propia hasta que carga, y sin reservar el espacio la página pega un salto
- * justo cuando aparece. Eso es CLS, que en este sitio está en 0 y conviene que
- * siga.
+ * ============ ANCHO Y ALTO, LOS DOS A MANO ============
+ * Calendly no se adapta como una imagen: dentro de su iframe hay una maqueta
+ * con dos puntos de corte propios, y si el hueco se queda corto no encoge, se
+ * APILA y saca su propia barra de desplazamiento. El resultado es una
+ * ventanita con scroll dentro de la página, que es como se veía en la primera
+ * prueba.
+ *
+ * ANCHO: necesita del orden de 1000 px para poner el mes y la lista de horas
+ * uno al lado del otro. Por eso esta página usa la columna de 80 rem y no la
+ * de lectura, y el widget la ocupa entera.
+ *
+ * ALTO: es `height` y no `min-height`. Su script fija una altura en línea al
+ * inicializarse y `min-height` no siempre le gana; con `height` el hueco está
+ * decidido desde el primer pintado, que además es lo que mantiene el CLS en 0
+ * — sin reserva de espacio, la página pega un salto cuando el iframe aparece.
+ *
+ * El alto de móvil es MAYOR, que es lo contrario de lo que pide el instinto:
+ * ahí Calendly apila calendario y horas en vertical, así que necesita más
+ * tirada, no menos. Los 700 px de escritorio son los que recomienda su propia
+ * documentación de incrustación.
+ * ======================================================
+ */
+/*
+ * ============ EN MÓVIL SALE A SANGRE, Y NO ES ESTÉTICA ============
+ * Calendly pide 320 px de ancho mínimo. Poniéndolo como `min-width` el widget
+ * deja de encoger y empuja: medido a 340 px de ventana, la página pasaba a
+ * medir 345 y aparecía scroll horizontal en todo el sitio. Un calendario
+ * apretado es feo; una página que se mueve de lado está rota.
+ *
+ * La salida no es forzar el ancho: es DEVOLVERLE el que la sección le quita.
+ * Los márgenes negativos cancelan el relleno de 1,5 rem de `.seccion`, así que
+ * el widget ocupa la ventana entera. A 340 px eso son 340 para él en vez de
+ * 292 — por encima del mínimo de Calendly y sin empujar nada.
+ *
+ * Y sin redondeo ahí: una esquina redonda pegada al borde de la pantalla se
+ * lee como un fallo, no como un detalle.
+ * ==================================================================
  */
 .calendly__widget {
-  min-height: 42rem;
+  width: calc(100% + 3rem);
+  margin-inline: -1.5rem;
+  /* Móvil: Calendly apila calendario y horas, así que necesita más tirada. */
+  height: 62rem;
   margin-top: 2rem;
-  border-radius: 1.25rem;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .calendly__widget {
+    width: 100%;
+    margin-inline: 0;
+    /* Los 700 px que recomienda la documentación de Calendly. */
+    height: 46rem;
+    border-radius: 1.25rem;
+  }
 }
 
 .calendly__widget:focus-visible {
