@@ -314,9 +314,24 @@ van en dos idiomas, y el contenido bilingüe de este sitio va en `.json`
 validado. `ZONA_PROFESOR` sí se queda en `sitio.ts` — no es contenido, no se
 traduce, y lo usan también `/reservar` y la cuenta de horarios.
 
-El marco del retrato reserva su tamaño **haya foto o no** (4:5, 12 rem), así
-que el día que llegue el archivo no se mueve nada y el CLS sigue en 0. Va
-retrato: una apaisada se recorta por los lados.
+**El retrato va a sangre**, no dentro de un marco con aire alrededor: ocupa el
+borde de la ficha —en escritorio la columna izquierda entera, de arriba abajo;
+en móvil una banda a lo ancho— y se funde con la crema con un degradado que se
+come **el último 5 %** y nada más. Es el mismo gesto que los velos del hero, y
+el 5 % no es capricho: un degradado largo sobre un retrato apaga la cara.
+
+Dos detalles que no se ven pero sostienen eso:
+
+- El degradado sale de `color-mix(… var(--color-crema) 0%, transparent)` y no
+  de `transparent` a secas. `transparent` es negro con alfa 0, y varios
+  navegadores interpolan hacia él: el degradado sale con un halo gris antes de
+  llegar a la crema.
+- El hueco reserva su tamaño **haya foto o no**, así que el día que llegue un
+  archivo nuevo no se mueve nada y el CLS sigue en 0.
+
+Conviene un **retrato con la cara en el tercio de arriba**: el recorte es
+`cover` anclado al 18 % de altura, o sea que lo que se pierde es lo de abajo.
+Con `50% 50%` una caja apaisada le corta la frente a la gente.
 
 ⚠️ La etiqueta de la zona horaria decía **«Tu zona horaria»** y enseñaba la del
 profesor — o sea, le decía a cada visitante que vivía en Zúrich. Dice «Zona
@@ -339,6 +354,10 @@ y **rompe el build** si algo falta.
 Siete fotografías vienen de **Unsplash** (licencia de uso comercial, sin
 atribución obligatoria; se registra igual). Cada una se verifica dos veces:
 que sea el sitio que dice ser, y que aguante el recorte de `object-fit: cover`.
+
+**El retrato de Chris** lo dio él mismo para esta web, así que lleva
+`"permisoConfirmado": true` en `creditos-cedidas.json` — es su cara, su foto y
+su negocio. Es el único de ese archivo que está en `true`.
 
 ⚠️ **Las cinco fotos de clase NO son de Unsplash.** Las entregó el cliente,
 salen de las webs de las escuelas socias y llevan personas reconocibles.

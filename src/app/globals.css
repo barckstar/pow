@@ -1059,40 +1059,87 @@ p {
 .profesor {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  /*
+   * `stretch` y no `flex-start`.
+   *
+   * Es lo que hace que el retrato mida lo que mide la ficha en vez de lo que
+   * mide la foto: la columna de la izquierda crece con el texto de la
+   * derecha, y la unión no deja nunca una esquina de crema colgando bajo la
+   * imagen.
+   */
+  align-items: stretch;
+  /*
+   * Sin relleno y recortando.
+   *
+   * La foto va A SANGRE: pegada al borde de la ficha, sin marco ni aire
+   * alrededor. El relleno lo lleva ahora el cuerpo, que es el único que lo
+   * necesita. Y `overflow: hidden` es lo que hace que la imagen herede las
+   * esquinas redondeadas de la ficha en vez de salirse por ellas.
+   */
+  padding: 0;
+  overflow: hidden;
   background-color: var(--color-crema);
   color: var(--color-tinta);
   border-radius: 1.5rem;
-  /*
-   * La sombra tira a teal oscuro y no a negro: una sombra negra sobre un
-   * fondo de color se ve sucia, como si la ficha estuviera despegada de otra
-   * página.
-   */
   box-shadow: 0 1.25rem 2.5rem -1.25rem rgba(6, 42, 46, 0.55);
 }
 
 /*
- * El marco reserva su tamaño HAYA FOTO O NO.
+ * ============ EL RETRATO, A SANGRE ============
+ * En móvil ocupa el ancho entero de la ficha y una altura fija; en escritorio
+ * es la columna de la izquierda y crece hasta donde llegue la ficha.
  *
- * Es lo que hace que el día que entre el archivo no se mueva nada de sitio —
- * el CLS de este sitio es 0 por construcción, y un hueco que aparece de
- * repente lo rompería. El 4:5 es retrato: una foto apaisada se recorta por
- * los lados, y eso está dicho en el esquema junto al dato.
+ * El marco existe HAYA FOTO O NO: mientras `foto` sea `null` pinta el aviso
+ * de pendiente en el mismo sitio y con el mismo tamaño, así que el día que
+ * entre el archivo no se mueve nada y el CLS sigue en 0.
+ * ==============================================
  */
 .profesor__retrato {
   position: relative;
   flex: none;
-  width: 12rem;
-  aspect-ratio: 4 / 5;
-  border-radius: 1rem;
-  overflow: hidden;
+  width: 100%;
+  height: 20rem;
   background-color: color-mix(in srgb, var(--color-teal) 7%, var(--color-crema));
 }
 
 .profesor__foto {
   object-fit: cover;
+  /*
+   * El encuadre manda arriba.
+   *
+   * Un retrato recortado por el centro le corta la frente a la gente en
+   * cuanto la caja se hace apaisada. Con `top` el recorte se come lo de
+   * abajo, que en una foto de medio cuerpo es lo prescindible.
+   */
+  object-position: 50% 18%;
+}
+
+/*
+ * ============ EL DEGRADADO DE LA UNIÓN ============
+ * El mismo gesto que los velos del hero: la foto no termina en un canto, se
+ * funde con la crema de la ficha.
+ *
+ * Y se come **el 5 %**, que es lo que se pidió y además es lo que conviene:
+ * un degradado largo sobre un retrato apaga la cara. Empieza a los 95 % de la
+ * imagen, así que el 95 % de la foto se ve intacta.
+ *
+ * `transparent` no sirve aquí: en varios navegadores interpola hacia el negro
+ * transparente y el degradado sale con un halo gris antes de llegar a la
+ * crema. Hay que salir del MISMO color con alfa 0 — de ahí el `color-mix`
+ * contra `transparent`, que es la forma de escribir «crema al 0 %» sin
+ * repetir el hex a mano.
+ * ==================================================
+ */
+.profesor__retrato::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-crema) 0%, transparent) 95%,
+    var(--color-crema) 100%
+  );
 }
 
 .profesor__hueco {
@@ -1107,14 +1154,13 @@ p {
   text-align: center;
   font-size: 0.85rem;
   color: color-mix(in srgb, var(--color-tinta) 70%, var(--color-crema));
-  border: 1px dashed color-mix(in srgb, var(--color-teal) 30%, transparent);
-  border-radius: 1rem;
 }
 
 .profesor__cuerpo {
-  /* Que no se estrangule contra el retrato en anchos intermedios: por debajo
-     de 15 rem se baja solo. */
+  /* El relleno de la ficha vive aquí ahora: la foto va a sangre y no lo
+     quiere. Por debajo de 15 rem la columna se baja sola. */
   flex: 1 1 15rem;
+  padding: 1.5rem;
 }
 
 /* La línea de encima del nombre. Versalitas y naranja: es una etiqueta, y
@@ -1176,9 +1222,34 @@ p {
     padding: 4.5rem 2rem;
   }
 
-  .profesor {
+  /*
+   * ============ AQUÍ EL RETRATO SE PONE DE PIE ============
+   * En móvil la foto es una banda ancha arriba y se funde por ABAJO. A partir
+   * de aquí cabe al lado, así que pasa a ser la columna de la izquierda, con
+   * el alto de la ficha entera, y se funde por la DERECHA.
+   *
+   * `height: auto` es lo que la suelta de los 20 rem fijos del móvil; a
+   * partir de ahí manda el `align-items: stretch` de la ficha y la foto mide
+   * lo que mida el texto de al lado. `width` en rem y no en porcentaje: con
+   * dos o tres profesores las fichas se estrechan y un porcentaje dejaría un
+   * retrato distinto en cada una.
+   * ========================================================
+   */
+  .profesor__retrato {
+    width: 16rem;
+    height: auto;
+  }
+
+  .profesor__retrato::after {
+    background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-crema) 0%, transparent) 95%,
+      var(--color-crema) 100%
+    );
+  }
+
+  .profesor__cuerpo {
     padding: 2rem;
-    gap: 2rem;
   }
 }
 

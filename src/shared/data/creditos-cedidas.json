@@ -38,5 +38,13 @@
     "licencia": "Permiso pendiente de confirmar",
     "descripcion": "Clase de grupo pequeño en San José, con el profesor señalando una lámina de vocabulario.",
     "permisoConfirmado": false
+  },
+  {
+    "archivo": "/fotos/chris-pow.jpg",
+    "autor": "Chris Pow",
+    "fuente": "Cedida por el cliente",
+    "licencia": "Retrato propio, cedido para esta web",
+    "descripcion": "Chris Pow sonriendo a cámara, con gorra y gafas, sosteniendo en brazos a su perra, una caniche blanca.",
+    "permisoConfirmado": true
   }
 ]

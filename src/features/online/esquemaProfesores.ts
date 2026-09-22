@@ -41,8 +41,11 @@ const esquemaProfesor = z
      * su tamaño en los dos casos, así que el día que entre la foto no se mueve
      * nada — el CLS del sitio es 0 por construcción.
      *
-     * Va **retrato**: el hueco está cortado a 4:5 y una apaisada se recorta
-     * por los lados.
+     * Va **a sangre**: ocupa el borde de la ficha, en escritorio de arriba
+     * abajo y en móvil a lo ancho, y se funde con la crema en el último 5 %.
+     * Conviene un **retrato** con la cara en el tercio de arriba: el recorte
+     * es `cover` anclado al 18 % de altura, así que lo que se pierde es lo de
+     * abajo.
      */
     foto: z.string().startsWith("/").nullable(),
     /** La línea de encima del nombre. Corta: es una etiqueta, no un cargo. */

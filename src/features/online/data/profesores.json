@@ -2,7 +2,7 @@
   {
     "id": "chris-pow",
     "nombre": "Chris Pow",
-    "foto": null,
+    "foto": "/fotos/chris-pow.jpg",
     "papel": {
       "es": "Profesor costarricense",
       "en": "Costa Rican teacher"
@@ -14,15 +14,24 @@
     "datos": [
       {
         "id": "origen",
-        "etiqueta": { "es": "Tico, de Costa Rica", "en": "Tico, from Costa Rica" }
+        "etiqueta": {
+          "es": "Tico, de Costa Rica",
+          "en": "Tico, from Costa Rica"
+        }
       },
       {
         "id": "donde",
-        "etiqueta": { "es": "Da clases desde Suiza", "en": "Teaches from Switzerland" }
+        "etiqueta": {
+          "es": "Da clases desde Suiza",
+          "en": "Teaches from Switzerland"
+        }
       },
       {
         "id": "enfoque",
-        "etiqueta": { "es": "Voseo y modismos", "en": "Voseo and slang" }
+        "etiqueta": {
+          "es": "Voseo y modismos",
+          "en": "Voseo and slang"
+        }
       }
     ]
   }
