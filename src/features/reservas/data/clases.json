@@ -1,12 +1,12 @@
 [
   {
-    "id": "30min",
-    "duracion": 30,
-    "etiqueta": { "es": "Clase suelta", "en": "Single lesson" },
+    "id": "clase",
+    "duracion": 60,
+    "etiqueta": { "es": "Clase de español", "en": "Spanish lesson" },
     "descripcion": {
-      "es": "Para probar cómo es, o para una duda concreta.",
-      "en": "To see what it is like, or for one specific question."
+      "es": "Uno a uno por videollamada, con un profesor costarricense.",
+      "en": "One to one over video, with a Costa Rican teacher."
     },
-    "calendly": "https://calendly.com/leo-cas/new-meeting"
+    "calendly": "https://calendly.com/leo-cas/clases-espanol"
   }
 ]

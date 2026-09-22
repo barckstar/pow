@@ -110,7 +110,6 @@ export default async function PaginaReservar({
             <Calendly
               clases={CLASES}
               lang={idioma}
-              etiquetaBoton={r.abrir}
               avisoTerceros={r.avisoTerceros}
               titulo={r.tituloWidget}
               textoDuracion={r.duracionMin}

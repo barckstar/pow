@@ -210,14 +210,33 @@ visitante llega, ve un calendario y no sabe que va a pagar ahí ni que el enlace
 le llega solo. Diez segundos de lectura que ahorran la pregunta que más se
 responde a mano en un negocio así.
 
-**Carga al hacer clic, no de entrada.** `features/reservas/components/Calendly.tsx`
-pinta un botón propio y no pide un solo byte a Calendly hasta que se pulsa.
-Embebido sin más, su JavaScript de terceros se descarga en toda visita a
-`/reservar` y se come el presupuesto de rendimiento — y en móvil el sitio ya
-está en 86 con un estándar de 95. Es el patrón con el que se incrustan los
-vídeos de YouTube sin hundir la puntuación. De regalo resuelve media cuestión
-de privacidad: si el script no se carga, no hay cookies de terceros que
-consentir, y quien pulsa lee justo encima a dónde van sus datos.
+**Se carga al acercarse a la pantalla, no al pulsar un botón y tampoco de
+entrada.** Hubo un botón —«Ver los horarios libres»— y el cliente lo quitó:
+quiere el calendario a la vista. Tiene razón en lo que importa, un botón entre
+la gente y la reserva es fricción justo donde no conviene.
+
+Pero embeber el widget sin más descarga su JavaScript de terceros en TODA
+visita a `/reservar`, la use quien la use, y se come el presupuesto de
+rendimiento — en móvil el sitio ya está en 86 con un estándar de 95. Así que
+`features/reservas/components/Calendly.tsx` lo carga con un
+`IntersectionObserver` de 400 px de margen: para quien mira, el calendario
+simplemente está ahí; para el navegador, no existe hasta que hace falta. Es el
+patrón con el que se incrustan los vídeos de YouTube sin hundir la puntuación,
+disparado por el scroll en vez de por un clic.
+
+⚠️ **Al depurarlo, ojo con el panel del navegador oculto.** Un documento con
+`visibilityState: "hidden"` no corre el bucle de pintado, y sin bucle de
+pintado el navegador **no entrega las llamadas del `IntersectionObserver`**. El
+widget se queda en su estado de espera y parece roto sin que haya un solo error
+en consola. No lo está: en cuanto la pestaña se ve, dispara. Se comprueba con
+`document.visibilityState` y contando `requestAnimationFrame` — si salen cero
+fotogramas, el problema es el entorno de prueba, no el código.
+
+⚠️ **Los colores de marca del embebido son de plan de pago.**
+`primary_color`, `background_color` y `text_color` van en la URL y la cuenta
+gratuita **los ignora**: el calendario sale con el azul de Calendly. Los
+parámetros se quedan puestos porque en la cuenta del cliente, que sí tiene
+plan, sí aplican.
 
 **Las duraciones viven en `features/reservas/data/clases.json`**, no en una
 variable de entorno. Estuvieron en `NEXT_PUBLIC_CALENDLY_URL` mientras hubo una

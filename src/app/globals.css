@@ -807,6 +807,18 @@ p {
   text-decoration: underline;
 }
 
+/*
+ * El hueco mientras Calendly todavía no ha cargado.
+ *
+ * No se deja en blanco: un rectángulo vacío de 46 rem parece un fallo. Con el
+ * fondo tenue y el borde punteado se lee como «aquí va algo que está
+ * llegando», que es la verdad.
+ */
+.calendly__widget--esperando {
+  background-color: color-mix(in srgb, var(--color-teal) 4%, #ffffff);
+  border: 1px dashed color-mix(in srgb, var(--color-teal) 20%, transparent);
+}
+
 .calendly__widget:focus-visible {
   outline: 2px solid var(--color-naranja);
   outline-offset: 4px;

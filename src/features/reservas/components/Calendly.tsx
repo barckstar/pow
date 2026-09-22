@@ -5,24 +5,28 @@ import type { Clase } from "../esquema";
 import type { Idioma } from "@/shared/i18n/config";
 
 /**
- * El calendario de Calendly, cargado SOLO cuando alguien lo pide.
+ * El calendario de Calendly, cargado cuando el hueco se acerca a la pantalla.
  *
- * ============ POR QUÉ NO VA EMBEBIDO DE ENTRADA ============
- * El widget de Calendly es JavaScript de terceros y pesa. Puesto en la página
- * sin más, se descarga y se ejecuta en TODA visita a `/reservar`, la use quien
- * la use, y se lo come del presupuesto del sitio entero — que en móvil ya está
- * en 86 de rendimiento y el estándar del proyecto es 95.
+ * ============ SIN BOTÓN, PERO TAMPOCO DE ENTRADA ============
+ * Hubo un botón —«Ver los horarios libres»— que cargaba el widget al pulsarlo.
+ * El cliente lo quitó: quiere el calendario a la vista, sin un paso de por
+ * medio. Es su decisión y tiene razón en lo que importa — un botón entre la
+ * gente y la reserva es fricción en el único sitio donde no conviene.
  *
- * Aquí la página pinta un botón propio y no pide nada a Calendly hasta que ese
- * botón se pulsa. Quien solo pasa a mirar no carga un solo byte de terceros;
- * quien va a reservar espera un segundo de más, que es justo cuando no
- * importa. Es el mismo patrón con el que se incrustan los vídeos de YouTube
- * sin hundir la puntuación.
+ * Pero el widget de Calendly es JavaScript de terceros y pesa. Cargándolo al
+ * pintar la página se descarga en TODA visita a `/reservar`, la use quien la
+ * use, y se lo come del presupuesto de rendimiento — que en móvil ya está en
+ * 86 con un estándar de 95.
  *
- * De paso resuelve media cuestión de privacidad: Calendly pone cookies y trata
- * datos personales. Si el script no se carga, no hay nada que consentir; y
- * quien pulsa el botón lee justo encima a dónde van sus datos.
- * ===========================================================
+ * La salida es cargarlo cuando el hueco SE ACERCA A LA PANTALLA, con un
+ * `IntersectionObserver`. Para quien mira, el calendario simplemente está ahí:
+ * no hay que pulsar nada. Para el navegador, no existe hasta que hace falta.
+ * El margen de 400 px hace que empiece a cargar antes de que se vea, así que
+ * cuando llega ya está puesto.
+ *
+ * Es el mismo patrón con el que se incrustan los vídeos de YouTube sin hundir
+ * la puntuación, solo que disparado por el scroll en vez de por un clic.
+ * ============================================================
  */
 
 /** El script oficial del widget. Se carga una vez por navegación. */
@@ -35,6 +39,12 @@ const SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
  * Sin esto el widget entra con el azul de Calendly y se nota que es de otra
  * casa. Son los mismos tokens de la paleta, sin almohadilla porque es como los
  * espera.
+ *
+ * ⚠️ LA CUENTA GRATUITA LOS IGNORA. Personalizar el color del embebido es
+ * función de plan de pago: en la cuenta de pruebas el calendario sale azul
+ * igualmente. Se dejan puestos porque en la cuenta del cliente, que sí tiene
+ * plan, sí aplican — y porque quitarlos ahora obligaría a acordarse de volver
+ * a ponerlos el día del cambio de cuenta.
  *
  * ============ EL PANEL DE DETALLES SE QUEDA ============
  * Se probó `hide_event_type_details=1`, que quita la columna izquierda con el
@@ -85,7 +95,6 @@ function conColores(url: string): string {
 export function Calendly({
   clases,
   lang,
-  etiquetaBoton,
   avisoTerceros,
   titulo,
   textoDuracion,
@@ -94,8 +103,7 @@ export function Calendly({
   /** Las duraciones disponibles, ya ordenadas de menor a mayor. */
   clases: Clase[];
   lang: Idioma;
-  etiquetaBoton: string;
-  /** Lo que se dice ANTES de cargar nada: quién es Calendly y qué recibe. */
+  /** Quién es Calendly y qué recibe. Se lee encima del calendario. */
   avisoTerceros: string;
   /** Para el `aria-label` del hueco donde Calendly monta su iframe. */
   titulo: string;
@@ -108,17 +116,56 @@ export function Calendly({
    * Cuál se está mirando. `null` es «todavía no eligió».
    *
    * Con una sola duración no hay nada que elegir, así que se da por elegida
-   * desde el principio: un selector de un solo botón es un paso de más.
+   * desde el principio y el calendario sale solo.
    */
   const [elegida, setElegida] = useState<Clase | null>(
     clases.length === 1 ? clases[0] : null
   );
-  const [abierto, setAbierto] = useState(false);
-  const [conTeclado, setConTeclado] = useState(false);
-  const contenedor = useRef<HTMLDivElement>(null);
+  const [cargar, setCargar] = useState(false);
+  const hueco = useRef<HTMLDivElement>(null);
+
+  /*
+   * Carga el script cuando el hueco se acerca a la pantalla.
+   *
+   * El observador se desconecta en cuanto dispara: esto pasa una vez por
+   * navegación y no hay razón para seguir escuchando el scroll después.
+   */
+  useEffect(() => {
+    if (cargar || !elegida) return;
+    const nodo = hueco.current;
+    if (!nodo) return;
+
+    /*
+     * Sin soporte —navegadores viejos— se carga sin esperar a nada. Mejor
+     * pagar el peso que dejar a alguien sin calendario.
+     *
+     * Va en un `queueMicrotask` y no a pelo por dos razones que son la misma:
+     * un `setState` síncrono dentro de un efecto pinta el componente dos veces
+     * seguidas —lo marca ESLint con `set-state-in-effect`— y además así este
+     * camino se comporta igual que el otro, donde quien llama a `setCargar` es
+     * también una función diferida, la del observador.
+     */
+    if (typeof IntersectionObserver === "undefined") {
+      queueMicrotask(() => setCargar(true));
+      return;
+    }
+
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        if (entradas.some((e) => e.isIntersecting)) {
+          setCargar(true);
+          observador.disconnect();
+        }
+      },
+      { rootMargin: "400px" }
+    );
+
+    observador.observe(nodo);
+    return () => observador.disconnect();
+  }, [cargar, elegida]);
 
   useEffect(() => {
-    if (!abierto) return;
+    if (!cargar) return;
 
     /*
      * Si el script ya está en la página —porque alguien cambió de duración y
@@ -131,108 +178,22 @@ export function Calendly({
     etiqueta.src = SCRIPT;
     etiqueta.async = true;
     document.body.appendChild(etiqueta);
-  }, [abierto]);
+  }, [cargar]);
 
-  /*
-   * Al abrir con TECLADO, el foco pasa al contenedor.
-   *
-   * Sin esto, quien navega con teclado pulsa el botón, el botón desaparece y
-   * el foco se va al `<body>`: hay que tabular desde el principio de la página
-   * para llegar al calendario que uno mismo acaba de abrir.
-   *
-   * ============ Y SOLO CON TECLADO ============
-   * Moviendo el foco también al hacer clic, Chrome pinta el anillo de
-   * `:focus-visible` alrededor del contenedor — un cerco naranja de 1280 px
-   * rodeando el calendario, que para quien usa ratón es ruido y nada más.
-   *
-   * `event.detail` vale 0 cuando el `click` vino de Enter o Espacio sobre el
-   * botón, y 1 o más cuando vino de un ratón de verdad. Es la forma exacta de
-   * distinguirlos, y no una heurística.
-   * ============================================
-   */
-  useEffect(() => {
-    if (abierto && conTeclado) contenedor.current?.focus();
-  }, [abierto, conTeclado]);
-
-  function abrir(detail: number) {
-    setConTeclado(detail === 0);
-    setAbierto(true);
-  }
-
-  if (abierto && elegida) {
+  /* Con varias duraciones hay que elegir antes: Calendly solo sabe enseñar un
+     tipo de evento por iframe. */
+  if (!elegida) {
     return (
       <div className="calendly">
-        {/*
-          El widget se remonta al cambiar de duración gracias a la `key`.
-          Sin ella React reutilizaría el mismo nodo, Calendly ya lo habría
-          inicializado con la URL anterior y el calendario no cambiaría.
-        */}
-        <div
-          key={elegida.id}
-          ref={contenedor}
-          tabIndex={-1}
-          /*
-           * `data-url` y la clase son el contrato de Calendly: su script busca
-           * los elementos con esta clase y monta el iframe dentro. No se
-           * inventa nada aquí, se sigue su documentación.
-           *
-           * El alto lo reserva el CSS y Calendly lo afina con `data-resize`.
-           * Sin esa reserva la página pega un salto cuando el iframe aparece,
-           * que es CLS — y aquí está en 0.
-           */
-          className="calendly-inline-widget calendly__widget"
-          data-url={conColores(elegida.calendly)}
-          data-resize="true"
-          aria-label={`${titulo}: ${elegida.etiqueta[lang]}`}
-        />
+        <p className="calendly__aviso">{avisoTerceros}</p>
 
-        {clases.length > 1 ? (
-          <button
-            type="button"
-            className="calendly__cambiar"
-            onClick={() => {
-              setAbierto(false);
-              setElegida(null);
-            }}
-          >
-            ← {textoCambiar}
-          </button>
-        ) : null}
-      </div>
-    );
-  }
-
-  return (
-    <div className="calendly">
-      <p className="calendly__aviso">{avisoTerceros}</p>
-
-      {clases.length === 1 ? (
-        <button
-          type="button"
-          className="boton boton--acento"
-          onClick={(evento) => abrir(evento.detail)}
-        >
-          {etiquetaBoton}
-        </button>
-      ) : (
-        /*
-         * Una tarjeta por duración, y cada una abre su propio calendario.
-         *
-         * Se elige ANTES de cargar el widget y no dentro de él por dos razones:
-         * Calendly solo sabe enseñar un tipo de evento por iframe, y así la
-         * comparación entre duraciones se hace en el idioma del sitio y con la
-         * descripción de cada una, que Calendly no tiene.
-         */
         <ul className="duraciones">
           {clases.map((clase) => (
             <li key={clase.id}>
               <button
                 type="button"
                 className="duracion"
-                onClick={(evento) => {
-                  setElegida(clase);
-                  abrir(evento.detail);
-                }}
+                onClick={() => setElegida(clase)}
               >
                 <span className="duracion__tiempo">
                   {clase.duracion} {textoDuracion}
@@ -247,7 +208,49 @@ export function Calendly({
             </li>
           ))}
         </ul>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="calendly">
+      <p className="calendly__aviso">{avisoTerceros}</p>
+
+      {/*
+        El hueco existe SIEMPRE, cargue o no el widget.
+        Es lo que le da al observador algo que vigilar, y lo que reserva el
+        espacio para que la página no pegue un salto cuando el iframe entra
+        — que es CLS, y aquí está en 0.
+
+        La `key` lo remonta al cambiar de duración: sin ella React reutilizaría
+        el nodo, Calendly ya lo habría inicializado con la URL anterior y el
+        calendario no cambiaría.
+      */}
+      <div
+        key={elegida.id}
+        ref={hueco}
+        className={
+          cargar
+            ? "calendly-inline-widget calendly__widget"
+            : "calendly__widget calendly__widget--esperando"
+        }
+        data-url={cargar ? conColores(elegida.calendly) : undefined}
+        data-resize="true"
+        aria-label={`${titulo}: ${elegida.etiqueta[lang]}`}
+      />
+
+      {clases.length > 1 ? (
+        <button
+          type="button"
+          className="calendly__cambiar"
+          onClick={() => {
+            setElegida(null);
+            setCargar(false);
+          }}
+        >
+          ← {textoCambiar}
+        </button>
+      ) : null}
     </div>
   );
 }

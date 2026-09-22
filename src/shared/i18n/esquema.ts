@@ -153,8 +153,6 @@ export const esquemaDiccionario = z
         paso2Texto: z.string().min(1),
         paso3Titulo: z.string().min(1),
         paso3Texto: z.string().min(1),
-        /** El botón que carga el widget cuando solo hay una duración. */
-        abrir: z.string().min(1),
         /** Encabeza el selector cuando hay varias. */
         duracionTitulo: z.string().min(1),
         /** Sufijo de los minutos en cada tarjeta. */
