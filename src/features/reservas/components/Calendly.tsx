@@ -26,6 +26,49 @@ import { useEffect, useRef, useState } from "react";
 /** El script oficial del widget. Se carga una vez por navegación. */
 const SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 
+/**
+ * Los colores de la marca, que Calendly admite por parámetros en la URL.
+ *
+ * Sin esto el widget entra con el azul de Calendly y se nota que es de otra
+ * casa. Son los mismos tokens de la paleta, sin almohadilla porque es como los
+ * espera.
+ *
+ * ============ LO QUE NO SE TOCA ============
+ * Calendly admite también `hide_gdpr_banner=1`. NO se usa: ese banner es el
+ * consentimiento de cookies de un tercero que está tratando datos de quien
+ * reserva. Esconderlo no quita la obligación, solo la prueba de que se
+ * cumplió.
+ * ===========================================
+ */
+const COLORES = {
+  /* El teal del botón primario del sitio. */
+  primary_color: "0f6e78",
+  background_color: "ffffff",
+  text_color: "2a1a12",
+} as const;
+
+/**
+ * Le pega los parámetros de color a la URL.
+ *
+ * Con `URL` y no concatenando a mano: el enlace que pegue el cliente puede
+ * traer ya sus propios parámetros —Calendly los añade en algunos flujos— y
+ * entonces un `?` de más lo rompe. `searchParams.set` resuelve las dos formas
+ * sin pensar.
+ */
+function conColores(url: string): string {
+  try {
+    const conParametros = new URL(url);
+    for (const [clave, valor] of Object.entries(COLORES)) {
+      conParametros.searchParams.set(clave, valor);
+    }
+    return conParametros.toString();
+  } catch {
+    /* Si no es una URL válida no se toca: el guardia de `sitio.ts` ya rompe el
+       build en ese caso, y aquí no toca decidir nada. */
+    return url;
+  }
+}
+
 export function Calendly({
   url,
   etiquetaBoton,
@@ -100,7 +143,7 @@ export function Calendly({
        * — que es CLS, justo lo que el resto del sitio cuida.
        */
       className="calendly-inline-widget calendly__widget"
-      data-url={url}
+      data-url={conColores(url)}
       data-resize="true"
       aria-label={titulo}
     />
