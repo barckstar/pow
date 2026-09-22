@@ -109,6 +109,14 @@ const TINTA_SUAVE = "#6A5F59";
     calendario…» sobre el blanco del esqueleto. */
 const TINTA_ESQUELETO = "#7B716C";
 
+/** `color-mix(in srgb, var(--color-teal) 6%, var(--color-crema))` — el marco
+    del retrato del profesor en `/online` mientras no hay foto. */
+const MARCO_RETRATO = "#F1ECDF";
+
+/** `color-mix(in srgb, var(--color-tinta) 70%, var(--color-crema))` — el
+    «Falta el retrato» dentro de ese marco. */
+const TINTA_SOBRE_MARCO = "#6A5B52";
+
 /**
  * Cada par es una combinación que EXISTE en la interfaz. No se listan colores
  * decorativos: esos nunca llevan texto encima, y esa es justamente la regla
@@ -118,6 +126,7 @@ const PARES = [
   { nombre: "Texto de cuerpo sobre fondo", frente: TINTA, fondo: CREMA, tamano: "normal" },
   { nombre: "Salida a calendly.com sobre fondo", frente: TINTA_SUAVE, fondo: CREMA, tamano: "normal" },
   { nombre: "Estado del esqueleto sobre blanco", frente: TINTA_ESQUELETO, fondo: BLANCO, tamano: "normal" },
+  { nombre: "Retrato pendiente sobre su marco", frente: TINTA_SOBRE_MARCO, fondo: MARCO_RETRATO, tamano: "normal" },
   { nombre: "Enlace / acento sobre fondo", frente: NARANJA, fondo: CREMA, tamano: "normal" },
   { nombre: "Titular teal sobre fondo", frente: TEAL, fondo: CREMA, tamano: "normal" },
   { nombre: "Botón primario (blanco sobre teal)", frente: BLANCO, fondo: TEAL, tamano: "normal" },

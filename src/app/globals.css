@@ -991,6 +991,78 @@ p {
   outline-offset: 4px;
 }
 
+/*
+ * ============ LA FICHA DEL PROFESOR ============
+ * Retrato y nombre juntos en `/online`. Lo que se vende ahí es una persona
+ * —alguien que va a estar una hora al otro lado de la videollamada— y un
+ * nombre sin cara pide un acto de fe que no hace falta pedir.
+ *
+ * En móvil se apila y el retrato va arriba a la izquierda, no centrado: una
+ * columna centrada de una sola foto pequeña se lee como un avatar de perfil,
+ * y esto es una ficha.
+ * ===============================================
+ */
+.profesor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+/*
+ * El marco reserva su tamaño HAYA FOTO O NO.
+ *
+ * Es lo que hace que el día que entre el archivo no se mueva nada de sitio
+ * — el CLS de este sitio es 0 por construcción, y un hueco que aparece de
+ * repente lo rompería. El 4:5 es retrato: si la foto viene apaisada, el
+ * `object-fit: cover` la va a recortar por los lados, y eso está dicho en
+ * `sitio.ts` junto al dato.
+ */
+.profesor__retrato {
+  position: relative;
+  flex: none;
+  width: 11rem;
+  aspect-ratio: 4 / 5;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: color-mix(in srgb, var(--color-teal) 6%, var(--color-crema));
+}
+
+.profesor__foto {
+  object-fit: cover;
+}
+
+/* Lo que se ve mientras no hay retrato. Con el borde punteado de los demás
+   pendientes del sitio, para que se lea igual en todas partes. */
+.profesor__hueco {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--color-tinta) 70%, var(--color-crema));
+  border: 1px dashed color-mix(in srgb, var(--color-teal) 28%, transparent);
+  border-radius: 1rem;
+}
+
+.profesor__texto {
+  /* Que no se estrangule contra el retrato en anchos intermedios. */
+  flex: 1 1 16rem;
+}
+
+.profesor__nombre {
+  margin: 0 0 0.35rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-teal);
+}
+
 /* La etiqueta de pendiente en línea, que usan `/online` y `/costa-rica`. */
 .reserva__aviso {
   margin-top: 1rem;

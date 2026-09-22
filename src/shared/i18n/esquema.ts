@@ -231,6 +231,10 @@ export const esquemaDiccionario = z
             paso3Titulo: z.string().min(1),
             paso3Texto: z.string().min(1),
             profesorTitulo: z.string().min(1),
+            /** El `alt` del retrato. Lleva el nombre dentro a propósito. */
+            profesorFotoAlt: z.string().min(1),
+            /** Lo que dice el hueco mientras no hay retrato. */
+            profesorFotoPendiente: z.string().min(1),
             profesorTexto: z.string().min(1),
             /* Lo que se practica y en qué situaciones. Las listas viven en
                `features/online/data/clases.json`; aquí solo los rótulos. */
