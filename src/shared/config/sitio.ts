@@ -69,12 +69,86 @@ export const DEPOSITO: { monto: number; moneda: string } | null = null;
  * que volver.
  * =======================================================================
  *
- * Mientras sea `null`, `/reservar` explica el proceso y dice que todavía no
- * se puede reservar, en vez de enseñar un calendario que no lleva a ningún
- * sitio. Hace falta la cuenta de Calendly con el plan que cubra cobros e
- * integración con Zoom.
+ * ============ ES UN ENLACE PÚBLICO, NO UN SECRETO ============
+ * Lo que hace falta es la URL del tipo de evento, la misma que se le pasa a un
+ * estudiante por WhatsApp:
+ *
+ *     https://calendly.com/usuario/clase-de-espanol
+ *
+ * NO lleva token. La API de Calendly (`api.calendly.com`, con un Personal
+ * Access Token) sirve para que un servidor lea reservas o registre webhooks, y
+ * este sitio no hace ninguna de las dos cosas. Un token aquí sería un secreto
+ * en un repositorio público sin ninguna función.
+ *
+ * Por eso la variable lleva `NEXT_PUBLIC_`: ese prefijo hace que Next la
+ * incruste en el JavaScript que llega al navegador, y aquí eso es correcto y
+ * no una fuga — la URL acaba en el HTML de todas formas, porque es a donde
+ * apunta el widget. Un secreto de verdad JAMÁS lleva ese prefijo.
+ * =============================================================
+ *
+ * Mientras no esté puesta, `/reservar` explica el proceso y dice que todavía
+ * no se puede reservar, en vez de enseñar un calendario que no lleva a ningún
+ * sitio.
  */
-export const CALENDLY: { url: string } | null = null;
+const URL_CALENDLY = process.env.NEXT_PUBLIC_CALENDLY_URL?.trim();
+
+export const CALENDLY: { url: string } | null = URL_CALENDLY
+  ? { url: URL_CALENDLY }
+  : null;
+
+/*
+ * ============ QUÉ TIENE QUE SER Y QUÉ NO ============
+ * El primer segmento es el usuario y el segundo el tipo de evento. La lista
+ * negra no es paranoia: `calendly.com/event_types/...` es la URL del PANEL de
+ * administración, encaja en el patrón de dos segmentos y es el error más fácil
+ * de cometer, porque es la que uno tiene en la barra mientras configura el
+ * evento. Embebida, carga una pantalla de login.
+ *
+ * La otra confusión típica es pegar el token: Calendly llama «API» tanto a la
+ * clave como a los enlaces en su panel.
+ * ====================================================
+ */
+const ESPERADO = /^https:\/\/calendly\.com\/([\w-]+)\/[\w-]+/;
+
+/** Rutas del propio Calendly que no son de nadie que reserve. */
+const NO_SON_USUARIOS = new Set([
+  "event_types",
+  "app",
+  "api",
+  "login",
+  "signup",
+  "integrations",
+  "users",
+  "settings",
+  "pages",
+]);
+
+/*
+ * La comprobación va en una FUNCIÓN y no suelta con un `if`.
+ *
+ * Suelta no serviría de nada el día que la variable no esté puesta:
+ * TypeScript estrecha `CALENDLY` a `null` en este mismo archivo y el cuerpo
+ * del `if` se vuelve código muerto — ni siquiera compila, porque `.url` no
+ * existe en `never`. Dentro de una función el parámetro lleva su tipo
+ * declarado y no hay estrechamiento que valga.
+ *
+ * Corre al importar, así que un enlace mal pegado rompe el build en vez de
+ * dejar un calendario que no carga.
+ */
+function comprobarCalendly(config: { url: string } | null) {
+  if (!config) return;
+
+  const encaja = ESPERADO.exec(config.url);
+  if (encaja && !NO_SON_USUARIOS.has(encaja[1])) return;
+
+  throw new Error(
+    `NEXT_PUBLIC_CALENDLY_URL no parece un enlace de reserva: "${config.url}". ` +
+      "Tiene que ser la URL pública del tipo de evento, la del botón «Copy link» " +
+      "(https://calendly.com/usuario/evento). No es un token ni la URL del panel."
+  );
+}
+
+comprobarCalendly(CALENDLY);
 
 /**
  * Redes sociales del negocio.

@@ -2,9 +2,19 @@ node_modules/
 .next/
 out/
 build/
+# ── Secretos ───────────────────────────────────────────────────────────────
+# Cualquier variante de .env queda fuera, incluidas las que nadie espera:
+# .env.local, .env.production, .env.local.bak, .env copia... Un secreto se
+# filtra por la variante que no se listó, no por la que sí.
 .env
 .env.*
-!.env.example
+*.env
+# Y la plantilla SÍ sube: se llama `env.example` (sin punto) y no lleva valores.
+!env.example
+
+# Claves sueltas que a veces aparecen al depurar.
+*.pem
+*.key
 .DS_Store
 *.tsbuildinfo
 next-env.d.ts

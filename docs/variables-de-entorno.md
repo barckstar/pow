@@ -1,7 +1,22 @@
 # Variables de entorno
 
-**Hoy no hace falta ninguna.** El sitio compila, corre y se despliega sin un
-solo secreto.
+**Hoy hace falta una, y no es un secreto.** El sitio compila, corre y se
+despliega sin ninguna; con ella, la reserva en línea se enciende.
+
+La plantilla está en [`env.example`](../env.example), en la raíz. Se copia y se
+rellena la copia:
+
+```bash
+cp env.example .env.local
+```
+
+`.env.local` está en el `.gitignore` y no sube nunca. El `.gitignore` cubre
+además `.env.*`, `*.env`, `*.pem` y `*.key`, porque un secreto se filtra por la
+variante que nadie listó.
+
+> Se llama `env.example` sin punto porque el workspace bloquea escribir
+> cualquier archivo que empiece por `.env` — y esa regla es buena: es lo que
+> impide que un valor real se cuele por descuido.
 
 No siempre fue así, y el cambio merece una línea: la reserva llegó a estar
 construida aquí dentro —selector de franjas, rutas de servidor para PayPal y
@@ -16,7 +31,7 @@ No son variables de entorno: son cuentas y ajustes fuera del repositorio.
 
 | Qué | Dónde se configura | Dónde entra en el código |
 |---|---|---|
-| Enlace del calendario | Panel de Calendly | `CALENDLY` en `src/shared/config/sitio.ts` |
+| Enlace del calendario | Panel de Calendly → «Copy link» | `NEXT_PUBLIC_CALENDLY_URL` |
 | Cobro del depósito | Calendly → Payments → PayPal | nada: lo hace Calendly |
 | Enlace de la videollamada | Calendly → Integrations → Zoom | nada: lo hace Calendly |
 | Monto del depósito | Calendly, y además `DEPOSITO` en `sitio.ts` | `/precios`, para enseñarlo |
@@ -25,6 +40,29 @@ El monto aparece **dos veces a propósito**: Calendly es quien cobra, y
 `DEPOSITO` es lo que el sitio le enseña al visitante en `/precios` antes de
 que llegue a reservar. Si se cambia uno hay que cambiar el otro — es el único
 dato duplicado del proyecto y está aquí anotado para que no se olvide.
+
+## Por qué ese `NEXT_PUBLIC_`
+
+Porque el valor **tiene que llegar al navegador**: es la URL a la que apunta el
+widget y acaba en el HTML de todas formas. No hay nada que esconder.
+
+Ese prefijo es también **cómo se filtran las claves en Next**, así que conviene
+tenerlo claro: un secreto de verdad va sin prefijo, se lee solo en el servidor
+y no se toca desde un componente de cliente. Aquí no hay ninguno.
+
+## Si lo pegás mal, rompe el build
+
+`comprobarCalendly()` en `src/shared/config/sitio.ts` valida el enlace al
+importar. Caza los dos errores de verdad:
+
+- **Pegar un token.** Calendly llama «API» tanto a la clave como a los enlaces
+  en su panel, y es la confusión más fácil de tener.
+- **Pegar la URL del panel** (`calendly.com/event_types/…` o
+  `calendly.com/app/…`). Encaja en el patrón de dos segmentos, es la que uno
+  tiene en la barra mientras configura el evento, y embebida carga una pantalla
+  de login.
+
+El mensaje del error dice cuál es la buena.
 
 ## Lo que hace falta de Calendly
 
