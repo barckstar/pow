@@ -697,7 +697,6 @@ p {
   margin-inline: -1.5rem;
   /* Móvil: Calendly apila calendario y horas, así que necesita más tirada. */
   height: 62rem;
-  margin-top: 2rem;
   overflow: hidden;
 }
 
@@ -808,15 +807,183 @@ p {
 }
 
 /*
- * El hueco mientras Calendly todavía no ha cargado.
+ * ============ EL ESQUELETO DEL CALENDARIO ============
+ * Va encima del hueco y se quita cuando Calendly avisa de que ya pintó —no
+ * cuando decidimos cargarlo—. Entre una cosa y la otra hay entre 3 y 6
+ * segundos, y eso es exactamente lo que en producción se veía como un
+ * rectángulo crema vacío del alto de la pantalla.
  *
- * No se deja en blanco: un rectángulo vacío de 46 rem parece un fallo. Con el
- * fondo tenue y el borde punteado se lee como «aquí va algo que está
- * llegando», que es la verdad.
+ * Tiene la FORMA de lo que va a llegar: panel a la izquierda con el nombre y
+ * los datos del evento, rejilla del mes a la derecha. Un esqueleto que no se
+ * parece a nada es un rectángulo gris con pasos de más; este dice «va a
+ * aparecer un calendario» antes de que aparezca, y cuando aparece no hay
+ * sorpresa de maqueta.
+ *
+ * El marco existe solo para que el esqueleto tenga a qué pegarse. Se lleva
+ * también el `margin-top` que antes tenía el widget: con el margen dentro,
+ * `inset: 0` del esqueleto dejaría 2 rem de aire por arriba.
+ * =====================================================
  */
-.calendly__widget--esperando {
-  background-color: color-mix(in srgb, var(--color-teal) 4%, #ffffff);
-  border: 1px dashed color-mix(in srgb, var(--color-teal) 20%, transparent);
+.calendly__marco {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.esqueleto {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* El mismo sangrado negativo del widget en móvil, para que cubra igual. */
+  left: -1.5rem;
+  right: -1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;
+  gap: 1.75rem;
+  padding: 2rem 1.5rem;
+  background-color: #ffffff;
+  overflow: hidden;
+  /* Nunca se come un clic de lo que haya debajo. */
+  pointer-events: none;
+}
+
+.esqueleto__panel,
+.esqueleto__mes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/*
+ * Las barras y los días son el mismo material: un gris muy tenue teñido de
+ * teal, para que el esqueleto pertenezca a esta paleta y no parezca el
+ * cargando de otra web.
+ *
+ * El brillo que lo recorre es un `background-position`, no un elemento que se
+ * mueva: una sola propiedad animada, compuesta por el navegador, y cero
+ * trabajo de maquetación. El bloque global de `prefers-reduced-motion` ya lo
+ * deja quieto para quien pide menos movimiento — sigue siendo un esqueleto,
+ * solo que sin el brillo.
+ */
+.esqueleto__barra,
+.esqueleto__dia {
+  --esq-base: color-mix(in srgb, var(--color-teal) 9%, #ffffff);
+  --esq-brillo: color-mix(in srgb, var(--color-teal) 4%, #ffffff);
+  background-image: linear-gradient(
+    100deg,
+    var(--esq-base) 40%,
+    var(--esq-brillo) 50%,
+    var(--esq-base) 60%
+  );
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  border-radius: 0.4rem;
+  animation: esqueleto-brillo 1.6s linear infinite;
+}
+
+.esqueleto__barra {
+  height: 0.85rem;
+}
+
+.esqueleto__barra--corta {
+  width: 7rem;
+}
+
+.esqueleto__barra--titulo {
+  height: 1.6rem;
+  width: 14rem;
+  border-radius: 0.5rem;
+}
+
+.esqueleto__barra--media {
+  width: 10rem;
+}
+
+.esqueleto__barra--larga {
+  width: 16rem;
+  max-width: 100%;
+}
+
+.esqueleto__barra--mes {
+  width: 9rem;
+  align-self: center;
+}
+
+/* Cierra la columna del mes, como la zona horaria del widget de verdad.
+   `margin-top: auto` la empuja abajo del todo: así el esqueleto ocupa la caja
+   entera en vez de amontonarse arriba y dejar medio rectángulo en blanco. */
+.esqueleto__barra--zona {
+  width: 11rem;
+  align-self: center;
+  margin-top: auto;
+}
+
+.esqueleto__rejilla {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.6rem;
+  max-width: 26rem;
+  width: 100%;
+  align-self: center;
+}
+
+.esqueleto__dia {
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+@keyframes esqueleto-brillo {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .esqueleto {
+    left: 0;
+    right: 0;
+    grid-template-columns: 20rem 1fr;
+    gap: 3rem;
+    padding: 3rem;
+    border-radius: 1.25rem;
+    border: 1px solid color-mix(in srgb, var(--color-teal) 12%, transparent);
+  }
+
+  .esqueleto__mes {
+    gap: 1.5rem;
+  }
+}
+
+/* La línea que lo dice con palabras, para quien no ve el esqueleto. */
+.calendly__estado {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.25rem;
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--color-tinta) 62%, #ffffff);
+  pointer-events: none;
+}
+
+/*
+ * La salida a calendly.com.
+ *
+ * Discreta y siempre puesta. No es un aviso de error —no hay forma honesta de
+ * saber que algo falló sin equivocarse a veces— sino una segunda puerta: útil
+ * si el widget va, imprescindible si no va.
+ */
+.calendly__alternativa {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--color-tinta) 70%, #ffffff);
+}
+
+.calendly__salida {
+  font-weight: 700;
+  color: var(--color-naranja);
 }
 
 .calendly__widget:focus-visible {

@@ -90,7 +90,10 @@
     "depositoTexto": "Se cobra al reservar para apartar la clase. El resto se paga directamente con el profesor.",
     "duracionTitulo": "¿Cuánto querés que dure?",
     "duracionMin": "min",
-    "duracionCambiar": "Cambiar la duración"
+    "duracionCambiar": "Cambiar la duración",
+    "cargando": "Cargando el calendario…",
+    "alternativa": "¿No te carga el calendario?",
+    "alternativaEnlace": "Abrilo directamente en calendly.com"
   },
   "pendiente": {
     "etiqueta": "Pendiente",

@@ -238,6 +238,37 @@ gratuita **los ignora**: el calendario sale con el azul de Calendly. Los
 parámetros se quedan puestos porque en la cuenta del cliente, que sí tiene
 plan, sí aplican.
 
+**Un esqueleto mientras Calendly pinta.** Entre que el observador dispara y
+que el widget aparece pasan segundos, y durante esos segundos el cliente vio
+lo peor posible: un rectángulo crema vacío del alto de la pantalla, que se lee
+como una página rota. Ahora hay un esqueleto con la forma de lo que viene
+—panel a la izquierda, rejilla del mes a la derecha, zona horaria abajo— y la
+línea «Cargando el calendario…».
+
+**La señal de «ya pintó» es `calendly.page_height`**, leída del `widget.js` de
+Calendly. Es el único mensaje que su script escucha y lo manda la página
+incrustada cuando ya midió, o sea cuando hay algo delante de la gente. La
+lógica está en `features/reservas/lib/senal.ts`, con pruebas — incluida la del
+origen, que se compara por IGUALDAD para que `https://calendly.com.otra.cosa`
+no cuele.
+
+Se probaron y se descartaron otras dos, las dos por avisar de lo que no es:
+
+- El `load` del `iframe` dice que el marco cargó, no que dentro haya algo. Con
+  las cookies de terceros bloqueadas llega igual y deja la caja en blanco.
+- La rueda de Calendly —`div.calendly-spinner`— **no la quita nunca**: su
+  `widget.js` tiene un `buildSpinner()` que la crea y nada que la borre. El
+  `iframe` se pinta encima.
+
+**Y no hay tope de tiempo.** Lo hubo, de 20 s, y en una captura de Chrome se
+vio lo que hacía: el esqueleto se iba por el tope y dejaba la caja en blanco,
+el mismo fallo, más tarde. Si `page_height` no llega es que no hay calendario
+debajo, y entonces un esqueleto es más verdad que un hueco vacío. Debajo de la
+caja hay una línea fija con la salida a calendly.com, puesta desde el primer
+momento y no a los quince segundos: para saber que algo falló habría que
+acertar con la señal de que fue bien, y un temporizador que se equivoca en la
+página que cierra la venta no vale lo que promete.
+
 **Las duraciones viven en `features/reservas/data/clases.json`**, no en una
 variable de entorno. Estuvieron en `NEXT_PUBLIC_CALENDLY_URL` mientras hubo una
 sola; con varias dejó de caber, porque cada una lleva enlace, etiqueta y
@@ -328,7 +359,7 @@ terceros:
 
 | | Rendimiento | Accesibilidad | Prácticas | SEO | CLS |
 |---|---|---|---|---|---|
-| Escritorio | **99** | **100** | **78** | **100** | 0,069 |
+| Escritorio | **99** | **100** | **78** | **100** | 0,05 |
 | Móvil | **97** | **100** | **79** | **100** | 0 |
 
 **El rendimiento en móvil de la portada no llega al estándar de 95.** El techo
@@ -354,9 +385,10 @@ nadie haya consentido nada.** Con alumnos en Europa o en Suiza eso hay que
 resolverlo antes de publicar, y la salida no es esconder el banner de Calendly.
 Está en `PENDIENTE.md`.
 
-**El CLS de 0,069 en escritorio lo produce `data-resize`.** Calendly mide su
+**El CLS de 0,05 en escritorio lo produce `data-resize`.** Calendly mide su
 contenido y ajusta la caja —de los 46 rem reservados a los ~41 que necesita— y
-eso mueve lo que hay debajo. Se probó quitar el atributo: el CLS se va a 0 y a
+eso mueve lo que hay debajo —el esqueleto se lo come en parte, de ahí que
+bajara de 0,069 a 0,05—. Se probó quitar el atributo: el CLS se va a 0 y a
 cambio el `iframe` se queda la rueda del ratón, así que quien baja por la
 página con el cursor encima del calendario deja de bajar por la página. Peor
 negocio. Se podría afinar reservando exactamente el alto en el que se queda,

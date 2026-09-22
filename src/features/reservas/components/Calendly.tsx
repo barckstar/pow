@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Clase } from "../esquema";
 import type { Idioma } from "@/shared/i18n/config";
+import { esCalendlyListo } from "../lib/senal";
 
 /**
  * El calendario de Calendly, cargado cuando el hueco se acerca a la pantalla.
@@ -99,6 +100,9 @@ export function Calendly({
   titulo,
   textoDuracion,
   textoCambiar,
+  textoCargando,
+  textoAlternativa,
+  textoAlternativaEnlace,
 }: {
   /** Las duraciones disponibles, ya ordenadas de menor a mayor. */
   clases: Clase[];
@@ -111,6 +115,12 @@ export function Calendly({
   textoDuracion: string;
   /** Para volver al selector cuando hay más de una duración. */
   textoCambiar: string;
+  /** Se lee bajo el esqueleto mientras Calendly pinta. */
+  textoCargando: string;
+  /** La salida a calendly.com, siempre visible bajo la caja. */
+  textoAlternativa: string;
+  /** La etiqueta de ese enlace. */
+  textoAlternativaEnlace: string;
 }) {
   /**
    * Cuál se está mirando. `null` es «todavía no eligió».
@@ -122,6 +132,20 @@ export function Calendly({
     clases.length === 1 ? clases[0] : null
   );
   const [cargar, setCargar] = useState(false);
+  /**
+   * `listo` es que CALENDLY YA PINTÓ, no que nosotros ya decidimos cargarlo.
+   *
+   * Es toda la diferencia, y es el fallo que se vio en producción: el hueco
+   * pasaba a su estado «cargado» en cuanto se disparaba el observador, pero
+   * Calendly todavía tardaba segundos en devolver algo. En esos segundos no
+   * había ni esqueleto ni widget — un rectángulo crema vacío del alto de la
+   * pantalla, que se lee como una página rota.
+   *
+   * Calendly avisa: su `iframe` manda mensajes al padre desde
+   * `https://calendly.com`, y el primero llega cuando el tipo de evento ya
+   * está en pantalla. Hasta ese mensaje, el esqueleto se queda.
+   */
+  const [listo, setListo] = useState(false);
   const hueco = useRef<HTMLDivElement>(null);
 
   /*
@@ -163,6 +187,52 @@ export function Calendly({
     observador.observe(nodo);
     return () => observador.disconnect();
   }, [cargar, elegida]);
+
+  /*
+   * Quita el esqueleto cuando el calendario está de verdad ahí.
+   *
+   * La señal es el mensaje `calendly.page_height`, que manda la página
+   * incrustada cuando ya pintó y sabe cuánto mide. Está leído de su
+   * `widget.js`, y por qué esa y no el `load` del `iframe` ni su rueda está
+   * escrito en `lib/senal.ts`, junto a las pruebas.
+   *
+   * ============ Y NO HAY TOPE DE TIEMPO ============
+   * Lo hubo, de 20 s, por miedo a dejar el esqueleto puesto para siempre
+   * encima de un calendario que funcionara. Se quitó al ver qué hacía: en
+   * una captura de Chrome a los 25 s, el esqueleto se iba por el tope y
+   * dejaba LA CAJA EN BLANCO — el mismo fallo que se estaba arreglando, solo
+   * que más tarde.
+   *
+   * Y el miedo no estaba fundado: `page_height` no es «Calendly va por la
+   * mitad», es «Calendly pintó y mide esto». Si no llega, no hay calendario
+   * debajo, y entonces un esqueleto es más verdad que un rectángulo vacío.
+   * La salida a calendly.com está bajo la caja desde el primer momento, así
+   * que nadie se queda encerrado mirándolo.
+   *
+   * El día que Calendly deje de mandar ese mensaje se notará antes por otro
+   * lado: es el mismo que mueve `data-resize`, así que la caja dejaría de
+   * ajustarse a la vez.
+   * =================================================
+   */
+  useEffect(() => {
+    if (!cargar || listo) return;
+
+    let vivo = true;
+
+    /* Quién decide esto —y por qué el origen se compara por igualdad— está
+       en `lib/senal.ts`, con sus pruebas. */
+    function alMensaje(evento: MessageEvent) {
+      if (!vivo) return;
+      if (esCalendlyListo(evento.origin, evento.data)) setListo(true);
+    }
+
+    window.addEventListener("message", alMensaje);
+
+    return () => {
+      vivo = false;
+      window.removeEventListener("message", alMensaje);
+    };
+  }, [cargar, listo]);
 
   useEffect(() => {
     if (!cargar) return;
@@ -243,26 +313,101 @@ export function Calendly({
         500 ms de una interacción está excluido del CLS por definición.
         ===========================================================
       */}
-      <div
-        key={elegida.id}
-        ref={hueco}
-        className={
-          cargar
-            ? "calendly-inline-widget calendly__widget"
-            : "calendly__widget calendly__widget--esperando"
-        }
-        data-url={cargar ? conColores(elegida.calendly) : undefined}
-        data-resize="true"
-        /*
-         * `role="region"` no es decoración: `aria-label` sobre un `<div>` sin
-         * rol es un atributo PROHIBIDO por ARIA —lo marca axe con
-         * `aria-prohibited-attr`— y los lectores de pantalla sencillamente
-         * ignoran la etiqueta. Con el rol, el hueco es una zona con nombre a
-         * la que se puede saltar, que es justo lo que es.
-         */
-        role="region"
-        aria-label={`${titulo}: ${elegida.etiqueta[lang]}`}
-      />
+      <div className="calendly__marco">
+        <div
+          key={elegida.id}
+          ref={hueco}
+          className={
+            cargar
+              ? "calendly-inline-widget calendly__widget"
+              : "calendly__widget"
+          }
+          data-url={cargar ? conColores(elegida.calendly) : undefined}
+          data-resize="true"
+          /*
+           * `role="region"` no es decoración: `aria-label` sobre un `<div>`
+           * sin rol es un atributo PROHIBIDO por ARIA —lo marca axe con
+           * `aria-prohibited-attr`— y los lectores de pantalla sencillamente
+           * ignoran la etiqueta. Con el rol, el hueco es una zona con nombre
+           * a la que se puede saltar, que es justo lo que es.
+           */
+          role="region"
+          aria-label={`${titulo}: ${elegida.etiqueta[lang]}`}
+        />
+
+        {/*
+          ============ EL ESQUELETO ============
+          Encima del hueco hasta que Calendly pinta, no hasta que decidimos
+          cargarlo. Tiene la forma de lo que va a llegar —panel a la
+          izquierda, rejilla del mes a la derecha— porque un esqueleto que no
+          se parece a nada es un rectángulo gris con más pasos.
+
+          `aria-hidden` porque son cajas vacías: para quien usa un lector de
+          pantalla no hay nada que describir ahí. Lo que sí se anuncia es la
+          línea de estado de debajo, que va con `role="status"` y lo dice con
+          palabras.
+
+          `pointer-events: none` en el CSS: mientras está puesto no debe
+          comerse un clic destinado al calendario que ya haya debajo.
+          ======================================
+        */}
+        {!listo ? (
+          <>
+            <div className="esqueleto" aria-hidden="true">
+              <div className="esqueleto__panel">
+                <span className="esqueleto__barra esqueleto__barra--corta" />
+                <span className="esqueleto__barra esqueleto__barra--titulo" />
+                <span className="esqueleto__barra esqueleto__barra--media" />
+                <span className="esqueleto__barra esqueleto__barra--larga" />
+              </div>
+
+              <div className="esqueleto__mes">
+                <span className="esqueleto__barra esqueleto__barra--mes" />
+                <div className="esqueleto__rejilla">
+                  {Array.from({ length: 35 }, (_, i) => (
+                    <span key={i} className="esqueleto__dia" />
+                  ))}
+                </div>
+
+                {/* La zona horaria, que en el widget real cierra esta
+                    columna. Sin ella el tercio de abajo queda en blanco y el
+                    esqueleto deja de parecerse a lo que viene. */}
+                <span className="esqueleto__barra esqueleto__barra--zona" />
+              </div>
+            </div>
+
+            <p className="calendly__estado" role="status">
+              {textoCargando}
+            </p>
+          </>
+        ) : null}
+      </div>
+
+      {/*
+        ============ LA SALIDA, SIEMPRE PUESTA ============
+        Hubo aquí un aviso de «no cargó» que salía a los 15 segundos. Se quitó
+        antes de llegar a producción: para saber que NO cargó hay que acertar
+        con la señal de que SÍ cargó, y cuando esa señal falla el aviso tapa un
+        calendario que funciona. Un temporizador que se equivoca en la página
+        que cierra la venta no vale lo que promete.
+
+        Esta línea no se equivoca nunca porque no adivina nada. Si el widget
+        va, es una alternativa de más —y hay quien prefiere abrirlo aparte—; si
+        no va —con las cookies de terceros bloqueadas se queda en su rueda para
+        siempre— es la única salida, y está a la vista desde el principio.
+        ===================================================
+      */}
+      <p className="calendly__alternativa">
+        {textoAlternativa}{" "}
+        <a
+          className="calendly__salida"
+          href={elegida.calendly}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {textoAlternativaEnlace}
+        </a>
+      </p>
 
       {clases.length > 1 ? (
         <button

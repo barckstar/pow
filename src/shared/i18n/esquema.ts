@@ -159,6 +159,12 @@ export const esquemaDiccionario = z
         duracionMin: z.string().min(1),
         /** Para volver al selector desde el calendario. */
         duracionCambiar: z.string().min(1),
+        /** Bajo el esqueleto, mientras Calendly pinta. */
+        cargando: z.string().min(1),
+        /** La salida a calendly.com, bajo la caja. */
+        alternativa: z.string().min(1),
+        /** La etiqueta de ese enlace. */
+        alternativaEnlace: z.string().min(1),
         /** Quién es Calendly y qué recibe. Se lee ANTES de cargarlo. */
         avisoTerceros: z.string().min(1),
         /** Título accesible del iframe que monta Calendly. */

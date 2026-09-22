@@ -90,7 +90,10 @@
     "depositoTexto": "Charged when you book, to hold the lesson. The rest is settled directly with your teacher.",
     "duracionTitulo": "How long do you want it?",
     "duracionMin": "min",
-    "duracionCambiar": "Change the length"
+    "duracionCambiar": "Change the length",
+    "cargando": "Loading the calendar…",
+    "alternativa": "Calendar not loading?",
+    "alternativaEnlace": "Open it directly on calendly.com"
   },
   "pendiente": {
     "etiqueta": "Pending",

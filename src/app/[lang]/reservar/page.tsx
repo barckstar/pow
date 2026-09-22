@@ -114,6 +114,9 @@ export default async function PaginaReservar({
               titulo={r.tituloWidget}
               textoDuracion={r.duracionMin}
               textoCambiar={r.duracionCambiar}
+              textoCargando={r.cargando}
+              textoAlternativa={r.alternativa}
+              textoAlternativaEnlace={r.alternativaEnlace}
             />
           </>
         ) : (
