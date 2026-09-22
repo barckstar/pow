@@ -110,29 +110,18 @@ export const DEPOSITO: { monto: number; moneda: string } | null = null;
  */
 
 
-/**
- * Quién da las clases.
+/*
+ * ============ QUIÉN DA LAS CLASES NO SE CONFIGURA AQUÍ ============
+ * Estuvo la constante `PROFESOR`, con el nombre y la ruta del retrato. Duró
+ * poco: en cuanto la ficha creció —papel, biografía y tres datos sueltos— se
+ * vio que casi todo eso va en DOS IDIOMAS, y el contenido bilingüe de este
+ * sitio vive en `.json` validado al importar, no en TypeScript.
  *
- * El nombre lo confirmó el cliente el 22/09/2026 y es un dato REAL: hasta
- * entonces la página decía «un costarricense que vive en Suiza» y marcaba el
- * nombre como pendiente, porque poner un nombre inventado en la ficha de una
- * persona real es de las pocas cosas de este sitio que no tendrían arreglo
- * después.
- *
- * ============ LA FOTO SIGUE EN `null`, Y SE VE ============
- * `foto` es la ruta dentro de `public/`. Mientras sea `null`, `/online` pinta
- * el hueco con su aviso de pendiente en vez de esconder la sección: un hueco
- * visible se arregla, uno invisible se publica.
- *
- * Cuando llegue el archivo, esto es UNA línea —la ruta— y el `alt` sale del
- * diccionario, que ya lo tiene en los dos idiomas. Retrato, porque el hueco
- * está cortado a 4:5; si viene apaisada se va a recortar por los lados.
- * =========================================================
+ * Está en `features/online/data/profesores.json`, con su esquema al lado. Es
+ * una lista aunque hoy solo esté Chris Pow, porque el cliente ya dijo que
+ * habrá más.
+ * ==================================================================
  */
-export const PROFESOR: { nombre: string; foto: string | null } = {
-  nombre: "Chris Pow",
-  foto: null,
-};
 
 /**
  * Redes sociales del negocio.

@@ -85,7 +85,7 @@
     "tituloWidget": "Booking calendar",
     "pendienteTitulo": "Online booking is not live yet",
     "pendienteTexto": "The Calendly account that will run the schedule, the payments and the Zoom links still has to be connected. We would rather say so than show you a calendar that holds nothing. In the meantime, write to us and we will sort it by hand.",
-    "zonaHoraria": "Your timezone",
+    "zonaHoraria": "Teacher's timezone",
     "deposito": "Deposit",
     "depositoTexto": "Charged when you book, to hold the lesson. The rest is settled directly with your teacher.",
     "duracionTitulo": "How long do you want it?",
@@ -138,7 +138,6 @@
       "paso3Titulo": "Show up",
       "paso3Texto": "You get the video call link. Lessons are conversation from day one, not exercise filler.",
       "profesorTitulo": "Who teaches",
-      "profesorTexto": "A Costa Rican living in Switzerland. He teaches the Spanish actually spoken in Costa Rica: the voseo, the slang and the tone, not just textbook grammar.",
       "practicaTitulo": "What you practise",
       "practicaTexto": "Traditional teaching leans too heavily on the textbook, and plenty of people study for years and still freeze in an actual conversation. Here the weight sits on four things:",
       "situacionesTexto": "And the lessons rehearse situations you will actually be in, not filler exercises:",
@@ -146,8 +145,9 @@
       "medidaTexto": "Everyone learns differently, and for a different reason. These are the usual ones:",
       "medidaCierre": "The lesson adapts to your level, your goal and what interests you. Instead of a generic syllabus it is a conversation that goes where it needs to go.",
       "leerArticulo": "Read the full article",
-      "profesorFotoAlt": "Chris Pow, the teacher",
-      "profesorFotoPendiente": "Portrait still missing"
+      "profesorFotoAlt": "{nombre}, the teacher",
+      "profesorFotoPendiente": "Portrait still missing",
+      "profesorEntrada": "The classes are not run by a platform. They are run by a person."
     },
     "costaRica": {
       "hero": {

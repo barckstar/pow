@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
-import { rutas, ZONA_PROFESOR, PROFESOR } from "@/shared/config/sitio";
+import { rutas } from "@/shared/config/sitio";
 import { SEO } from "@/shared/config/seo";
 import { HeroPagina } from "@/shared/components/ui/HeroPagina";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 import { TiquismoDelDia } from "@/features/tiquismos/components/TiquismoDelDia";
 import { CLASES } from "@/features/online/esquema";
+import { Profesores } from "@/features/online/components/Profesores";
 
 /**
  * El artículo del cliente sobre las clases en línea, al que enlaza esta
@@ -73,6 +73,19 @@ export default async function PaginaOnline({
         acento={p.hero.acento}
         subtitulo={p.hero.subtitulo}
         cta={{ href: rutas.reservar(idioma), texto: t.hero.ctaReservar }}
+      />
+
+      {/* Lo primero después del hero, por petición del cliente: quien entra a
+          mirar clases particulares decide si se fía de la persona antes que
+          nada, y eso estaba en la página quince. */}
+      <Profesores
+        lang={idioma}
+        titulo={p.profesorTitulo}
+        entrada={p.profesorEntrada}
+        etiquetaPendiente={t.pendiente.etiqueta}
+        fotoPendiente={p.profesorFotoPendiente}
+        fotoAlt={p.profesorFotoAlt}
+        etiquetaZona={t.reserva.zonaHoraria}
       />
 
       <section className="seccion con-adornos">
@@ -143,53 +156,6 @@ export default async function PaginaOnline({
             >
               {p.leerArticulo} →
             </Link>
-          </p>
-
-          <h3 className="subseccion__titulo">{p.profesorTitulo}</h3>
-
-          {/*
-            ============ LA FICHA DEL PROFESOR ============
-            Retrato y nombre juntos, y no un párrafo suelto, porque lo que se
-            vende aquí es una persona: alguien que va a estar una hora al otro
-            lado de la videollamada. Un nombre sin cara pide un acto de fe que
-            no hace falta pedir.
-
-            El hueco del retrato existe AUNQUE no haya archivo. Mientras
-            `PROFESOR.foto` sea `null` se ve el marco con su aviso, que es la
-            regla de siempre en este sitio — un hueco visible se arregla, uno
-            invisible se publica. Y como el marco ya reserva su tamaño, el día
-            que entre la foto no se mueve nada de sitio.
-            ===============================================
-          */}
-          <div className="profesor">
-            <div className="profesor__retrato">
-              {PROFESOR.foto ? (
-                <Image
-                  src={PROFESOR.foto}
-                  alt={p.profesorFotoAlt}
-                  fill
-                  /* El hueco mide 11 rem y nunca más: pedirle al navegador
-                     una imagen de ancho de pantalla sería tirar bytes. */
-                  sizes="11rem"
-                  className="profesor__foto"
-                />
-              ) : (
-                <span className="profesor__hueco">
-                  <span className="pendiente">{t.pendiente.etiqueta}</span>
-                  <span>{p.profesorFotoPendiente}</span>
-                </span>
-              )}
-            </div>
-
-            <div className="profesor__texto">
-              <p className="profesor__nombre">{PROFESOR.nombre}</p>
-              <p>{p.profesorTexto}</p>
-            </div>
-          </div>
-
-          <p className="dato-zona">
-            <strong>{t.reserva.zonaHoraria}:</strong>{" "}
-            {ZONA_PROFESOR.replace(/_/g, " ")}
           </p>
 
           <Link href={rutas.reservar(idioma)} className="boton boton--primario">

@@ -992,49 +992,109 @@ p {
 }
 
 /*
- * ============ LA FICHA DEL PROFESOR ============
- * Retrato y nombre juntos en `/online`. Lo que se vende ahí es una persona
- * —alguien que va a estar una hora al otro lado de la videollamada— y un
- * nombre sin cara pide un acto de fe que no hace falta pedir.
+ * ============ LA FRANJA DE LOS PROFESORES ============
+ * Va pegada al hero de `/online` y en teal, no en crema.
  *
- * En móvil se apila y el retrato va arriba a la izquierda, no centrado: una
- * columna centrada de una sola foto pequeña se lee como un avatar de perfil,
- * y esto es una ficha.
- * ===============================================
+ * El resto de la página es crema sobre crema, y una sección más del mismo
+ * color justo debajo del hero no se lee como «aquí empieza algo»: se lee como
+ * que la página ya arrancó. El teal es el 30 % de la paleta y su trabajo es
+ * exactamente ese, separar bloques sin meter un color nuevo. La portada ya
+ * hace el mismo gesto con `.confianza`, así que no es un invento de esta
+ * página.
+ *
+ * Encima de la franja, la ficha en crema. El salto de color es lo que hace
+ * que el retrato y el nombre sean lo primero que agarra el ojo al bajar del
+ * hero, que es justo lo que se pidió.
+ * =====================================================
  */
+.profesores-banda {
+  background-color: var(--color-teal);
+  color: var(--color-crema);
+  padding: 3.5rem 1.5rem;
+}
+
+.profesores-banda__interior {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.profesores-banda__titulo {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  color: var(--color-dorado-texto);
+}
+
+/*
+ * Sin `opacity`.
+ *
+ * Lo normal en un subtítulo sobre color es bajarle la opacidad, y aquí no:
+ * un texto translúcido tiene un contraste que ya no es el del par que dice
+ * la hoja, así que `verificar-contraste.mjs` deja de cubrirlo y la garantía
+ * del sitio pasa a ser «parecía suficiente». En crema plena sobre teal es un
+ * par medido. Lo que lo separa del título es el tamaño y el color de éste,
+ * que para eso está el dorado.
+ */
+.profesores-banda__entrada {
+  margin: 0.5rem 0 2rem;
+  max-width: 34rem;
+}
+
+/*
+ * `auto-fit` y no un número de columnas.
+ *
+ * Hoy hay un profesor y la ficha sale ancha —retrato a un lado, texto al
+ * otro—. Con dos o tres se reparten solas en columnas sin tocar esta hoja.
+ * Escribir `repeat(3, 1fr)` habría dejado hoy una ficha flaca en un tercio de
+ * la pantalla con dos huecos al lado.
+ */
+.profesores {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+}
+
 .profesor {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 1.5rem;
-  margin-top: 1.25rem;
+  padding: 1.5rem;
+  background-color: var(--color-crema);
+  color: var(--color-tinta);
+  border-radius: 1.5rem;
+  /*
+   * La sombra tira a teal oscuro y no a negro: una sombra negra sobre un
+   * fondo de color se ve sucia, como si la ficha estuviera despegada de otra
+   * página.
+   */
+  box-shadow: 0 1.25rem 2.5rem -1.25rem rgba(6, 42, 46, 0.55);
 }
 
 /*
  * El marco reserva su tamaño HAYA FOTO O NO.
  *
- * Es lo que hace que el día que entre el archivo no se mueva nada de sitio
- * — el CLS de este sitio es 0 por construcción, y un hueco que aparece de
- * repente lo rompería. El 4:5 es retrato: si la foto viene apaisada, el
- * `object-fit: cover` la va a recortar por los lados, y eso está dicho en
- * `sitio.ts` junto al dato.
+ * Es lo que hace que el día que entre el archivo no se mueva nada de sitio —
+ * el CLS de este sitio es 0 por construcción, y un hueco que aparece de
+ * repente lo rompería. El 4:5 es retrato: una foto apaisada se recorta por
+ * los lados, y eso está dicho en el esquema junto al dato.
  */
 .profesor__retrato {
   position: relative;
   flex: none;
-  width: 11rem;
+  width: 12rem;
   aspect-ratio: 4 / 5;
   border-radius: 1rem;
   overflow: hidden;
-  background-color: color-mix(in srgb, var(--color-teal) 6%, var(--color-crema));
+  background-color: color-mix(in srgb, var(--color-teal) 7%, var(--color-crema));
 }
 
 .profesor__foto {
   object-fit: cover;
 }
 
-/* Lo que se ve mientras no hay retrato. Con el borde punteado de los demás
-   pendientes del sitio, para que se lea igual en todas partes. */
 .profesor__hueco {
   position: absolute;
   inset: 0;
@@ -1047,20 +1107,79 @@ p {
   text-align: center;
   font-size: 0.85rem;
   color: color-mix(in srgb, var(--color-tinta) 70%, var(--color-crema));
-  border: 1px dashed color-mix(in srgb, var(--color-teal) 28%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--color-teal) 30%, transparent);
   border-radius: 1rem;
 }
 
-.profesor__texto {
-  /* Que no se estrangule contra el retrato en anchos intermedios. */
-  flex: 1 1 16rem;
+.profesor__cuerpo {
+  /* Que no se estrangule contra el retrato en anchos intermedios: por debajo
+     de 15 rem se baja solo. */
+  flex: 1 1 15rem;
+}
+
+/* La línea de encima del nombre. Versalitas y naranja: es una etiqueta, y
+   tiene que leerse como tal y no como una segunda frase. */
+.profesor__papel {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-naranja);
 }
 
 .profesor__nombre {
-  margin: 0 0 0.35rem;
-  font-size: 1.25rem;
-  font-weight: 700;
+  margin: 0.3rem 0 0.6rem;
+  font-size: clamp(1.4rem, 3.5vw, 1.75rem);
+  line-height: 1.15;
   color: var(--color-teal);
+}
+
+/* Tope de línea.
+   Con un solo profesor la ficha ocupa los 80 rem, y sin esto la biografía
+   salía en líneas de casi 900 px: el ojo pierde el renglón al volver. El
+   resto del sitio lee en columna estrecha por la misma razón. */
+.profesor__bio {
+  margin: 0;
+  max-width: 44rem;
+}
+
+/* Los datos sueltos: de dónde es, desde dónde enseña, qué enseña y su hora.
+   Son un vistazo, no una lista para leer — de ahí el tamaño pequeño y que
+   vayan en fila. */
+.profesor__datos {
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.profesor__dato {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  background-color: color-mix(in srgb, var(--color-teal) 9%, var(--color-crema));
+  border: 1px solid color-mix(in srgb, var(--color-teal) 18%, transparent);
+  border-radius: 999px;
+}
+
+/* La zona horaria es el dato menos llamativo de los cuatro: es una precisión,
+   no un argumento. Sin relleno de color para que no compita con los otros. */
+.profesor__dato--zona {
+  background-color: transparent;
+  color: color-mix(in srgb, var(--color-tinta) 72%, var(--color-crema));
+}
+
+@media (min-width: 768px) {
+  .profesores-banda {
+    padding: 4.5rem 2rem;
+  }
+
+  .profesor {
+    padding: 2rem;
+    gap: 2rem;
+  }
 }
 
 /* La etiqueta de pendiente en línea, que usan `/online` y `/costa-rica`. */

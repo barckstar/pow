@@ -109,9 +109,17 @@ const TINTA_SUAVE = "#6A5F59";
     calendario…» sobre el blanco del esqueleto. */
 const TINTA_ESQUELETO = "#7B716C";
 
-/** `color-mix(in srgb, var(--color-teal) 6%, var(--color-crema))` — el marco
+/** `color-mix(in srgb, var(--color-teal) 7%, var(--color-crema))` — el marco
     del retrato del profesor en `/online` mientras no hay foto. */
-const MARCO_RETRATO = "#F1ECDF";
+const MARCO_RETRATO = "#F0EBDE";
+
+/** `color-mix(in srgb, var(--color-teal) 9%, var(--color-crema))` — el relleno
+    de los datos sueltos de la ficha del profesor. */
+const DATO_PROFESOR = "#EDE8DC";
+
+/** `color-mix(in srgb, var(--color-tinta) 72%, var(--color-crema))` — la zona
+    horaria, el dato de la ficha que va sin relleno. */
+const TINTA_ZONA = "#665951";
 
 /** `color-mix(in srgb, var(--color-tinta) 70%, var(--color-crema))` — el
     «Falta el retrato» dentro de ese marco. */
@@ -127,6 +135,9 @@ const PARES = [
   { nombre: "Salida a calendly.com sobre fondo", frente: TINTA_SUAVE, fondo: CREMA, tamano: "normal" },
   { nombre: "Estado del esqueleto sobre blanco", frente: TINTA_ESQUELETO, fondo: BLANCO, tamano: "normal" },
   { nombre: "Retrato pendiente sobre su marco", frente: TINTA_SOBRE_MARCO, fondo: MARCO_RETRATO, tamano: "normal" },
+  { nombre: "Dato de la ficha del profesor", frente: TINTA, fondo: DATO_PROFESOR, tamano: "normal" },
+  { nombre: "Zona horaria en la ficha del profesor", frente: TINTA_ZONA, fondo: CREMA, tamano: "normal" },
+  { nombre: "Etiqueta del profesor (naranja sobre crema)", frente: NARANJA, fondo: CREMA, tamano: "normal" },
   { nombre: "Enlace / acento sobre fondo", frente: NARANJA, fondo: CREMA, tamano: "normal" },
   { nombre: "Titular teal sobre fondo", frente: TEAL, fondo: CREMA, tamano: "normal" },
   { nombre: "Botón primario (blanco sobre teal)", frente: BLANCO, fondo: TEAL, tamano: "normal" },

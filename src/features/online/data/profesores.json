@@ -1,0 +1,29 @@
+[
+  {
+    "id": "chris-pow",
+    "nombre": "Chris Pow",
+    "foto": null,
+    "papel": {
+      "es": "Profesor costarricense",
+      "en": "Costa Rican teacher"
+    },
+    "bio": {
+      "es": "Un costarricense que vive en Suiza. Enseña el español que se habla en Costa Rica: el voseo, los modismos y el tono, no solo la gramática del libro.",
+      "en": "A Costa Rican living in Switzerland. He teaches the Spanish that is actually spoken in Costa Rica — the voseo, the slang and the tone, not just textbook grammar."
+    },
+    "datos": [
+      {
+        "id": "origen",
+        "etiqueta": { "es": "Tico, de Costa Rica", "en": "Tico, from Costa Rica" }
+      },
+      {
+        "id": "donde",
+        "etiqueta": { "es": "Da clases desde Suiza", "en": "Teaches from Switzerland" }
+      },
+      {
+        "id": "enfoque",
+        "etiqueta": { "es": "Voseo y modismos", "en": "Voseo and slang" }
+      }
+    ]
+  }
+]

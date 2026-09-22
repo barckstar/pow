@@ -290,6 +290,38 @@ historial, en el commit `0dcca7e`.
 ⚠️ Cobrar y conectar Zoom son **funciones de plan de pago** de Calendly. Sin
 cobro, cualquiera aparta una franja sin pagar.
 
+### Quién da las clases — lo primero de `/online`
+
+Estaba al final, después de los pasos, lo que se practica y por qué. El cliente
+lo movió arriba del todo y tiene razón en lo que importa: quien entra a mirar
+clases particulares no compara temarios, decide si se fía de la persona con la
+que va a pasar una hora hablando. Esa decisión se toma en los primeros
+segundos, y antes se tomaba en la página quince.
+
+Va en **franja teal**, no en otra sección crema. El resto de `/online` es crema
+sobre crema, y una sección más del mismo color pegada al hero no se lee como
+«aquí empieza algo». El teal es el 30 % de la paleta y su trabajo es ese; la
+portada ya hace el mismo gesto con `.confianza`.
+
+**Es una lista aunque hoy solo esté Chris Pow**, porque el cliente dijo que
+habrá más. La rejilla es `auto-fit`: con uno sale una ficha ancha —retrato a un
+lado, texto al otro— y con dos o tres se reparten en columnas sin tocar la hoja
+de estilos.
+
+Vive en `features/online/data/profesores.json` con su esquema al lado, y no en
+`sitio.ts`, donde estuvo un rato: `papel`, `bio` y las etiquetas de los datos
+van en dos idiomas, y el contenido bilingüe de este sitio va en `.json`
+validado. `ZONA_PROFESOR` sí se queda en `sitio.ts` — no es contenido, no se
+traduce, y lo usan también `/reservar` y la cuenta de horarios.
+
+El marco del retrato reserva su tamaño **haya foto o no** (4:5, 12 rem), así
+que el día que llegue el archivo no se mueve nada y el CLS sigue en 0. Va
+retrato: una apaisada se recorta por los lados.
+
+⚠️ La etiqueta de la zona horaria decía **«Tu zona horaria»** y enseñaba la del
+profesor — o sea, le decía a cada visitante que vivía en Zúrich. Dice «Zona
+horaria del profesor», y estaba mal en los dos sitios donde sale.
+
 ### Metadatos
 
 Todas las páginas pasan por `metadatosDe()` en `shared/lib/sitio.ts`. En Next
@@ -353,6 +385,13 @@ Medido sobre el build de producción (`next start`), mediana de tres corridas.
 |---|---|---|---|---|---|
 | Escritorio | **99** | **100** | **100** | **100** | 0 |
 | Móvil | **86** | **100** | **100** | **100** | 0 |
+
+**Clases en línea** (`/es/online`):
+
+| | Rendimiento | Accesibilidad | Prácticas | SEO | CLS |
+|---|---|---|---|---|---|
+| Escritorio | **100** | **100** | **100** | **100** | 0 |
+| Móvil | **97** | **100** | **100** | **100** | 0 |
 
 **Reservar** (`/es/reservar`), que es la única página con un embebido de
 terceros:
