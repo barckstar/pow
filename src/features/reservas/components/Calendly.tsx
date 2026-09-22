@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { Clase } from "../esquema";
+import type { Idioma } from "@/shared/i18n/config";
 
 /**
  * El calendario de Calendly, cargado SOLO cuando alguien lo pide.
@@ -28,11 +30,21 @@ const SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 
 /**
  * Lo que se le pide a Calendly por parámetros en la URL: los colores de la
- * marca y que no pinte su propio panel de detalles.
+ * marca.
  *
  * Sin esto el widget entra con el azul de Calendly y se nota que es de otra
  * casa. Son los mismos tokens de la paleta, sin almohadilla porque es como los
  * espera.
+ *
+ * ============ EL PANEL DE DETALLES SE QUEDA ============
+ * Se probó `hide_event_type_details=1`, que quita la columna izquierda con el
+ * nombre del evento, la duración y el tipo de reunión. Se ve PEOR: sin el
+ * panel, Calendly pinta una sola columna estrecha y la centra, y el calendario
+ * queda pequeño flotando en una caja medio vacía. Estrechar la caja tampoco lo
+ * arregla — por debajo de unos 1000 px pasa a su maqueta apilada.
+ *
+ * El panel es lo que equilibra el ancho, y además dice dónde es la clase.
+ * =======================================================
  *
  * ============ LO QUE NO SE TOCA ============
  * Calendly admite también `hide_gdpr_banner=1`. NO se usa: ese banner es el
@@ -46,23 +58,6 @@ const COLORES = {
   primary_color: "0f6e78",
   background_color: "ffffff",
   text_color: "2a1a12",
-  /*
-   * ============ EL PANEL DE DETALLES SE QUEDA ============
-   * Se probó `hide_event_type_details=1`, que quita la columna izquierda con
-   * el nombre del evento, la duración y el tipo de reunión. La idea era que
-   * esta página ya cuenta todo eso y en español.
-   *
-   * Se ve PEOR, y por una razón que solo aparece mirándolo: sin el panel,
-   * Calendly pinta una sola columna estrecha y la centra. El calendario queda
-   * pequeño flotando en una caja medio vacía, y estrechar la caja no lo
-   * arregla — en el paso siguiente, el de elegir hora, vuelve a necesitar dos
-   * columnas.
-   *
-   * El panel es lo que equilibra el ancho. Y ahora que el cliente conectó
-   * Zoom, además dice dónde es la clase, que es información que la página no
-   * da en ese punto.
-   * =======================================================
-   */
 } as const;
 
 /**
@@ -81,37 +76,54 @@ function conColores(url: string): string {
     }
     return conParametros.toString();
   } catch {
-    /* Si no es una URL válida no se toca: el guardia de `sitio.ts` ya rompe el
-       build en ese caso, y aquí no toca decidir nada. */
+    /* Si no es una URL válida no se toca: el esquema ya rompe el build en ese
+       caso, y aquí no toca decidir nada. */
     return url;
   }
 }
 
 export function Calendly({
-  url,
+  clases,
+  lang,
   etiquetaBoton,
   avisoTerceros,
   titulo,
+  textoDuracion,
+  textoCambiar,
 }: {
-  /** La URL del tipo de evento en Calendly. */
-  url: string;
+  /** Las duraciones disponibles, ya ordenadas de menor a mayor. */
+  clases: Clase[];
+  lang: Idioma;
   etiquetaBoton: string;
   /** Lo que se dice ANTES de cargar nada: quién es Calendly y qué recibe. */
   avisoTerceros: string;
-  /** Para el `title` del iframe que monta Calendly. */
+  /** Para el `aria-label` del hueco donde Calendly monta su iframe. */
   titulo: string;
+  /** Sufijo de la duración: «min». */
+  textoDuracion: string;
+  /** Para volver al selector cuando hay más de una duración. */
+  textoCambiar: string;
 }) {
+  /**
+   * Cuál se está mirando. `null` es «todavía no eligió».
+   *
+   * Con una sola duración no hay nada que elegir, así que se da por elegida
+   * desde el principio: un selector de un solo botón es un paso de más.
+   */
+  const [elegida, setElegida] = useState<Clase | null>(
+    clases.length === 1 ? clases[0] : null
+  );
   const [abierto, setAbierto] = useState(false);
+  const [conTeclado, setConTeclado] = useState(false);
   const contenedor = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!abierto) return;
 
     /*
-     * Si el script ya está en la página —porque alguien volvió atrás y otra
-     * vez adelante— no se vuelve a inyectar: Calendly ya inicializó los
-     * contenedores que encontró, y un segundo ejemplar monta el widget dos
-     * veces.
+     * Si el script ya está en la página —porque alguien cambió de duración y
+     * volvió— no se vuelve a inyectar: Calendly ya inicializó los contenedores
+     * que encontró, y un segundo ejemplar monta el widget dos veces.
      */
     if (document.querySelector(`script[src="${SCRIPT}"]`)) return;
 
@@ -138,47 +150,104 @@ export function Calendly({
    * distinguirlos, y no una heurística.
    * ============================================
    */
-  const [conTeclado, setConTeclado] = useState(false);
-
   useEffect(() => {
     if (abierto && conTeclado) contenedor.current?.focus();
   }, [abierto, conTeclado]);
 
-  if (!abierto) {
+  function abrir(detail: number) {
+    setConTeclado(detail === 0);
+    setAbierto(true);
+  }
+
+  if (abierto && elegida) {
     return (
       <div className="calendly">
-        <p className="calendly__aviso">{avisoTerceros}</p>
-        <button
-          type="button"
-          className="boton boton--acento"
-          onClick={(evento) => {
-            setConTeclado(evento.detail === 0);
-            setAbierto(true);
-          }}
-        >
-          {etiquetaBoton}
-        </button>
+        {/*
+          El widget se remonta al cambiar de duración gracias a la `key`.
+          Sin ella React reutilizaría el mismo nodo, Calendly ya lo habría
+          inicializado con la URL anterior y el calendario no cambiaría.
+        */}
+        <div
+          key={elegida.id}
+          ref={contenedor}
+          tabIndex={-1}
+          /*
+           * `data-url` y la clase son el contrato de Calendly: su script busca
+           * los elementos con esta clase y monta el iframe dentro. No se
+           * inventa nada aquí, se sigue su documentación.
+           *
+           * El alto lo reserva el CSS y Calendly lo afina con `data-resize`.
+           * Sin esa reserva la página pega un salto cuando el iframe aparece,
+           * que es CLS — y aquí está en 0.
+           */
+          className="calendly-inline-widget calendly__widget"
+          data-url={conColores(elegida.calendly)}
+          data-resize="true"
+          aria-label={`${titulo}: ${elegida.etiqueta[lang]}`}
+        />
+
+        {clases.length > 1 ? (
+          <button
+            type="button"
+            className="calendly__cambiar"
+            onClick={() => {
+              setAbierto(false);
+              setElegida(null);
+            }}
+          >
+            ← {textoCambiar}
+          </button>
+        ) : null}
       </div>
     );
   }
 
   return (
-    <div
-      ref={contenedor}
-      tabIndex={-1}
-      /*
-       * `data-url` y la clase son el contrato de Calendly: su script busca los
-       * elementos con esta clase y monta el iframe dentro. No se inventa nada
-       * aquí, se sigue su documentación.
-       *
-       * La altura mínima va en el CSS y no en línea: el widget no tiene alto
-       * propio hasta que carga, y sin reserva de espacio la página da un salto
-       * — que es CLS, justo lo que el resto del sitio cuida.
-       */
-      className="calendly-inline-widget calendly__widget"
-      data-url={conColores(url)}
-      data-resize="true"
-      aria-label={titulo}
-    />
+    <div className="calendly">
+      <p className="calendly__aviso">{avisoTerceros}</p>
+
+      {clases.length === 1 ? (
+        <button
+          type="button"
+          className="boton boton--acento"
+          onClick={(evento) => abrir(evento.detail)}
+        >
+          {etiquetaBoton}
+        </button>
+      ) : (
+        /*
+         * Una tarjeta por duración, y cada una abre su propio calendario.
+         *
+         * Se elige ANTES de cargar el widget y no dentro de él por dos razones:
+         * Calendly solo sabe enseñar un tipo de evento por iframe, y así la
+         * comparación entre duraciones se hace en el idioma del sitio y con la
+         * descripción de cada una, que Calendly no tiene.
+         */
+        <ul className="duraciones">
+          {clases.map((clase) => (
+            <li key={clase.id}>
+              <button
+                type="button"
+                className="duracion"
+                onClick={(evento) => {
+                  setElegida(clase);
+                  abrir(evento.detail);
+                }}
+              >
+                <span className="duracion__tiempo">
+                  {clase.duracion} {textoDuracion}
+                </span>
+                <span className="duracion__etiqueta">
+                  {clase.etiqueta[lang]}
+                </span>
+                <span className="duracion__descripcion">
+                  {clase.descripcion[lang]}
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }

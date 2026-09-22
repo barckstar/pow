@@ -33,10 +33,14 @@ Dos variables, y tres cosas que se configuran en paneles ajenos.
 
 | Variable | Qué es | Si falta |
 |---|---|---|
-| `NEXT_PUBLIC_CALENDLY_URL` | El enlace de «Copy link» de tu tipo de evento | `/reservar` dice que no se puede reservar todavía |
 | `URL_BASE` | El dominio del que cuelgan canónicas, sitemap y RSS | se usa el provisional de `sitio.ts` |
 
-Las dos **rompen el build si se pegan mal**, cada una con su mensaje.
+Una sola, y **rompe el build si se pega mal**.
+
+Los enlaces de Calendly **ya no son variable de entorno**: viven en
+`src/features/reservas/data/clases.json`, porque son varios —uno por duración
+de clase— y cada uno lleva etiqueta y descripción. Eso es contenido, y el
+contenido de este sitio va en `.json` validado.
 
 `URL_BASE` existe porque cambia según dónde corra: en una previsualización de
 Vercel el dominio es otro, y ahí las canónicas tienen que apuntar a esa

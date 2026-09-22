@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
-import { rutas, CALENDLY, ZONA_PROFESOR } from "@/shared/config/sitio";
+import { rutas, ZONA_PROFESOR } from "@/shared/config/sitio";
 import { SEO } from "@/shared/config/seo";
 import { Calendly } from "@/features/reservas/components/Calendly";
+import { CLASES } from "@/features/reservas/esquema";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 
 export function generateStaticParams() {
@@ -98,13 +99,24 @@ export default async function PaginaReservar({
           que no se puede reservar todavía. Es la misma regla que el resto del
           sitio — un hueco visible se arregla, uno invisible se publica.
         */}
-        {CALENDLY ? (
-          <Calendly
-            url={CALENDLY.url}
-            etiquetaBoton={r.abrir}
-            avisoTerceros={r.avisoTerceros}
-            titulo={r.tituloWidget}
-          />
+        {CLASES.length > 0 ? (
+          <>
+            {CLASES.length > 1 ? (
+              <h2 className="seccion__titulo reservar__texto">
+                {r.duracionTitulo}
+              </h2>
+            ) : null}
+
+            <Calendly
+              clases={CLASES}
+              lang={idioma}
+              etiquetaBoton={r.abrir}
+              avisoTerceros={r.avisoTerceros}
+              titulo={r.tituloWidget}
+              textoDuracion={r.duracionMin}
+              textoCambiar={r.duracionCambiar}
+            />
+          </>
         ) : (
           <div className="aviso-pendiente reservar__texto">
             <p className="aviso-pendiente__titulo">

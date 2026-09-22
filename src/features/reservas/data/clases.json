@@ -1,0 +1,12 @@
+[
+  {
+    "id": "30min",
+    "duracion": 30,
+    "etiqueta": { "es": "Clase suelta", "en": "Single lesson" },
+    "descripcion": {
+      "es": "Para probar cómo es, o para una duda concreta.",
+      "en": "To see what it is like, or for one specific question."
+    },
+    "calendly": "https://calendly.com/leo-cas/new-meeting"
+  }
+]

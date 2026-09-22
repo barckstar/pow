@@ -219,9 +219,16 @@ vídeos de YouTube sin hundir la puntuación. De regalo resuelve media cuestión
 de privacidad: si el script no se carga, no hay cookies de terceros que
 consentir, y quien pulsa lee justo encima a dónde van sus datos.
 
-Mientras `CALENDLY` sea `null` en `sitio.ts`, la página explica el proceso y
-dice que todavía no se puede reservar. No se pinta un calendario que no aparta
-nada.
+**Las duraciones viven en `features/reservas/data/clases.json`**, no en una
+variable de entorno. Estuvieron en `NEXT_PUBLIC_CALENDLY_URL` mientras hubo una
+sola; con varias dejó de caber, porque cada una lleva enlace, etiqueta y
+descripción — o sea contenido — y porque la cuenta de Calendly no cambia entre
+entornos. Con el archivo vacío, la página explica el proceso y dice que todavía
+no se puede reservar; con una duración va directa al calendario; con varias
+enseña un selector antes.
+
+⚠️ Varias duraciones, el cobro y la integración con Zoom son **funciones de
+plan de pago** de Calendly. El gratuito deja un solo tipo de evento activo.
 
 **Lo que se quitó al decidir esto:** el selector de franjas propio, el puerto
 de calendario con sus dos adaptadores, la librería de husos horarios con sus

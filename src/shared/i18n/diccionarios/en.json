@@ -88,7 +88,10 @@
     "pendienteTexto": "The Calendly account that will run the schedule, the payments and the Zoom links still has to be connected. We would rather say so than show you a calendar that holds nothing. In the meantime, write to us and we will sort it by hand.",
     "zonaHoraria": "Your timezone",
     "deposito": "Deposit",
-    "depositoTexto": "Charged when you book, to hold the lesson. The rest is settled directly with your teacher."
+    "depositoTexto": "Charged when you book, to hold the lesson. The rest is settled directly with your teacher.",
+    "duracionTitulo": "How long do you want it?",
+    "duracionMin": "min",
+    "duracionCambiar": "Change the length"
   },
   "pendiente": {
     "etiqueta": "Pending",

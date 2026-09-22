@@ -92,143 +92,23 @@ export const ZONA_PROFESOR = "Europe/Zurich";
  */
 export const DEPOSITO: { monto: number; moneda: string } | null = null;
 
-/**
- * El calendario de reservas.
- *
- * ============ CALENDLY LO HACE TODO, Y ESO FUE UNA DECISIÓN ============
- * Reserva, formulario, cobro y enlace de Zoom: las cuatro cosas las hace
- * Calendly, no este sitio.
- *
- *   - La FRANJA y los HUSOS HORARIOS los gestiona Calendly.
- *   - El FORMULARIO —nombre, correo y las preguntas que se quieran— es el suyo.
- *   - El COBRO va dentro de su flujo: sin pagar no se confirma la franja, que
- *     es lo que pidió el cliente. Admite PayPal.
- *   - El ENLACE DE ZOOM lo crea su integración con Zoom y lo manda por correo
- *     a la dirección que la persona escribió, junto con la invitación de
- *     calendario y los recordatorios.
- *
- * Antes de esto el sitio tenía su propio selector de franjas, su puerto de
- * calendario con dos adaptadores, una librería de conversión de husos horarios
- * con tests del cambio de hora y dos rutas de servidor para PayPal. Todo eso
- * se quitó al tomar esta decisión: mantener una segunda forma de reservar, que
- * además no cobraba ni creaba la reunión, era garantizar que las dos
- * divergieran. Está en el historial, en el commit `0dcca7e`, por si hubiera
- * que volver.
- * =======================================================================
- *
- * ============ ES UN ENLACE PÚBLICO, NO UN SECRETO ============
- * Lo que hace falta es la URL del tipo de evento, la misma que se le pasa a un
- * estudiante por WhatsApp:
- *
- *     https://calendly.com/usuario/clase-de-espanol
- *
- * NO lleva token. La API de Calendly (`api.calendly.com`, con un Personal
- * Access Token) sirve para que un servidor lea reservas o registre webhooks, y
- * este sitio no hace ninguna de las dos cosas. Un token aquí sería un secreto
- * en un repositorio público sin ninguna función.
- *
- * Por eso la variable lleva `NEXT_PUBLIC_`: ese prefijo hace que Next la
- * incruste en el JavaScript que llega al navegador, y aquí eso es correcto y
- * no una fuga — la URL acaba en el HTML de todas formas, porque es a donde
- * apunta el widget. Un secreto de verdad JAMÁS lleva ese prefijo.
- * =============================================================
- *
- * Mientras no esté puesta, `/reservar` explica el proceso y dice que todavía
- * no se puede reservar, en vez de enseñar un calendario que no lleva a ningún
- * sitio.
- */
-const URL_CALENDLY = process.env.NEXT_PUBLIC_CALENDLY_URL?.trim();
-
-export const CALENDLY: { url: string } | null = URL_CALENDLY
-  ? { url: URL_CALENDLY }
-  : null;
-
 /*
- * ============ QUÉ TIENE QUE SER Y QUÉ NO ============
- * El primer segmento es el usuario y el segundo el tipo de evento. La lista
- * negra no es paranoia: `calendly.com/event_types/...` es la URL del PANEL de
- * administración, encaja en el patrón de dos segmentos y es el error más fácil
- * de cometer, porque es la que uno tiene en la barra mientras configura el
- * evento. Embebida, carga una pantalla de login.
+ * ============ EL CALENDARIO YA NO SE CONFIGURA AQUÍ ============
+ * Estuvo la constante `CALENDLY`, leyendo `NEXT_PUBLIC_CALENDLY_URL`. Con una
+ * sola duración de clase estaba bien; dejó de estarlo en cuanto el cliente
+ * pidió varias —una hora, dos, cinco—.
  *
- * La otra confusión típica es pegar el token: Calendly llama «API» tanto a la
- * clave como a los enlaces en su panel.
- * ====================================================
+ * Cada duración es un tipo de evento distinto en Calendly, con su enlace, y
+ * además lleva etiqueta y descripción propias. Eso es CONTENIDO, y el
+ * contenido va en `.json` validado como el resto: vive en
+ * `features/reservas/data/clases.json`.
+ *
+ * El argumento que justificaba la variable de entorno —que cambia según dónde
+ * corra— tampoco aplicaba: la cuenta de Calendly es la misma en pruebas y en
+ * producción. `URL_BASE` sí cambia, y por eso se queda.
+ * ===============================================================
  */
-const ESPERADO = /^https:\/\/calendly\.com\/([\w-]+)\/[\w-]+/;
 
-/**
- * Primeros segmentos que NO son el usuario de nadie.
- *
- * Dos familias, y las dos son errores reales que ya pasaron:
- *
- *   RUTAS DEL PROPIO CALENDLY. `calendly.com/event_types/...` es la URL del
- *   PANEL de administración: encaja en el patrón de dos segmentos y es la que
- *   uno tiene en la barra mientras configura el evento.
- *
- *   PLACEHOLDERS. `tu-usuario`, `prueba`, `ejemplo`... Son los de los ejemplos
- *   de la documentación de este mismo proyecto, y pegarlos tal cual es lo más
- *   fácil del mundo. El resultado no es un error visible: Calendly sirve su
- *   PÁGINA DE PUBLICIDAD —con un «Get started for free»— dentro del hueco del
- *   calendario, y el sitio parece estar anunciando a Calendly en vez de
- *   ofrecer horas. Pasó en la primera prueba.
- */
-const NO_SON_USUARIOS = new Set([
-  // Rutas del propio Calendly.
-  "event_types",
-  "app",
-  "api",
-  "login",
-  "signup",
-  "integrations",
-  "users",
-  "settings",
-  "pages",
-  // Placeholders de la documentación.
-  "tu-usuario",
-  "tu_usuario",
-  "usuario",
-  "prueba",
-  "ejemplo",
-  "example",
-  "test",
-  "demo",
-  "username",
-  "your-name",
-  "your-username",
-]);
-
-/*
- * La comprobación va en una FUNCIÓN y no suelta con un `if`.
- *
- * Suelta no serviría de nada el día que la variable no esté puesta:
- * TypeScript estrecha `CALENDLY` a `null` en este mismo archivo y el cuerpo
- * del `if` se vuelve código muerto — ni siquiera compila, porque `.url` no
- * existe en `never`. Dentro de una función el parámetro lleva su tipo
- * declarado y no hay estrechamiento que valga.
- *
- * Corre al importar, así que un enlace mal pegado rompe el build en vez de
- * dejar un calendario que no carga.
- */
-function comprobarCalendly(config: { url: string } | null) {
-  if (!config) return;
-
-  const encaja = ESPERADO.exec(config.url);
-  if (encaja && !NO_SON_USUARIOS.has(encaja[1])) return;
-
-  throw new Error(
-    [
-      `NEXT_PUBLIC_CALENDLY_URL no sirve: "${config.url}".`,
-      "Tiene que ser TU enlace de reserva: el del botón «Copy link» del tipo de evento.",
-      "La prueba: pegalo en una pestaña de incógnito. Si ves tu calendario, es el bueno;",
-      "si ves la web de Calendly con «Get started for free», esa dirección no existe.",
-      "No es un token, no es la URL del panel (/event_types/...) y no es un ejemplo",
-      "de la documentación.",
-    ].join(" ")
-  );
-}
-
-comprobarCalendly(CALENDLY);
 
 /**
  * Redes sociales del negocio.

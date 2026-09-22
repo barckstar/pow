@@ -88,7 +88,10 @@
     "pendienteTexto": "Falta conectar la cuenta de Calendly con la que se llevan los horarios, el cobro y los enlaces de Zoom. Preferimos decirlo antes que enseñarte un calendario que no aparta nada. Mientras tanto, escribinos y lo arreglamos a mano.",
     "zonaHoraria": "Tu zona horaria",
     "deposito": "Depósito",
-    "depositoTexto": "Se cobra al reservar para apartar la clase. El resto se paga directamente con el profesor."
+    "depositoTexto": "Se cobra al reservar para apartar la clase. El resto se paga directamente con el profesor.",
+    "duracionTitulo": "¿Cuánto querés que dure?",
+    "duracionMin": "min",
+    "duracionCambiar": "Cambiar la duración"
   },
   "pendiente": {
     "etiqueta": "Pendiente",

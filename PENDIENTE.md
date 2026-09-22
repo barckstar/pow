@@ -13,7 +13,8 @@ Un hueco visible se arregla. Uno invisible se publica.
 | Dato | Dónde va | Qué pasa mientras falta |
 |---|---|---|
 | **Precios** de las clases online y presenciales | `src/features/precios/` | `/precios` muestra el aviso en vez de una tabla |
-| **Cuenta de Calendly** | `CALENDLY` en `src/shared/config/sitio.ts` | `/reservar` explica los tres pasos y dice que no se puede reservar todavía. **Bloquea la vía en línea entera** |
+| **Enlaces de Calendly del negocio** | `src/features/reservas/data/clases.json` | Hoy hay UNO y apunta a una cuenta de prueba personal. Antes de publicar tiene que apuntar a la cuenta **del cliente**, la que tiene el plan de pago. **Si no, las reservas caen en el calendario de otra persona** |
+| **Qué duraciones se ofrecen** | el mismo archivo | Se habló de 1 h, 2 h y 5 h. Cada una es un tipo de evento en Calendly con su enlace; la página ya enseña el selector en cuanto haya más de una |
 | **Monto del depósito** de reserva | `DEPOSITO` en `sitio.ts`, y en Calendly | `/precios` no enseña cifra. Va en los dos sitios: Calendly cobra, el sitio lo anuncia |
 | **Nombre, foto y biografía del profesor** | `/online` | La página habla de él en genérico y marca el pendiente |
 | **Correo y teléfono** de contacto | `CONTACTO` en `sitio.ts` | El pie muestra la etiqueta de pendiente |
@@ -31,10 +32,13 @@ Un hueco visible se arregla. Uno invisible se publica.
 El sitio ya **no necesita ninguna variable de entorno**. Lo que hace falta son
 tres cosas fuera del repositorio, y las tres se configuran en el mismo sitio:
 
-- **Calendly**, con el plan que cubra dos funciones de pago: **cobrar dentro
-  del flujo de reserva** y la **integración con Zoom**. Sin la primera,
-  cualquiera aparta una franja sin pagar; sin la segunda, el enlace de la
-  videollamada hay que mandarlo a mano.
+- **Calendly**, con el plan de pago. Hacen falta **tres** funciones suyas y las
+  tres están fuera del plan gratuito: **varias duraciones** a la vez (el
+  gratuito deja un solo tipo de evento activo), **cobrar dentro del flujo de
+  reserva** y la **integración con Zoom**.
+  El cliente confirmó el 22/09/2026 que su cuenta tiene el plan. La de pruebas
+  que se usó para montarlo, no — de ahí que `clases.json` apunte todavía a un
+  evento de prueba.
 - **PayPal**: cuenta de negocio verificada, para conectarla *a Calendly*. Ya no
   hace falta ninguna credencial en el código.
 - **Zoom**: cuenta que se conecta a Calendly desde su panel.

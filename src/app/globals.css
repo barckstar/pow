@@ -722,6 +722,91 @@ p {
   }
 }
 
+/*
+ * El selector de duración.
+ *
+ * Son BOTONES y no enlaces: no llevan a otra página, cargan el calendario de
+ * esa duración en el sitio. Un `<a>` ahí mentiría sobre lo que va a pasar, y
+ * además prometería un destino que se puede abrir en otra pestaña — y no se
+ * puede.
+ *
+ * Va en un `<ul>`: para un lector de pantalla es «lista de tres elementos»,
+ * que es exactamente lo que hay que saber antes de elegir.
+ */
+.duraciones {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 720px) {
+  .duraciones {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+}
+
+.duracion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 1.25rem;
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 14%, transparent);
+  transition: transform 220ms ease, border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.duracion:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--color-teal) 35%, transparent);
+  box-shadow: 0 22px 44px -30px
+    color-mix(in srgb, var(--color-tinta) 75%, transparent);
+}
+
+/* Lo primero que se compara entre una opción y otra, así que es lo más
+   grande. El resto de la tarjeta explica; esto decide. */
+.duracion__tiempo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-teal);
+}
+
+.duracion__etiqueta {
+  font-weight: 600;
+}
+
+.duracion__descripcion {
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--color-tinta) 72%, transparent);
+}
+
+/* Vuelve al selector desde el calendario. Discreto: es un paso atrás, no la
+   acción principal de la pantalla. */
+.calendly__cambiar {
+  margin-top: 1.25rem;
+  padding: 0.5rem 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-naranja);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.calendly__cambiar:hover {
+  text-decoration: underline;
+}
+
 .calendly__widget:focus-visible {
   outline: 2px solid var(--color-naranja);
   outline-offset: 4px;
