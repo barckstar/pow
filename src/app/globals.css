@@ -703,8 +703,19 @@ p {
 
 @media (min-width: 768px) {
   .calendly__widget {
+    /*
+     * ============ EL ANCHO ENTERO, SIN TOPE ============
+     * Se probó con `max-width: 58rem` y fue peor: por debajo de unos 1000 px
+     * Calendly cambia a su maqueta APILADA —los detalles arriba, el calendario
+     * debajo— y el bloque se vuelve una columna estrecha y larga.
+     *
+     * El widget tiene sus propios puntos de corte y no se le puede pedir un
+     * tamaño intermedio: o le das el ancho que necesita para las dos columnas,
+     * o te da la versión de teléfono. Por eso esta página usa la sección de 80
+     * rem y el widget la ocupa entera.
+     * ==================================================
+     */
     width: 100%;
-    margin-inline: 0;
     /* Los 700 px que recomienda la documentación de Calendly. */
     height: 46rem;
     border-radius: 1.25rem;

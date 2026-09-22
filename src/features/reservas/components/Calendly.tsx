@@ -27,7 +27,8 @@ import { useEffect, useRef, useState } from "react";
 const SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 
 /**
- * Los colores de la marca, que Calendly admite por parámetros en la URL.
+ * Lo que se le pide a Calendly por parámetros en la URL: los colores de la
+ * marca y que no pinte su propio panel de detalles.
  *
  * Sin esto el widget entra con el azul de Calendly y se nota que es de otra
  * casa. Son los mismos tokens de la paleta, sin almohadilla porque es como los
@@ -45,6 +46,23 @@ const COLORES = {
   primary_color: "0f6e78",
   background_color: "ffffff",
   text_color: "2a1a12",
+  /*
+   * ============ EL PANEL DE DETALLES SE QUEDA ============
+   * Se probó `hide_event_type_details=1`, que quita la columna izquierda con
+   * el nombre del evento, la duración y el tipo de reunión. La idea era que
+   * esta página ya cuenta todo eso y en español.
+   *
+   * Se ve PEOR, y por una razón que solo aparece mirándolo: sin el panel,
+   * Calendly pinta una sola columna estrecha y la centra. El calendario queda
+   * pequeño flotando en una caja medio vacía, y estrechar la caja no lo
+   * arregla — en el paso siguiente, el de elegir hora, vuelve a necesitar dos
+   * columnas.
+   *
+   * El panel es lo que equilibra el ancho. Y ahora que el cliente conectó
+   * Zoom, además dice dónde es la clase, que es información que la página no
+   * da en ese punto.
+   * =======================================================
+   */
 } as const;
 
 /**
@@ -104,15 +122,27 @@ export function Calendly({
   }, [abierto]);
 
   /*
-   * Al abrir, el foco pasa al contenedor.
+   * Al abrir con TECLADO, el foco pasa al contenedor.
    *
    * Sin esto, quien navega con teclado pulsa el botón, el botón desaparece y
    * el foco se va al `<body>`: hay que tabular desde el principio de la página
    * para llegar al calendario que uno mismo acaba de abrir.
+   *
+   * ============ Y SOLO CON TECLADO ============
+   * Moviendo el foco también al hacer clic, Chrome pinta el anillo de
+   * `:focus-visible` alrededor del contenedor — un cerco naranja de 1280 px
+   * rodeando el calendario, que para quien usa ratón es ruido y nada más.
+   *
+   * `event.detail` vale 0 cuando el `click` vino de Enter o Espacio sobre el
+   * botón, y 1 o más cuando vino de un ratón de verdad. Es la forma exacta de
+   * distinguirlos, y no una heurística.
+   * ============================================
    */
+  const [conTeclado, setConTeclado] = useState(false);
+
   useEffect(() => {
-    if (abierto) contenedor.current?.focus();
-  }, [abierto]);
+    if (abierto && conTeclado) contenedor.current?.focus();
+  }, [abierto, conTeclado]);
 
   if (!abierto) {
     return (
@@ -121,7 +151,10 @@ export function Calendly({
         <button
           type="button"
           className="boton boton--acento"
-          onClick={() => setAbierto(true)}
+          onClick={(evento) => {
+            setConTeclado(evento.detail === 0);
+            setAbierto(true);
+          }}
         >
           {etiquetaBoton}
         </button>
