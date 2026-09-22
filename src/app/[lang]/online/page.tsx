@@ -86,6 +86,7 @@ export default async function PaginaOnline({
         fotoPendiente={p.profesorFotoPendiente}
         fotoAlt={p.profesorFotoAlt}
         etiquetaZona={t.reserva.zonaHoraria}
+        cta={{ href: rutas.reservar(idioma), texto: t.hero.ctaReservar }}
       />
 
       <section className="seccion con-adornos">

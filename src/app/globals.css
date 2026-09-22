@@ -1210,6 +1210,15 @@ p {
   border-radius: 999px;
 }
 
+/* El botón de reservar, dentro de la ficha.
+   `inline-flex` y no bloque: con varios profesores cada botón mide lo que
+   mide su texto, y una fila de botones a todo lo ancho de su ficha se lee
+   como un formulario. */
+.profesor__cta {
+  display: inline-flex;
+  margin-top: 1.25rem;
+}
+
 /* La zona horaria es el dato menos llamativo de los cuatro: es una precisión,
    no un argumento. Sin relleno de color para que no compita con los otros. */
 .profesor__dato--zona {

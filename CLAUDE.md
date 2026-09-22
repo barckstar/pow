@@ -410,7 +410,11 @@ Medido sobre el build de producción (`next start`), mediana de tres corridas.
 | | Rendimiento | Accesibilidad | Prácticas | SEO | CLS |
 |---|---|---|---|---|---|
 | Escritorio | **100** | **100** | **100** | **100** | 0 |
-| Móvil | **97** | **100** | **100** | **100** | 0 |
+| Móvil | **96** | **100** | **100** | **100** | 0 |
+
+El rendimiento en móvil va entre 95 y 97 según la corrida. **No es el retrato
+de Chris**: está medido que se sirve a 640 px y pesa 23 KB. Es el ruido normal
+del simulador.
 
 **Reservar** (`/es/reservar`), que es la única página con un embebido de
 terceros:

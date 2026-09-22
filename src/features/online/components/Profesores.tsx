@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { PROFESORES } from "../esquemaProfesores";
 import { ZONA_PROFESOR } from "@/shared/config/sitio";
 import type { Idioma } from "@/shared/i18n/config";
@@ -39,6 +40,7 @@ export function Profesores({
   fotoPendiente,
   fotoAlt,
   etiquetaZona,
+  cta,
 }: {
   lang: Idioma;
   /** «Quién da las clases». */
@@ -53,6 +55,8 @@ export function Profesores({
   fotoAlt: string;
   /** «Zona horaria del profesor». */
   etiquetaZona: string;
+  /** El botón de reservar, dentro de la ficha. */
+  cta: { href: string; texto: string };
 }) {
   return (
     <section className="profesores-banda">
@@ -69,9 +73,26 @@ export function Profesores({
                     src={profesor.foto}
                     alt={fotoAlt.replace("{nombre}", profesor.nombre)}
                     fill
-                    /* El marco mide 12 rem y nunca más: pedirle al navegador
-                       una imagen de ancho de pantalla sería tirar bytes. */
-                    sizes="12rem"
+                    /*
+                      Se quedó en `12rem` al cambiar la maqueta y con la
+                      maqueta nueva mentía: en móvil el retrato ocupa el ancho
+                      de la ficha —el de la ventana menos el relleno de la
+                      franja, 1,5 rem por lado— y el aviso seguía diciendo
+                      192 px.
+
+                      Esto NO es una optimización, es una corrección. Medido
+                      en Lighthouse móvil, la foto se sirve a 640 px y pesa
+                      23 KB, y pesaba lo mismo con el aviso viejo: el escalón
+                      más bajo que ofrece Next ya cubría de sobra. Lo que se
+                      arregla es que el navegador elija por lo que hay y no
+                      por casualidad — en un teléfono con más densidad de
+                      píxeles que el que simula Lighthouse, el aviso viejo le
+                      habría dado una imagen corta.
+
+                      En escritorio son 16 rem clavados, y ahí pedir un ancho
+                      de pantalla sería tirar bytes.
+                    */
+                    sizes="(min-width: 768px) 16rem, calc(100vw - 3rem)"
                     className="profesor__foto"
                   />
                 ) : (
@@ -107,6 +128,21 @@ export function Profesores({
                     {etiquetaZona}: {ZONA_PROFESOR.replace(/_/g, " ")}
                   </li>
                 </ul>
+
+                {/*
+                  El botón, dentro de la ficha.
+                  Lo pidió el cliente y cae de cajón: esta sección es lo
+                  primero que se ve al bajar del hero, y hasta ahora la única
+                  forma de reservar desde aquí era seguir bajando hasta el
+                  final de la página. Quien ya se convenció con la cara y el
+                  nombre no debería tener que volver a buscar.
+
+                  El de abajo se queda: son los dos extremos de la página, y
+                  quien baja leyéndolo todo no tiene por qué subir.
+                */}
+                <Link href={cta.href} className="boton boton--primario profesor__cta">
+                  {cta.texto}
+                </Link>
               </div>
             </li>
           ))}
