@@ -157,8 +157,24 @@ export const CALENDLY: { url: string } | null = URL_CALENDLY
  */
 const ESPERADO = /^https:\/\/calendly\.com\/([\w-]+)\/[\w-]+/;
 
-/** Rutas del propio Calendly que no son de nadie que reserve. */
+/**
+ * Primeros segmentos que NO son el usuario de nadie.
+ *
+ * Dos familias, y las dos son errores reales que ya pasaron:
+ *
+ *   RUTAS DEL PROPIO CALENDLY. `calendly.com/event_types/...` es la URL del
+ *   PANEL de administración: encaja en el patrón de dos segmentos y es la que
+ *   uno tiene en la barra mientras configura el evento.
+ *
+ *   PLACEHOLDERS. `tu-usuario`, `prueba`, `ejemplo`... Son los de los ejemplos
+ *   de la documentación de este mismo proyecto, y pegarlos tal cual es lo más
+ *   fácil del mundo. El resultado no es un error visible: Calendly sirve su
+ *   PÁGINA DE PUBLICIDAD —con un «Get started for free»— dentro del hueco del
+ *   calendario, y el sitio parece estar anunciando a Calendly en vez de
+ *   ofrecer horas. Pasó en la primera prueba.
+ */
 const NO_SON_USUARIOS = new Set([
+  // Rutas del propio Calendly.
   "event_types",
   "app",
   "api",
@@ -168,6 +184,18 @@ const NO_SON_USUARIOS = new Set([
   "users",
   "settings",
   "pages",
+  // Placeholders de la documentación.
+  "tu-usuario",
+  "tu_usuario",
+  "usuario",
+  "prueba",
+  "ejemplo",
+  "example",
+  "test",
+  "demo",
+  "username",
+  "your-name",
+  "your-username",
 ]);
 
 /*
@@ -189,9 +217,14 @@ function comprobarCalendly(config: { url: string } | null) {
   if (encaja && !NO_SON_USUARIOS.has(encaja[1])) return;
 
   throw new Error(
-    `NEXT_PUBLIC_CALENDLY_URL no parece un enlace de reserva: "${config.url}". ` +
-      "Tiene que ser la URL pública del tipo de evento, la del botón «Copy link» " +
-      "(https://calendly.com/usuario/evento). No es un token ni la URL del panel."
+    [
+      `NEXT_PUBLIC_CALENDLY_URL no sirve: "${config.url}".`,
+      "Tiene que ser TU enlace de reserva: el del botón «Copy link» del tipo de evento.",
+      "La prueba: pegalo en una pestaña de incógnito. Si ves tu calendario, es el bueno;",
+      "si ves la web de Calendly con «Get started for free», esa dirección no existe.",
+      "No es un token, no es la URL del panel (/event_types/...) y no es un ejemplo",
+      "de la documentación.",
+    ].join(" ")
   );
 }
 
