@@ -13,11 +13,58 @@ import type { Idioma } from "@/shared/i18n/config";
  */
 
 /**
- * Dominio de producción.
- * PENDIENTE: el cliente no ha comprado dominio. Este valor es provisional y
- * solo afecta a canónicas y og:url; cambiarlo aquí lo arregla en todo el sitio.
+ * Dominio del sitio.
+ *
+ * PENDIENTE: el cliente no ha comprado dominio todavía. El valor de abajo es
+ * provisional y se usa si no hay variable de entorno.
+ *
+ * ============ POR QUÉ ESTE SÍ ES UNA VARIABLE ============
+ * No es un secreto, pero **cambia según dónde corra el sitio**: en una
+ * previsualización de Vercel el dominio es otro, y ahí las canónicas, los
+ * `og:url`, el sitemap y el RSS tienen que apuntar a esa previsualización y no
+ * a producción. Con el valor escrito en el código, una preview se anuncia a sí
+ * misma como si fuera el sitio de verdad — y eso es exactamente lo que hace
+ * que Google acabe indexando una preview.
+ *
+ * VA SIN `NEXT_PUBLIC_` a propósito: solo lo leen el layout, el sitemap, el
+ * robots, el RSS y el JSON-LD, que corren en el servidor. Con el prefijo se
+ * incrustaría en el paquete del navegador sin que nadie lo use.
+ * =========================================================
  */
-export const URL_BASE = "https://costaricaspanishexperience.com";
+export const URL_BASE = normalizarBase(
+  process.env.URL_BASE?.trim() || "https://costaricaspanishexperience.com"
+);
+
+/**
+ * Quita la barra final y comprueba que sea una URL absoluta.
+ *
+ * Lo de la barra no es manía: en todo el proyecto se concatena
+ * `${URL_BASE}${ruta}`, y las rutas ya empiezan por `/`. Con una barra final
+ * en la variable, cada canónica del sitio saldría como `https://sitio.com//es`
+ * — que es una URL distinta para un buscador, y duplica el sitio entero.
+ *
+ * Y si no es absoluta, `new URL()` del layout revienta con un mensaje que no
+ * dice de dónde viene. Mejor fallar aquí, diciendo cuál es la variable.
+ */
+function normalizarBase(valor: string): string {
+  let url: URL;
+  try {
+    url = new URL(valor);
+  } catch {
+    throw new Error(
+      `URL_BASE tiene que ser una URL absoluta con protocolo, y es: "${valor}". ` +
+        "Por ejemplo https://costaricaspanishexperience.com"
+    );
+  }
+
+  if (url.protocol !== "https:" && url.hostname !== "localhost") {
+    throw new Error(
+      `URL_BASE tiene que ir por https (salvo en localhost), y es: "${valor}"`
+    );
+  }
+
+  return valor.replace(/\/+$/, "");
+}
 
 export const NOMBRE_SITIO = "Costa Rica Spanish Experience";
 

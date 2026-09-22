@@ -27,14 +27,29 @@ se fueron las dos claves de PayPal y la del calendario.
 
 ## Lo que sí hay que configurar, y dónde
 
-No son variables de entorno: son cuentas y ajustes fuera del repositorio.
+Dos variables, y tres cosas que se configuran en paneles ajenos.
 
-| Qué | Dónde se configura | Dónde entra en el código |
+### Las que lee el código
+
+| Variable | Qué es | Si falta |
 |---|---|---|
-| Enlace del calendario | Panel de Calendly → «Copy link» | `NEXT_PUBLIC_CALENDLY_URL` |
-| Cobro del depósito | Calendly → Payments → PayPal | nada: lo hace Calendly |
-| Enlace de la videollamada | Calendly → Integrations → Zoom | nada: lo hace Calendly |
-| Monto del depósito | Calendly, y además `DEPOSITO` en `sitio.ts` | `/precios`, para enseñarlo |
+| `NEXT_PUBLIC_CALENDLY_URL` | El enlace de «Copy link» de tu tipo de evento | `/reservar` dice que no se puede reservar todavía |
+| `URL_BASE` | El dominio del que cuelgan canónicas, sitemap y RSS | se usa el provisional de `sitio.ts` |
+
+Las dos **rompen el build si se pegan mal**, cada una con su mensaje.
+
+`URL_BASE` existe porque cambia según dónde corra: en una previsualización de
+Vercel el dominio es otro, y ahí las canónicas tienen que apuntar a esa
+preview. Con el valor escrito en el código, una preview se anuncia como si
+fuera el sitio de verdad — que es como Google acaba indexando una preview.
+
+### Lo que se configura fuera del repositorio
+
+| Qué | Dónde |
+|---|---|
+| Cobro del depósito | Calendly → Payments → PayPal |
+| Enlace de la videollamada | Calendly → Integrations → Zoom |
+| Monto del depósito | Calendly, y además `DEPOSITO` en `sitio.ts` para enseñarlo |
 
 El monto aparece **dos veces a propósito**: Calendly es quien cobra, y
 `DEPOSITO` es lo que el sitio le enseña al visitante en `/precios` antes de
