@@ -4,13 +4,17 @@
     "expresion": "Pura vida",
     "pronunciacion": "PU-ra VI-da",
     "significado": {
+      "en": "The most Costa Rican phrase there is. It works as hello, goodbye, thank you, «all good» and «no worries». Tone decides which one you are getting.",
       "es": "La expresión más costarricense que existe. Sirve de saludo, de despedida, de gracias, de «todo bien» y de «no hay problema». El tono decide cuál de todas es.",
-      "en": "The most Costa Rican phrase there is. It works as hello, goodbye, thank you, «all good» and «no worries». Tone decides which one you are getting."
+      "de": "Der costa-ricanischste Ausdruck überhaupt. Er dient als Begrüßung, Verabschiedung, Dankeschön, „alles gut“ und „kein Problem“. Der Tonfall entscheidet, welche Bedeutung gemeint ist.",
+      "fr": "L'expression la plus costaricienne qui soit. Elle sert de bonjour, d'au revoir, de merci, de « tout va bien » et de « pas de souci ». C'est le ton qui décide laquelle des cinq c'est."
     },
     "ejemplo": "— ¿Cómo está? — ¡Pura vida!",
     "ejemploExplicado": {
+      "en": "Here it means «all good, thanks». If someone helps you and you answer «pura vida», it means «thank you».",
       "es": "Aquí funciona como «todo bien, gracias». Si alguien te ayuda y respondés «pura vida», es «gracias».",
-      "en": "Here it means «all good, thanks». If someone helps you and you answer «pura vida», it means «thank you»."
+      "de": "Hier bedeutet es „alles gut, danke“. Wenn dir jemand hilft und du mit „pura vida“ antwortest, heißt das „danke“.",
+      "fr": "Ici, ça veut dire « tout va bien, merci ». Si quelqu'un t'aide et que tu réponds « pura vida », ça veut dire « merci »."
     },
     "articulo": "que-significa-pura-vida"
   },
@@ -19,13 +23,17 @@
     "expresion": "Mae",
     "pronunciacion": "MA-e",
     "significado": {
+      "en": "The Costa Rican «dude» or «mate». Used to address someone casually, and also as filler inside a sentence. Among friends it shows up in nearly every line.",
       "es": "El «tío» o «tipo» costarricense. Se usa para dirigirse a alguien con confianza y también como muletilla dentro de la frase. Entre amigos aparece en casi todas las oraciones.",
-      "en": "The Costa Rican «dude» or «mate». Used to address someone casually, and also as filler inside a sentence. Among friends it shows up in nearly every line."
+      "de": "Der costa-ricanische „Typ“ oder „Alter“. Wird verwendet, um jemanden vertraut anzusprechen, und auch als Füllwort mitten im Satz. Unter Freunden taucht es in fast jedem Satz auf.",
+      "fr": "Le « mec » ou « pote » costaricien. Utilisé pour s'adresser à quelqu'un avec familiarité, et aussi comme mot de remplissage dans la phrase. Entre amis, il apparaît dans presque chaque phrase."
     },
     "ejemplo": "Mae, ¿vamos a la playa el sábado?",
     "ejemploExplicado": {
+      "en": "«Hey, shall we go to the beach on Saturday?». It is informal: not for someone you address formally.",
       "es": "«Oye, ¿vamos a la playa el sábado?». Es informal: no se usa con alguien a quien tratás de usted.",
-      "en": "«Hey, shall we go to the beach on Saturday?». It is informal: not for someone you address formally."
+      "de": "„Hey, gehen wir am Samstag an den Strand?“. Es ist informell: nicht für jemanden, den man siezt.",
+      "fr": "« Dis, on va à la plage samedi ? ». C'est informel : pas pour quelqu'un à qui on vouvoie."
     },
     "articulo": null
   },
@@ -34,13 +42,17 @@
     "expresion": "Tuanis",
     "pronunciacion": "TUA-nis",
     "significado": {
+      "en": "Cool, great, nice. It describes things, plans and people. It is one of the words that most clearly marks someone as having learned Spanish in Costa Rica.",
       "es": "Bueno, chévere, genial. Califica cosas, planes y personas. Es de las palabras que más delatan que alguien aprendió español en Costa Rica y no en otro país.",
-      "en": "Cool, great, nice. It describes things, plans and people. It is one of the words that most clearly marks someone as having learned Spanish in Costa Rica."
+      "de": "Gut, cool, super. Beschreibt Dinge, Pläne und Menschen. Eines der Wörter, die am deutlichsten verraten, dass jemand sein Spanisch in Costa Rica gelernt hat und nicht anderswo.",
+      "fr": "Bien, chouette, génial. Qualifie des choses, des projets et des personnes. C'est l'un des mots qui trahit le plus qu'on a appris l'espagnol au Costa Rica et pas ailleurs."
     },
     "ejemplo": "Qué tuanis que viniste.",
     "ejemploExplicado": {
+      "en": "«So glad you came». It expresses genuine pleasure, not politeness.",
       "es": "«Qué bueno que viniste». Expresa alegría sincera, no cortesía.",
-      "en": "«So glad you came». It expresses genuine pleasure, not politeness."
+      "de": "„Wie schön, dass du gekommen bist“. Drückt ehrliche Freude aus, keine Höflichkeitsfloskel.",
+      "fr": "« Que je suis content(e) que tu sois venu(e) ». Ça exprime une joie sincère, pas une simple politesse."
     },
     "articulo": null
   },
@@ -49,13 +61,17 @@
     "expresion": "¿Diay?",
     "pronunciacion": "DIAI",
     "significado": {
+      "en": "It comes from «de ahí» (from there). It is a question, a filler and a shrug all at once: «so?», «what happened?», «well, what can you do».",
       "es": "Viene de «de ahí». Es a la vez pregunta, muletilla y encogimiento de hombros: «¿y entonces?», «¿qué pasó?», «pues qué le vamos a hacer».",
-      "en": "It comes from «de ahí» (from there). It is a question, a filler and a shrug all at once: «so?», «what happened?», «well, what can you do»."
+      "de": "Kommt von „de ahí“ (von dort). Es ist zugleich Frage, Füllwort und Schulterzucken: „und dann?“, „was ist passiert?“, „nun, was soll man machen“.",
+      "fr": "Vient de « de ahí » (de là). C'est à la fois une question, un mot de remplissage et un haussement d'épaules : « et alors ? », « qu'est-ce qui s'est passé ? », « bon, qu'est-ce qu'on y peut »."
     },
     "ejemplo": "¿Diay, qué le pasó?",
     "ejemploExplicado": {
+      "en": "«So, what happened to you?». Said alone in a low tone, it means resignation.",
       "es": "«¿Y entonces, qué te pasó?». Dicho solo y con tono bajo, significa resignación.",
-      "en": "«So, what happened to you?». Said alone in a low tone, it means resignation."
+      "de": "„Und, was ist dir passiert?“. Allein und mit gesenktem Ton gesagt, bedeutet es Resignation.",
+      "fr": "« Et alors, qu'est-ce qui t'est arrivé ? ». Dit seul et sur un ton bas, ça exprime la résignation."
     },
     "articulo": null
   },
@@ -64,13 +80,17 @@
     "expresion": "Brete",
     "pronunciacion": "BRE-te",
     "significado": {
+      "en": "Work, a job. «Bretear» means to work. It is everyday vocabulary: in casual conversation you will hear it more often than «trabajo».",
       "es": "El trabajo, el empleo. «Bretear» es trabajar. Es palabra de todos los días: se oye más que «trabajo» en conversación informal.",
-      "en": "Work, a job. «Bretear» means to work. It is everyday vocabulary: in casual conversation you will hear it more often than «trabajo»."
+      "de": "Die Arbeit, der Job. „Bretear“ heißt arbeiten. Ein Alltagswort: In lockeren Gesprächen hört man es öfter als „trabajo“.",
+      "fr": "Le travail, l'emploi. « Bretear » veut dire travailler. C'est un mot de tous les jours : on l'entend plus souvent que « trabajo » en conversation informelle."
     },
     "ejemplo": "Mañana no puedo, tengo brete.",
     "ejemploExplicado": {
+      "en": "«I can't tomorrow, I have to work».",
       "es": "«Mañana no puedo, tengo que trabajar».",
-      "en": "«I can't tomorrow, I have to work»."
+      "de": "„Morgen kann ich nicht, ich muss arbeiten“.",
+      "fr": "« Demain je ne peux pas, je dois travailler »."
     },
     "articulo": null
   },
@@ -79,13 +99,17 @@
     "expresion": "Chunche",
     "pronunciacion": "CHUN-che",
     "significado": {
+      "en": "Thing, gadget, that thing whose name escapes you. It works for any object, and it is the word that saves you when your vocabulary runs out.",
       "es": "Cosa, cacharro, esa cosa cuyo nombre no te sale. Vale para cualquier objeto, y es la palabra que te salva cuando te falta vocabulario.",
-      "en": "Thing, gadget, that thing whose name escapes you. It works for any object, and it is the word that saves you when your vocabulary runs out."
+      "de": "Ding, Dingsbums, dieses Ding, dessen Namen einem nicht einfällt. Gilt für jeden Gegenstand und ist das Wort, das einen rettet, wenn das Vokabular fehlt.",
+      "fr": "Truc, machin, ce truc dont le nom ne vient pas. Ça vaut pour n'importe quel objet, et c'est le mot qui sauve quand le vocabulaire manque."
     },
     "ejemplo": "Pasame ese chunche, por favor.",
     "ejemploExplicado": {
+      "en": "«Pass me that thing, please». Note «pasame» instead of «pásame»: that is Costa Rican voseo.",
       "es": "«Pásame esa cosa, por favor». Fijate en «pasame», sin la -e final: es el voseo costarricense.",
-      "en": "«Pass me that thing, please». Note «pasame» instead of «pásame»: that is Costa Rican voseo."
+      "de": "„Gib mir bitte das Dings da“. Achte auf „pasame“ ohne das End-e: das ist das costa-ricanische Voseo.",
+      "fr": "« Passe-moi ce truc, s'il te plaît ». Remarque « pasame », sans le -e final : c'est le voseo costaricien."
     },
     "articulo": "voseo-costarricense"
   },
@@ -94,13 +118,17 @@
     "expresion": "Güila",
     "pronunciacion": "GÜI-la",
     "significado": {
+      "en": "Kid, child. It is informal and affectionate, and it is used for any gender even though the word ends in -a.",
       "es": "Niño o niña, chiquillo. Es informal y afectuosa, y se usa para ambos géneros aunque la palabra termine en -a.",
-      "en": "Kid, child. It is informal and affectionate, and it is used for any gender even though the word ends in -a."
+      "de": "Kind, Kleines. Informell und liebevoll, wird für jedes Geschlecht verwendet, obwohl das Wort auf -a endet.",
+      "fr": "Enfant, gamin. C'est informel et affectueux, et ça s'utilise pour tous les genres même si le mot se termine en -a."
     },
     "ejemplo": "Esa güila habla tres idiomas.",
     "ejemploExplicado": {
+      "en": "«That kid speaks three languages». It is not derogatory: it is affectionate.",
       "es": "«Esa chiquilla habla tres idiomas». No es despectivo: es cariñoso.",
-      "en": "«That kid speaks three languages». It is not derogatory: it is affectionate."
+      "de": "„Dieses Kind spricht drei Sprachen“. Nicht abwertend gemeint: es ist liebevoll.",
+      "fr": "« Ce gamin parle trois langues ». Ce n'est pas péjoratif : c'est affectueux."
     },
     "articulo": null
   },
@@ -109,13 +137,17 @@
     "expresion": "Pulpería",
     "pronunciacion": "pul-pe-RÍ-a",
     "significado": {
+      "en": "The small neighbourhood shop where you buy day-to-day things. Not a supermarket: it is the corner store where you also catch up on everything happening nearby.",
       "es": "La tienda pequeña de barrio donde se compra lo del día. No es un supermercado: es la esquina donde además te enterás de todo lo que pasa en el vecindario.",
-      "en": "The small neighbourhood shop where you buy day-to-day things. Not a supermarket: it is the corner store where you also catch up on everything happening nearby."
+      "de": "Der kleine Viertelladen, in dem man das Nötigste für den Tag kauft. Kein Supermarkt: die Ecke, an der man auch alles über die Nachbarschaft erfährt.",
+      "fr": "La petite épicerie de quartier où l'on achète ce qu'il faut pour la journée. Pas un supermarché : le coin où l'on apprend aussi tout ce qui se passe dans le voisinage."
     },
     "ejemplo": "Voy a la pulpería por pan.",
     "ejemploExplicado": {
+      "en": "«I'm going to the corner shop to buy bread».",
       "es": "«Voy a la tienda de la esquina a comprar pan».",
-      "en": "«I'm going to the corner shop to buy bread»."
+      "de": "„Ich gehe zum Laden an der Ecke, um Brot zu kaufen“.",
+      "fr": "« Je vais à l'épicerie du coin acheter du pain »."
     },
     "articulo": null
   }

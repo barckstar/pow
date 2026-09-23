@@ -105,12 +105,17 @@ export function Navbar({ lang, t }: Props) {
   const enlaces = [
     { href: rutas.online(lang), texto: t.nav.online },
     { href: rutas.costaRica(lang), texto: t.nav.costaRica },
+    { href: rutas.about(lang), texto: t.nav.about },
     { href: rutas.blog(lang), texto: t.nav.blog },
     { href: rutas.precios(lang), texto: t.nav.precios },
     { href: rutas.comunidad(lang), texto: t.nav.comunidad },
   ];
 
-  const otroIdioma = IDIOMAS.find((i) => i !== lang) ?? lang;
+  /*
+   * La ruta sin el prefijo de idioma, para reconstruirla con cada uno de los
+   * cuatro. Un `/^\/[a-z]{2}/` no distinguía cuántos idiomas hubiera detrás,
+   * así que sigue sirviendo igual con dos que con cuatro.
+   */
   const rutaSinIdioma = pathname.replace(/^\/[a-z]{2}/, "") || "";
 
   return (
@@ -134,11 +139,14 @@ export function Navbar({ lang, t }: Props) {
           (label-content-name-mismatch).
         */}
         <Link href={rutas.inicio(lang)} className="navbar__logo">
+          {/* 177x150: la relación de aspecto real del logo nuevo (1,18:1),
+              no la del recorte viejo (1,29:1) — con ese número el navegador
+              habría reservado una caja más ancha de lo que la imagen ocupa. */}
           <Image
             src="/marca/perezoso.png"
             alt=""
-            width={155}
-            height={120}
+            width={177}
+            height={150}
             priority
             className="navbar__perezoso"
           />
@@ -162,14 +170,43 @@ export function Navbar({ lang, t }: Props) {
             ))}
           </nav>
 
-          <Link
-            href={`/${otroIdioma}${rutaSinIdioma}`}
-            className="navbar__idioma"
-            hrefLang={otroIdioma}
-            aria-label={`${t.nav.cambiarIdioma}: ${NOMBRE_IDIOMA[otroIdioma]}`}
-          >
-            {otroIdioma.toUpperCase()}
-          </Link>
+          {/*
+            ============ CUATRO IDIOMAS, NO UNO ============
+            Había un solo enlace, al «otro» idioma —tenía sentido cuando solo
+            había dos—. Con alemán y francés desde el 23/09/2026 eso dejó de
+            alcanzar: hacía falta un selector, no un interruptor.
+            Es una fila de códigos, no un desplegable: cuatro opciones caben
+            enteras a la vista, y un menú que hay que abrir para ver cuatro
+            letras es un paso de más. El idioma activo no es un enlace —no
+            tiene a dónde ir— así que es un `<span>`, marcado con
+            `aria-current` para quien usa lector de pantalla.
+            =================================================
+          */}
+          <ul className="navbar__idiomas" aria-label={t.nav.cambiarIdioma}>
+            {IDIOMAS.map((idioma) => (
+              <li key={idioma}>
+                {idioma === lang ? (
+                  <span
+                    className="navbar__idioma"
+                    aria-current="true"
+                    aria-label={NOMBRE_IDIOMA[idioma]}
+                  >
+                    {idioma.toUpperCase()}
+                  </span>
+                ) : (
+                  <Link
+                    href={`/${idioma}${rutaSinIdioma}`}
+                    className="navbar__idioma"
+                    hrefLang={idioma}
+                    lang={idioma}
+                    aria-label={NOMBRE_IDIOMA[idioma]}
+                  >
+                    {idioma.toUpperCase()}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
 
           <Link href={rutas.reservar(lang)} className="navbar__cta">
             {t.nav.reservar}
@@ -203,6 +240,43 @@ export function Navbar({ lang, t }: Props) {
             </Link>
           ))}
         </nav>
+
+        {/*
+          El selector de arriba solo se ve a partir de 1100 px. Por debajo de
+          eso —o sea en cualquier teléfono— no había ninguna otra forma de
+          cambiar de idioma: el enlace único de antes tampoco se veía en
+          móvil. Se repite aquí, dentro del menú, para que exista al menos un
+          camino.
+        */}
+        <ul
+          className="navbar__movil-idiomas"
+          aria-label={t.nav.cambiarIdioma}
+        >
+          {IDIOMAS.map((idioma) => (
+            <li key={idioma}>
+              {idioma === lang ? (
+                <span
+                  className="navbar__movil-idioma"
+                  aria-current="true"
+                  aria-label={NOMBRE_IDIOMA[idioma]}
+                >
+                  {idioma.toUpperCase()}
+                </span>
+              ) : (
+                <Link
+                  href={`/${idioma}${rutaSinIdioma}`}
+                  className="navbar__movil-idioma"
+                  hrefLang={idioma}
+                  lang={idioma}
+                  aria-label={NOMBRE_IDIOMA[idioma]}
+                >
+                  {idioma.toUpperCase()}
+                </Link>
+              )}
+            </li>
+          ))}
+        </ul>
+
         <Link href={rutas.reservar(lang)} className="navbar__movil-cta">
           {t.nav.reservar}
         </Link>

@@ -1,22 +1,22 @@
 {
   "habilidades": [
-    { "id": "hablar", "etiqueta": { "es": "Hablar", "en": "Speaking" } },
-    { "id": "entender", "etiqueta": { "es": "Entender lo que se oye", "en": "Listening" } },
-    { "id": "pronunciacion", "etiqueta": { "es": "Pronunciación", "en": "Pronunciation" } },
-    { "id": "comunicacion", "etiqueta": { "es": "Comunicación real", "en": "Real-life communication" } }
+    { "id": "hablar", "etiqueta": { "en": "Speaking", "es": "Hablar", "de": "Sprechen", "fr": "Parler" } },
+    { "id": "entender", "etiqueta": { "en": "Listening", "es": "Entender lo que se oye", "de": "Hörverstehen", "fr": "Comprendre à l'oral" } },
+    { "id": "pronunciacion", "etiqueta": { "en": "Pronunciation", "es": "Pronunciación", "de": "Aussprache", "fr": "Prononciation" } },
+    { "id": "comunicacion", "etiqueta": { "en": "Real-life communication", "es": "Comunicación real", "de": "Kommunikation im Alltag", "fr": "Communication réelle" } }
   ],
   "situaciones": [
-    { "id": "viajar", "etiqueta": { "es": "Viajar", "en": "Travelling" } },
-    { "id": "comida", "etiqueta": { "es": "Pedir comida", "en": "Ordering food" } },
-    { "id": "gente", "etiqueta": { "es": "Conocer gente", "en": "Meeting people" } },
-    { "id": "trabajo", "etiqueta": { "es": "El trabajo", "en": "Work" } },
-    { "id": "dia-a-dia", "etiqueta": { "es": "El día a día", "en": "Everyday conversation" } }
+    { "id": "viajar", "etiqueta": { "en": "Travelling", "es": "Viajar", "de": "Reisen", "fr": "Voyager" } },
+    { "id": "comida", "etiqueta": { "en": "Ordering food", "es": "Pedir comida", "de": "Essen bestellen", "fr": "Commander à manger" } },
+    { "id": "gente", "etiqueta": { "en": "Meeting people", "es": "Conocer gente", "de": "Leute kennenlernen", "fr": "Rencontrer des gens" } },
+    { "id": "trabajo", "etiqueta": { "en": "Work", "es": "El trabajo", "de": "Die Arbeit", "fr": "Le travail" } },
+    { "id": "dia-a-dia", "etiqueta": { "en": "Everyday conversation", "es": "El día a día", "de": "Der Alltag", "fr": "Le quotidien" } }
   ],
   "motivos": [
-    { "id": "latinoamerica", "etiqueta": { "es": "Viajar por Latinoamérica", "en": "Travelling Latin America" } },
-    { "id": "trabajo", "etiqueta": { "es": "Mejorar el español del trabajo", "en": "Spanish for work" } },
-    { "id": "familia", "etiqueta": { "es": "Hablar con la familia", "en": "Talking to family" } },
-    { "id": "mudanza", "etiqueta": { "es": "Prepararse para mudarse", "en": "Preparing to relocate" } },
-    { "id": "gusto", "etiqueta": { "es": "Por el gusto de aprender", "en": "The pleasure of learning" } }
+    { "id": "latinoamerica", "etiqueta": { "en": "Travelling Latin America", "es": "Viajar por Latinoamérica", "de": "Durch Lateinamerika reisen", "fr": "Voyager en Amérique latine" } },
+    { "id": "trabajo", "etiqueta": { "en": "Spanish for work", "es": "Mejorar el español del trabajo", "de": "Spanisch für den Beruf verbessern", "fr": "Améliorer son espagnol professionnel" } },
+    { "id": "familia", "etiqueta": { "en": "Talking to family", "es": "Hablar con la familia", "de": "Mit der Familie sprechen", "fr": "Parler avec la famille" } },
+    { "id": "mudanza", "etiqueta": { "en": "Preparing to relocate", "es": "Prepararse para mudarse", "de": "Sich auf den Umzug vorbereiten", "fr": "Se préparer à déménager" } },
+    { "id": "gusto", "etiqueta": { "en": "The pleasure of learning", "es": "Por el gusto de aprender", "de": "Aus Freude am Lernen", "fr": "Par plaisir d'apprendre" } }
   ]
 }

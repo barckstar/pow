@@ -24,11 +24,13 @@ export function Footer({ lang, t }: Props) {
     <footer className="pie">
       <div className="pie__interior">
         <div className="pie__marca">
+          {/* 177x150: la relación de aspecto real del logo nuevo (1,18:1),
+              no la del recorte viejo. */}
           <Image
             src="/marca/perezoso.png"
             alt=""
-            width={155}
-            height={120}
+            width={177}
+            height={150}
             className="pie__perezoso"
           />
           <p className="pie__lema">{t.footer.lema}</p>

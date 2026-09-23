@@ -54,21 +54,38 @@ describe("detección de idioma", () => {
   it("reconoce los idiomas soportados", () => {
     expect(esIdioma("es")).toBe(true);
     expect(esIdioma("en")).toBe(true);
-    expect(esIdioma("fr")).toBe(false);
+    expect(esIdioma("de")).toBe(true);
+    expect(esIdioma("fr")).toBe(true);
+    expect(esIdioma("it")).toBe(false);
   });
 
   it("elige el primer idioma soportado de Accept-Language", () => {
     expect(idiomaDesdeCabecera("en-US,en;q=0.9,es;q=0.8")).toBe("en");
     expect(idiomaDesdeCabecera("es-CR,es;q=0.9")).toBe("es");
+    expect(idiomaDesdeCabecera("de-DE,de;q=0.9,en;q=0.8")).toBe("de");
+    expect(idiomaDesdeCabecera("fr-FR,fr;q=0.9")).toBe("fr");
   });
 
-  it("salta los idiomas que no soportamos en vez de rendirse", () => {
-    expect(idiomaDesdeCabecera("fr-CH,de;q=0.9,en;q=0.7")).toBe("en");
+  /*
+   * El caso real que motivó agregar alemán y francés: el profesor da clase
+   * desde Suiza, donde un navegador puede anunciar cualquiera de los tres
+   * —o los tres, en ese orden—. Antes de este cambio los tres caían en
+   * inglés por descarte; ahora el primero que el sitio cubre gana.
+   */
+  it("reconoce un navegador suizo en cualquiera de sus idiomas", () => {
+    expect(idiomaDesdeCabecera("fr-CH,de;q=0.9,en;q=0.7")).toBe("fr");
+    expect(idiomaDesdeCabecera("de-CH,fr;q=0.9,en;q=0.7")).toBe("de");
   });
 
-  it("cae al idioma por defecto sin cabecera", () => {
-    expect(idiomaDesdeCabecera(null)).toBe("es");
-    expect(idiomaDesdeCabecera("")).toBe("es");
+  /** Italiano de verdad no está: «de momento solo esos», dijo el cliente. */
+  it("salta un idioma que no cubrimos y cae al que sí está más adelante", () => {
+    expect(idiomaDesdeCabecera("it-IT,it;q=0.9,es;q=0.7")).toBe("es");
+  });
+
+  it("cae al idioma por defecto sin cabecera, o si ninguna entrada es de las que cubrimos", () => {
+    expect(idiomaDesdeCabecera(null)).toBe("en");
+    expect(idiomaDesdeCabecera("")).toBe("en");
+    expect(idiomaDesdeCabecera("it-IT,it;q=0.9")).toBe("en");
   });
 });
 

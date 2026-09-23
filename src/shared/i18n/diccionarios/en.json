@@ -3,8 +3,9 @@
     "inicio": "Home",
     "online": "Online lessons",
     "costaRica": "In Costa Rica",
+    "about": "About Us",
     "blog": "Blog",
-    "precios": "Pricing",
+    "precios": "Packages",
     "comunidad": "Community",
     "reservar": "Book",
     "abrirMenu": "Open menu",
@@ -15,19 +16,19 @@
     "titulo": "Learn Spanish.",
     "tituloAcentoNaranja": "Speak",
     "tituloAcentoTeal": "Costa Rican.",
-    "subtitulo": "One-to-one online lessons with a Costa Rican teacher, or immersion in Costa Rica: Manuel Antonio, Sámara, La Fortuna and San José. The Spanish you will actually hear when you land.",
+    "subtitulo": "Tailored online lessons with local teachers, or a fully immersive learning experience in Costa Rica, from Samara and Manuel Antonio to La Fortuna and San Jose.",
     "ctaOnline": "Learn Online",
-    "ctaPresencial": "Go to Costa Rica",
+    "ctaPresencial": "Learn in Costa Rica",
     "ctaReservar": "Book a lesson",
     "insignia": "More than a language. It's a journey."
   },
   "experiencias": {
     "titulo": "Choose how you want to learn",
     "onlineTitulo": "Online",
-    "onlineTexto": "One-to-one video lessons with a Costa Rican teacher based in Switzerland. Built around your schedule, wherever you are.",
+    "onlineTexto": "Private, group, and couples' lessons with local teachers — tailored to your schedule, wherever you are.",
     "onlineEnlace": "Start online",
     "presencialTitulo": "In Costa Rica",
-    "presencialTexto": "Immersion in the country, across four destinations. You study in the morning and practise the rest of the day with the people who live there, which is where a language finally sticks.",
+    "presencialTexto": "Immersion across four stunning destinations. Study in the morning, then spend the rest of the day practising with locals — because that's where Spanish really sticks.",
     "presencialEnlace": "See the destinations"
   },
   "destinos": {
@@ -40,14 +41,14 @@
     "escuela": "School"
   },
   "confianza": {
-    "profesorTitulo": "Costa Rican teacher",
-    "profesorTexto": "Born and raised there. Not textbook Spanish.",
+    "profesorTitulo": "Local teachers",
+    "profesorTexto": "Born and raised locally, teaching the Spanish you'll actually hear.",
     "horarioTitulo": "Flexible hours",
     "horarioTexto": "You pick the slot, shown in your own time zone.",
-    "reservaTitulo": "Reserve with a deposit",
-    "reservaTexto": "Hold your lesson with a PayPal deposit.",
-    "culturaTitulo": "Culture included",
-    "culturaTexto": "Slang, tone and customs, not just grammar."
+    "reservaTitulo": "Contact Us",
+    "reservaTexto": "Chat directly with a member of our team.",
+    "culturaTitulo": "Culture-driven learning",
+    "culturaTexto": "Real-world language, local customs, and cultural nuances — beyond grammar."
   },
   "tiquismo": {
     "etiqueta": "Tiquismo of the day",
@@ -185,6 +186,30 @@
       "intro": "The landscapes come from Unsplash under its licence. The classroom photos were provided by the schools. This is the record of who took each one and on what terms it is published.",
       "foto": "Photograph by",
       "permisoPendiente": "Provided by the client. Written permission from the school and from the people pictured is still missing."
+    },
+    "about": {
+      "heroInsignia": "Why this school exists",
+      "heroTitulo": "Not an app.",
+      "heroAcento": "A tico teaching you his Spanish.",
+      "heroSubtitulo": "Textbooks teach you a Spanish nobody actually speaks. Costa Rica Spanish Experience exists to close that gap: real teachers, real slang, real voseo — the language you will hear the moment you land.",
+      "historiaTitulo": "Why it started",
+      "historiaTexto1": "Every language app promises fluency and hands you the same neutral, textbook Spanish regardless of where you are headed. Land in Costa Rica with that Spanish and the first thing a local says back will not match a single lesson you took.",
+      "historiaTexto2": "Costa Rica Spanish Experience starts from the opposite direction: it teaches the Spanish that is actually spoken here — the voseo, the tone, the slang — first, and the grammar to support it second. Online lessons come first because that is where most people are today; the immersion trips will build on the same idea once the destinations are ready.",
+      "historiaCita": "Pura vida is not a phrase you memorise. It's a way people actually talk, and you cannot learn it from a textbook.",
+      "valoresTitulo": "What makes a lesson here different",
+      "valoresIntro": "Four things this school cares about more than a generic syllabus does.",
+      "valor1Titulo": "The Spanish you'll actually hear",
+      "valor1Texto": "Voseo, slang and tone, taught on purpose — not skipped because a textbook does not cover them.",
+      "valor2Titulo": "A person, not a platform",
+      "valor2Texto": "Every lesson is one-to-one video with a real teacher who adjusts to how you actually talk and what you actually need.",
+      "valor3Titulo": "Built around your life",
+      "valor3Texto": "Slots shown in your own time zone, not the teacher's. You fit the lesson in — not the other way round.",
+      "valor4Titulo": "Growing on purpose, not overnight",
+      "valor4Texto": "Online lessons are live today; the immersion trips across Costa Rica are being built with the same care, one confirmed detail at a time.",
+      "cierreTitulo": "Ready to hear the Spanish people actually speak?",
+      "cierreTexto": "Book a one-to-one lesson and find out how different it sounds from a textbook.",
+      "cierreCta": "Book a lesson",
+      "cierrePendiente": "This page is a first draft: the school's own story is still being written and will replace this text."
     },
     "solicitud": {
       "titulo": "Tell us what you are after",

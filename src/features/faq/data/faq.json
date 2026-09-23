@@ -2,96 +2,128 @@
   {
     "id": "que-es-espanol-tico",
     "pregunta": {
+      "en": "How is Costa Rican Spanish different?",
       "es": "¿En qué se diferencia el español costarricense?",
-      "en": "How is Costa Rican Spanish different?"
+      "de": "Was unterscheidet costa-ricanisches Spanisch?",
+      "fr": "En quoi l'espagnol costaricien est-il différent ?"
     },
     "respuesta": {
+      "en": "Mainly in three things: voseo (you say «vos hablás», not «tú hablas»), a very widespread use of the formal «usted» even within families, and its own vocabulary —«mae», «tuanis», «brete», «chunche»— that you will not find in a generic course. The grammar is the same; what changes is what you actually hear on the street.",
       "es": "Sobre todo en tres cosas: el voseo (se dice «vos hablás», no «tú hablas»), un uso muy extendido del usted incluso en familia, y un vocabulario propio —«mae», «tuanis», «brete», «chunche»— que no vas a encontrar en un curso genérico. La gramática es la misma; lo que cambia es lo que de verdad se oye en la calle.",
-      "en": "Mainly in three things: voseo (you say «vos hablás», not «tú hablas»), a very widespread use of the formal «usted» even within families, and its own vocabulary —«mae», «tuanis», «brete», «chunche»— that you will not find in a generic course. The grammar is the same; what changes is what you actually hear on the street."
+      "de": "Vor allem in drei Dingen: dem Voseo (man sagt „vos hablás“, nicht „tú hablas“), einem sehr verbreiteten Gebrauch der Höflichkeitsform „usted“ sogar innerhalb der Familie, und einem eigenen Wortschatz — „mae“, „tuanis“, „brete“, „chunche“ —, den man in einem generischen Kurs nicht findet. Die Grammatik ist dieselbe; was sich ändert, ist das, was man wirklich auf der Straße hört.",
+      "fr": "Surtout en trois points : le voseo (on dit « vos hablás », pas « tú hablas »), un usage très répandu du « usted » formel, même en famille, et un vocabulaire propre — « mae », « tuanis », « brete », « chunche » — introuvable dans un cours générique. La grammaire est la même ; ce qui change, c'est ce qu'on entend vraiment dans la rue."
     },
     "pendiente": false
   },
   {
     "id": "nivel-inicial",
     "pregunta": {
+      "en": "Do I need any Spanish to start?",
       "es": "¿Tengo que saber algo de español para empezar?",
-      "en": "Do I need any Spanish to start?"
+      "de": "Muss ich schon etwas Spanisch können, um anzufangen?",
+      "fr": "Dois-je déjà connaître un peu d'espagnol pour commencer ?"
     },
     "respuesta": {
+      "en": "No. You can start from zero. What does help is saying in the first lesson what you want it for —travelling, moving, working— because someone coming for a three-week holiday is not taught the same way as someone moving there for good.",
       "es": "No. Se puede empezar desde cero. Lo que sí conviene es decir en la primera clase para qué lo querés —viajar, mudarte, trabajar— porque no se enseña igual a alguien que viene tres semanas de vacaciones que a alguien que se va a quedar a vivir.",
-      "en": "No. You can start from zero. What does help is saying in the first lesson what you want it for —travelling, moving, working— because someone coming for a three-week holiday is not taught the same way as someone moving there for good."
+      "de": "Nein. Man kann bei null anfangen. Sinnvoll ist es, in der ersten Stunde zu sagen, wofür man es braucht — Reisen, Umzug, Arbeit —, denn jemand, der drei Wochen Urlaub macht, wird anders unterrichtet als jemand, der dauerhaft dort leben wird.",
+      "fr": "Non. On peut commencer de zéro. Ce qui aide, c'est de dire dès le premier cours à quoi ça va te servir — voyager, déménager, travailler — car on n'enseigne pas de la même façon à quelqu'un qui vient trois semaines en vacances qu'à quelqu'un qui va s'y installer."
     },
     "pendiente": false
   },
   {
     "id": "horarios-zona",
     "pregunta": {
+      "en": "What time are the online lessons?",
       "es": "¿En qué horario son las clases en línea?",
-      "en": "What time are the online lessons?"
+      "de": "Zu welcher Uhrzeit finden die Online-Stunden statt?",
+      "fr": "À quelle heure ont lieu les cours en ligne ?"
     },
     "respuesta": {
+      "en": "The teacher lives in Switzerland, so there are slots that work for both Europe and the Americas. On the booking page, times are always shown in your own time zone and in Costa Rica's, so there is no confusion. One thing to watch: Europe changes the clocks twice a year and Costa Rica never does, so the difference between them is not fixed.",
       "es": "El profesor vive en Suiza, así que hay franjas que funcionan tanto para Europa como para América. En la página de reserva los horarios se muestran siempre en tu zona horaria y en la de Costa Rica, para que no haya malentendidos. Ojo con una cosa: Europa cambia la hora dos veces al año y Costa Rica no, así que la diferencia entre ambas no es fija.",
-      "en": "The teacher lives in Switzerland, so there are slots that work for both Europe and the Americas. On the booking page, times are always shown in your own time zone and in Costa Rica's, so there is no confusion. One thing to watch: Europe changes the clocks twice a year and Costa Rica never does, so the difference between them is not fixed."
+      "de": "Der Lehrer lebt in der Schweiz, deshalb gibt es Termine, die sowohl für Europa als auch für Amerika passen. Auf der Buchungsseite werden die Zeiten immer in deiner eigenen Zeitzone und in der von Costa Rica angezeigt, damit es keine Missverständnisse gibt. Eine Sache ist zu beachten: Europa stellt die Uhr zweimal im Jahr um, Costa Rica nie — der Unterschied zwischen beiden ist also nicht fest.",
+      "fr": "Le professeur vit en Suisse, il y a donc des créneaux adaptés aussi bien à l'Europe qu'aux Amériques. Sur la page de réservation, les horaires s'affichent toujours dans ton propre fuseau horaire et dans celui du Costa Rica, pour éviter toute confusion. Attention à un détail : l'Europe change d'heure deux fois par an, le Costa Rica jamais — la différence entre les deux n'est donc pas fixe."
     },
     "pendiente": false
   },
   {
     "id": "que-necesito-online",
     "pregunta": {
+      "en": "What do I need for an online lesson?",
       "es": "¿Qué necesito para una clase en línea?",
-      "en": "What do I need for an online lesson?"
+      "de": "Was brauche ich für eine Online-Stunde?",
+      "fr": "De quoi ai-je besoin pour un cours en ligne ?"
     },
     "respuesta": {
+      "en": "A stable connection, headphones and a camera. The camera matters more than it seems: a good part of any conversation lives in the face, and without it half of the correction is lost. There is nothing unusual to install.",
       "es": "Una conexión estable, auriculares y cámara. La cámara importa más de lo que parece: buena parte de una conversación está en la cara, y sin verla se pierde la mitad de la corrección. No hace falta instalar nada raro.",
-      "en": "A stable connection, headphones and a camera. The camera matters more than it seems: a good part of any conversation lives in the face, and without it half of the correction is lost. There is nothing unusual to install."
+      "de": "Eine stabile Verbindung, Kopfhörer und eine Kamera. Die Kamera ist wichtiger, als es scheint: Ein großer Teil eines Gesprächs spielt sich im Gesicht ab, und ohne sie geht die Hälfte der Korrektur verloren. Es muss nichts Ungewöhnliches installiert werden.",
+      "fr": "Une connexion stable, un casque et une caméra. La caméra compte plus qu'il n'y paraît : une bonne partie d'une conversation se joue sur le visage, et sans elle, la moitié des corrections se perd. Rien d'inhabituel à installer."
     },
     "pendiente": false
   },
   {
     "id": "donde-presencial",
     "pregunta": {
+      "en": "Where do in-person lessons take place?",
       "es": "¿Dónde son las clases presenciales?",
-      "en": "Where do in-person lessons take place?"
+      "de": "Wo finden die Präsenzkurse statt?",
+      "fr": "Où ont lieu les cours en présentiel ?"
     },
     "respuesta": {
+      "en": "In Manuel Antonio, on the Pacific coast, and in La Fortuna, at the foot of the Arenal Volcano. The exact venues are not confirmed yet: we would rather say so than give an address that changes later.",
       "es": "En Manuel Antonio, en la costa del Pacífico, y en La Fortuna, a los pies del Volcán Arenal. Las sedes exactas todavía no están confirmadas: preferimos decirlo a dar una dirección que después cambie.",
-      "en": "In Manuel Antonio, on the Pacific coast, and in La Fortuna, at the foot of the Arenal Volcano. The exact venues are not confirmed yet: we would rather say so than give an address that changes later."
+      "de": "In Manuel Antonio an der Pazifikküste und in La Fortuna am Fuß des Vulkans Arenal. Die genauen Standorte stehen noch nicht fest: Wir sagen das lieber offen, statt eine Adresse zu nennen, die sich später ändert.",
+      "fr": "À Manuel Antonio, sur la côte Pacifique, et à La Fortuna, au pied du volcan Arenal. Les lieux exacts ne sont pas encore confirmés : on préfère le dire plutôt que de donner une adresse qui changerait ensuite."
     },
     "pendiente": true
   },
   {
     "id": "como-se-paga",
     "pregunta": {
+      "en": "How do I pay?",
       "es": "¿Cómo se paga?",
-      "en": "How do I pay?"
+      "de": "Wie wird bezahlt?",
+      "fr": "Comment paie-t-on ?"
     },
     "respuesta": {
+      "en": "You hold the lesson with a PayPal deposit and settle the rest directly with the teacher. The deposit amount and the lesson prices are not published yet.",
       "es": "La clase se aparta con un depósito por PayPal y el resto se arregla directamente con el profesor. El monto del depósito y el precio de las clases todavía no están publicados.",
-      "en": "You hold the lesson with a PayPal deposit and settle the rest directly with the teacher. The deposit amount and the lesson prices are not published yet."
+      "de": "Die Stunde wird mit einer Anzahlung per PayPal gesichert, den Rest regelt man direkt mit dem Lehrer. Die Höhe der Anzahlung und die Preise der Stunden sind noch nicht veröffentlicht.",
+      "fr": "Le cours est réservé avec un acompte via PayPal, et le reste se règle directement avec le professeur. Le montant de l'acompte et le prix des cours ne sont pas encore publiés."
     },
     "pendiente": true
   },
   {
     "id": "cancelar",
     "pregunta": {
+      "en": "Can I cancel or move a lesson?",
       "es": "¿Puedo cancelar o mover una clase?",
-      "en": "Can I cancel or move a lesson?"
+      "de": "Kann ich eine Stunde stornieren oder verschieben?",
+      "fr": "Puis-je annuler ou déplacer un cours ?"
     },
     "respuesta": {
+      "en": "The cancellation policy is not defined yet. Until it is, the best thing is to agree it directly with the teacher when booking.",
       "es": "La política de cancelación todavía no está definida. Hasta que lo esté, lo mejor es acordarlo directamente con el profesor al reservar.",
-      "en": "The cancellation policy is not defined yet. Until it is, the best thing is to agree it directly with the teacher when booking."
+      "de": "Die Stornierungsrichtlinie ist noch nicht festgelegt. Bis dahin ist es am besten, das direkt bei der Buchung mit dem Lehrer abzusprechen.",
+      "fr": "La politique d'annulation n'est pas encore définie. En attendant, mieux vaut en discuter directement avec le professeur au moment de la réservation."
     },
     "pendiente": true
   },
   {
     "id": "individual-o-grupo",
     "pregunta": {
+      "en": "Are lessons one-to-one or in groups?",
       "es": "¿Las clases son individuales o en grupo?",
-      "en": "Are lessons one-to-one or in groups?"
+      "de": "Sind die Stunden Einzel- oder Gruppenunterricht?",
+      "fr": "Les cours sont-ils individuels ou en groupe ?"
     },
     "respuesta": {
+      "en": "For now booking is set up for one-to-one lessons. Whether there will be conversation groups, and in what format, is not settled yet.",
       "es": "Por ahora la reserva está pensada para clases individuales. Si habrá grupos de conversación y con qué formato es algo que aún no está cerrado.",
-      "en": "For now booking is set up for one-to-one lessons. Whether there will be conversation groups, and in what format, is not settled yet."
+      "de": "Im Moment ist die Buchung für Einzelunterricht ausgelegt. Ob es Gesprächsgruppen geben wird und in welchem Format, steht noch nicht fest.",
+      "fr": "Pour l'instant, la réservation est conçue pour des cours individuels. La question de savoir s'il y aura des groupes de conversation, et sous quelle forme, n'est pas encore tranchée."
     },
     "pendiente": true
   }

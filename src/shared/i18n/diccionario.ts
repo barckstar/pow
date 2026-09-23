@@ -7,8 +7,10 @@ import { IDIOMAS, type Idioma } from "./config";
  * que nada de esto viaja al navegador.
  */
 const CARGADORES: Record<Idioma, () => Promise<unknown>> = {
-  es: () => import("./diccionarios/es.json").then((m) => m.default),
   en: () => import("./diccionarios/en.json").then((m) => m.default),
+  es: () => import("./diccionarios/es.json").then((m) => m.default),
+  de: () => import("./diccionarios/de.json").then((m) => m.default),
+  fr: () => import("./diccionarios/fr.json").then((m) => m.default),
 };
 
 const cache = new Map<Idioma, Diccionario>();

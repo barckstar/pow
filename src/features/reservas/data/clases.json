@@ -2,10 +2,17 @@
   {
     "id": "clase",
     "duracion": 60,
-    "etiqueta": { "es": "Clase de español", "en": "Spanish lesson" },
+    "etiqueta": {
+      "en": "Spanish lesson",
+      "es": "Clase de español",
+      "de": "Spanischstunde",
+      "fr": "Cours d'espagnol"
+    },
     "descripcion": {
+      "en": "One to one over video, with a Costa Rican teacher.",
       "es": "Uno a uno por videollamada, con un profesor costarricense.",
-      "en": "One to one over video, with a Costa Rican teacher."
+      "de": "Einzelunterricht per Video, mit einem costa-ricanischen Lehrer.",
+      "fr": "Individuel par vidéo, avec un professeur costaricien."
     },
     "calendly": "https://calendly.com/leo-cas/clases-espanol"
   }

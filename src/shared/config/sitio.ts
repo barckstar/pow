@@ -173,6 +173,7 @@ export const rutas = {
    * ========================================================================
    */
   costaRica: (l: Idioma) => `/${l}/costa-rica`,
+  about: (l: Idioma) => `/${l}/about`,
   blog: (l: Idioma) => `/${l}/blog`,
   articulo: (l: Idioma, slug: string) => `/${l}/blog/${slug}`,
   etiqueta: (l: Idioma, tag: string) => `/${l}/blog/tag/${tag}`,

@@ -25,6 +25,16 @@ const TEXTOS = {
     descripcion:
       "Costa Rican Spanish lessons online with a native teacher, or in person in Manuel Antonio and La Fortuna. The Spanish that is actually spoken in Costa Rica.",
   },
+  de: {
+    titulo: "Costa-ricanisches Spanisch lernen",
+    descripcion:
+      "Costa-ricanischer Spanischunterricht online mit Muttersprachlern, oder persönlich in Manuel Antonio und La Fortuna. Das Spanisch, das wirklich gesprochen wird.",
+  },
+  fr: {
+    titulo: "Apprends l'espagnol costaricien",
+    descripcion:
+      "Cours d'espagnol costaricien en ligne avec un professeur natif, ou en présentiel à Manuel Antonio et La Fortuna. L'espagnol parlé au Costa Rica.",
+  },
 } as const;
 
 export async function generateMetadata({

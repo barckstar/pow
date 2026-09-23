@@ -27,6 +27,20 @@ Un hueco visible se arregla. Uno invisible se publica.
 | **A dónde llegan las solicitudes** | `features/solicitud/` | El formulario se ve entero y el botón está `disabled`, con el aviso de por qué. Faltan proveedor, aviso de privacidad y correo de destino |
 | **Permiso de las fotos de clase** | `creditos-cedidas.json` | Las cinco están publicadas por decisión del cliente, con `"permisoConfirmado": false`. Falta el permiso por escrito de cada escuela y de las personas que salen |
 | **Reseñas de estudiantes** | sin sección todavía | No hay sección de reseñas. **Se transcriben de fuentes reales, no se inventan** |
+| **Toda la página «Quiénes somos»** | `paginas.about` en los cuatro diccionarios | Creada el 23/09/2026 con contenido **inventado**, a pedido explícito del cliente: «aun no tenemos informacion asi que puedes inventar». La página lo dice al pie con su propio aviso de pendiente. Reemplazar es traducir el mismo bloque de claves en `es.json`, `en.json`, `de.json` y `fr.json` — la estructura ya está |
+
+## 1.1 Tres correcciones textuales que contradicen otro contenido del sitio
+
+El cliente pidió estos tres cambios de texto y se aplicaron **tal cual los
+pidió** — pero contradicen contenido que ya existe en otra parte, y no se
+resolvió la contradicción por cuenta propia porque eso sería decidir cuál de
+las dos versiones es la real. Necesitan que el cliente diga cuál se queda.
+
+| Lo que dice ahora | Dónde | Lo que contradice |
+|---|---|---|
+| «Private, group, and couples' lessons with local teachers» | `experiencias.onlineTexto` (EN) y el mismo giro en el hero | Hoy hay **un** profesor (`online/data/profesores.json`) y **un** tipo de clase, uno a uno (`reservas/data/clases.json`). La propia FAQ dice que lo de grupos «is not settled yet» |
+| «Contact Us / Chat directly with a member of our team» | `confianza.reservaTitulo`/`reservaTexto` (EN) | No hay ningún canal de contacto directo montado — `CONTACTO.correo` y `.telefono` siguen en `null`. El resto del sitio (`/reservar`, `/online`) sigue describiendo el depósito por PayPal como el paso real |
+| — | — | Si la idea es ofrecer de verdad grupos, parejas y varios profesores, o un chat de contacto, son productos nuevos que hay que construir, no solo anunciar |
 
 ## 2. Credenciales
 

@@ -125,6 +125,13 @@ const TINTA_ZONA = "#665951";
     «Falta el retrato» dentro de ese marco. */
 const TINTA_SOBRE_MARCO = "#6A5B52";
 
+/** `color-mix(in srgb, var(--color-teal) 80%, var(--color-crema))` — el
+    numeral fantasma de las tarjetas de "Quiénes somos". Se probó al 22 % y
+    Lighthouse lo marcó: `aria-hidden` saca el nodo del árbol de
+    accesibilidad, no de la vista, así que un texto grande sigue necesitando
+    3:1 igual. */
+const NUMERAL_ABOUT = "#3F898E";
+
 /**
  * Cada par es una combinación que EXISTE en la interfaz. No se listan colores
  * decorativos: esos nunca llevan texto encima, y esa es justamente la regla
@@ -138,6 +145,7 @@ const PARES = [
   { nombre: "Dato de la ficha del profesor", frente: TINTA, fondo: DATO_PROFESOR, tamano: "normal" },
   { nombre: "Zona horaria en la ficha del profesor", frente: TINTA_ZONA, fondo: CREMA, tamano: "normal" },
   { nombre: "Etiqueta del profesor (naranja sobre crema)", frente: NARANJA, fondo: CREMA, tamano: "normal" },
+  { nombre: "Numeral de \"Quiénes somos\" sobre blanco", frente: NUMERAL_ABOUT, fondo: BLANCO, tamano: "grande" },
   { nombre: "Enlace / acento sobre fondo", frente: NARANJA, fondo: CREMA, tamano: "normal" },
   { nombre: "Titular teal sobre fondo", frente: TEAL, fondo: CREMA, tamano: "normal" },
   { nombre: "Botón primario (blanco sobre teal)", frente: BLANCO, fondo: TEAL, tamano: "normal" },

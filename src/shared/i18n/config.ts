@@ -4,26 +4,48 @@
  * Agregar uno es literalmente añadirlo a esta tupla y crear su archivo en
  * `diccionarios/`. El esquema de Zod exige entonces que TODAS las claves
  * existan en el idioma nuevo, así que un diccionario a medias rompe el build
- * en vez de renderizar "undefined" en la página del cliente.
+ * en vez de renderizar "undefined" en la página del cliente. Lo mismo pasa
+ * con cada `.json` de contenido que usa `localizado()`: agregar un idioma
+ * aquí obliga a traducir TODO lo demás, y el build dice exactamente dónde
+ * falta.
  *
- * Candidatos reales a futuro: alemán y francés — el profesor vive en Suiza.
+ * Alemán y francés se agregaron el 23/09/2026 porque el profesor da clase
+ * desde Suiza y el cliente lo pidió así — «de momento solo esos», sin
+ * italiano.
  */
-export const IDIOMAS = ["es", "en"] as const;
+export const IDIOMAS = ["en", "es", "de", "fr"] as const;
 
 export type Idioma = (typeof IDIOMAS)[number];
 
-export const IDIOMA_POR_DEFECTO: Idioma = "es";
+/**
+ * Inglés y no español.
+ *
+ * ============ POR QUÉ CAMBIÓ ============
+ * Hasta el 23/09/2026 era español, porque el negocio es costarricense. El
+ * cliente pidió el cambio con un argumento que no tiene vuelta: «no sirve que
+ * salga en español, los potenciales estudiantes no saben español». Quien
+ * llega sin cabecera de idioma reconocible —un buscador, un enlace
+ * compartido sin contexto— es exactamente quien todavía no habla la lengua
+ * que el sitio enseña. Mostrársela primero es la única opción que no se
+ * entiende a sí misma.
+ * =========================================
+ */
+export const IDIOMA_POR_DEFECTO: Idioma = "en";
 
 /** Etiqueta de cada idioma en su propia lengua, para el selector. */
 export const NOMBRE_IDIOMA: Record<Idioma, string> = {
-  es: "Español",
   en: "English",
+  es: "Español",
+  de: "Deutsch",
+  fr: "Français",
 };
 
 /** `hreflang` / `og:locale` de cada idioma. */
 export const LOCALE: Record<Idioma, string> = {
-  es: "es_CR",
   en: "en_US",
+  es: "es_CR",
+  de: "de_DE",
+  fr: "fr_FR",
 };
 
 export function esIdioma(valor: string): valor is Idioma {
@@ -37,6 +59,12 @@ export function esIdioma(valor: string): valor is Idioma {
  * cada entrada, en el orden en que el navegador las manda (que ya viene
  * ordenado por preferencia). No hace falta interpretar los pesos `q=` para
  * decidir entre dos idiomas.
+ *
+ * Con inglés como idioma por defecto, esto ya hace exactamente lo que pidió
+ * el cliente sin ningún caso especial: un navegador en alemán o francés cae
+ * en `de`/`fr` porque ahora están en `IDIOMAS`; uno en italiano, o en
+ * cualquier otra lengua que el sitio no cubre, no encuentra nada en el bucle
+ * y termina en `IDIOMA_POR_DEFECTO` — inglés.
  */
 export function idiomaDesdeCabecera(acceptLanguage: string | null): Idioma {
   if (!acceptLanguage) return IDIOMA_POR_DEFECTO;

@@ -376,6 +376,127 @@ son de pago. Se distinguen por el autor: «Unsplash+ Community», usuario `plus`
 Todo el detalle, incluido por qué no se generan imágenes con IA, en
 [`docs/imagenes.md`](docs/imagenes.md).
 
+**El logo** ya no es el recorte de baja resolución del concept board. El
+cliente mandó el original —2000x2000, con transparencia real— el 23/09/2026, y
+`scripts/recortar-logo.py` se reescribió para partir de él: ya no hace falta
+el relleno por inundación de la v1, que buscaba un fondo casi blanco porque el
+board no era transparente. Sigue guardando en `public/marca/perezoso.png`, así
+que ningún componente cambió de ruta — solo el `width`/`height` de cada
+`<Image>`, porque la proporción real (1,18:1) no es la del recorte viejo
+(1,29:1).
+
+### Cuatro idiomas, inglés por defecto
+
+El 23/09/2026 el cliente pidió sumar alemán y francés —«de momento solo esos,
+los italianos que mamen picha»— y cambiar el idioma por defecto de español a
+inglés: «no sirve que salga en español, los potenciales estudiantes no saben
+español». `IDIOMAS` pasó de `["es", "en"]` a `["en", "es", "de", "fr"]` en
+`shared/i18n/config.ts`.
+
+**Ese solo cambio obliga a traducir TODO.** `localizado()` construye su
+esquema de Zod a partir de `IDIOMAS`, así que en cuanto se agregó `de` y `fr`
+el build empezó a exigirlos en cada `.json` de contenido que usa
+`localizado()` —`destinos`, `faq`, `tiquismos`, `clases` de online y de
+reservas, `profesores`, `opciones` de solicitud— y en cada `Record<Idioma,…>`
+suelto —`SEO`, los `TEXTOS` de la portada y del blog, `CARGADORES` de
+`diccionario.ts`—. No es un efecto colateral, es el porqué de que agregar un
+idioma sea una sola línea en `config.ts`: el propio build dice, archivo por
+archivo, dónde falta.
+
+⚠️ **Un apóstrofo en francés puede romper el límite de caracteres.**
+`scripts/verificar-metadatos.mjs` mide el `<title>` y la descripción sobre el
+HTML ya generado, sin decodificar entidades. React escapa cada `'` como
+`&#x27;` —seis caracteres en vez de uno— así que «l'espagnol» cuenta como si
+tuviera cinco caracteres de más. Con un destino largo de por medio
+—«Manuel Antonio, Guanacaste, península de Nicoya»— eso fue la diferencia
+entre pasar y no pasar los 65 o los 165. La salida no es prohibir el
+apóstrofo —sería mala gramática— sino medirlo: `seoDeSolicitud()` en
+`seo.ts` tiene la cuenta hecha para el caso más largo.
+
+**El selector de idioma pasó de un enlace a una fila de cuatro.** Con dos
+idiomas alcanzaba un solo enlace al «otro»; con cuatro hacía falta un
+selector de verdad. Es una fila de códigos (`EN ES DE FR`), no un desplegable:
+cuatro letras caben enteras a la vista, y abrir un menú para leer cuatro
+letras es un paso de más. El idioma activo es un `<span>` sin `href` —no
+tiene a dónde ir— y no un enlace a sí mismo.
+
+⚠️ **El selector de escritorio nunca estuvo en el menú móvil, ni con dos
+idiomas ni ahora.** Estaba en `.navbar__idioma`, oculto por completo por
+debajo de 1100 px — o sea en cualquier teléfono. Se repitió dentro de
+`#menu-movil` para que exista al menos un camino para cambiar de idioma desde
+un móvil.
+
+⚠️ **`#menu-movil` no tenía ni una sola regla de CSS.** Se vio al abrirlo de
+verdad en un viewport de 390 px: los enlaces se pintaban sueltos, sin fondo,
+sin espaciado, con el subrayado azul por defecto del navegador, superpuestos
+al contenido de la página — el menú móvil de TODO el sitio, no solo de esta
+sesión, llevaba así desde siempre. La causa: es hijo del `<header>`, que es
+`position: fixed` y mide `--nav-h` de alto, así que su contenido se salía de
+esa caja sin que nada lo posicionara. Ahora `.navbar__movil` es
+`position: fixed`, anclado a `--nav-h`, con fondo, tipografía y el mismo
+selector de idioma que el de escritorio.
+
+**El artículo del blog en `/online` se oculta en alemán y francés**, no
+enlaza al inglés ni al español. `ARTICULO` en esa página es un
+`Partial<Record<Idioma, string>>`: el cliente solo escribió el artículo en
+esos dos idiomas, y la regla de siempre es que un hueco visible se arregla, no
+que se tape con un enlace a un idioma que no es el que alguien está leyendo.
+
+### «Quiénes somos» — página nueva, contenido inventado
+
+El cliente la pidió el 23/09/2026 con una condición explícita: «aun no
+tenemos informacion asi que puedes inventar». Es la ÚNICA página del sitio
+con esa licencia — el resto sigue la regla de no rellenar con suposiciones lo
+que el cliente no ha confirmado, y aquí se rompe a propósito porque el propio
+cliente lo autorizó.
+
+Aun así lleva su aviso de pendiente al cierre (`cierrePendiente`, con el
+mismo componente `pendiente` del resto del sitio): un texto inventado sobre
+un negocio real puede acabar citado como si fuera la historia oficial, y eso
+hay que decirlo donde se lee, no solo en un comentario del código.
+
+El diseño es propio, no la maqueta de `.seccion` que usan las demás páginas
+interiores:
+
+- Un **hero sin foto** — teal degradando a crema, con el titular partido en
+  dos colores como en la portada. Las demás páginas interiores llevan una
+  fotografía; esta habla de una persona y de por qué existe el negocio, no de
+  un lugar.
+- Una **cita destacada** aparte del cuerpo del texto, tipo pull-quote de
+  revista — no existe en ninguna otra página.
+- Cuatro valores en tarjetas con un **numeral grande** en vez de icono: no
+  hay un icono que diga «crecimiento a propósito», y forzar uno habría sido
+  peor que no ponerlo.
+
+⚠️ El numeral se probó al 22 % de teal pensando que, al llevar `aria-hidden`,
+no necesitaba el contraste de un texto que se lee. Es la trampa exacta:
+`aria-hidden` saca el nodo del árbol de accesibilidad, no de la vista.
+Lighthouse lo marcó — 1,48:1 sobre blanco, cuando un texto grande necesita
+3:1. Al 80 % de teal da 4,05:1.
+
+### Tres correcciones que el cliente pidió y que no cuadran con el resto del sitio
+
+Van aplicadas TEXTUALMENTE, como pidió el cliente, y quedan anotadas aquí
+porque contradicen contenido que ya existe en otra parte del sitio. No se
+resolvió la contradicción por mi cuenta —eso sería inventar cuál de las dos
+versiones es la real— así que sigue pendiente de que el cliente lo aclare.
+
+1. **`experiencias.onlineTexto`** dice ahora «Private, group, and couples'
+   lessons with local teachers» (clases privadas, en grupo y en pareja, con
+   profesores —en plural—). Hoy el sitio solo tiene UN profesor
+   (`features/online/data/profesores.json`) y UN tipo de clase, uno a uno
+   (`features/reservas/data/clases.json`); la propia FAQ lo dice sin rodeos:
+   «For now booking is set up for one-to-one lessons. Whether there will be
+   conversation groups… is not settled yet.»
+2. El **hero** de la portada tiene el mismo plural: «Tailored online lessons
+   with local teachers» (profesores, en plural).
+3. **`confianza.reservaTitulo`/`reservaTexto`** pasó de «Reserve with a
+   deposit / Hold your lesson with a PayPal deposit» a «Contact Us / Chat
+   directly with a member of our team». No hay ningún canal de contacto
+   directo montado —`CONTACTO.correo` y `.telefono` siguen en `null`— y el
+   resto del sitio (`/reservar`, `/online`) sigue describiendo el depósito
+   por PayPal como el paso real.
+
 ## Comandos
 
 ```bash
@@ -415,6 +536,14 @@ Medido sobre el build de producción (`next start`), mediana de tres corridas.
 El rendimiento en móvil va entre 95 y 97 según la corrida. **No es el retrato
 de Chris**: está medido que se sirve a 640 px y pesa 23 KB. Es el ruido normal
 del simulador.
+
+**Quiénes somos** (`/en/about`), medido en inglés porque es el idioma por
+defecto desde el 23/09/2026:
+
+| | Rendimiento | Accesibilidad | Prácticas | SEO | CLS |
+|---|---|---|---|---|---|
+| Escritorio | **100** | **100** | **100** | **100** | 0 |
+| Móvil | **96** | **100** | **100** | **100** | 0 |
 
 **Reservar** (`/es/reservar`), que es la única página con un embebido de
 terceros:

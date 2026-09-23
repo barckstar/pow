@@ -16,11 +16,16 @@ import { Profesores } from "@/features/online/components/Profesores";
  * El artículo del cliente sobre las clases en línea, al que enlaza esta
  * página. Los dos slugs son distintos porque cada idioma tiene el suyo; el
  * cruce entre ambos lo lleva el `traduccion` del frontmatter.
+ *
+ * Es un mapa PARCIAL a propósito: el artículo solo existe en español e inglés.
+ * Con alemán y francés en el sitio desde el 23/09/2026, el enlace se oculta en
+ * esos dos en vez de llevar a un artículo que no está en su idioma — la regla
+ * de siempre, un hueco visible antes que una promesa que no se cumple.
  */
-const ARTICULO = {
+const ARTICULO: Partial<Record<Idioma, string>> = {
   es: "por-que-funcionan-las-clases-en-linea",
   en: "why-online-spanish-classes",
-} as const;
+};
 
 /** La lapa roja. Es la portada de esta página y su imagen de Open Graph. */
 const FOTO = "/fotos/lapa-roja.jpg";
@@ -150,14 +155,16 @@ export default async function PaginaOnline({
           </ul>
           <p>{p.medidaCierre}</p>
 
-          <p className="seccion__enlace-suelto">
-            <Link
-              href={rutas.articulo(idioma, ARTICULO[idioma])}
-              className="seccion__enlace"
-            >
-              {p.leerArticulo} →
-            </Link>
-          </p>
+          {ARTICULO[idioma] ? (
+            <p className="seccion__enlace-suelto">
+              <Link
+                href={rutas.articulo(idioma, ARTICULO[idioma])}
+                className="seccion__enlace"
+              >
+                {p.leerArticulo} →
+              </Link>
+            </p>
+          ) : null}
 
           <Link href={rutas.reservar(idioma)} className="boton boton--primario">
             {t.hero.ctaReservar}

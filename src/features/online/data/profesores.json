@@ -4,33 +4,43 @@
     "nombre": "Chris Pow",
     "foto": "/fotos/chris-pow.jpg",
     "papel": {
+      "en": "Costa Rican teacher",
       "es": "Profesor costarricense",
-      "en": "Costa Rican teacher"
+      "de": "Costa-ricanischer Lehrer",
+      "fr": "Professeur costaricien"
     },
     "bio": {
+      "en": "A Costa Rican living in Switzerland. He teaches the Spanish that is actually spoken in Costa Rica — the voseo, the slang and the tone, not just textbook grammar.",
       "es": "Un costarricense que vive en Suiza. Enseña el español que se habla en Costa Rica: el voseo, los modismos y el tono, no solo la gramática del libro.",
-      "en": "A Costa Rican living in Switzerland. He teaches the Spanish that is actually spoken in Costa Rica — the voseo, the slang and the tone, not just textbook grammar."
+      "de": "Ein Costaricaner, der in der Schweiz lebt. Er unterrichtet das Spanisch, das in Costa Rica wirklich gesprochen wird — das Voseo, die Umgangssprache und den Tonfall, nicht nur die Grammatik aus dem Lehrbuch.",
+      "fr": "Un Costaricien vivant en Suisse. Il enseigne l'espagnol réellement parlé au Costa Rica — le voseo, les expressions et le ton, pas seulement la grammaire du manuel."
     },
     "datos": [
       {
         "id": "origen",
         "etiqueta": {
+          "en": "Tico, from Costa Rica",
           "es": "Tico, de Costa Rica",
-          "en": "Tico, from Costa Rica"
+          "de": "Tico, aus Costa Rica",
+          "fr": "Tico, originaire du Costa Rica"
         }
       },
       {
         "id": "donde",
         "etiqueta": {
+          "en": "Teaches from Switzerland",
           "es": "Da clases desde Suiza",
-          "en": "Teaches from Switzerland"
+          "de": "Unterrichtet aus der Schweiz",
+          "fr": "Enseigne depuis la Suisse"
         }
       },
       {
         "id": "enfoque",
         "etiqueta": {
+          "en": "Voseo and slang",
           "es": "Voseo y modismos",
-          "en": "Voseo and slang"
+          "de": "Voseo und Umgangssprache",
+          "fr": "Voseo et expressions"
         }
       }
     ]

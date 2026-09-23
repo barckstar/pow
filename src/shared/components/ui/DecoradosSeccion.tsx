@@ -78,7 +78,8 @@ export type VarianteDecorado =
   | "precios"
   | "comunidad"
   | "reservar"
-  | "blog";
+  | "blog"
+  | "about";
 
 type Pieza = Omit<Decorado, "children"> & { dibujo: React.ReactNode };
 
@@ -562,6 +563,45 @@ const RECETAS: Record<VarianteDecorado, Pieza[]> = {
       opacidad: 0.3,
       animacion: "destello",
       retraso: 1.4,
+    },
+  ],
+
+  /* «Quiénes somos». La rueda de carreta porque es la misma idea que el
+     tiquismo del día: folclore, identidad tica. La mariposa aligera una
+     página que es, sobre todo, texto. */
+  about: [
+    {
+      dibujo: <RuedaCarreta />,
+      x: 6,
+      y: 30,
+      tam: 9,
+      giro: -8,
+      color: TEAL,
+      opacidad: TENUE,
+      animacion: "vaiven",
+      duracion: 14,
+    },
+    {
+      dibujo: <Mariposa />,
+      x: 94,
+      y: 60,
+      tam: 6.5,
+      giro: 10,
+      color: TURQUESA,
+      opacidad: VIVO,
+      animacion: "flotar",
+      retraso: 1.6,
+      duracion: 9,
+    },
+    {
+      dibujo: <Estrella />,
+      x: 90,
+      y: 16,
+      tam: 1.8,
+      color: NARANJA,
+      opacidad: 0.3,
+      animacion: "destello",
+      retraso: 0.8,
     },
   ],
 };

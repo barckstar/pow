@@ -2,41 +2,41 @@
   "estancia": [
     {
       "id": "15-dias",
-      "etiqueta": { "es": "15 días", "en": "15 days" }
+      "etiqueta": { "en": "15 days", "es": "15 días", "de": "15 Tage", "fr": "15 jours" }
     },
     {
       "id": "1-mes",
-      "etiqueta": { "es": "1 mes", "en": "1 month" }
+      "etiqueta": { "en": "1 month", "es": "1 mes", "de": "1 Monat", "fr": "1 mois" }
     },
     {
       "id": "mes-y-medio",
-      "etiqueta": { "es": "Mes y medio", "en": "Six weeks" }
+      "etiqueta": { "en": "Six weeks", "es": "Mes y medio", "de": "Sechs Wochen", "fr": "Six semaines" }
     },
     {
       "id": "2-meses",
-      "etiqueta": { "es": "2 meses", "en": "2 months" }
+      "etiqueta": { "en": "2 months", "es": "2 meses", "de": "2 Monate", "fr": "2 mois" }
     }
   ],
   "motivo": [
     {
       "id": "idiomas",
-      "etiqueta": { "es": "Pasión por los idiomas", "en": "Love of languages" }
+      "etiqueta": { "en": "Love of languages", "es": "Pasión por los idiomas", "de": "Leidenschaft für Sprachen", "fr": "Passion pour les langues" }
     },
     {
       "id": "trabajo",
-      "etiqueta": { "es": "Trabajo", "en": "Work" }
+      "etiqueta": { "en": "Work", "es": "Trabajo", "de": "Arbeit", "fr": "Travail" }
     },
     {
       "id": "viajes",
-      "etiqueta": { "es": "Viajes", "en": "Travel" }
+      "etiqueta": { "en": "Travel", "es": "Viajes", "de": "Reisen", "fr": "Voyage" }
     },
     {
       "id": "cultura",
-      "etiqueta": { "es": "Cultura", "en": "Culture" }
+      "etiqueta": { "en": "Culture", "es": "Cultura", "de": "Kultur", "fr": "Culture" }
     },
     {
       "id": "familia",
-      "etiqueta": { "es": "Familia", "en": "Family" }
+      "etiqueta": { "en": "Family", "es": "Familia", "de": "Familie", "fr": "Famille" }
     }
   ]
 }

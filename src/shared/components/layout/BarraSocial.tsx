@@ -105,7 +105,13 @@ export function BarraSocial({ t }: { t: Diccionario }) {
   return (
     <aside className="social" data-visible={visible} aria-label={t.social.seguir}>
       <div className="social__marca" aria-hidden="true">
-        <Image src="/marca/perezoso.png" alt="" width={155} height={120} />
+        {/*
+          177x150: la relación de aspecto real del logo nuevo (900x762,
+          1,18:1), no la del recorte viejo (1,29:1). Con el número antiguo la
+          imagen se habría estirado para llenar una caja que ya no le
+          corresponde.
+        */}
+        <Image src="/marca/perezoso.png" alt="" width={177} height={150} />
       </div>
 
       {redes.map((red) => (

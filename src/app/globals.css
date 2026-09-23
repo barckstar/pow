@@ -244,8 +244,13 @@ html {
   min-width: 0;
 }
 
+/*
+ * 2.25rem → 2.6rem. El cliente pidió agrandar el logo y la marca de texto; el
+ * alto de la barra (`--nav-h: 4.25rem`) deja de sobra sitio para esto sin
+ * tocar `--nav-h` ni el `padding-top` del `<body>` que mantiene el CLS en 0.
+ */
 .navbar__perezoso {
-  height: 2.25rem;
+  height: 2.6rem;
   width: auto;
   flex-shrink: 0;
 }
@@ -258,7 +263,7 @@ html {
 }
 
 .navbar__marca-linea1 {
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -266,7 +271,7 @@ html {
 }
 
 .navbar__marca-linea2 {
-  font-size: 0.6rem;
+  font-size: 0.66rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -302,22 +307,47 @@ html {
   border-bottom-color: var(--color-naranja);
 }
 
-.navbar__idioma {
+/*
+ * ============ LA FILA DE CUATRO CÓDIGOS ============
+ * `.navbar__idiomas` es el contenedor —el `<ul>`— y `.navbar__idioma` es cada
+ * código suyo, sea `<Link>` o el `<span>` del idioma activo. Antes había un
+ * solo elemento con esta clase y hacía las dos cosas a la vez; con cuatro
+ * hacía falta separar el contenedor de cada pieza.
+ */
+.navbar__idiomas {
   display: none;
-  font-size: 0.78rem;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar__idioma {
+  display: inline-block;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   color: var(--color-teal);
   text-decoration: none;
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.45rem;
   border: 1px solid color-mix(in srgb, var(--color-teal) 30%, transparent);
   border-radius: 999px;
   transition: background-color 160ms ease, color 160ms ease;
 }
 
-.navbar__idioma:hover {
+a.navbar__idioma:hover {
   background-color: var(--color-teal);
   color: var(--color-crema);
+}
+
+/* El idioma activo es un `<span>`, no un enlace: no tiene a dónde ir. Se
+   distingue relleno en vez de con reborde, para que sea obvio a simple vista
+   cuál de los cuatro está puesto sin tener que leerlos. */
+span.navbar__idioma {
+  background-color: var(--color-teal);
+  color: var(--color-crema);
+  border-color: var(--color-teal);
 }
 
 .navbar__cta {
@@ -380,16 +410,16 @@ html {
  */
 @media (min-width: 420px) {
   .navbar__perezoso {
-    height: 2.5rem;
+    height: 2.9rem;
   }
 
   .navbar__marca-linea1 {
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     letter-spacing: 0.12em;
   }
 
   .navbar__marca-linea2 {
-    font-size: 0.66rem;
+    font-size: 0.72rem;
     letter-spacing: 0.06em;
   }
 }
@@ -400,13 +430,112 @@ html {
   }
 
   .navbar__enlaces,
-  .navbar__idioma {
+  .navbar__idiomas {
     display: flex;
   }
 
   .navbar__hamburguesa {
     display: none;
   }
+
+  /* Por encima de 1100 px el `<button>` desaparece y con él la única forma de
+     abrir `#menu-movil`, así que el panel no puede quedarse montado. */
+  .navbar__movil {
+    display: none !important;
+  }
+}
+
+/*
+ * ============ EL PANEL DEL MENÚ MÓVIL ============
+ * No tenía ni una sola regla en toda la hoja. `#menu-movil` es hijo del
+ * `<header>` —que es `position: fixed` y mide `--nav-h` de alto— así que sin
+ * esto se salía de esa caja y cada enlace se pintaba suelto, sin fondo, sin
+ * espaciado y con el subrayado azul por defecto del navegador, encima del
+ * contenido de la página. Se veía así de verdad en producción; no es un
+ * supuesto.
+ *
+ * Va `position: fixed` y no `absolute`: con `absolute` el panel se desplaza
+ * con el `<header>` al esconderse en el scroll hacia abajo, y un menú que
+ * sigue abierto pero se va de la pantalla es peor que uno que no se abre.
+ * `calcularEstado()` en `navbarScroll.ts` ya evita esconder la barra con el
+ * menú abierto, así que aquí basta con anclarse a `--nav-h` una vez.
+ * ==================================================
+ */
+.navbar__movil {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  /* Alto libre hasta el borde de la pantalla, con scroll propio: en un
+     teléfono bajo, con los cuatro idiomas y el botón, el contenido puede
+     superar lo que queda de alto debajo de la barra. */
+  max-height: calc(100dvh - var(--nav-h));
+  overflow-y: auto;
+  background-color: var(--color-crema);
+  box-shadow: 0 1rem 2rem -0.5rem rgba(6, 42, 46, 0.25);
+  padding: 0.5rem 1.25rem 1.5rem;
+}
+
+.navbar__movil nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar__movil-enlace {
+  padding: 0.85rem 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-tinta);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-teal) 14%, transparent);
+}
+
+.navbar__movil-enlace:hover {
+  color: var(--color-naranja);
+}
+
+.navbar__movil-idiomas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Mismas reglas visuales que `.navbar__idioma` de escritorio, pero un poco
+   más grandes: aquí el dedo las pulsa, ahí el cursor. */
+.navbar__movil-idioma {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-teal);
+  text-decoration: none;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 30%, transparent);
+  border-radius: 999px;
+}
+
+span.navbar__movil-idioma {
+  background-color: var(--color-teal);
+  color: var(--color-crema);
+  border-color: var(--color-teal);
+}
+
+.navbar__movil-cta {
+  display: block;
+  margin-top: 1.25rem;
+  padding: 0.85rem;
+  border-radius: 999px;
+  text-align: center;
+  font-weight: 700;
+  text-decoration: none;
+  background-color: var(--color-teal);
+  color: #ffffff;
+}
+
+.navbar__movil-cta:hover {
+  background-color: var(--color-naranja);
 }
 
 /* ==========================================================================
@@ -1270,6 +1399,220 @@ p {
   align-items: center;
   gap: 0.6rem;
   font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   QUIÉNES SOMOS — página del 23/09/2026, diseño propio
+
+   No reutiliza la maqueta de las demás páginas interiores. Todas las demás
+   llevan una foto de portada; esta habla de una persona y de por qué existe
+   el negocio, no de un lugar, así que el hero es tipográfico —teal
+   degradando a crema— en vez de fotográfico. Cada color de aquí es uno YA
+   verificado en `verificar-contraste.mjs` para el mismo par fondo/texto —
+   blanco y dorado-texto sobre teal, teal sobre crema, blanco sobre naranja—
+   así que la página no añade ningún par nuevo que medir.
+   ========================================================================== */
+
+.about-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 1.5rem 9rem;
+  background: linear-gradient(
+    180deg,
+    var(--color-teal) 0%,
+    var(--color-teal) 58%,
+    var(--color-crema) 100%
+  );
+  text-align: center;
+}
+
+/*
+ * La rueda de carreta, sola y grande, es la firma de esta página — no un
+ * adorno de fondo repetido de otra sección. Por eso vive aquí y no en la
+ * receta de `DecoradosSeccion`, que reparte piezas pequeñas por los bordes de
+ * una columna de contenido; esta ocupa una esquina entera del hero.
+ */
+.about-hero__rueda {
+  position: absolute;
+  top: -4.5rem;
+  right: -4.5rem;
+  width: 15rem;
+  height: 15rem;
+  color: color-mix(in srgb, #ffffff 16%, transparent);
+  pointer-events: none;
+}
+
+.about-hero__interior {
+  position: relative;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+/* Dorado-texto sobre teal: el mismo par que el titular del pie, ya medido. */
+.about-hero__insignia {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-dorado-texto);
+}
+
+/* Blanco sobre teal: el mismo par que el botón primario, ya medido. */
+.about-hero__titulo {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  color: #ffffff;
+}
+
+.about-hero__acento {
+  display: block;
+  color: var(--color-dorado-texto);
+}
+
+/* Crema sobre teal: el mismo par que el texto de `.confianza`, ya medido. */
+.about-hero__subtitulo {
+  margin: 1.25rem auto 0;
+  max-width: 34rem;
+  color: var(--color-crema);
+}
+
+/*
+ * La historia, en dos columnas asimétricas: el texto lleva el peso y la cita
+ * flota aparte, como una pull-quote de revista — no hay otra en el sitio.
+ */
+.about-historia {
+  display: grid;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.about-historia__texto p + p {
+  margin-top: 1rem;
+}
+
+/* Teal sobre crema: el mismo par que `.seccion__titulo`, ya medido. */
+.about-cita {
+  margin: 0;
+  padding: 1.75rem 1.75rem 1.75rem 1.5rem;
+  border-left: 4px solid var(--color-naranja);
+  border-radius: 0 1rem 1rem 0;
+  background-color: var(--color-crema);
+}
+
+.about-cita p {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-teal);
+}
+
+@media (min-width: 900px) {
+  .about-historia {
+    grid-template-columns: 1.3fr 1fr;
+  }
+}
+
+.about-valores {
+  padding: 4.5rem 1.5rem;
+  background-color: color-mix(in srgb, var(--color-teal) 5%, var(--color-crema));
+}
+
+.about-valores__interior {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.about-valores__lista {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.about-valor {
+  padding: 1.75rem 1.5rem;
+  background-color: #ffffff;
+  border-radius: 1.25rem;
+  box-shadow: 0 1rem 2rem -1.25rem rgba(6, 42, 46, 0.35);
+}
+
+/*
+ * ============ `aria-hidden` NO EXIME DEL CONTRASTE ============
+ * El número lleva `aria-hidden` en el componente porque el orden ya lo da el
+ * propio `<ol>` y no hace falta que un lector de pantalla lo anuncie dos
+ * veces. Se probó al 22 % de teal pensando que, al ser decorativo para quien
+ * usa lector de pantalla, no necesitaba el contraste de un texto que se lee
+ * — y esa idea es exactamente el error: `aria-hidden` saca el nodo del árbol
+ * de accesibilidad, no de la vista. Para cualquiera que lo VE, sigue siendo
+ * una cifra, y Lighthouse lo marcó: 1,48:1 sobre blanco, cuando un texto
+ * grande y grueso como este necesita 3:1 como mínimo.
+ *
+ * Al 80 % de teal da 4,05:1 — de sobra, y sigue leyéndose más tenue que el
+ * título de al lado, que es todo lo «fantasma» que hacía falta.
+ */
+.about-valor__numero {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1;
+  color: color-mix(in srgb, var(--color-teal) 80%, var(--color-crema));
+}
+
+.about-valor__titulo {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: var(--color-teal);
+}
+
+.about-valor p {
+  margin: 0;
+}
+
+/* Blanco sobre naranja: el mismo par que `.boton--acento`, ya medido. */
+.about-cierre {
+  padding: 4.5rem 1.5rem;
+  background-color: var(--color-naranja);
+  color: #ffffff;
+  text-align: center;
+}
+
+.about-cierre__interior {
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+.about-cierre__titulo {
+  margin: 0 0 0.75rem;
+  color: #ffffff;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.about-cierre__texto {
+  margin: 0 0 1.75rem;
+}
+
+.about-cierre .boton--primario:hover {
+  /* Sobre fondo naranja, el hover a naranja del botón lo dejaría invisible
+     un instante contra el fondo. Va a teal, que es el color que ya usa
+     `.boton--acento` al revés. */
+  background-color: var(--color-teal);
+}
+
+.about-cierre__pendiente {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
 }
 
 /* ==========================================================================

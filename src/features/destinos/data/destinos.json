@@ -4,34 +4,52 @@
     "nombre": "Manuel Antonio",
     "zona": "Puntarenas, Pacífico central",
     "lema": {
+      "en": "Rainforest and beach ten minutes apart",
       "es": "Selva y playa a diez minutos a pie",
-      "en": "Rainforest and beach ten minutes apart"
+      "de": "Regenwald und Strand, zehn Minuten zu Fuß entfernt",
+      "fr": "Forêt tropicale et plage à dix minutes à pied"
     },
     "descripcion": {
+      "en": "The country's most visited national park, and the smallest of the famous ones: a headland of rainforest dropping into two pale-sand bays. You study in the morning and practise in the afternoon, half an hour's walk away.",
       "es": "El parque nacional más visitado del país, y el más pequeño de los grandes: una punta de selva que baja hasta dos bahías de arena clara. Se estudia por la mañana y se practica por la tarde, que es media hora de caminata.",
-      "en": "The country's most visited national park, and the smallest of the famous ones: a headland of rainforest dropping into two pale-sand bays. You study in the morning and practise in the afternoon, half an hour's walk away."
+      "de": "Der meistbesuchte Nationalpark des Landes, und der kleinste der berühmten: eine Regenwald-Landzunge, die zu zwei Buchten mit hellem Sand abfällt. Man lernt am Vormittag und übt am Nachmittag, eine halbe Stunde zu Fuß entfernt.",
+      "fr": "Le parc national le plus visité du pays, et le plus petit des célèbres : une pointe de forêt tropicale qui descend vers deux baies de sable clair. On étudie le matin et on pratique l'après-midi, à une demi-heure de marche."
     },
     "destacados": {
+      "en": [
+        "Manuel Antonio National Park",
+        "Punta Catedral, the island that joined the mainland",
+        "Capuchin monkeys right on the trail"
+      ],
       "es": [
         "El Parque Nacional Manuel Antonio",
         "Punta Catedral, la isla que se pegó a tierra",
         "Monos cariblancos a pie de sendero"
       ],
-      "en": [
-        "Manuel Antonio National Park",
-        "Punta Catedral, the island that joined the mainland",
-        "Capuchin monkeys right on the trail"
+      "de": [
+        "Der Nationalpark Manuel Antonio",
+        "Punta Catedral, die Insel, die sich mit dem Festland verband",
+        "Weißschulter-Kapuzineraffen direkt am Wanderweg"
+      ],
+      "fr": [
+        "Le parc national de Manuel Antonio",
+        "Punta Catedral, l'île qui a rejoint la terre ferme",
+        "Des singes capucins directement sur le sentier"
       ]
     },
     "foto": "/fotos/manuel-antonio.jpg",
     "fotoAlt": {
+      "en": "Aerial view of Punta Catedral in Manuel Antonio, with the strip of sand between two turquoise bays",
       "es": "Vista aérea de Punta Catedral en Manuel Antonio, con la franja de arena entre dos bahías de agua turquesa",
-      "en": "Aerial view of Punta Catedral in Manuel Antonio, with the strip of sand between two turquoise bays"
+      "de": "Luftaufnahme von Punta Catedral in Manuel Antonio, mit dem Sandstreifen zwischen zwei türkisfarbenen Buchten",
+      "fr": "Vue aérienne de Punta Catedral à Manuel Antonio, avec la bande de sable entre deux baies turquoise"
     },
     "fotoClase": "/fotos/clase-manuel-antonio.jpg",
     "fotoClaseAlt": {
+      "en": "A teacher writing «yo quiero estudiar español» on a blackboard, with two students at the table",
       "es": "Un profesor escribiendo «yo quiero estudiar español» en una pizarra, con dos estudiantes sentadas a la mesa",
-      "en": "A teacher writing «yo quiero estudiar español» on a blackboard, with two students at the table"
+      "de": "Ein Lehrer schreibt „yo quiero estudiar español“ an eine Tafel, zwei Schülerinnen sitzen am Tisch",
+      "fr": "Un professeur écrit « yo quiero estudiar español » au tableau, deux étudiantes assises à la table"
     },
     "escuela": {
       "nombre": "Manuel Antonio Spanish School",
@@ -45,34 +63,52 @@
     "nombre": "Sámara",
     "zona": "Guanacaste, península de Nicoya",
     "lema": {
+      "en": "The beach town where people still speak slowly",
       "es": "El pueblo de playa donde todavía se habla despacio",
-      "en": "The beach town where people still speak slowly"
+      "de": "Das Strandstädtchen, in dem man noch langsam spricht",
+      "fr": "Le village de plage où l'on parle encore lentement"
     },
     "descripcion": {
+      "en": "A bay sheltered by a reef, so the sea comes in calm and you can swim all year. It is one of the few Guanacaste beach towns that never turned fully touristy: at the corner shop and the soda, people still speak Spanish.",
       "es": "Una bahía protegida por un arrecife, así que el mar entra manso y se puede nadar todo el año. Es de los pocos pueblos de playa de Guanacaste que no se volvió del todo turístico: en la pulpería y en la soda se sigue hablando español.",
-      "en": "A bay sheltered by a reef, so the sea comes in calm and you can swim all year. It is one of the few Guanacaste beach towns that never turned fully touristy: at the corner shop and the soda, people still speak Spanish."
+      "de": "Eine Bucht, geschützt durch ein Riff, sodass das Meer ruhig hereinkommt und man das ganze Jahr schwimmen kann. Eines der wenigen Strandorte Guanacastes, die nie ganz touristisch wurden: im Tante-Emma-Laden und in der Soda wird noch Spanisch gesprochen.",
+      "fr": "Une baie protégée par un récif, où la mer entre calmement et où l'on peut nager toute l'année. L'un des rares villages de plage de Guanacaste à n'être jamais devenu totalement touristique : à l'épicerie et à la soda, on parle encore espagnol."
     },
     "destacados": {
+      "en": [
+        "The bay, calm thanks to the reef",
+        "Playa Barrigona and Playa Carrillo, next door",
+        "The Nicoya peninsula, one of the world's blue zones"
+      ],
       "es": [
         "La bahía, mansa por el arrecife",
         "Playa Barrigona y Playa Carrillo, al lado",
         "La península de Nicoya, una zona azul del mundo"
       ],
-      "en": [
-        "The bay, calm thanks to the reef",
-        "Playa Barrigona and Playa Carrillo, next door",
-        "The Nicoya peninsula, one of the world's blue zones"
+      "de": [
+        "Die Bucht, ruhig dank des Riffs",
+        "Playa Barrigona und Playa Carrillo, gleich nebenan",
+        "Die Nicoya-Halbinsel, eine der Blue Zones der Welt"
+      ],
+      "fr": [
+        "La baie, calme grâce au récif",
+        "Playa Barrigona et Playa Carrillo, juste à côté",
+        "La péninsule de Nicoya, une zone bleue mondiale"
       ]
     },
     "foto": "/fotos/samara-barrigona.jpg",
     "fotoAlt": {
+      "en": "Playa Barrigona from the air, near Sámara: the Nicoya peninsula rainforest running down to white sand",
       "es": "Playa Barrigona desde el aire, cerca de Sámara: la selva de la península de Nicoya bajando hasta la arena blanca",
-      "en": "Playa Barrigona from the air, near Sámara: the Nicoya peninsula rainforest running down to white sand"
+      "de": "Playa Barrigona aus der Luft, nahe Samara: der Regenwald der Nicoya-Halbinsel fällt bis zum weißen Sand ab",
+      "fr": "Playa Barrigona vue du ciel, près de Samara : la forêt tropicale de la péninsule de Nicoya descendant jusqu'au sable blanc"
     },
     "fotoClase": "/fotos/clase-samara.jpg",
     "fotoClaseAlt": {
+      "en": "Three students and a teacher working with newspapers on a wooden table",
       "es": "Tres estudiantes y una profesora trabajando con periódicos sobre una mesa de madera",
-      "en": "Three students and a teacher working with newspapers on a wooden table"
+      "de": "Drei Schüler und eine Lehrerin arbeiten mit Zeitungen an einem Holztisch",
+      "fr": "Trois étudiants et une professeure travaillent avec des journaux sur une table en bois"
     },
     "escuela": {
       "nombre": "Intercultura Costa Rica Spanish Schools",
@@ -86,34 +122,52 @@
     "nombre": "La Fortuna",
     "zona": "Alajuela, zona norte",
     "lema": {
+      "en": "At the foot of the Arenal",
       "es": "A los pies del Arenal",
-      "en": "At the foot of the Arenal"
+      "de": "Am Fuß des Arenal",
+      "fr": "Au pied de l'Arenal"
     },
     "descripcion": {
+      "en": "The town that grew up facing the Arenal Volcano and its almost perfect cone. Hot springs running warm off the volcano, a waterfall buried in the rainforest, and one of the most recognisable views in Costa Rica.",
       "es": "El pueblo que creció mirando al Volcán Arenal, con su cono casi perfecto de fondo. Aguas termales que bajan calientes del volcán, una catarata metida en la selva y una de las postales más reconocibles de Costa Rica.",
-      "en": "The town that grew up facing the Arenal Volcano and its almost perfect cone. Hot springs running warm off the volcano, a waterfall buried in the rainforest, and one of the most recognisable views in Costa Rica."
+      "de": "Das Städtchen, das im Blick auf den Vulkan Arenal und seinen fast perfekten Kegel gewachsen ist. Heiße Quellen, die warm vom Vulkan herabfließen, ein Wasserfall mitten im Regenwald und eine der bekanntesten Ansichten Costa Ricas.",
+      "fr": "Le village qui a grandi face au volcan Arenal et à son cône presque parfait. Des sources chaudes qui descendent du volcan, une cascade nichée dans la forêt tropicale et l'une des vues les plus reconnaissables du Costa Rica."
     },
     "destacados": {
+      "en": [
+        "The cone of the Arenal Volcano",
+        "The hot springs of the Tabacón river",
+        "La Fortuna waterfall, between walls of rainforest"
+      ],
       "es": [
         "El cono del Volcán Arenal",
         "Las aguas termales del río Tabacón",
         "La catarata de La Fortuna, entre paredes de selva"
       ],
-      "en": [
-        "The cone of the Arenal Volcano",
-        "The hot springs of the Tabacón river",
-        "La Fortuna waterfall, between walls of rainforest"
+      "de": [
+        "Der Kegel des Vulkans Arenal",
+        "Die heißen Quellen des Flusses Tabacón",
+        "Der Wasserfall von La Fortuna, zwischen Wänden aus Regenwald"
+      ],
+      "fr": [
+        "Le cône du volcan Arenal",
+        "Les sources chaudes de la rivière Tabacón",
+        "La cascade de La Fortuna, entre des murs de forêt tropicale"
       ]
     },
     "foto": "/fotos/arenal.jpg",
     "fotoAlt": {
+      "en": "The cone of the Arenal Volcano seen from La Fortuna, its base covered in rainforest and clouds over the summit",
       "es": "El cono del Volcán Arenal visto desde La Fortuna, con la base cubierta de selva y nubes sobre la cima",
-      "en": "The cone of the Arenal Volcano seen from La Fortuna, its base covered in rainforest and clouds over the summit"
+      "de": "Der Kegel des Vulkans Arenal, gesehen von La Fortuna, mit regenwaldbedeckter Basis und Wolken über dem Gipfel",
+      "fr": "Le cône du volcan Arenal vu depuis La Fortuna, sa base couverte de forêt tropicale et des nuages au sommet"
     },
     "fotoClase": "/fotos/clase-la-fortuna.jpg",
     "fotoClaseAlt": {
+      "en": "An open-air lesson on a wooden porch, with the northern lowland vegetation behind",
       "es": "Clase al aire libre en un corredor de madera, con la vegetación de la zona norte detrás",
-      "en": "An open-air lesson on a wooden porch, with the northern lowland vegetation behind"
+      "de": "Unterricht im Freien auf einer Holzveranda, mit der Vegetation der Nordzone im Hintergrund",
+      "fr": "Cours en plein air sur une véranda en bois, avec la végétation de la zone nord en arrière-plan"
     },
     "escuela": {
       "nombre": "Spanish Immersion Costa Rica",
@@ -127,34 +181,52 @@
     "nombre": "San José",
     "zona": "Valle Central",
     "lema": {
+      "en": "The city where you hear the whole country",
       "es": "La ciudad donde el país se oye entero",
-      "en": "The city where you hear the whole country"
+      "de": "Die Stadt, in der man das ganze Land hört",
+      "fr": "La ville où l'on entend tout le pays"
     },
     "descripcion": {
+      "en": "It is not the postcard Costa Rica, and that is why it works for learning: a real city, with its neighbourhoods, its traffic and its hurry. Nobody here switches to English to help you out, which is exactly what speeds things up.",
       "es": "No es la Costa Rica de la postal y por eso funciona para aprender: es una ciudad de verdad, con sus barrios, su tráfico y su prisa. Aquí no hay nadie cambiando al inglés para ayudarte, que es exactamente lo que acelera el aprendizaje.",
-      "en": "It is not the postcard Costa Rica, and that is why it works for learning: a real city, with its neighbourhoods, its traffic and its hurry. Nobody here switches to English to help you out, which is exactly what speeds things up."
+      "de": "Nicht das Costa Rica der Postkarten, und genau deshalb eignet es sich zum Lernen: eine echte Stadt mit ihren Vierteln, ihrem Verkehr und ihrer Eile. Hier wechselt niemand ins Englische, um dir zu helfen — genau das beschleunigt das Lernen.",
+      "fr": "Ce n'est pas le Costa Rica de carte postale, et c'est justement pour ça que ça marche pour apprendre : une vraie ville, avec ses quartiers, sa circulation et sa hâte. Ici, personne ne passe à l'anglais pour t'aider, ce qui accélère justement l'apprentissage."
     },
     "destacados": {
+      "en": [
+        "The Mercado Central, from 1880",
+        "The Gold and Jade museums",
+        "The whole country within three hours by bus"
+      ],
       "es": [
         "El Mercado Central, de 1880",
         "Los museos del Oro y del Jade",
         "Todo el país a menos de tres horas en bus"
       ],
-      "en": [
-        "The Mercado Central, from 1880",
-        "The Gold and Jade museums",
-        "The whole country within three hours by bus"
+      "de": [
+        "Der Mercado Central von 1880",
+        "Die Gold- und Jademuseen",
+        "Das ganze Land in weniger als drei Stunden mit dem Bus"
+      ],
+      "fr": [
+        "Le Mercado Central, datant de 1880",
+        "Les musées de l'Or et du Jade",
+        "Tout le pays à moins de trois heures en bus"
       ]
     },
     "foto": "/fotos/calle-san-jose.jpg",
     "fotoAlt": {
+      "en": "A steep street in San José, houses painted in bright colours and power lines crossing from side to side",
       "es": "Una calle en cuesta de San José, con las casas pintadas de colores y los cables del tendido cruzando de lado a lado",
-      "en": "A steep street in San José, houses painted in bright colours and power lines crossing from side to side"
+      "de": "Eine abschüssige Straße in San José, bunt bemalte Häuser und Stromleitungen, die sich von Seite zu Seite kreuzen",
+      "fr": "Une rue en pente à San José, des maisons peintes de couleurs vives et des câbles électriques qui se croisent d'un côté à l'autre"
     },
     "fotoClase": "/fotos/clase-san-jose.jpg",
     "fotoClaseAlt": {
+      "en": "A small group lesson around a table, the teacher pointing at a vocabulary sheet",
       "es": "Clase de grupo pequeño alrededor de una mesa, con el profesor señalando una lámina de vocabulario",
-      "en": "A small group lesson around a table, the teacher pointing at a vocabulary sheet"
+      "de": "Unterricht in kleiner Gruppe um einen Tisch, der Lehrer zeigt auf ein Vokabelblatt",
+      "fr": "Cours en petit groupe autour d'une table, le professeur montrant une fiche de vocabulaire"
     },
     "escuela": {
       "nombre": "Intercultura San José",

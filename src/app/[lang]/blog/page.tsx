@@ -20,6 +20,16 @@ const TEXTOS = {
     descripcion:
       "Articles about the Spanish spoken in Costa Rica: expressions, voseo, culture, and how the language actually sounds in the country.",
   },
+  de: {
+    titulo: "Blog über costa-ricanisches Spanisch",
+    descripcion:
+      "Artikel über das Spanisch, das in Costa Rica gesprochen wird: Ausdrücke, Voseo, Kultur und wie die Sprache dort wirklich klingt.",
+  },
+  fr: {
+    titulo: "Blog sur l'espagnol costaricien",
+    descripcion:
+      "Articles sur l'espagnol parlé au Costa Rica : expressions, voseo, culture, et à quoi ressemble vraiment la langue dans le pays.",
+  },
 } as const;
 
 export function generateStaticParams() {

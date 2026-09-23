@@ -38,6 +38,9 @@ export const esquemaDiccionario = z
         online: z.string().min(1),
         /** Una sola entrada: `/presencial` y `/destinos` son la misma pagina. */
         costaRica: z.string().min(1),
+        /** Página nueva, agregada el 23/09/2026. Contenido inventado a falta
+            de que el cliente redacte el suyo — ver `paginas.about`. */
+        about: z.string().min(1),
         blog: z.string().min(1),
         precios: z.string().min(1),
         comunidad: z.string().min(1),
@@ -314,6 +317,52 @@ export const esquemaDiccionario = z
             foto: z.string().min(1),
             /** Para las fotos cedidas cuyo permiso aún no está por escrito. */
             permisoPendiente: z.string().min(1),
+          })
+          .strict(),
+        /**
+         * «Quiénes somos», agregada el 23/09/2026 a pedido del cliente.
+         *
+         * ============ CONTENIDO INVENTADO, Y MARCADO COMO TAL ============
+         * El cliente lo dijo explícito: «aun no tenemos informacion asi que
+         * puedes inventar». Es la única página del sitio con licencia para
+         * eso — todo lo demás sigue la regla de no rellenar con suposiciones
+         * lo que el cliente no ha confirmado.
+         *
+         * Aun así lleva su propio aviso de pendiente al cierre
+         * (`cierrePendiente`), por la misma razón que el resto del sitio: un
+         * hueco visible se arregla, uno invisible se publica. Aquí el hueco
+         * es texto de mentira que puede acabar citado como si fuera la
+         * historia real de un negocio real.
+         * ==================================================================
+         */
+        about: z
+          .object({
+            heroTitulo: z.string().min(1),
+            /** La segunda línea del titular, en color. */
+            heroAcento: z.string().min(1),
+            heroSubtitulo: z.string().min(1),
+            /** Chip corto encima del titular. */
+            heroInsignia: z.string().min(1),
+            historiaTitulo: z.string().min(1),
+            historiaTexto1: z.string().min(1),
+            historiaTexto2: z.string().min(1),
+            /** Cita destacada, aparte del cuerpo. */
+            historiaCita: z.string().min(1),
+            valoresTitulo: z.string().min(1),
+            valoresIntro: z.string().min(1),
+            valor1Titulo: z.string().min(1),
+            valor1Texto: z.string().min(1),
+            valor2Titulo: z.string().min(1),
+            valor2Texto: z.string().min(1),
+            valor3Titulo: z.string().min(1),
+            valor3Texto: z.string().min(1),
+            valor4Titulo: z.string().min(1),
+            valor4Texto: z.string().min(1),
+            cierreTitulo: z.string().min(1),
+            cierreTexto: z.string().min(1),
+            cierreCta: z.string().min(1),
+            /** El aviso de que esta página es un primer boceto. */
+            cierrePendiente: z.string().min(1),
           })
           .strict(),
       })

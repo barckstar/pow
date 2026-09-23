@@ -1,0 +1,234 @@
+{
+  "nav": {
+    "inicio": "Accueil",
+    "online": "Cours en ligne",
+    "costaRica": "Au Costa Rica",
+    "about": "À propos",
+    "blog": "Blog",
+    "precios": "Forfaits",
+    "comunidad": "Communauté",
+    "reservar": "Réserver",
+    "abrirMenu": "Ouvrir le menu",
+    "cerrarMenu": "Fermer le menu",
+    "cambiarIdioma": "Changer de langue"
+  },
+  "hero": {
+    "titulo": "Apprends l'espagnol.",
+    "tituloAcentoNaranja": "Parle",
+    "tituloAcentoTeal": "costaricien.",
+    "subtitulo": "Des cours en ligne sur mesure avec des professeurs locaux, ou une expérience d'apprentissage totalement immersive au Costa Rica, de Samara et Manuel Antonio jusqu'à La Fortuna et San Jose.",
+    "ctaOnline": "Apprendre en ligne",
+    "ctaPresencial": "Apprendre au Costa Rica",
+    "ctaReservar": "Réserver un cours",
+    "insignia": "Plus qu'une langue. C'est un voyage."
+  },
+  "experiencias": {
+    "titulo": "Choisis comment tu veux apprendre",
+    "onlineTitulo": "En ligne",
+    "onlineTexto": "Cours particuliers, en groupe et pour couples avec des professeurs locaux — adaptés à ton emploi du temps, où que tu sois.",
+    "onlineEnlace": "Commencer en ligne",
+    "presencialTitulo": "Au Costa Rica",
+    "presencialTexto": "Immersion dans quatre destinations magnifiques. Étudie le matin, puis passe le reste de la journée à pratiquer avec des habitants — c'est là que l'espagnol s'ancre vraiment.",
+    "presencialEnlace": "Voir les destinations"
+  },
+  "destinos": {
+    "titulo": "Choisis ta destination",
+    "intro": "Quatre endroits au Costa Rica où tu peux étudier en immersion. Choisis-en un et dis-nous ce que tu recherches.",
+    "verTodos": "Voir les quatre destinations",
+    "anuncio": "Publicité",
+    "solicitar": "Je veux aller à",
+    "enClase": "Un cours sur place",
+    "escuela": "École"
+  },
+  "confianza": {
+    "profesorTitulo": "Professeurs locaux",
+    "profesorTexto": "Nés et élevés sur place, ils enseignent l'espagnol que tu entendras vraiment.",
+    "horarioTitulo": "Horaires flexibles",
+    "horarioTexto": "Tu choisis le créneau, affiché dans ton propre fuseau horaire.",
+    "reservaTitulo": "Contacte-nous",
+    "reservaTexto": "Discute directement avec un membre de notre équipe.",
+    "culturaTitulo": "Un apprentissage porté par la culture",
+    "culturaTexto": "Une langue réelle, des coutumes locales et des nuances culturelles — au-delà de la grammaire."
+  },
+  "tiquismo": {
+    "etiqueta": "Tiquismo du jour",
+    "significa": "Ce que ça signifie",
+    "ejemplo": "Comment on l'utilise",
+    "leerMas": "Lire l'article complet"
+  },
+  "faq": {
+    "titulo": "Questions fréquentes",
+    "intro": "Ce qu'on nous demande le plus avant de réserver. Si quelque chose n'est pas encore confirmé, on te le dit."
+  },
+  "blog": {
+    "titulo": "Le blog",
+    "intro": "L'espagnol costaricien expliqué par quelqu'un qui le parle depuis sa naissance.",
+    "leer": "Lire",
+    "minutos": "min de lecture",
+    "etiquetas": "Étiquettes",
+    "vacio": "Aucun article publié en français pour l'instant.",
+    "anterior": "Plus récents",
+    "siguiente": "Plus anciens",
+    "publicado": "Publié le",
+    "actualizado": "Mis à jour le",
+    "tambienEn": "Également disponible en espagnol"
+  },
+  "reserva": {
+    "titulo": "Réserve ton cours",
+    "intro": "Cours individuels par vidéo. Choisis un créneau, réserve-le avec l'acompte, et le lien arrive par e-mail. Trois étapes sur le même écran.",
+    "paso1Titulo": "Choisir un créneau",
+    "paso1Texto": "Le calendrier affiche les disponibilités du professeur dans TON fuseau horaire, pas dans le sien. Il est en Suisse, et le Costa Rica ne change jamais d'heure — ce calcul, mieux vaut ne pas le faire toi-même.",
+    "paso2Titulo": "Payer l'acompte",
+    "paso2Texto": "Par PayPal, à la même étape. Le créneau n'est réservé qu'une fois le paiement effectué, donc personne ne peut te le prendre pendant que tu remplis tes informations.",
+    "paso3Titulo": "Le lien Zoom arrive",
+    "paso3Texto": "À l'adresse e-mail que tu indiques, avec une invitation calendrier et un rappel avant le cours. Le lien de la réunion est créé automatiquement ; personne n'a besoin de te l'envoyer manuellement.",
+    "avisoTerceros": "Le calendrier est géré par Calendly, une entreprise indépendante. Il se charge depuis leurs serveurs dès que tu y arrives en faisant défiler la page, et ils reçoivent tout ce que tu y saisis : nom, e-mail et informations de paiement. Le reste de la page ne leur demande rien.",
+    "tituloWidget": "Calendrier de réservation",
+    "pendienteTitulo": "La réservation en ligne n'est pas encore active",
+    "pendienteTexto": "Le compte Calendly qui gérera les créneaux, les paiements et les liens Zoom doit encore être connecté. On préfère te le dire plutôt que t'afficher un calendrier qui ne réserve rien. En attendant, écris-nous et on s'en occupe à la main.",
+    "zonaHoraria": "Fuseau horaire du professeur",
+    "deposito": "Acompte",
+    "depositoTexto": "Prélevé lors de la réservation, pour garantir le cours. Le reste se règle directement avec ton professeur.",
+    "duracionTitulo": "Combien de temps veux-tu ?",
+    "duracionMin": "min",
+    "duracionCambiar": "Changer la durée",
+    "cargando": "Chargement du calendrier…",
+    "alternativa": "Le calendrier ne s'affiche pas ?",
+    "alternativaEnlace": "L'ouvrir directement sur calendly.com"
+  },
+  "pendiente": {
+    "etiqueta": "En attente",
+    "precio": "Prix à confirmer",
+    "generico": "Cette information n'est pas encore confirmée."
+  },
+  "footer": {
+    "lema": "Plus qu'une plateforme. C'est ton voyage.",
+    "navegacion": "Navigation",
+    "legal": "Mentions légales",
+    "privacidad": "Confidentialité",
+    "terminos": "Conditions",
+    "creditosFotos": "Crédits photo",
+    "derechos": "Tous droits réservés."
+  },
+  "social": {
+    "compartir": "Partager",
+    "copiado": "Lien copié",
+    "seguir": "Suis-nous"
+  },
+  "comun": {
+    "volverInicio": "Retour à l'accueil",
+    "noEncontrado": "Cette page n'existe pas",
+    "noEncontradoTexto": "Le lien que tu as suivi ne mène nulle part. La page a peut-être été déplacée.",
+    "saltarAlContenido": "Aller au contenu"
+  },
+  "paginas": {
+    "online": {
+      "hero": {
+        "titulo": "Cours en ligne.",
+        "acento": "Le Costa Rica, sur ton écran.",
+        "subtitulo": "Cours individuels par vidéo avec un professeur costaricien. De la conversation dès le premier jour, selon ton emploi du temps, où que tu sois.",
+        "fotoAlt": "Un ara rouge de près, avec un bec clair et la tache blanche autour de l'œil, sur un feuillage vert flou"
+      },
+      "titulo": "À quoi ressemble un cours en ligne",
+      "intro": "Cours individuels par vidéo avec un professeur costaricien. Il vit en Suisse, il y a donc des créneaux adaptés aussi bien à l'Europe qu'aux Amériques.",
+      "pasosTitulo": "Comment ça marche",
+      "paso1Titulo": "Choisir un créneau",
+      "paso1Texto": "Les horaires s'affichent dans ton fuseau et dans celui du Costa Rica, pour qu'il n'y ait pas de surprise.",
+      "paso2Titulo": "Réserver ton cours",
+      "paso2Texto": "Avec un acompte via PayPal. Tu règles le reste directement avec ton professeur.",
+      "paso3Titulo": "Se présenter",
+      "paso3Texto": "Tu reçois le lien de l'appel vidéo. Les cours sont de la conversation dès le premier jour, pas des exercices de remplissage.",
+      "profesorTitulo": "Qui enseigne",
+      "practicaTitulo": "Ce que tu pratiques",
+      "practicaTexto": "L'enseignement traditionnel s'appuie trop sur le manuel, et beaucoup de gens étudient pendant des années et restent quand même bloqués dans une vraie conversation. Ici, l'accent est mis sur quatre choses :",
+      "situacionesTexto": "Et les cours entraînent des situations que tu vivras vraiment, pas des exercices de remplissage :",
+      "medidaTitulo": "Adapté à ton objectif",
+      "medidaTexto": "Chacun apprend différemment, et pour une raison différente. Voici les plus courantes :",
+      "medidaCierre": "Le cours s'adapte à ton niveau, à ton objectif et à ce qui t'intéresse. Plutôt qu'un programme générique, c'est une conversation qui va là où elle doit aller.",
+      "leerArticulo": "Lire l'article complet",
+      "profesorFotoAlt": "{nombre}, le professeur",
+      "profesorFotoPendiente": "Portrait manquant",
+      "profesorEntrada": "Les cours ne sont pas donnés par une plateforme. Ils sont donnés par une personne."
+    },
+    "costaRica": {
+      "hero": {
+        "titulo": "Apprends l'espagnol.",
+        "acento": "En voyageant à travers le Costa Rica.",
+        "subtitulo": "Un cours chaque matin dans une école locale, l'hébergement organisé, et le reste de la journée tout le pays comme salle de classe. De quinze jours à deux mois.",
+        "fotoAlt": "Une personne avec un sac à dos traverse un pont suspendu au-dessus de la forêt de nuages, la jungle s'ouvrant en contrebas"
+      },
+      "comoTitulo": "Comment ça marche",
+      "comoIntro": "Ce n'est pas un cours vers lequel on voyage : c'est un voyage pendant lequel on apprend. Trois éléments, et ils vont ensemble.",
+      "claseTitulo": "Le cours",
+      "claseTexto": "Le matin, en petits groupes, dans une école locale avec des professeurs costariciens. L'espagnol qu'ils enseignent est celui que tu entendras dès que tu sortiras, pas celui du manuel.",
+      "hospedajeTitulo": "L'hébergement",
+      "hospedajeTexto": "L'école s'en charge, pour que tu n'aies pas à chercher un logement toi-même ni à atterrir quelque part sans savoir où dormir. Cela fait aussi partie de l'immersion : l'espagnol continue en dehors de la salle de classe.",
+      "viajeTitulo": "Le voyage",
+      "viajeTexto": "Les après-midis et les week-ends, c'est le pays : le parc national, la soda, le bus, l'épicerie du coin. C'est là que le vocabulaire du matin devient quelque chose qui sort tout seul.",
+      "destinosTitulo": "Choisis ta destination",
+      "destinosIntro": "Chaque endroit a sa propre école et sa propre raison de le choisir. Choisis-en un et dis-nous ce que tu recherches.",
+      "pendienteTitulo": "Ce qui reste à finaliser",
+      "pendienteTexto": "Les destinations ci-dessous sont celles que le client a données en exemple, et la liste n'est pas encore arrêtée ; les accords avec chaque école et les modalités d'hébergement non plus. On préfère le montrer ainsi plutôt que d'annoncer des lieux et des prix qui changeraient ensuite."
+    },
+    "precios": {
+      "titulo": "Tarifs",
+      "intro": "C'est ici que figureront les tarifs des cours en ligne, des cours en présentiel et de l'acompte de réservation.",
+      "sinPrecios": "Aucun tarif n'est encore publié. On préfère laisser ce vide visible plutôt que d'afficher un chiffre qui changerait ensuite."
+    },
+    "comunidad": {
+      "titulo": "Communauté",
+      "intro": "C'est ici que vivront les groupes de conversation et les réseaux sociaux de l'école.",
+      "sinRedes": "Les réseaux sociaux de l'école ne sont pas encore ouverts. Une fois qu'ils le seront, ils apparaîtront ici et dans le pied de page.",
+      "archivoTitulo": "Tous les tiquismos"
+    },
+    "creditos": {
+      "titulo": "Crédits photo",
+      "intro": "Les paysages proviennent d'Unsplash sous sa licence. Les photos de classe ont été fournies par les écoles. Voici l'enregistrement de qui a pris chacune et sous quelles conditions elle est publiée.",
+      "foto": "Photographie de",
+      "permisoPendiente": "Fournie par le client. L'autorisation écrite de l'école et des personnes photographiées fait encore défaut."
+    },
+    "about": {
+      "heroInsignia": "Pourquoi cette école existe",
+      "heroTitulo": "Pas une appli.",
+      "heroAcento": "Un tico qui t'enseigne son espagnol.",
+      "heroSubtitulo": "Les manuels t'enseignent un espagnol que personne ne parle vraiment. Costa Rica Spanish Experience existe pour combler cet écart : de vrais professeurs, de vraies expressions, du vrai voseo — la langue que tu entendras dès ton atterrissage.",
+      "historiaTitulo": "Pourquoi tout a commencé",
+      "historiaTexto1": "Chaque application de langue promet la fluidité et te donne le même espagnol neutre de manuel, peu importe ta destination. Arrive au Costa Rica avec cet espagnol, et la première réponse d'un habitant ne ressemblera à aucune de tes leçons.",
+      "historiaTexto2": "Costa Rica Spanish Experience part dans le sens inverse : il enseigne d'abord l'espagnol réellement parlé ici — le voseo, le ton, les expressions — puis la grammaire qui le soutient. Les cours en ligne viennent en premier, car c'est là que se trouve la majorité des gens aujourd'hui ; les voyages d'immersion s'appuieront sur la même idée une fois les destinations prêtes.",
+      "historiaCita": "Pura vida n'est pas une expression qu'on mémorise. C'est une façon de parler bien réelle, et ça ne s'apprend pas dans un manuel.",
+      "valoresTitulo": "Ce qui rend un cours ici différent",
+      "valoresIntro": "Quatre choses auxquelles cette école tient plus qu'un programme générique.",
+      "valor1Titulo": "L'espagnol que tu entendras vraiment",
+      "valor1Texto": "Le voseo, les expressions et le ton, enseignés volontairement — pas laissés de côté parce qu'un manuel ne les couvre pas.",
+      "valor2Titulo": "Une personne, pas une plateforme",
+      "valor2Texto": "Chaque cours est un cours individuel en vidéo avec un vrai professeur qui s'adapte à ta façon de parler et à tes besoins réels.",
+      "valor3Titulo": "Conçu autour de ta vie",
+      "valor3Texto": "Les créneaux s'affichent dans ton propre fuseau horaire, pas dans celui du professeur. C'est le cours qui s'adapte à toi, pas l'inverse.",
+      "valor4Titulo": "Une croissance réfléchie, pas du jour au lendemain",
+      "valor4Texto": "Les cours en ligne sont déjà actifs ; les voyages d'immersion à travers le Costa Rica se construisent avec le même soin, un détail confirmé à la fois.",
+      "cierreTitulo": "Prêt à entendre l'espagnol réellement parlé ?",
+      "cierreTexto": "Réserve un cours individuel et découvre à quel point ça sonne différemment d'un manuel.",
+      "cierreCta": "Réserver un cours",
+      "cierrePendiente": "Cette page est une première ébauche : la propre histoire de l'école est encore en cours de rédaction et remplacera ce texte."
+    },
+    "solicitud": {
+      "titulo": "Dis-nous ce que tu recherches",
+      "tituloCon": "Je veux aller à",
+      "intro": "C'est ce qui nous permet de savoir quelle école et quel niveau te conviennent. Ça prend moins d'une minute et l'envoi ne coûte rien.",
+      "destino": "Destination",
+      "nombre": "Nom",
+      "edad": "Âge",
+      "idiomas": "Langues que tu parles",
+      "idiomasAyuda": "Par exemple : anglais langue maternelle, français de base.",
+      "telefono": "Téléphone",
+      "correo": "E-mail",
+      "estancia": "Combien de temps tu prévois de rester",
+      "motivo": "Pourquoi tu veux apprendre",
+      "elegir": "Choisis une option",
+      "enviar": "Envoyer la demande",
+      "avisoTitulo": "L'envoi n'est pas encore connecté",
+      "avisoTexto": "Tu peux voir le formulaire en entier, mais le bouton est désactivé exprès : il nous reste à décider où vont les données et à publier une politique de confidentialité. On préfère le montrer clairement plutôt que de prendre ton numéro de téléphone sans pouvoir te dire ce qui lui arrive.",
+      "privacidad": "Une fois actif, ce que tu envoies ne servira qu'à te répondre au sujet des cours. Ce n'est ni vendu ni transmis à des tiers."
+    }
+  }
+}
