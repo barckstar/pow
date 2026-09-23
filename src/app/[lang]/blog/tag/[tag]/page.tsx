@@ -26,16 +26,29 @@ export async function generateMetadata({
   const { lang, tag } = await params;
   if (!esIdioma(lang)) return {};
 
-  const titulo =
-    lang === "es" ? `Artículos sobre ${tag}` : `Articles tagged ${tag}`;
-  const descripcion =
-    lang === "es"
-      ? `Todos los artículos del blog etiquetados como «${tag}»: español costarricense explicado por quien lo habla desde que nació.`
-      : `Every blog article tagged "${tag}": Costa Rican Spanish explained by someone who has spoken it since birth.`;
+  /*
+   * Era un `lang === "es" ? … : …` — un binario que ya se había quedado
+   * corto al agregar alemán y francés: los dos caían en la rama de inglés
+   * sin que nadie lo decidiera. Con español fuera de `IDIOMAS`, TypeScript
+   * dejó de aceptar la comparación imposible, y de paso salió el hueco.
+   */
+  const TEXTOS: Record<Idioma, { titulo: string; descripcion: string }> = {
+    en: {
+      titulo: `Articles tagged ${tag}`,
+      descripcion: `Every blog article tagged "${tag}": Costa Rican Spanish explained by someone who has spoken it since birth.`,
+    },
+    de: {
+      titulo: `Artikel zum Thema ${tag}`,
+      descripcion: `Alle Blogartikel mit dem Schlagwort „${tag}“: costa-ricanisches Spanisch erklärt von jemandem, der es von Geburt an spricht.`,
+    },
+    fr: {
+      titulo: `Articles sur ${tag}`,
+      descripcion: `Tous les articles du blog étiquetés « ${tag} » : l'espagnol costaricien expliqué par quelqu'un qui le parle depuis sa naissance.`,
+    },
+  };
 
   return metadatosDe({
-    titulo,
-    descripcion,
+    ...TEXTOS[lang],
     ruta: rutas.etiqueta(lang, tag),
     lang,
     // Sin `alternativas`: una etiqueta puede existir en un idioma y no en el

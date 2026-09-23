@@ -63,21 +63,11 @@ export function seoDeSolicitud(
         titulo: `Immersion à ${nombre}`,
         descripcion: `Immersion en espagnol à ${nombre} (${zona}). Dis-nous combien de temps tu restes, et on te dira quelle école te convient.`,
       };
-    case "es":
-      return {
-        titulo: `Inmersión en ${nombre}`,
-        descripcion: `Estudiá español en inmersión en ${nombre}, ${zona}. Contanos cuánto tiempo planeás quedarte y te decimos qué escuela te sirve.`,
-      };
   }
 }
 
 export const SEO: Record<string, Record<Idioma, Textos>> = {
   online: {
-    es: {
-      titulo: "Clases de español en línea",
-      descripcion:
-        "Clases de español costarricense uno a uno por videollamada, con horarios que sirven a Europa y a América y precios sin letra pequeña.",
-    },
     en: {
       titulo: "Online Spanish lessons",
       descripcion:
@@ -104,11 +94,6 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
    * promete cuatro sitios concretos se queda mintiendo en cuanto cambie uno.
    */
   costaRica: {
-    es: {
-      titulo: "Aprendé español viajando por Costa Rica",
-      descripcion:
-        "Clase por la mañana en una escuela del lugar, el hospedaje resuelto y el resto del día practicando por el país. Inmersión de quince días a dos meses.",
-    },
     en: {
       titulo: "Learn Spanish travelling Costa Rica",
       descripcion:
@@ -132,11 +117,6 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
     },
   },
   solicitud: {
-    es: {
-      titulo: "Solicitá tu inmersión en Costa Rica",
-      descripcion:
-        "Contanos el destino, cuánto tiempo planeás quedarte y por qué querés aprender, y te decimos qué escuela y qué nivel te sirven.",
-    },
     en: {
       titulo: "Enquire about your immersion",
       descripcion:
@@ -162,11 +142,6 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
    * porque es exactamente lo que alguien quiere saber antes de entrar.
    */
   reservar: {
-    es: {
-      titulo: "Reservá tu clase de español",
-      descripcion:
-        "Elegí día y hora en tu zona horaria, apartá la clase con el depósito por PayPal y recibí el enlace de la videollamada por correo.",
-    },
     en: {
       titulo: "Book your Spanish lesson",
       descripcion:
@@ -184,11 +159,6 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
     },
   },
   precios: {
-    es: {
-      titulo: "Precios de las clases",
-      descripcion:
-        "Precios de las clases de español en línea y en persona, y del depósito de reserva. Sin cifras inventadas mientras no estén confirmadas.",
-    },
     en: {
       titulo: "Lesson pricing",
       descripcion:
@@ -206,11 +176,6 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
     },
   },
   comunidad: {
-    es: {
-      titulo: "Comunidad y grupos de conversación",
-      descripcion:
-        "Grupos de conversación, redes de la escuela y el archivo completo de tiquismos: expresiones costarricenses explicadas una a una.",
-    },
     en: {
       titulo: "Community and conversation groups",
       descripcion:
@@ -228,11 +193,6 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
     },
   },
   creditos: {
-    es: {
-      titulo: "Créditos de las fotografías",
-      descripcion:
-        "Autoría y licencia de cada fotografía usada en el sitio: los paisajes de Unsplash y las fotos de clase cedidas por las escuelas socias.",
-    },
     en: {
       titulo: "Photography credits",
       descripcion:
@@ -255,16 +215,6 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
    * directo: es literalmente la respuesta a «¿por qué esta escuela?».
    */
   about: {
-    es: {
-      /*
-       * No «Quiénes somos» a secas: son 13 caracteres y el mínimo que exige
-       * `verificar-metadatos.mjs` es 15. La etiqueta del menú sí puede ser
-       * corta —no tiene ese límite—, pero el `<title>` no.
-       */
-      titulo: "Sobre esta escuela",
-      descripcion:
-        "Por qué existe Costa Rica Spanish Experience: profesores reales enseñando el español que de verdad se habla en Costa Rica, no el de los libros.",
-    },
     en: {
       titulo: "About Costa Rica Spanish Experience",
       descripcion:

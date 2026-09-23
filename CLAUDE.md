@@ -385,13 +385,31 @@ que ningún componente cambió de ruta — solo el `width`/`height` de cada
 `<Image>`, porque la proporción real (1,18:1) no es la del recorte viejo
 (1,29:1).
 
-### Cuatro idiomas, inglés por defecto
+**El logo del navbar creció dos veces el mismo día**, a pedido del cliente
+—«lo máximo sin que se vea desproporcionado»—. El techo real es
+`--nav-h: 4.25rem` (68 px): la barra no lleva relleno vertical, así que
+cualquier alto mayor se sale de ella. Terminó en 2.85rem/3.2rem (según el
+ancho de pantalla), que deja unos 17-22 px de aire repartidos arriba y abajo
+— de sobra para que no toque los bordes.
+
+⚠️ **El icono del PWA y el favicon necesitan MÁS margen que el logo grande,
+no el mismo.** `icon.png`/`favicon.ico` se generaban con el mismo recorte
+ajustado que `perezoso.png` —4 % de margen— y en la pestaña del navegador se
+veía apretado: el cliente lo dijo, «el fav icon no se ve bien […] este aun es
+muy grande». La comparación que lo delató fue el propio `apple-icon.png`, que
+sin que nadie lo pidiera ya llevaba más aire (150 px de contenido sobre un
+lienzo de 180). `recortar-logo.py` generaliza esa misma proporción
+—`PROPORCION_ICONO = 150/180`— al icono de PWA y a los favicons de 48 y 32;
+el de 16 la aplica sobre el recorte de la cara, no sobre el cuadrado entero.
+
+### Tres idiomas, inglés por defecto — español se agregó y se quitó el mismo día
 
 El 23/09/2026 el cliente pidió sumar alemán y francés —«de momento solo esos,
 los italianos que mamen picha»— y cambiar el idioma por defecto de español a
 inglés: «no sirve que salga en español, los potenciales estudiantes no saben
-español». `IDIOMAS` pasó de `["es", "en"]` a `["en", "es", "de", "fr"]` en
-`shared/i18n/config.ts`.
+español». Unas horas después, sin más explicación, pidió quitar español por
+completo: «quita el español de los idiomas». `IDIOMAS` terminó el día en
+`["en", "de", "fr"]`, en `shared/i18n/config.ts`.
 
 **Ese solo cambio obliga a traducir TODO.** `localizado()` construye su
 esquema de Zod a partir de `IDIOMAS`, así que en cuanto se agregó `de` y `fr`
@@ -401,7 +419,38 @@ reservas, `profesores`, `opciones` de solicitud— y en cada `Record<Idioma,…>
 suelto —`SEO`, los `TEXTOS` de la portada y del blog, `CARGADORES` de
 `diccionario.ts`—. No es un efecto colateral, es el porqué de que agregar un
 idioma sea una sola línea en `config.ts`: el propio build dice, archivo por
-archivo, dónde falta.
+archivo, dónde falta. Al quitar español pasó lo mismo al revés: `tsc` señaló,
+uno por uno, cada sitio que todavía asumía que «es» existía.
+
+⚠️ **Ahí salieron tres comparaciones `lang === "es" ? … : …` que llevaban
+así desde siempre**, en la página de etiquetas del blog, en el feed RSS y en
+el `alt` del hero — escritas a mano en vez de vivir en el diccionario, y
+nunca actualizadas cuando entraron alemán y francés: los dos caían en la
+rama de inglés sin que nadie lo hubiera decidido. No rompían el build porque
+`"es"` seguía siendo un valor válido de `Idioma`; se convirtieron en errores
+de tipo en cuanto se quitó, que es como se encontraron. Las tres tienen ahora
+un `Record<Idioma, …>` con las tres lenguas resueltas de verdad.
+
+**Español no se borró de los datos, solo de la lista de idiomas activos.**
+`es.json` sigue en `diccionarios/`, sin que `CARGADORES` lo importe; los
+`content/blog/es/*.md` siguen publicados como archivos, sin que `IDIOMAS` los
+sirva; los campos `"es"` de cada `.json` de contenido —`destinos`, `faq`,
+`tiquismos`…— se quedaron tal cual, porque `localizado()` no es `.strict()`
+y una clave de más se descarta en silencio al validar, no rompe nada.
+Reactivar español es agregarlo a `IDIOMAS` otra vez, no rehacer el trabajo.
+
+⚠️ **Dos artículos del blog en inglés dejaron de compilar** por esto mismo:
+declaraban `traduccion: <slug-en-español>` en su frontmatter, y
+`verificarTraducciones()` en `leer.ts` comprueba que esa `traduccion` exista
+en ALGÚN idioma que el build lea de verdad — que ya no incluye español. Se
+quitó la línea de los dos archivos con una nota explicando por qué, en vez de
+relajar la comprobación: prometerle a Google un `hreflang` a un idioma que el
+sitio no sirve es exactamente lo que esa función existe para evitar.
+
+**`/es/*` redirige a `/en/*` con un 301, no un 307.** El resto de `proxy.ts`
+usa 307 porque el idioma se decide por visitante; esto es lo contrario, una
+decisión permanente del sitio, y un 301 le dice a Google que transfiera el
+valor de esas URL en vez de seguir comprobándolas.
 
 ⚠️ **Un apóstrofo en francés puede romper el límite de caracteres.**
 `scripts/verificar-metadatos.mjs` mide el `<title>` y la descripción sobre el
@@ -413,18 +462,26 @@ entre pasar y no pasar los 65 o los 165. La salida no es prohibir el
 apóstrofo —sería mala gramática— sino medirlo: `seoDeSolicitud()` en
 `seo.ts` tiene la cuenta hecha para el caso más largo.
 
-**El selector de idioma pasó de un enlace a una fila de cuatro.** Con dos
-idiomas alcanzaba un solo enlace al «otro»; con cuatro hacía falta un
-selector de verdad. Es una fila de códigos (`EN ES DE FR`), no un desplegable:
-cuatro letras caben enteras a la vista, y abrir un menú para leer cuatro
-letras es un paso de más. El idioma activo es un `<span>` sin `href` —no
-tiene a dónde ir— y no un enlace a sí mismo.
+**El selector de idioma es un desplegable con bandera, no una fila de
+códigos sueltos.** Primero fue eso —una fila de cuatro—, y el cliente lo
+pidió cerrar en un botón con el idioma actual y su bandera, que al pulsarlo
+abre la lista de los demás. Es un patrón manual de disclosure —botón +
+`<ul>` con `hidden`—, no un `<select>`: cada opción es una navegación real a
+otra URL, y eso es un `<Link>`, no el valor de un formulario. Se cierra
+solo al elegir, al pulsar fuera o con Escape.
 
-⚠️ **El selector de escritorio nunca estuvo en el menú móvil, ni con dos
-idiomas ni ahora.** Estaba en `.navbar__idioma`, oculto por completo por
-debajo de 1100 px — o sea en cualquier teléfono. Se repitió dentro de
-`#menu-movil` para que exista al menos un camino para cambiar de idioma desde
-un móvil.
+⚠️ **La bandera de «es» habría sido la de Costa Rica, no la de España** —la
+decisión quedó tomada y escrita en `Banderas.tsx` antes de que el cliente
+pidiera quitar español esa misma tarde. Este sitio no enseña español
+genérico, así que si español vuelve, esa nota vuelve con él: la convención
+más extendida en selectores de idioma usa España para «es», y aquí sería
+justo lo contrario de lo que vende el negocio.
+
+⚠️ **El selector de escritorio nunca estuvo en el menú móvil.** Estaba en
+`.navbar__idioma`, oculto por completo por debajo de 1100 px — o sea en
+cualquier teléfono. Se repite dentro de `#menu-movil`, como fila de chips con
+bandera en vez de desplegable: un menú dentro de un menú es un paso de
+interacción de más en móvil.
 
 ⚠️ **`#menu-movil` no tenía ni una sola regla de CSS.** Se vio al abrirlo de
 verdad en un viewport de 390 px: los enlaces se pintaban sueltos, sin fondo,
@@ -433,14 +490,13 @@ al contenido de la página — el menú móvil de TODO el sitio, no solo de esta
 sesión, llevaba así desde siempre. La causa: es hijo del `<header>`, que es
 `position: fixed` y mide `--nav-h` de alto, así que su contenido se salía de
 esa caja sin que nada lo posicionara. Ahora `.navbar__movil` es
-`position: fixed`, anclado a `--nav-h`, con fondo, tipografía y el mismo
-selector de idioma que el de escritorio.
+`position: fixed`, anclado a `--nav-h`, con fondo y tipografía propios.
 
 **El artículo del blog en `/online` se oculta en alemán y francés**, no
-enlaza al inglés ni al español. `ARTICULO` en esa página es un
-`Partial<Record<Idioma, string>>`: el cliente solo escribió el artículo en
-esos dos idiomas, y la regla de siempre es que un hueco visible se arregla, no
-que se tape con un enlace a un idioma que no es el que alguien está leyendo.
+enlaza al inglés. `ARTICULO` en esa página es un `Partial<Record<Idioma,
+string>>` con una sola clave, `en`: el cliente solo escribió el artículo en
+ese idioma, y la regla de siempre es que un hueco visible se arregla, no que
+se tape con un enlace a un idioma que no es el que alguien está leyendo.
 
 ### «Quiénes somos» — página nueva, contenido inventado
 

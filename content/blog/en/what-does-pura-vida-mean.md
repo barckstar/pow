@@ -5,7 +5,9 @@ fecha: 2026-09-19
 portada: /fotos/manuel-antonio-selva.jpg
 portadaAlt: "The rainforest of Manuel Antonio dropping down to the Pacific"
 etiquetas: [tiquismos, cultura]
-traduccion: que-significa-pura-vida
+# `traduccion` apuntaba al artículo en español. Ver la misma nota en
+# `why-online-spanish-classes.md`: español sigue en `content/blog/es/`,
+# solo que ya no es un idioma activo de `IDIOMAS`.
 borrador: false
 ---
 

@@ -51,19 +51,32 @@ describe("carga de diccionarios", () => {
 });
 
 describe("detección de idioma", () => {
+  /**
+   * Español ya no está — el cliente lo quitó de `IDIOMAS` el mismo
+   * 23/09/2026 en que se agregaron alemán y francés, sin más explicación
+   * que «quita el español de los idiomas». `es.json` sigue en el repo, sin
+   * importarse: por eso las pruebas de arriba, sobre la FORMA del esquema,
+   * lo pueden seguir usando de fixture sin que eso signifique que «es» sea
+   * un idioma del sitio.
+   */
   it("reconoce los idiomas soportados", () => {
-    expect(esIdioma("es")).toBe(true);
     expect(esIdioma("en")).toBe(true);
     expect(esIdioma("de")).toBe(true);
     expect(esIdioma("fr")).toBe(true);
+    expect(esIdioma("es")).toBe(false);
     expect(esIdioma("it")).toBe(false);
   });
 
   it("elige el primer idioma soportado de Accept-Language", () => {
-    expect(idiomaDesdeCabecera("en-US,en;q=0.9,es;q=0.8")).toBe("en");
-    expect(idiomaDesdeCabecera("es-CR,es;q=0.9")).toBe("es");
+    expect(idiomaDesdeCabecera("en-US,en;q=0.9,de;q=0.8")).toBe("en");
     expect(idiomaDesdeCabecera("de-DE,de;q=0.9,en;q=0.8")).toBe("de");
     expect(idiomaDesdeCabecera("fr-FR,fr;q=0.9")).toBe("fr");
+  });
+
+  /** Un navegador en español ya no encuentra nada suyo en la lista y cae al
+      idioma por defecto — el mismo camino que uno en italiano. */
+  it("un navegador en español cae al idioma por defecto", () => {
+    expect(idiomaDesdeCabecera("es-CR,es;q=0.9")).toBe("en");
   });
 
   /*
@@ -77,9 +90,10 @@ describe("detección de idioma", () => {
     expect(idiomaDesdeCabecera("de-CH,fr;q=0.9,en;q=0.7")).toBe("de");
   });
 
-  /** Italiano de verdad no está: «de momento solo esos», dijo el cliente. */
-  it("salta un idioma que no cubrimos y cae al que sí está más adelante", () => {
-    expect(idiomaDesdeCabecera("it-IT,it;q=0.9,es;q=0.7")).toBe("es");
+  /** Ni italiano ni español están: «de momento solo esos», dijo el cliente
+      de los dos que sí agregó, y español se quitó ese mismo día. */
+  it("salta los idiomas que no cubrimos y cae al que sí está más adelante", () => {
+    expect(idiomaDesdeCabecera("it-IT,it;q=0.9,es;q=0.8,fr;q=0.7")).toBe("fr");
   });
 
   it("cae al idioma por defecto sin cabecera, o si ninguna entrada es de las que cubrimos", () => {

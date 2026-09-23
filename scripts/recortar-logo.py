@@ -42,12 +42,52 @@ MARGEN = 0.04
 # personaje con gafas oscuras». Ajustado a ojo sobre el recorte real.
 CAJA_CARA = (0.20, 0.32, 0.55, 0.68)
 
+# ============ EL ICONO NECESITA MÁS AIRE QUE EL LOGO GRANDE ============
+# `cuadrar()` a secas —solo el 4 % de MARGEN— es lo que usan `perezoso.png` y
+# `icon.png` v1, y en la pestaña del navegador se veía apretado: el cliente
+# lo dijo, «el fav icon no se ve bien, deberia ser el logo mas pequeño».
+#
+# El icono de Apple ya lo hacía bien sin que nadie lo pidiera —150 px de
+# contenido sobre un lienzo de 180, encogido a mano— y esa proporción,
+# 150/180, es la que se generaliza aquí para el resto de los iconos
+# pequeños: PWA, favicon de 48 y 32. El de 16 usa el mismo aire sobre el
+# recorte de la cara, no sobre el cuadrado entero.
+PROPORCION_ICONO = 150 / 180
+
 
 def cuadrar(img: Image.Image) -> Image.Image:
     lado = max(img.size)
     lienzo = Image.new("RGBA", (lado, lado), (0, 0, 0, 0))
     lienzo.paste(img, ((lado - img.width) // 2, (lado - img.height) // 2), img)
     return lienzo
+
+
+def cuadrar_con_aire(img: Image.Image, proporcion: float) -> Image.Image:
+    """Como `cuadrar()`, pero deja el contenido más chico dentro del lienzo.
+
+    `proporcion` es cuánto del lienzo ocupa el contenido: 1.0 es pegado al
+    borde, como `cuadrar()`; menos que eso dela margen alrededor sin cambiar
+    el tamaño final del lienzo.
+    """
+    base = cuadrar(img)
+    lado = base.size[0]
+    contenido = round(lado * proporcion)
+    escalado = img.resize(
+        _ajustar_a_ancho(img.size, contenido), Image.LANCZOS
+    )
+    lienzo = Image.new("RGBA", (lado, lado), (0, 0, 0, 0))
+    lienzo.paste(
+        escalado,
+        ((lado - escalado.width) // 2, (lado - escalado.height) // 2),
+        escalado,
+    )
+    return lienzo
+
+
+def _ajustar_a_ancho(tamano, ancho_objetivo):
+    ancho, alto = tamano
+    factor = ancho_objetivo / max(ancho, alto)
+    return (round(ancho * factor), round(alto * factor))
 
 
 def main():
@@ -81,19 +121,23 @@ def main():
     maestro.save(destino_marca / "perezoso.png", optimize=True)
 
     cuadrado = cuadrar(recorte)
+    cuadrado_icono = cuadrar_con_aire(recorte, PROPORCION_ICONO)
 
-    # Icono PWA 512. La cuantización a 256 colores baja el archivo sin que se
-    # note: el dibujo tiene degradados suaves pero pocos bordes finos.
-    # FASTOCTREE porque es el único método de PIL que cuantiza conservando
-    # alfa.
-    icono = cuadrado.resize((512, 512), Image.LANCZOS)
+    # Icono PWA 512, CON el mismo aire que el resto de los iconos pequeños:
+    # Android e iOS lo recortan a un círculo o a una forma "squircle" sobre
+    # el propio icono, y sin margen ese recorte se come el borde del dibujo.
+    # La cuantización a 256 colores baja el archivo sin que se note: el
+    # dibujo tiene degradados suaves pero pocos bordes finos. FASTOCTREE
+    # porque es el único método de PIL que cuantiza conservando alfa.
+    icono = cuadrado_icono.resize((512, 512), Image.LANCZOS)
     icono.quantize(colors=256, method=Image.FASTOCTREE).save(
         destino_app / "icon.png", optimize=True
     )
 
     # Apple no respeta la transparencia: la rellena de negro. Se compone
-    # sobre la crema de marca con un margen — así es como Apple espera el
-    # icono, sin bordes redondeados, que los pone el sistema.
+    # sobre la crema de marca — así es como Apple espera el icono, sin
+    # bordes redondeados, que los pone el sistema. Ya lleva su propio aire
+    # (150 sobre 180), que es de donde sale `PROPORCION_ICONO`.
     apple = Image.new("RGBA", (180, 180), CREMA + (255,))
     contenido = cuadrado.resize((150, 150), Image.LANCZOS)
     apple.paste(contenido, (15, 15), contenido)
@@ -104,15 +148,18 @@ def main():
     # Favicon multitamaño. A 48 y 32 px el círculo entero se lee bien; a 16 px
     # se pierde toda la forma y queda una mancha de color, así que ese tamaño
     # usa el recorte de la cara — comprobado a ojo, en pantalla, antes de
-    # fijar la caja de arriba.
+    # fijar la caja de arriba. Los tres llevan el mismo aire alrededor: sin
+    # él, el cliente lo notó en la pestaña del navegador — «este aun es muy
+    # grande».
     ancho, alto = cuadrado.size
     l, t, r, b = CAJA_CARA
-    cara = cuadrar(
-        cuadrado.crop((int(l * ancho), int(t * alto), int(r * ancho), int(b * alto)))
+    cara = cuadrar_con_aire(
+        cuadrado.crop((int(l * ancho), int(t * alto), int(r * ancho), int(b * alto))),
+        PROPORCION_ICONO,
     )
 
-    marco_48 = cuadrado.resize((48, 48), Image.LANCZOS)
-    marco_32 = cuadrado.resize((32, 32), Image.LANCZOS)
+    marco_48 = cuadrado_icono.resize((48, 48), Image.LANCZOS)
+    marco_32 = cuadrado_icono.resize((32, 32), Image.LANCZOS)
     marco_16 = cara.resize((16, 16), Image.LANCZOS)
     marco_48.save(
         destino_app / "favicon.ico",

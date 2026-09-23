@@ -14,16 +14,16 @@ import { Profesores } from "@/features/online/components/Profesores";
 
 /**
  * El artículo del cliente sobre las clases en línea, al que enlaza esta
- * página. Los dos slugs son distintos porque cada idioma tiene el suyo; el
- * cruce entre ambos lo lleva el `traduccion` del frontmatter.
+ * página.
  *
- * Es un mapa PARCIAL a propósito: el artículo solo existe en español e inglés.
- * Con alemán y francés en el sitio desde el 23/09/2026, el enlace se oculta en
- * esos dos en vez de llevar a un artículo que no está en su idioma — la regla
- * de siempre, un hueco visible antes que una promesa que no se cumple.
+ * Es un mapa PARCIAL a propósito: el artículo solo existe en inglés. Antes
+ * también tenía español —cuando español era un idioma del sitio— y el
+ * artículo en español sigue publicado en `content/blog/es/`, solo que ya no
+ * hay ruta en español que lo enlace. En alemán y francés el enlace se oculta
+ * en vez de llevar a un artículo que no está en su idioma — la regla de
+ * siempre, un hueco visible antes que una promesa que no se cumple.
  */
 const ARTICULO: Partial<Record<Idioma, string>> = {
-  es: "por-que-funcionan-las-clases-en-linea",
   en: "why-online-spanish-classes",
 };
 

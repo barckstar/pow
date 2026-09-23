@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { calcularEstado } from "@/shared/lib/navbarScroll";
 import { rutas } from "@/shared/config/sitio";
 import { IDIOMAS, NOMBRE_IDIOMA, type Idioma } from "@/shared/i18n/config";
+import { Bandera } from "@/shared/components/ui/Banderas";
 import type { Diccionario } from "@/shared/i18n/esquema";
 
 type Props = {
@@ -41,6 +42,50 @@ export function Navbar({ lang, t }: Props) {
 
   const alternarMenu = () =>
     setMenu({ abierto: !menuAbierto, ruta: pathname });
+
+  /*
+   * El mismo truco de «el estado guarda en qué ruta se abrió» para el
+   * desplegable de idioma: se cierra solo al navegar, sin un efecto que
+   * sincronice nada.
+   */
+  const [idiomas, setIdiomas] = useState({ abierto: false, ruta: pathname });
+  const idiomasAbierto = idiomas.abierto && idiomas.ruta === pathname;
+  const idiomasRef = useRef<HTMLDivElement>(null);
+
+  const alternarIdiomas = () =>
+    setIdiomas({ abierto: !idiomasAbierto, ruta: pathname });
+  const cerrarIdiomas = () => setIdiomas({ abierto: false, ruta: pathname });
+
+  /*
+   * Cerrar al pulsar fuera o al pulsar Escape. Un desplegable que solo se
+   * cierra eligiendo una opción o volviendo a pulsar el botón se queda
+   * abierto tapando el resto de la barra en cuanto alguien hace clic en
+   * cualquier otro sitio de la página.
+   */
+  useEffect(() => {
+    if (!idiomasAbierto) return;
+
+    function alPulsarFuera(evento: MouseEvent) {
+      if (
+        idiomasRef.current &&
+        !idiomasRef.current.contains(evento.target as Node)
+      ) {
+        cerrarIdiomas();
+      }
+    }
+
+    function alPulsarTecla(evento: KeyboardEvent) {
+      if (evento.key === "Escape") cerrarIdiomas();
+    }
+
+    document.addEventListener("mousedown", alPulsarFuera);
+    document.addEventListener("keydown", alPulsarTecla);
+    return () => {
+      document.removeEventListener("mousedown", alPulsarFuera);
+      document.removeEventListener("keydown", alPulsarTecla);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idiomasAbierto]);
 
   /*
    * El listener del scroll se registra UNA sola vez y lee el estado del menú
@@ -171,42 +216,61 @@ export function Navbar({ lang, t }: Props) {
           </nav>
 
           {/*
-            ============ CUATRO IDIOMAS, NO UNO ============
-            Había un solo enlace, al «otro» idioma —tenía sentido cuando solo
-            había dos—. Con alemán y francés desde el 23/09/2026 eso dejó de
-            alcanzar: hacía falta un selector, no un interruptor.
-            Es una fila de códigos, no un desplegable: cuatro opciones caben
-            enteras a la vista, y un menú que hay que abrir para ver cuatro
-            letras es un paso de más. El idioma activo no es un enlace —no
-            tiene a dónde ir— así que es un `<span>`, marcado con
-            `aria-current` para quien usa lector de pantalla.
+            ============ UN DESPLEGABLE, CON BANDERA ============
+            Fue una fila de cuatro códigos sueltos —EN ES DE FR— y el cliente
+            pidió cerrarla en un desplegable con bandera. Un botón con el
+            idioma actual, y al pulsarlo la lista de los otros tres.
+
+            La bandera de «es» es la de Costa Rica, no la de España: es la
+            decisión que está en `Banderas.tsx`, con el porqué.
             =================================================
           */}
-          <ul className="navbar__idiomas" aria-label={t.nav.cambiarIdioma}>
-            {IDIOMAS.map((idioma) => (
-              <li key={idioma}>
-                {idioma === lang ? (
-                  <span
-                    className="navbar__idioma"
-                    aria-current="true"
-                    aria-label={NOMBRE_IDIOMA[idioma]}
-                  >
-                    {idioma.toUpperCase()}
-                  </span>
-                ) : (
-                  <Link
-                    href={`/${idioma}${rutaSinIdioma}`}
-                    className="navbar__idioma"
-                    hrefLang={idioma}
-                    lang={idioma}
-                    aria-label={NOMBRE_IDIOMA[idioma]}
-                  >
-                    {idioma.toUpperCase()}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
+          <div className="navbar__idiomas" ref={idiomasRef}>
+            <button
+              type="button"
+              className="navbar__idiomas-boton"
+              aria-haspopup="true"
+              aria-expanded={idiomasAbierto}
+              aria-controls="menu-idiomas"
+              aria-label={`${t.nav.cambiarIdioma}: ${NOMBRE_IDIOMA[lang]}`}
+              onClick={alternarIdiomas}
+            >
+              <Bandera idioma={lang} />
+              <span aria-hidden="true">{lang.toUpperCase()}</span>
+              <span className="navbar__idiomas-flecha" aria-hidden="true" />
+            </button>
+
+            <ul
+              id="menu-idiomas"
+              className="navbar__idiomas-menu"
+              hidden={!idiomasAbierto}
+            >
+              {IDIOMAS.map((idioma) => (
+                <li key={idioma}>
+                  {idioma === lang ? (
+                    <span
+                      className="navbar__idiomas-opcion"
+                      aria-current="true"
+                    >
+                      <Bandera idioma={idioma} />
+                      {NOMBRE_IDIOMA[idioma]}
+                    </span>
+                  ) : (
+                    <Link
+                      href={`/${idioma}${rutaSinIdioma}`}
+                      className="navbar__idiomas-opcion"
+                      hrefLang={idioma}
+                      lang={idioma}
+                      onClick={cerrarIdiomas}
+                    >
+                      <Bandera idioma={idioma} />
+                      {NOMBRE_IDIOMA[idioma]}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <Link href={rutas.reservar(lang)} className="navbar__cta">
             {t.nav.reservar}
@@ -260,6 +324,7 @@ export function Navbar({ lang, t }: Props) {
                   aria-current="true"
                   aria-label={NOMBRE_IDIOMA[idioma]}
                 >
+                  <Bandera idioma={idioma} />
                   {idioma.toUpperCase()}
                 </span>
               ) : (
@@ -270,6 +335,7 @@ export function Navbar({ lang, t }: Props) {
                   lang={idioma}
                   aria-label={NOMBRE_IDIOMA[idioma]}
                 >
+                  <Bandera idioma={idioma} />
                   {idioma.toUpperCase()}
                 </Link>
               )}

@@ -6,9 +6,14 @@ import { IDIOMAS, type Idioma } from "./config";
  * bundler los resuelva en build time. Se leen SOLO en Server Components, así
  * que nada de esto viaja al navegador.
  */
+/*
+ * `es.json` se queda en el repo, sin importar. El cliente quitó español de
+ * `IDIOMAS` el 23/09/2026 sin pedir que se borrara el trabajo de traducción
+ * — así que sigue ahí, listo por si vuelve a pedirlo: reactivarlo es una
+ * línea aquí y otra en `IDIOMAS`, no traducir de cero.
+ */
 const CARGADORES: Record<Idioma, () => Promise<unknown>> = {
   en: () => import("./diccionarios/en.json").then((m) => m.default),
-  es: () => import("./diccionarios/es.json").then((m) => m.default),
   de: () => import("./diccionarios/de.json").then((m) => m.default),
   fr: () => import("./diccionarios/fr.json").then((m) => m.default),
 };

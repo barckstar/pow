@@ -5,6 +5,19 @@ import { rutas } from "@/shared/config/sitio";
 import type { Idioma } from "@/shared/i18n/config";
 import type { Diccionario } from "@/shared/i18n/esquema";
 
+/*
+ * Era un `lang === "es" ? … : …`. Con solo dos idiomas nadie lo notó, pero
+ * en cuanto entraron alemán y francés los dos caían en el `alt` en inglés
+ * sin que nadie lo hubiera decidido así — de/fr no rompían el build porque
+ * la comparación seguía siendo válida, solo incompleta. Quitar español de
+ * `IDIOMAS` sí lo rompió, que es como se encontró.
+ */
+const ALT_HERO: Record<Idioma, string> = {
+  en: "The rainforest of Manuel Antonio dropping down to the Pacific, with an islet on the horizon",
+  de: "Der Regenwald von Manuel Antonio fällt zum Pazifik ab, mit einem Eiland am Horizont",
+  fr: "La forêt tropicale de Manuel Antonio descendant vers le Pacifique, avec un îlot à l'horizon",
+};
+
 export function Hero({ lang, t }: { lang: Idioma; t: Diccionario }) {
   return (
     <section className="hero">
@@ -17,11 +30,7 @@ export function Hero({ lang, t }: { lang: Idioma; t: Diccionario }) {
       <div className="hero__foto">
         <Image
           src="/fotos/manuel-antonio-selva.jpg"
-          alt={
-            lang === "es"
-              ? "La selva de Manuel Antonio bajando hasta el Pacífico, con un islote en el horizonte"
-              : "The rainforest of Manuel Antonio dropping down to the Pacific, with an islet on the horizon"
-          }
+          alt={ALT_HERO[lang]}
           fill
           priority
           // `priority` precarga, pero la auditoría de descubrimiento del LCP

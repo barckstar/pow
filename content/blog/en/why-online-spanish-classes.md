@@ -5,7 +5,12 @@ fecha: 2026-09-21
 portada: /fotos/lapa-roja.jpg
 portadaAlt: "A scarlet macaw up close, pale beak and the white patch around its eye, against blurred green foliage"
 etiquetas: [clases, en-linea]
-traduccion: por-que-funcionan-las-clases-en-linea
+# `traduccion` apuntaba al artículo en español. Español se quitó de
+# `IDIOMAS` el 23/09/2026 sin borrar `content/blog/es/`, así que el
+# artículo sigue ahí de verdad — pero `verificarTraducciones()` en
+# `leer.ts` solo mira los idiomas activos, y una referencia a un idioma que
+# el sitio ya no sirve rompía el build. Si español vuelve, esta línea
+# vuelve con él.
 borrador: false
 ---
 

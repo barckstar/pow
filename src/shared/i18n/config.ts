@@ -12,8 +12,17 @@
  * Alemán y francés se agregaron el 23/09/2026 porque el profesor da clase
  * desde Suiza y el cliente lo pidió así — «de momento solo esos», sin
  * italiano.
+ *
+ * El español se quitó el mismo día, unas horas después de agregar los otros
+ * dos: el cliente lo pidió sin más explicación que «quita el español de los
+ * idiomas». El contenido en español no se borró de los `.json` de
+ * contenido —solo del diccionario de interfaz, que sí exige exactamente
+ * estos cuatro— así que reactivarlo el día de mañana es threading un idioma
+ * más a esta lista y traduciendo el diccionario, no reconstruir desde cero.
+ * Los artículos del blog en español tampoco se borraron: siguen en
+ * `content/blog/es/`, sencillamente no se sirven mientras `es` no esté aquí.
  */
-export const IDIOMAS = ["en", "es", "de", "fr"] as const;
+export const IDIOMAS = ["en", "de", "fr"] as const;
 
 export type Idioma = (typeof IDIOMAS)[number];
 
@@ -35,7 +44,6 @@ export const IDIOMA_POR_DEFECTO: Idioma = "en";
 /** Etiqueta de cada idioma en su propia lengua, para el selector. */
 export const NOMBRE_IDIOMA: Record<Idioma, string> = {
   en: "English",
-  es: "Español",
   de: "Deutsch",
   fr: "Français",
 };
@@ -43,7 +51,6 @@ export const NOMBRE_IDIOMA: Record<Idioma, string> = {
 /** `hreflang` / `og:locale` de cada idioma. */
 export const LOCALE: Record<Idioma, string> = {
   en: "en_US",
-  es: "es_CR",
   de: "de_DE",
   fr: "fr_FR",
 };

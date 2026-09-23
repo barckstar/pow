@@ -245,12 +245,15 @@ html {
 }
 
 /*
- * 2.25rem → 2.6rem. El cliente pidió agrandar el logo y la marca de texto; el
- * alto de la barra (`--nav-h: 4.25rem`) deja de sobra sitio para esto sin
- * tocar `--nav-h` ni el `padding-top` del `<body>` que mantiene el CLS en 0.
+ * 2.25rem → 2.6rem → 2.85rem. El cliente pidió agrandar el logo y la marca de
+ * texto, y después un poco más — «lo máximo sin que se vea desproporcionado».
+ * El techo real es `--nav-h: 4.25rem` (68 px): con la barra sin relleno
+ * vertical, cualquier alto mayor que eso se sale de la barra. A 2.85rem
+ * (45,6 px) quedan 22,4 px de aire repartidos arriba y abajo — de sobra para
+ * que siga respirando y no toque los bordes.
  */
 .navbar__perezoso {
-  height: 2.6rem;
+  height: 2.85rem;
   width: auto;
   flex-shrink: 0;
 }
@@ -263,7 +266,7 @@ html {
 }
 
 .navbar__marca-linea1 {
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -271,7 +274,7 @@ html {
 }
 
 .navbar__marca-linea2 {
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -308,46 +311,119 @@ html {
 }
 
 /*
- * ============ LA FILA DE CUATRO CÓDIGOS ============
- * `.navbar__idiomas` es el contenedor —el `<ul>`— y `.navbar__idioma` es cada
- * código suyo, sea `<Link>` o el `<span>` del idioma activo. Antes había un
- * solo elemento con esta clase y hacía las dos cosas a la vez; con cuatro
- * hacía falta separar el contenedor de cada pieza.
+ * ============ LA BANDERA ============
+ * Un `<span>` de tamaño fijo alrededor del SVG de `Banderas.tsx`: el propio
+ * dibujo no lleva ancho ni alto, así que sin esto heredaría el tamaño de
+ * fuente de donde se use y saldría a un tamaño distinto en el botón, en el
+ * menú desplegado y en el menú móvil.
  */
-.navbar__idiomas {
-  display: none;
-  align-items: center;
-  gap: 0.35rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.bandera {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 1.15em;
+  border-radius: 2px;
+  overflow: hidden;
+  /* Todas las banderas de aquí tienen algún blanco o algún color claro en el
+     borde; un contorno de 1 px lo separa del fondo crema del navbar, que si
+     no se confunde con el blanco de la propia bandera. */
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-tinta) 15%, transparent);
 }
 
-.navbar__idioma {
-  display: inline-block;
-  font-size: 0.72rem;
+.bandera svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/*
+ * ============ EL DESPLEGABLE DE IDIOMA ============
+ * Fue una fila de cuatro códigos sueltos y el cliente pidió cerrarla en un
+ * desplegable con bandera. `.navbar__idiomas` es el contenedor relativo,
+ * `.navbar__idiomas-boton` el botón con el idioma actual, y
+ * `.navbar__idiomas-menu` la lista que aparece debajo.
+ */
+.navbar__idiomas {
+  position: relative;
+  display: none;
+}
+
+.navbar__idiomas-boton {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font: inherit;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--color-teal);
-  text-decoration: none;
-  padding: 0.3rem 0.45rem;
+  background: none;
+  cursor: pointer;
+  padding: 0.35rem 0.55rem;
   border: 1px solid color-mix(in srgb, var(--color-teal) 30%, transparent);
   border-radius: 999px;
   transition: background-color 160ms ease, color 160ms ease;
 }
 
-a.navbar__idioma:hover {
+.navbar__idiomas-boton:hover,
+.navbar__idiomas-boton[aria-expanded="true"] {
   background-color: var(--color-teal);
   color: var(--color-crema);
 }
 
-/* El idioma activo es un `<span>`, no un enlace: no tiene a dónde ir. Se
-   distingue relleno en vez de con reborde, para que sea obvio a simple vista
-   cuál de los cuatro está puesto sin tener que leerlos. */
-span.navbar__idioma {
-  background-color: var(--color-teal);
-  color: var(--color-crema);
-  border-color: var(--color-teal);
+/* La flecha es un cuadrado girado 45° y recortado a la mitad con
+   `overflow` en el padre implícito del propio trazo — más simple que un SVG
+   para una sola forma, y hereda el color del texto sin nada aparte. */
+.navbar__idiomas-flecha {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-top: -0.15em;
+  transition: transform 160ms ease;
+}
+
+.navbar__idiomas-boton[aria-expanded="true"] .navbar__idiomas-flecha {
+  transform: rotate(-135deg);
+  margin-top: 0.15em;
+}
+
+.navbar__idiomas-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 10;
+  margin: 0;
+  padding: 0.4rem;
+  min-width: 10rem;
+  list-style: none;
+  background-color: #ffffff;
+  border-radius: 0.9rem;
+  box-shadow: 0 1rem 2rem -0.75rem rgba(6, 42, 46, 0.4);
+}
+
+.navbar__idiomas-opcion {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-tinta);
+  text-decoration: none;
+}
+
+a.navbar__idiomas-opcion:hover {
+  background-color: color-mix(in srgb, var(--color-teal) 10%, transparent);
+}
+
+/* El idioma activo es un `<span>` dentro de la lista, no un enlace a sí
+   mismo — no tiene a dónde ir. Se distingue con el mismo relleno tenue que
+   el hover, para que quede claro cuál está puesto sin tener que leerlo. */
+span.navbar__idiomas-opcion {
+  background-color: color-mix(in srgb, var(--color-teal) 8%, transparent);
+  color: var(--color-teal);
 }
 
 .navbar__cta {
@@ -410,16 +486,16 @@ span.navbar__idioma {
  */
 @media (min-width: 420px) {
   .navbar__perezoso {
-    height: 2.9rem;
+    height: 3.2rem;
   }
 
   .navbar__marca-linea1 {
-    font-size: 0.78rem;
+    font-size: 0.86rem;
     letter-spacing: 0.12em;
   }
 
   .navbar__marca-linea2 {
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     letter-spacing: 0.06em;
   }
 }
@@ -503,10 +579,12 @@ span.navbar__idioma {
   list-style: none;
 }
 
-/* Mismas reglas visuales que `.navbar__idioma` de escritorio, pero un poco
+/* Mismas reglas visuales que el botón de idioma de escritorio, pero un poco
    más grandes: aquí el dedo las pulsa, ahí el cursor. */
 .navbar__movil-idioma {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--color-teal);
@@ -514,6 +592,10 @@ span.navbar__idioma {
   padding: 0.4rem 0.75rem;
   border: 1px solid color-mix(in srgb, var(--color-teal) 30%, transparent);
   border-radius: 999px;
+}
+
+.navbar__movil-idioma .bandera {
+  width: 1.3em;
 }
 
 span.navbar__movil-idioma {
