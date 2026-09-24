@@ -36,22 +36,39 @@ CREMA = (255, 244, 230)
 # icono de PWA.
 MARGEN = 0.04
 
-# La cara con gafas, en fracción de la caja cuadrada del logo. A 16 px el
-# perezoso entero es una mancha de color sin forma —se comprobó recortando el
-# cuadrado completo y bajándolo a 16 px—; la cara sola sí se lee como «un
-# personaje con gafas oscuras». Ajustado a ojo sobre el recorte real.
-CAJA_CARA = (0.20, 0.32, 0.55, 0.68)
+# La cabeza con gafas, en fracción de la caja cuadrada del logo.
+#
+# A 16 px el perezoso entero es una mancha de color sin forma —se comprobó
+# recortando el cuadrado completo y bajándolo a 16 px—, así que ese tamaño
+# necesita su propio recorte. La primera caja probada (0.20, 0.32, 0.55,
+# 0.68) tampoco servía: entraba demasiado brazo y torso alrededor de la
+# cara, y a 16 px ese relleno se mezclaba con las gafas en una mancha sin
+# forma — que es exactamente lo que reportó el cliente, «se ve mal
+# acomodado». Se probaron tres cajas más ajustadas, cada una bajada a 16 px
+# de verdad antes de decidir, no a ojo sobre el recorte grande: esta es la
+# que mejor se lee, con un poco del degradado del atardecer y de la ola en
+# las esquinas para que no sea solo un cuadrado marrón.
+CAJA_CARA = (0.26, 0.19, 0.52, 0.42)
 
-# ============ EL ICONO NECESITA MÁS AIRE QUE EL LOGO GRANDE ============
+# ============ EL ICONO GRANDE NECESITA MÁS AIRE; EL DE 16 PX, NO ============
 # `cuadrar()` a secas —solo el 4 % de MARGEN— es lo que usan `perezoso.png` y
 # `icon.png` v1, y en la pestaña del navegador se veía apretado: el cliente
 # lo dijo, «el fav icon no se ve bien, deberia ser el logo mas pequeño».
 #
 # El icono de Apple ya lo hacía bien sin que nadie lo pidiera —150 px de
 # contenido sobre un lienzo de 180, encogido a mano— y esa proporción,
-# 150/180, es la que se generaliza aquí para el resto de los iconos
-# pequeños: PWA, favicon de 48 y 32. El de 16 usa el mismo aire sobre el
-# recorte de la cara, no sobre el cuadrado entero.
+# 150/180, es la que se generaliza aquí al icono de PWA y a los favicons de
+# 48 y 32: ahí SOBRA sitio, porque el dibujo entero —sol, ola, perezoso— es
+# reconocible aunque se encoja un poco.
+#
+# El de 16 px es OTRO problema y no se le puede aplicar el mismo remedio.
+# Ya es un recorte diminuto —solo la cara, no el perezoso entero— y
+# encogerlo más todavía deja tan pocos píxeles reales de contenido que el
+# antialiasing los mezcla en una mancha sin forma. Se probó exactamente eso
+# —el mismo aire que los demás, aplicado a la cara— y el resultado, mirado
+# en grande, ya no se leía como una cara: era ruido de color. Ese tamaño se
+# queda con `cuadrar()` a secas, tan apretado como haga falta para que la
+# forma sobreviva.
 PROPORCION_ICONO = 150 / 180
 
 
@@ -145,17 +162,14 @@ def main():
         destino_app / "apple-icon.png", optimize=True
     )
 
-    # Favicon multitamaño. A 48 y 32 px el círculo entero se lee bien; a 16 px
-    # se pierde toda la forma y queda una mancha de color, así que ese tamaño
-    # usa el recorte de la cara — comprobado a ojo, en pantalla, antes de
-    # fijar la caja de arriba. Los tres llevan el mismo aire alrededor: sin
-    # él, el cliente lo notó en la pestaña del navegador — «este aun es muy
-    # grande».
+    # Favicon multitamaño. 48 y 32 llevan el mismo aire que el resto de los
+    # iconos pequeños — el círculo entero se lee bien encogido y sin tocar el
+    # borde. El de 16 usa el recorte de la cara, TAN APRETADO COMO SE PUEDA:
+    # a ese tamaño no sobra ni un píxel para margen sin perder la forma.
     ancho, alto = cuadrado.size
     l, t, r, b = CAJA_CARA
-    cara = cuadrar_con_aire(
-        cuadrado.crop((int(l * ancho), int(t * alto), int(r * ancho), int(b * alto))),
-        PROPORCION_ICONO,
+    cara = cuadrar(
+        cuadrado.crop((int(l * ancho), int(t * alto), int(r * ancho), int(b * alto)))
     )
 
     marco_48 = cuadrado_icono.resize((48, 48), Image.LANCZOS)
