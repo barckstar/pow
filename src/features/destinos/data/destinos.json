@@ -214,12 +214,12 @@
         "Tout le pays à moins de trois heures en bus"
       ]
     },
-    "foto": "/fotos/calle-san-jose.jpg",
+    "foto": "/fotos/centro-san-jose.jpg",
     "fotoAlt": {
-      "en": "A steep street in San José, houses painted in bright colours and power lines crossing from side to side",
-      "es": "Una calle en cuesta de San José, con las casas pintadas de colores y los cables del tendido cruzando de lado a lado",
-      "de": "Eine abschüssige Straße in San José, bunt bemalte Häuser und Stromleitungen, die sich von Seite zu Seite kreuzen",
-      "fr": "Une rue en pente à San José, des maisons peintes de couleurs vives et des câbles électriques qui se croisent d'un côté à l'autre"
+      "en": "An ornate yellow colonial-era building on a street in downtown San José, with a red building and city traffic behind it",
+      "es": "Un edificio amarillo de estilo colonial y muy ornamentado en una calle del centro de San José, con un edificio rojo y el tránsito de la ciudad detrás",
+      "de": "Ein kunstvolles gelbes Gebäude aus der Kolonialzeit an einer Straße im Zentrum von San José, mit einem roten Gebäude und Stadtverkehr im Hintergrund",
+      "fr": "Un bâtiment jaune orné datant de l'époque coloniale dans une rue du centre de San José, avec un bâtiment rouge et la circulation urbaine en arrière-plan"
     },
     "fotoClase": "/fotos/clase-san-jose.jpg",
     "fotoClaseAlt": {

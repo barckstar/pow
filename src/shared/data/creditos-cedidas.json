@@ -46,5 +46,13 @@
     "licencia": "Retrato propio, cedido para esta web",
     "descripcion": "Chris Pow sonriendo a cámara, con gorra y gafas, sosteniendo en brazos a su perra, una caniche blanca.",
     "permisoConfirmado": true
+  },
+  {
+    "archivo": "/fotos/centro-san-jose.jpg",
+    "autor": "Sin confirmar",
+    "fuente": "Enviada por el cliente por chat, sin URL de origen",
+    "licencia": "Origen y licencia sin confirmar",
+    "descripcion": "Un edificio amarillo de estilo colonial en una calle del centro de San José, foto de portada del destino.",
+    "permisoConfirmado": false
   }
 ]
