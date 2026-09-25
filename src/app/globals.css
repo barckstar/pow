@@ -982,16 +982,6 @@ p {
   }
 }
 
-/* Lo que vendrá —grupos de conversación, otras cuentas—, debajo de la
-   invitación y no en la entradilla: es verdad, pero no es lo primero. */
-.comunidad__proximamente {
-  margin: 1.25rem 0 0;
-  text-align: center;
-  font-size: 0.95rem;
-  font-style: italic;
-  color: color-mix(in srgb, var(--color-tinta) 80%, transparent);
-}
-
 .dato-zona {
   margin: 1.5rem 0;
 }

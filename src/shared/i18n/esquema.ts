@@ -326,10 +326,6 @@ export const esquemaDiccionario = z
             facebookEnlace: z.string().min(1),
             /** La línea pequeña bajo el botón: qué pasa al pulsarlo. */
             facebookNota: z.string().min(1),
-            /** Lo que antes decía la entradilla —que vendrán grupos de
-                conversación y otras cuentas— baja aquí, debajo de la
-                invitación: es verdad y se dice, pero no es lo primero. */
-            proximamente: z.string().min(1),
             /** Texto alternativo de la ilustración del perezoso surfista. */
             ilustracionAlt: z.string().min(1),
             sinRedes: z.string().min(1),

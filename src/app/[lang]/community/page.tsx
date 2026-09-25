@@ -56,8 +56,7 @@ export async function generateMetadata({
  * sangre arriba, y debajo un panel teal con tres razones concretas y el
  * botón naranja, el único CTA de la página. Sube sobre la cola crema del
  * hero para que se vea sin hacer scroll. La línea de «vendrán grupos de
- * conversación» salió de la entradilla —no es lo primero que hay que
- * decir— y quedó debajo de la invitación.
+ * conversación» se quitó por completo, a pedido del cliente.
  * =================================================================
  */
 export default async function PaginaComunidad({
@@ -146,8 +145,6 @@ export default async function PaginaComunidad({
               <p>{c.sinRedes}</p>
             </div>
           )}
-
-          <p className="comunidad__proximamente">{c.proximamente}</p>
 
           <h2 className="subseccion__titulo">{c.archivoTitulo}</h2>
 

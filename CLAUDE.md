@@ -566,7 +566,8 @@ cliente a sangre arriba, un panel teal con tres razones para entrar y el
 botón naranja con un halo que late **tres veces y se para** (el cliente ya
 pidió bajarle el movimiento a las olas). Sube 9 rem sobre la cola crema del
 `FranjaHero` para asomar en la primera pantalla. La línea de «vendrán grupos
-de conversación» salió de la entradilla y quedó debajo, pequeña.
+de conversación» salió de la entradilla y después se quitó del todo, a
+pedido del cliente: la página no anuncia canales que todavía no existen.
 
 ### Las URL van en inglés
 
@@ -577,6 +578,14 @@ link está en español, no debería». Cinco rutas cambiaron: `comunidad` →
 desde `redirects()` en `next.config.ts`. Los identificadores del código
 (`rutas.comunidad`, `features/solicitud/`…) siguen en español, como todo el
 código: lo que se traduce es lo que ve el visitante.
+
+### Vercel no despliega las ramas de prueba
+
+`vercel.json` apaga los deploys de las ramas `claude/**` (`git.deploymentEnabled`):
+el cliente no quiere una vista previa pública por cada rama de pruebas.
+`master` sigue desplegando producción igual que siempre. Si alguna vez hace
+falta una vista previa, se quita esa línea o se prueba con `next start` en
+local.
 
 ### Tres correcciones que el cliente pidió y que no cuadran con el resto del sitio
 
