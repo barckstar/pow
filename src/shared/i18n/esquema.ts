@@ -309,13 +309,29 @@ export const esquemaDiccionario = z
             /** El chip del `FranjaHero`. */
             heroInsignia: z.string().min(1),
             titulo: z.string().min(1),
+            /** La segunda línea del titular, en dorado. */
+            acento: z.string().min(1),
             intro: z.string().min(1),
-            /** La tarjeta del grupo de Facebook: título y texto propios, no
-                solo el botón suelto que había antes del 25/09/2026. */
+            /** La invitación al grupo de Facebook: ilustración, chip, título,
+                texto, tres razones para entrar y el botón. Sustituye a la
+                tarjeta blanca pequeña del 25/09/2026, que el cliente vio
+                todavía sin fuerza para invitar a unirse. */
+            facebookInsignia: z.string().min(1),
             facebookTitulo: z.string().min(1),
             facebookTexto: z.string().min(1),
+            /** Exactamente tres: la rejilla está pensada para tres líneas
+                cortas, y una cuarta ya es una lista que nadie lee. */
+            facebookRazones: z.array(z.string().min(1)).length(3),
             /** El enlace visible al grupo de Facebook, cuando existe. */
             facebookEnlace: z.string().min(1),
+            /** La línea pequeña bajo el botón: qué pasa al pulsarlo. */
+            facebookNota: z.string().min(1),
+            /** Lo que antes decía la entradilla —que vendrán grupos de
+                conversación y otras cuentas— baja aquí, debajo de la
+                invitación: es verdad y se dice, pero no es lo primero. */
+            proximamente: z.string().min(1),
+            /** Texto alternativo de la ilustración del perezoso surfista. */
+            ilustracionAlt: z.string().min(1),
             sinRedes: z.string().min(1),
             archivoTitulo: z.string().min(1),
           })

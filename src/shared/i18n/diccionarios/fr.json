@@ -177,12 +177,22 @@
       "sinPrecios": "Aucun tarif n'est encore publié. On préfère laisser ce vide visible plutôt que d'afficher un chiffre qui changerait ensuite."
     },
     "comunidad": {
-      "heroInsignia": "Échange avec d'autres élèves",
+      "heroInsignia": "Gratuit",
       "titulo": "Communauté",
-      "intro": "Un seul endroit pour l'instant : un groupe Facebook pour échanger avec d'autres élèves. Les groupes de conversation et d'autres comptes s'y ajouteront à mesure qu'ils ouvriront.",
-      "facebookTitulo": "Discute avec des gens qui apprennent la même chose",
-      "facebookTexto": "Un endroit pour poser des questions, partager tes progrès et pratiquer un peu d'espagnol en dehors des cours — sur Facebook, ouvert à tous.",
-      "facebookEnlace": "Rejoins notre groupe Facebook",
+      "acento": "Pura vida, ensemble.",
+      "intro": "L'espagnol reste quand on le pratique avec de vraies personnes. Dans notre groupe Facebook, les élèves posent leurs questions, échangent de l'argot tico et continuent à parler entre les cours — et tu peux le rejoindre avant même ton premier cours.",
+      "facebookInsignia": "Groupe Facebook · Gratuit",
+      "facebookTitulo": "Prends la vague avec d'autres élèves",
+      "facebookTexto": "Apprendre une langue seul, c'est lent. Dans le groupe, tu trouveras des gens qui apprennent le même espagnol que toi — celui de mae, tuanis et ¿diay?",
+      "facebookRazones": [
+        "Pose les questions qui ne peuvent pas attendre le cours",
+        "Partage tes progrès — et tes plus belles erreurs",
+        "Pratique le vrai espagnol tico en dehors des cours"
+      ],
+      "facebookEnlace": "Rejoindre le groupe Facebook",
+      "facebookNota": "Gratuit · Ouvre Facebook dans un nouvel onglet",
+      "proximamente": "Bientôt : des groupes de conversation et d'autres canaux s'ajouteront ici à mesure qu'ils ouvriront.",
+      "ilustracionAlt": "Un paresseux à lunettes de soleil surfe une grande vague au coucher du soleil, avec des palmiers derrière — Costa Rica Spanish Experience.",
       "sinRedes": "Les réseaux sociaux de l'école ne sont pas encore ouverts. Une fois qu'ils le seront, ils apparaîtront ici et dans le pied de page.",
       "archivoTitulo": "Tous les tiquismos"
     },

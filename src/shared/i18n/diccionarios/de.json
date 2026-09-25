@@ -177,12 +177,22 @@
       "sinPrecios": "Es sind noch keine Preise veröffentlicht. Wir lassen die Lücke lieber sichtbar, als eine Zahl zu nennen, die sich später ändert."
     },
     "comunidad": {
-      "heroInsignia": "Sprich mit anderen Lernenden",
+      "heroInsignia": "Kostenlos dabei",
       "titulo": "Community",
-      "intro": "Bisher ein Ort: eine Facebook-Gruppe, um mit anderen Lernenden zu sprechen. Gesprächsgruppen und weitere Konten kommen dazu, sobald sie eröffnet sind.",
-      "facebookTitulo": "Chatte mit Leuten, die dasselbe lernen",
-      "facebookTexto": "Ein Ort, um Fragen zu stellen, Fortschritte zu teilen und außerhalb des Unterrichts ein bisschen Spanisch zu üben — auf Facebook, offen für alle.",
-      "facebookEnlace": "Unserer Facebook-Gruppe beitreten",
+      "acento": "Pura vida, gemeinsam.",
+      "intro": "Spanisch bleibt hängen, wenn du es mit echten Menschen benutzt. In unserer Facebook-Gruppe stellen Lernende Fragen, tauschen tico-Slang aus und reden zwischen den Stunden weiter — und du kannst schon vor deiner ersten Stunde beitreten.",
+      "facebookInsignia": "Facebook-Gruppe · Kostenlos",
+      "facebookTitulo": "Reite die Welle mit anderen Lernenden",
+      "facebookTexto": "Allein eine Sprache zu lernen, geht langsam. In der Gruppe findest du Leute, die dasselbe Spanisch lernen wie du — das mit mae, tuanis und ¿diay?",
+      "facebookRazones": [
+        "Stell die Fragen, die nicht bis zur Stunde warten sollen",
+        "Teile deine Fortschritte — und deine besten Fehler",
+        "Übe echtes tico-Spanisch außerhalb des Unterrichts"
+      ],
+      "facebookEnlace": "Der Facebook-Gruppe beitreten",
+      "facebookNota": "Kostenlos · Öffnet Facebook in einem neuen Tab",
+      "proximamente": "Demnächst: Gesprächsgruppen und weitere Kanäle kommen hier dazu, sobald sie eröffnet sind.",
+      "ilustracionAlt": "Ein Faultier mit Sonnenbrille surft bei Sonnenuntergang eine große Welle, dahinter Palmen — Costa Rica Spanish Experience.",
       "sinRedes": "Die Social-Media-Konten der Schule sind noch nicht eröffnet. Sobald sie es sind, erscheinen sie hier und in der Fußzeile.",
       "archivoTitulo": "Alle Tiquismos"
     },

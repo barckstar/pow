@@ -56,7 +56,7 @@ fuera el sitio de verdad — que es como Google acaba indexando una preview.
 | Monto del depósito | Calendly, y además `DEPOSITO` en `sitio.ts` para enseñarlo |
 
 El monto aparece **dos veces a propósito**: Calendly es quien cobra, y
-`DEPOSITO` es lo que el sitio le enseña al visitante en `/precios` antes de
+`DEPOSITO` es lo que el sitio le enseña al visitante en `/pricing` antes de
 que llegue a reservar. Si se cambia uno hay que cambiar el otro — es el único
 dato duplicado del proyecto y está aquí anotado para que no se olvide.
 
@@ -92,7 +92,7 @@ pidió evitar.
 
 ## Qué pasa mientras no esté
 
-Mientras `CALENDLY` sea `null`, `/reservar` explica los tres pasos y dice que
+Mientras `CALENDLY` sea `null`, `/book` explica los tres pasos y dice que
 todavía no se puede reservar en línea, con la etiqueta amarilla de pendiente.
 No se pinta un calendario que no aparta nada.
 

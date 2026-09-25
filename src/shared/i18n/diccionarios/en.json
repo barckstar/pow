@@ -177,12 +177,22 @@
       "sinPrecios": "No prices are published yet. We would rather leave the gap visible than post a figure that changes later."
     },
     "comunidad": {
-      "heroInsignia": "Talk to other students",
+      "heroInsignia": "Free to join",
       "titulo": "Community",
-      "intro": "One place, so far: a Facebook group to talk with other students. Conversation groups and other accounts will join it as they open.",
-      "facebookTitulo": "Chat with people learning the same thing",
-      "facebookTexto": "A place to ask questions, share progress and practise a bit of Spanish outside class — run on Facebook, open to anyone.",
-      "facebookEnlace": "Join our Facebook group",
+      "acento": "Pura vida, together.",
+      "intro": "Spanish sticks when you use it with real people. Our Facebook group is where students ask questions, swap tico slang and keep talking between lessons — and you can join before your first class.",
+      "facebookInsignia": "Facebook group · Free",
+      "facebookTitulo": "Catch the wave with other students",
+      "facebookTexto": "Learning a language alone is slow. In the group you'll find people learning the same Spanish as you — the one with mae, tuanis and ¿diay?",
+      "facebookRazones": [
+        "Ask the questions you don't want to save for class",
+        "Share your progress — and your best mistakes",
+        "Practise real tico Spanish outside the lessons"
+      ],
+      "facebookEnlace": "Join the Facebook group",
+      "facebookNota": "Free · Opens Facebook in a new tab",
+      "proximamente": "Coming soon: conversation groups and more channels will be added here as they open.",
+      "ilustracionAlt": "A sloth in sunglasses surfing a big wave at sunset, with palm trees behind — Costa Rica Spanish Experience.",
       "sinRedes": "The school's social accounts are not open yet. When they are, they will appear here and in the footer.",
       "archivoTitulo": "Every tiquismo"
     },

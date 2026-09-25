@@ -23,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     rutas.precios,
     rutas.comunidad,
     rutas.reservar,
-    (l) => `/${l}/creditos`,
+    rutas.creditos,
   ];
 
   for (const construir of rutasFijas) {

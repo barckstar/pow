@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
@@ -48,6 +49,15 @@ export async function generateMetadata({
  *   2. El botón de Facebook pasa a ser una TARJETA con su propio ícono,
  *      título y texto — dice qué es el grupo y por qué entrar, no solo
  *      «Join our Facebook group» flotando sin contexto.
+ *
+ * El mismo día la tarjeta blanca se quedó corta —«quería un diseño más
+ * bonito y que llame más la atención a unirse»— y pasó a ser una
+ * INVITACIÓN: la ilustración del perezoso surfista que mandó el cliente a
+ * sangre arriba, y debajo un panel teal con tres razones concretas y el
+ * botón naranja, el único CTA de la página. Sube sobre la cola crema del
+ * hero para que se vea sin hacer scroll. La línea de «vendrán grupos de
+ * conversación» salió de la entradilla —no es lo primero que hay que
+ * decir— y quedó debajo de la invitación.
  * =================================================================
  */
 export default async function PaginaComunidad({
@@ -68,6 +78,7 @@ export default async function PaginaComunidad({
       <FranjaHero
         insignia={c.heroInsignia}
         titulo={c.titulo}
+        acento={c.acento}
         subtitulo={c.intro}
         decoracion={<Mariposa />}
       />
@@ -80,26 +91,52 @@ export default async function PaginaComunidad({
             <ul className="redes-comunidad">
               {/*
                 Solo Facebook por ahora. Es un GRUPO —no una página— y por eso
-                la tarjeta habla de "entrar" y no de "seguir": la acción real
+                la invitación habla de "entrar" y no de "seguir": la acción real
                 es pedir unirse, no darle a un botón de me gusta.
               */}
               {REDES.facebook ? (
-                <li className="tarjeta-red">
-                  <span className="tarjeta-red__icono" aria-hidden="true">
-                    <IconoFacebook />
-                  </span>
-                  <div className="tarjeta-red__texto">
-                    <h2 className="tarjeta-red__titulo">{c.facebookTitulo}</h2>
-                    <p>{c.facebookTexto}</p>
+                <li className="invitacion-grupo">
+                  <div className="invitacion-grupo__ilustracion">
+                    <Image
+                      src="/fotos/comunidad-perezoso-surf.jpg"
+                      alt={c.ilustracionAlt}
+                      width={1440}
+                      height={810}
+                      sizes="(min-width: 1024px) 60rem, 100vw"
+                    />
                   </div>
-                  <a
-                    href={REDES.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="boton boton--primario"
-                  >
-                    {c.facebookEnlace}
-                  </a>
+
+                  <div className="invitacion-grupo__cuerpo">
+                    <p className="invitacion-grupo__insignia">
+                      <span
+                        className="invitacion-grupo__icono"
+                        aria-hidden="true"
+                      >
+                        <IconoFacebook />
+                      </span>
+                      {c.facebookInsignia}
+                    </p>
+                    <h2 className="invitacion-grupo__titulo">
+                      {c.facebookTitulo}
+                    </h2>
+                    <p className="invitacion-grupo__texto">{c.facebookTexto}</p>
+
+                    <ul className="invitacion-grupo__razones">
+                      {c.facebookRazones.map((razon) => (
+                        <li key={razon}>{razon}</li>
+                      ))}
+                    </ul>
+
+                    <a
+                      href={REDES.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="boton boton--acento invitacion-grupo__boton"
+                    >
+                      {c.facebookEnlace}&nbsp;→
+                    </a>
+                    <p className="invitacion-grupo__nota">{c.facebookNota}</p>
+                  </div>
                 </li>
               ) : null}
             </ul>
@@ -109,6 +146,8 @@ export default async function PaginaComunidad({
               <p>{c.sinRedes}</p>
             </div>
           )}
+
+          <p className="comunidad__proximamente">{c.proximamente}</p>
 
           <h2 className="subseccion__titulo">{c.archivoTitulo}</h2>
 

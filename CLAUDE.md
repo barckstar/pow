@@ -39,7 +39,7 @@ que el cliente puso «por ejemplo»—, los acuerdos con cada escuela
 (`"confirmada": false`) y las condiciones del hospedaje. La página lo dice en
 un aviso antes de las tarjetas.
 
-El embudo es: `/costa-rica` → ficha de destino → `/solicitud/<destino>`.
+El embudo es: `/costa-rica` → ficha de destino → `/apply/<destino>`.
 
 **Fuera de alcance:** Colombia, México, El Salvador y España (estaban en el
 concept board original, sin datos reales detrás). La app móvil. El LMS.
@@ -216,7 +216,7 @@ quiere el calendario a la vista. Tiene razón en lo que importa, un botón entre
 la gente y la reserva es fricción justo donde no conviene.
 
 Pero embeber el widget sin más descarga su JavaScript de terceros en TODA
-visita a `/reservar`, la use quien la use, y se come el presupuesto de
+visita a `/book`, la use quien la use, y se come el presupuesto de
 rendimiento — en móvil el sitio ya está en 86 con un estándar de 95. Así que
 `features/reservas/components/Calendly.tsx` lo carga con un
 `IntersectionObserver` de 400 px de margen: para quien mira, el calendario
@@ -312,7 +312,7 @@ Vive en `features/online/data/profesores.json` con su esquema al lado, y no en
 `sitio.ts`, donde estuvo un rato: `papel`, `bio` y las etiquetas de los datos
 van en dos idiomas, y el contenido bilingüe de este sitio va en `.json`
 validado. `ZONA_PROFESOR` sí se queda en `sitio.ts` — no es contenido, no se
-traduce, y lo usan también `/reservar` y la cuenta de horarios.
+traduce, y lo usan también `/book` y la cuenta de horarios.
 
 **El retrato va a sangre**, no dentro de un marco con aire alrededor: ocupa el
 borde de la ficha —en escritorio la columna izquierda entera, de arriba abajo;
@@ -364,7 +364,7 @@ salen de las webs de las escuelas socias y llevan personas reconocibles.
 Publicarlas necesita dos permisos que no son el mismo: el de la escuela
 —derechos de autor— y el de quien aparece —derechos de imagen—. El cliente
 pidió publicarlas ya y asumió esa responsabilidad; el dato queda escrito en
-`creditos-cedidas.json` con `"permisoConfirmado": false`, y `/creditos` lo dice.
+`creditos-cedidas.json` con `"permisoConfirmado": false`, y `/credits` lo dice.
 
 Los créditos son **dos archivos** y no uno: `descargar-fotos.mjs` reescribe
 `creditos-fotos.json` entero cada vez que corre, así que una entrada añadida a
@@ -532,10 +532,10 @@ Lighthouse lo marcó — 1,48:1 sobre blanco, cuando un texto grande necesita
 
 ### Regla general de diseño: ninguna página interior va sola sobre crema
 
-El 25/09/2026 el cliente vio `/comunidad` sin más cambio que el enlace de
+El 25/09/2026 el cliente vio `/community` sin más cambio que el enlace de
 Facebook y lo dijo sin rodeos: «no me gusta y necesita más vida, más sabor,
 más estético […] que sea regla general de diseño». La página era la plantilla
-que llevaban `/comunidad` y `/precios` desde el principio —`<h1>`, una
+que llevaban `/community` y `/pricing` desde el principio —`<h1>`, una
 entradilla y un párrafo, todo en crema sobre crema— y el cliente pidió
 explícitamente tratarlo como regla, no como arreglo de una sola página.
 
@@ -547,17 +547,36 @@ lugar concreto (`/online`, `/costa-rica`). Un color plano de principio a fin
 no es nunca la respuesta, sea cual sea el tamaño de la página.
 
 `FranjaHero` nació en «Quiénes somos» el 23/09/2026 como diseño propio de esa
-página; el 25/09/2026 se generalizó y `/about`, `/comunidad` y `/precios` lo
+página; el 25/09/2026 se generalizó y `/about`, `/community` y `/pricing` lo
 usan hoy. Cada página nueva le suma su propia insignia (`heroInsignia` en el
 diccionario, esquema en `esquema.ts`) y su propio dibujo de decoración — no se
 repite el mismo entre páginas, porque la gracia es que cada una tenga su
 firma.
 
 El mismo criterio aplica al contenido bajo el hero: un enlace o botón suelto
-en el aire (como el de Facebook en `/comunidad` antes de esto) se convierte en
+en el aire (como el de Facebook en `/community` antes de esto) se convierte en
 una tarjeta con ícono, título y texto que explique qué es y por qué entrar
-(`.tarjeta-red`) — no basta con mover el elemento a una franja de color, el
+(`.tarjeta-red`, hoy sustituida en `/community` por `.invitacion-grupo`) — no basta con mover el elemento a una franja de color, el
 elemento mismo necesita contexto.
+
+**La invitación de `/community`.** La tarjeta blanca se quedó corta el mismo
+día —«quería un diseño más bonito y que llame más la atención a unirse»— y
+pasó a ser una invitación: la ilustración del perezoso surfista que mandó el
+cliente a sangre arriba, un panel teal con tres razones para entrar y el
+botón naranja con un halo que late **tres veces y se para** (el cliente ya
+pidió bajarle el movimiento a las olas). Sube 9 rem sobre la cola crema del
+`FranjaHero` para asomar en la primera pantalla. La línea de «vendrán grupos
+de conversación» salió de la entradilla y quedó debajo, pequeña.
+
+### Las URL van en inglés
+
+El 25/09/2026 el cliente vio `/en/comunidad` en la barra del navegador: «el
+link está en español, no debería». Cinco rutas cambiaron: `comunidad` →
+`community`, `precios` → `pricing`, `reservar` → `book`, `solicitud` →
+`apply`, `creditos` → `credits`. Las viejas redirigen de forma permanente
+desde `redirects()` en `next.config.ts`. Los identificadores del código
+(`rutas.comunidad`, `features/solicitud/`…) siguen en español, como todo el
+código: lo que se traduce es lo que ve el visitante.
 
 ### Tres correcciones que el cliente pidió y que no cuadran con el resto del sitio
 
@@ -579,7 +598,7 @@ versiones es la real— así que sigue pendiente de que el cliente lo aclare.
    deposit / Hold your lesson with a PayPal deposit» a «Contact Us / Chat
    directly with a member of our team». No hay ningún canal de contacto
    directo montado —`CONTACTO.correo` y `.telefono` siguen en `null`— y el
-   resto del sitio (`/reservar`, `/online`) sigue describiendo el depósito
+   resto del sitio (`/book`, `/online`) sigue describiendo el depósito
    por PayPal como el paso real.
 
 ## Comandos
@@ -645,7 +664,7 @@ no movió la puntuación. Son la latencia y la cadena de dependencias que simula
 Lighthouse en móvil. Subir de 95 exige sacar la foto del camino del LCP, que es
 una decisión de diseño. Ver `PENDIENTE.md`.
 
-**Las prácticas de `/reservar` no llegan a 95, y no se pueden arreglar con el
+**Las prácticas de `/book` no llegan a 95, y no se pueden arreglar con el
 calendario a la vista.** Lo que falla es un solo control, `third-party-cookies`
 (peso 5 de los 6 que se pierden): al cargar el widget, Calendly deja cuatro
 cookies de terceros —`__cf_bm` y `_cfuvid` de Cloudflare, `OptanonConsent` de

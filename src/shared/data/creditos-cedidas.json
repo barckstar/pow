@@ -54,5 +54,13 @@
     "licencia": "Origen y licencia sin confirmar",
     "descripcion": "Un edificio amarillo de estilo colonial en una calle del centro de San José, foto de portada del destino.",
     "permisoConfirmado": false
+  },
+  {
+    "archivo": "/fotos/comunidad-perezoso-surf.jpg",
+    "autor": "Costa Rica Spanish Experience",
+    "fuente": "Cedida por el cliente",
+    "licencia": "Ilustración de la propia marca, entregada por el cliente para esta web",
+    "descripcion": "El perezoso con gafas de sol surfeando una ola al atardecer, con palmeras detrás y el nombre de la escuela. Encabeza la invitación al grupo de Facebook en /community.",
+    "permisoConfirmado": true
   }
 ]
