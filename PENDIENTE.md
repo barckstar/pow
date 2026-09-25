@@ -12,14 +12,14 @@ Un hueco visible se arregla. Uno invisible se publica.
 
 | Dato | Dónde va | Qué pasa mientras falta |
 |---|---|---|
-| **Precios** de las clases online y presenciales | `src/features/precios/` | `/precios` muestra el aviso en vez de una tabla |
+| **Precios** de las clases online y presenciales | `src/features/precios/` | `/pricing` muestra el aviso en vez de una tabla |
 | **Enlaces de Calendly del negocio** | `src/features/reservas/data/clases.json` | Hoy hay UNO y apunta a una cuenta de prueba personal. Antes de publicar tiene que apuntar a la cuenta **del cliente**, la que tiene el plan de pago. **Si no, las reservas caen en el calendario de otra persona** |
 | **Qué duraciones se ofrecen** | el mismo archivo | Hoy hay una, de **60 min**, leída del propio widget. Se habló de 1 h, 2 h y 5 h: cada una es un tipo de evento en Calendly con su enlace, y la página enseña el selector sola en cuanto haya más de una |
-| **Consentimiento de cookies** | `features/reservas/components/Calendly.tsx` | Al quitar el botón, el widget carga al bajar hasta él y Calendly deja cuatro cookies de terceros **sin que nadie haya consentido**. Con alumnos en Europa o Suiza hay que poner una puerta antes de publicar. Cuesta 22 puntos de «Prácticas» en `/reservar`, pero lo que importa es lo otro |
-| **Monto del depósito** de reserva | `DEPOSITO` en `sitio.ts`, y en Calendly | `/precios` no enseña cifra. Va en los dos sitios: Calendly cobra, el sitio lo anuncia |
+| **Consentimiento de cookies** | `features/reservas/components/Calendly.tsx` | Al quitar el botón, el widget carga al bajar hasta él y Calendly deja cuatro cookies de terceros **sin que nadie haya consentido**. Con alumnos en Europa o Suiza hay que poner una puerta antes de publicar. Cuesta 22 puntos de «Prácticas» en `/book`, pero lo que importa es lo otro |
+| **Monto del depósito** de reserva | `DEPOSITO` en `sitio.ts`, y en Calendly | `/pricing` no enseña cifra. Va en los dos sitios: Calendly cobra, el sitio lo anuncia |
 | **Biografía del profesor** | `bio` en el mismo archivo | Hoy dice lo genérico —costarricense en Suiza, enseña el español de allá—. Con un par de frases suyas de verdad, esa sección deja de ser una plantilla |
 | **Correo y teléfono** de contacto | `CONTACTO` en `sitio.ts` | El pie muestra la etiqueta de pendiente |
-| **WhatsApp e Instagram** del negocio | `REDES` en `sitio.ts` | Facebook ya está confirmado (grupo, 25/09/2026); estos dos siguen en `null`. La barra lateral y `/comunidad` solo muestran lo que existe |
+| **WhatsApp e Instagram** del negocio | `REDES` en `sitio.ts` | Facebook ya está confirmado (grupo, 25/09/2026); estos dos siguen en `null`. La barra lateral y `/community` solo muestran lo que existe |
 | **Dominio** | `URL_BASE` en `sitio.ts` | Provisional. Afecta a canónicas, `og:url` y sitemap |
 | **Qué destinos son de verdad** | `destinos.json` | Los cuatro de hoy son los que el cliente puso «por ejemplo». `/costa-rica` lo avisa antes de las tarjetas |
 | **Acuerdos con las escuelas** | `escuela.confirmada` en `destinos.json` | El nombre sale en la ficha con la etiqueta amarilla. El cliente escribió que «la info de las escuelas tengo que conseguirla bien» |
@@ -40,7 +40,7 @@ las dos versiones es la real. Necesitan que el cliente diga cuál se queda.
 | Lo que dice ahora | Dónde | Lo que contradice |
 |---|---|---|
 | «Private, group, and couples' lessons with local teachers» | `experiencias.onlineTexto` (EN) y el mismo giro en el hero | Hoy hay **un** profesor (`online/data/profesores.json`) y **un** tipo de clase, uno a uno (`reservas/data/clases.json`). La propia FAQ dice que lo de grupos «is not settled yet» |
-| «Contact Us / Chat directly with a member of our team» | `confianza.reservaTitulo`/`reservaTexto` (EN) | No hay ningún canal de contacto directo montado — `CONTACTO.correo` y `.telefono` siguen en `null`. El resto del sitio (`/reservar`, `/online`) sigue describiendo el depósito por PayPal como el paso real |
+| «Contact Us / Chat directly with a member of our team» | `confianza.reservaTitulo`/`reservaTexto` (EN) | No hay ningún canal de contacto directo montado — `CONTACTO.correo` y `.telefono` siguen en `null`. El resto del sitio (`/book`, `/online`) sigue describiendo el depósito por PayPal como el paso real |
 | — | — | Si la idea es ofrecer de verdad grupos, parejas y varios profesores, o un chat de contacto, son productos nuevos que hay que construir, no solo anunciar |
 
 ## 2. Credenciales
@@ -140,7 +140,7 @@ Es una decisión de diseño, no una optimización. Queda para el usuario.
   precios, comunidad, reservar, créditos y 404.
 - Blog en Markdown con frontmatter validado, RSS por idioma, filtrado por
   etiqueta y `hreflang` recíproco solo donde la traducción existe.
-- `/reservar` con los tres pasos explicados y el calendario de Calendly
+- `/book` con los tres pasos explicados y el calendario de Calendly
   cargándose solo al pulsar, para no gastar rendimiento en quien pasa de
   largo.
 - Metadatos completos verificados por script en `postbuild` (26 páginas).

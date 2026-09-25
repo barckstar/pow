@@ -21,9 +21,9 @@ export async function generateMetadata({
 
   return metadatosDe({
     ...SEO.creditos[lang],
-    ruta: `/${lang}/creditos`,
+    ruta: rutas.creditos(lang),
     lang,
-    alternativas: mismaRutaEnTodosLosIdiomas((l) => `/${l}/creditos`),
+    alternativas: mismaRutaEnTodosLosIdiomas(rutas.creditos),
   });
 }
 

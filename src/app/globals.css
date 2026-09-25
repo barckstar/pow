@@ -743,65 +743,243 @@ p {
   gap: 0.6rem;
 }
 
-/* Las redes de verdad de /comunidad, cuando existen. Una lista de un solo
-   botón hoy, varias mañana si se confirma Instagram o WhatsApp. */
+/* Las redes de verdad de /community, cuando existen. Una lista de una sola
+   invitación hoy, varias mañana si se confirma Instagram o WhatsApp.
+
+   Sube 9 rem sobre la cola crema del `FranjaHero` —justo lo que mide su
+   `padding-bottom`— para que la invitación asome ya en la primera pantalla
+   en vez de esperar al scroll. */
 .redes-comunidad {
-  margin: 1.5rem 0;
+  position: relative;
+  z-index: 1;
+  margin: -9rem 0 0;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 /*
- * La tarjeta de una red social, cuando existe de verdad. Reemplaza al botón
- * suelto que había antes del 25/09/2026: un botón sin nada alrededor no dice
- * QUÉ es el grupo ni por qué entrar, y era justo la clase de hueco visual
- * que el cliente pidió que dejara de repetirse por el sitio.
+ * ============ LA INVITACIÓN AL GRUPO ============
+ * Sustituye a la tarjeta blanca del 25/09/2026 (icono, dos líneas y un
+ * botón), que el cliente vio todavía sin fuerza: «quería un diseño más
+ * bonito y que llame más la atención a unirse».
+ *
+ * Arriba, a sangre, la ilustración del perezoso surfista que mandó el
+ * cliente: es lo primero que se ve y ya dice el tono del grupo. Debajo, un
+ * panel TEAL —el 30 % de la paleta, el color que en este sitio significa
+ * «aquí empieza algo»— con tres razones concretas y el botón NARANJA, que
+ * es el único CTA de la página.
+ *
+ * Contraste: blanco y `--color-dorado-texto` sobre teal, y blanco sobre
+ * naranja, son pares ya medidos en `verificar-contraste.mjs`. El hover del
+ * botón NO es el de `.boton--acento` (pasar a teal): sobre un panel teal el
+ * botón desaparecería. Pasa a blanco con texto naranja, 5,3:1 igual.
+ * ==================================================
  */
-.tarjeta-red {
-  display: flex;
-  flex-wrap: wrap;
+.invitacion-grupo {
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background-color: var(--color-teal);
+  color: #ffffff;
+  box-shadow: 0 2rem 3.5rem -1.75rem rgba(6, 42, 46, 0.55);
+}
+
+.invitacion-grupo__ilustracion {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.invitacion-grupo__ilustracion img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.invitacion-grupo:hover .invitacion-grupo__ilustracion img {
+  transform: scale(1.03);
+}
+
+.invitacion-grupo__cuerpo {
+  padding: 1.75rem 1.5rem 2rem;
+}
+
+.invitacion-grupo__insignia {
+  display: inline-flex;
   align-items: center;
-  gap: 1.25rem;
-  padding: 1.5rem;
-  background-color: #ffffff;
-  border-radius: 1.25rem;
-  box-shadow: 0 1rem 2rem -1.25rem rgba(6, 42, 46, 0.35);
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+  padding: 0.35rem 0.9rem 0.35rem 0.4rem;
+  border: 1px solid var(--color-dorado-texto);
+  border-radius: 999px;
+  color: var(--color-dorado-texto);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 /* El azul de Facebook, tal cual: es un logo de marca ajena, no un color de
    este sistema, así que no sale de las variables de la paleta. */
-.tarjeta-red__icono {
+.invitacion-grupo__icono {
   display: flex;
-  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 1.6rem;
+  height: 1.6rem;
   border-radius: 999px;
   background-color: #1877f2;
   color: #ffffff;
 }
 
-.tarjeta-red__icono svg {
-  width: 1.6rem;
-  height: 1.6rem;
+.invitacion-grupo__icono svg {
+  width: 1rem;
+  height: 1rem;
 }
 
-.tarjeta-red__texto {
-  flex: 1 1 16rem;
+.invitacion-grupo__titulo {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.6rem, 4vw, 2.15rem);
+  line-height: 1.15;
+  color: #ffffff;
 }
 
-.tarjeta-red__titulo {
-  margin: 0 0 0.35rem;
-  font-size: 1.15rem;
+.invitacion-grupo__texto {
+  margin: 0 0 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.invitacion-grupo__razones {
+  margin: 0 0 1.75rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.invitacion-grupo__razones li {
+  position: relative;
+  padding-left: 2rem;
+  line-height: 1.5;
+}
+
+.invitacion-grupo__razones li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  background-color: var(--color-dorado-texto);
   color: var(--color-teal);
+  font-size: 0.8rem;
+  font-weight: 800;
 }
 
-.tarjeta-red__texto p {
-  margin: 0;
+/*
+ * El botón lleva un halo que se expande y se apaga, TRES veces y se para:
+ * lo justo para que el ojo lo encuentre al llegar, sin convertirse en un
+ * parpadeo permanente — el cliente ya pidió bajarle el movimiento a las
+ * olas. Solo `transform` y `opacity`, como todo lo que se anima aquí.
+ */
+.invitacion-grupo__boton {
+  position: relative;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+}
+
+.invitacion-grupo__boton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--color-dorado-texto);
+  opacity: 0;
+  pointer-events: none;
+  animation: halo-invitacion 2.4s ease-out 1s 3;
+}
+
+.invitacion-grupo__boton:hover {
+  background-color: #ffffff;
+  color: var(--color-naranja);
+}
+
+@keyframes halo-invitacion {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.18, 1.45);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitacion-grupo__boton::after {
+    animation: none;
+  }
+
+  .invitacion-grupo:hover .invitacion-grupo__ilustracion img {
+    transform: none;
+  }
+}
+
+.invitacion-grupo__nota {
+  margin: 0.85rem 0 0;
+  font-size: 0.85rem;
+  color: var(--color-dorado-texto);
+}
+
+@media (min-width: 48rem) {
+  .invitacion-grupo__cuerpo {
+    padding: 2.25rem 2.75rem 2.5rem;
+  }
+}
+
+/* En escritorio, ilustración y texto lado a lado: apilados, el botón
+   quedaba debajo del pliegue en una pantalla de 900 px de alto, que es
+   justo lo que no puede pasarle al único CTA de la página. La invitación
+   sale de la columna de lectura (47 rem) hasta 66 rem para que quepan las
+   dos. La ilustración se recorta por la IZQUIERDA —`object-position:
+   right`—, que es donde solo hay palmeras: el perezoso y el nombre de la
+   escuela están a la derecha y no se pierden. */
+@media (min-width: 72rem) {
+  .redes-comunidad {
+    margin-inline: calc(50% - 33rem);
+  }
+
+  .invitacion-grupo {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+  }
+
+  /* La imagen va absoluta para que NO decida el alto de la fila: con su
+     alto natural la tarjeta crecía hasta 800 px y el recorte ampliaba al
+     perezoso como una foto de pasaporte. Así manda el texto. */
+  .invitacion-grupo__ilustracion {
+    position: relative;
+    aspect-ratio: auto;
+    min-height: 22rem;
+  }
+
+  .invitacion-grupo__ilustracion img {
+    position: absolute;
+    inset: 0;
+    object-position: right center;
+  }
+
+  .invitacion-grupo__cuerpo {
+    align-self: center;
+    padding: 2.5rem 2.75rem;
+  }
 }
 
 .dato-zona {
