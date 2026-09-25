@@ -297,6 +297,8 @@ export const esquemaDiccionario = z
           .strict(),
         precios: z
           .object({
+            /** El chip del `FranjaHero`. */
+            heroInsignia: z.string().min(1),
             titulo: z.string().min(1),
             intro: z.string().min(1),
             sinPrecios: z.string().min(1),
@@ -304,11 +306,17 @@ export const esquemaDiccionario = z
           .strict(),
         comunidad: z
           .object({
+            /** El chip del `FranjaHero`. */
+            heroInsignia: z.string().min(1),
             titulo: z.string().min(1),
             intro: z.string().min(1),
-            sinRedes: z.string().min(1),
+            /** La tarjeta del grupo de Facebook: título y texto propios, no
+                solo el botón suelto que había antes del 25/09/2026. */
+            facebookTitulo: z.string().min(1),
+            facebookTexto: z.string().min(1),
             /** El enlace visible al grupo de Facebook, cuando existe. */
             facebookEnlace: z.string().min(1),
+            sinRedes: z.string().min(1),
             archivoTitulo: z.string().min(1),
           })
           .strict(),

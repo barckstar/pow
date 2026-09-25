@@ -171,15 +171,19 @@
       "pendienteTexto": "The destinations below are the ones the client gave as examples and the list is not closed yet; neither are the agreements with each school nor the lodging arrangements. We would rather show it like this than advertise venues and prices that later change."
     },
     "precios": {
+      "heroInsignia": "No hidden fees",
       "titulo": "Pricing",
       "intro": "This is where pricing for online lessons, in-person lessons and the booking deposit will go.",
       "sinPrecios": "No prices are published yet. We would rather leave the gap visible than post a figure that changes later."
     },
     "comunidad": {
+      "heroInsignia": "Talk to other students",
       "titulo": "Community",
-      "intro": "This is where conversation groups and the school's social accounts will live.",
-      "sinRedes": "The school's social accounts are not open yet. When they are, they will appear here and in the footer.",
+      "intro": "One place, so far: a Facebook group to talk with other students. Conversation groups and other accounts will join it as they open.",
+      "facebookTitulo": "Chat with people learning the same thing",
+      "facebookTexto": "A place to ask questions, share progress and practise a bit of Spanish outside class — run on Facebook, open to anyone.",
       "facebookEnlace": "Join our Facebook group",
+      "sinRedes": "The school's social accounts are not open yet. When they are, they will appear here and in the footer.",
       "archivoTitulo": "Every tiquismo"
     },
     "creditos": {

@@ -171,15 +171,19 @@
       "pendienteTexto": "Die unten stehenden Reiseziele sind die, die der Kunde als Beispiele genannt hat, und die Liste ist noch nicht endgültig; die Vereinbarungen mit den einzelnen Schulen und die Unterkunftsregelungen ebenfalls nicht. Wir zeigen es lieber so, als Orte und Preise zu bewerben, die sich später ändern."
     },
     "precios": {
+      "heroInsignia": "Keine versteckten Kosten",
       "titulo": "Preise",
       "intro": "Hier stehen bald die Preise für Online-Unterricht, Präsenzunterricht und die Buchungsanzahlung.",
       "sinPrecios": "Es sind noch keine Preise veröffentlicht. Wir lassen die Lücke lieber sichtbar, als eine Zahl zu nennen, die sich später ändert."
     },
     "comunidad": {
+      "heroInsignia": "Sprich mit anderen Lernenden",
       "titulo": "Community",
-      "intro": "Hier werden die Gesprächsgruppen und die Social-Media-Konten der Schule zu finden sein.",
-      "sinRedes": "Die Social-Media-Konten der Schule sind noch nicht eröffnet. Sobald sie es sind, erscheinen sie hier und in der Fußzeile.",
+      "intro": "Bisher ein Ort: eine Facebook-Gruppe, um mit anderen Lernenden zu sprechen. Gesprächsgruppen und weitere Konten kommen dazu, sobald sie eröffnet sind.",
+      "facebookTitulo": "Chatte mit Leuten, die dasselbe lernen",
+      "facebookTexto": "Ein Ort, um Fragen zu stellen, Fortschritte zu teilen und außerhalb des Unterrichts ein bisschen Spanisch zu üben — auf Facebook, offen für alle.",
       "facebookEnlace": "Unserer Facebook-Gruppe beitreten",
+      "sinRedes": "Die Social-Media-Konten der Schule sind noch nicht eröffnet. Sobald sie es sind, erscheinen sie hier und in der Fußzeile.",
       "archivoTitulo": "Alle Tiquismos"
     },
     "creditos": {

@@ -530,6 +530,35 @@ no necesitaba el contraste de un texto que se lee. Es la trampa exacta:
 Lighthouse lo marcó — 1,48:1 sobre blanco, cuando un texto grande necesita
 3:1. Al 80 % de teal da 4,05:1.
 
+### Regla general de diseño: ninguna página interior va sola sobre crema
+
+El 25/09/2026 el cliente vio `/comunidad` sin más cambio que el enlace de
+Facebook y lo dijo sin rodeos: «no me gusta y necesita más vida, más sabor,
+más estético […] que sea regla general de diseño». La página era la plantilla
+que llevaban `/comunidad` y `/precios` desde el principio —`<h1>`, una
+entradilla y un párrafo, todo en crema sobre crema— y el cliente pidió
+explícitamente tratarlo como regla, no como arreglo de una sola página.
+
+**La regla: ninguna página interior arranca con un `<h1>` suelto sobre fondo
+crema.** Arranca con `FranjaHero` (`shared/components/ui/FranjaHero.tsx`) —una
+franja teal degradando a crema, con insignia, titular y un dibujo grande de
+`Decorados.tsx` como firma— o con `HeroPagina` cuando la página habla de un
+lugar concreto (`/online`, `/costa-rica`). Un color plano de principio a fin
+no es nunca la respuesta, sea cual sea el tamaño de la página.
+
+`FranjaHero` nació en «Quiénes somos» el 23/09/2026 como diseño propio de esa
+página; el 25/09/2026 se generalizó y `/about`, `/comunidad` y `/precios` lo
+usan hoy. Cada página nueva le suma su propia insignia (`heroInsignia` en el
+diccionario, esquema en `esquema.ts`) y su propio dibujo de decoración — no se
+repite el mismo entre páginas, porque la gracia es que cada una tenga su
+firma.
+
+El mismo criterio aplica al contenido bajo el hero: un enlace o botón suelto
+en el aire (como el de Facebook en `/comunidad` antes de esto) se convierte en
+una tarjeta con ícono, título y texto que explique qué es y por qué entrar
+(`.tarjeta-red`) — no basta con mover el elemento a una franja de color, el
+elemento mismo necesita contexto.
+
 ### Tres correcciones que el cliente pidió y que no cuadran con el resto del sitio
 
 Van aplicadas TEXTUALMENTE, como pidió el cliente, y quedan anotadas aquí

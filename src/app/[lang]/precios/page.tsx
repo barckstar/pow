@@ -7,6 +7,8 @@ import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
 import { DEPOSITO, rutas } from "@/shared/config/sitio";
 import { SEO } from "@/shared/config/seo";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
+import { FranjaHero } from "@/shared/components/ui/FranjaHero";
+import { RamaCafe } from "@/shared/components/ui/Decorados";
 
 export function generateStaticParams() {
   return IDIOMAS.map((lang) => ({ lang }));
@@ -43,36 +45,46 @@ export default async function PaginaPrecios({
    * No hay tabla de precios porque el cliente no los ha confirmado. Un precio
    * inventado en una web se cobra en la puerta: es el tipo de dato que no se
    * rellena con una suposición.
+   *
+   * El hero usa `FranjaHero` desde el 25/09/2026 — regla general para toda
+   * página interior, no una excepción de «Quiénes somos». Ver ese componente
+   * para el porqué.
    */
   return (
-    <section className="seccion con-adornos">
-      <DecoradosSeccion variante="precios" />
+    <>
+      <FranjaHero
+        insignia={t.paginas.precios.heroInsignia}
+        titulo={t.paginas.precios.titulo}
+        subtitulo={t.paginas.precios.intro}
+        decoracion={<RamaCafe />}
+      />
 
-      <div className="seccion__interior seccion__interior--estrecho">
-        <h1 className="seccion__titulo">{t.paginas.precios.titulo}</h1>
-        <p className="seccion__intro">{t.paginas.precios.intro}</p>
+      <section className="seccion con-adornos">
+        <DecoradosSeccion variante="precios" />
 
-        <div className="hueco">
-          <span className="pendiente">{t.pendiente.etiqueta}</span>
-          <p>{t.paginas.precios.sinPrecios}</p>
-        </div>
-
-        {DEPOSITO ? (
-          <p className="dato-zona">
-            <strong>{t.reserva.deposito}:</strong> {DEPOSITO.monto}{" "}
-            {DEPOSITO.moneda} — {t.reserva.depositoTexto}
-          </p>
-        ) : (
+        <div className="seccion__interior seccion__interior--estrecho">
           <div className="hueco">
             <span className="pendiente">{t.pendiente.etiqueta}</span>
-            <p>{t.pendiente.precio}</p>
+            <p>{t.paginas.precios.sinPrecios}</p>
           </div>
-        )}
 
-        <Link href={rutas.reservar(idioma)} className="seccion__enlace">
-          {t.hero.ctaReservar} →
-        </Link>
-      </div>
-    </section>
+          {DEPOSITO ? (
+            <p className="dato-zona">
+              <strong>{t.reserva.deposito}:</strong> {DEPOSITO.monto}{" "}
+              {DEPOSITO.moneda} — {t.reserva.depositoTexto}
+            </p>
+          ) : (
+            <div className="hueco">
+              <span className="pendiente">{t.pendiente.etiqueta}</span>
+              <p>{t.pendiente.precio}</p>
+            </div>
+          )}
+
+          <Link href={rutas.reservar(idioma)} className="seccion__enlace">
+            {t.hero.ctaReservar} →
+          </Link>
+        </div>
+      </section>
+    </>
   );
 }

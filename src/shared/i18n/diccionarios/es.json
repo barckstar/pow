@@ -171,15 +171,19 @@
       "pendienteTexto": "Los destinos de abajo son los que el cliente puso de ejemplo y la lista todavía no está cerrada; los acuerdos con cada escuela y las condiciones del hospedaje tampoco. Preferimos enseñarlo así antes que anunciar sedes y precios que después cambien."
     },
     "precios": {
+      "heroInsignia": "Sin letra pequeña",
       "titulo": "Precios",
       "intro": "Aquí van a ir los precios de las clases en línea, las presenciales y el depósito de reserva.",
       "sinPrecios": "Todavía no hay precios publicados. Preferimos dejar el hueco visible a poner una cifra que después cambie."
     },
     "comunidad": {
+      "heroInsignia": "Hablá con otros estudiantes",
       "titulo": "Comunidad",
-      "intro": "Aquí van a estar los grupos de conversación y las redes de la escuela.",
-      "sinRedes": "Las redes de la escuela todavía no están abiertas. Cuando lo estén, aparecen aquí y en el pie de página.",
+      "intro": "Por ahora, un solo lugar: un grupo de Facebook para hablar con otros estudiantes. Los grupos de conversación y otras redes se suman en cuanto se abran.",
+      "facebookTitulo": "Chateá con gente que está aprendiendo lo mismo",
+      "facebookTexto": "Un lugar para hacer preguntas, contar tus avances y practicar un poco de español fuera de clase — en Facebook, abierto a cualquiera.",
       "facebookEnlace": "Unite a nuestro grupo de Facebook",
+      "sinRedes": "Las redes de la escuela todavía no están abiertas. Cuando lo estén, aparecen aquí y en el pie de página.",
       "archivoTitulo": "Todos los tiquismos"
     },
     "creditos": {

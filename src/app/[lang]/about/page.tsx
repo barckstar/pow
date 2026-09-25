@@ -8,6 +8,7 @@ import { rutas } from "@/shared/config/sitio";
 import { SEO } from "@/shared/config/seo";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 import { RuedaCarreta } from "@/shared/components/ui/Decorados";
+import { FranjaHero } from "@/shared/components/ui/FranjaHero";
 
 export function generateStaticParams() {
   return IDIOMAS.map((lang) => ({ lang }));
@@ -41,9 +42,11 @@ export async function generateMetadata({
  * donde se lee, no solo en un comentario del código.
  *
  * El diseño es distinto a propósito, no una plantilla más de `.seccion`:
- *   1. Un hero SIN FOTO — teal a crema en vertical, con el titular partido en
- *      dos colores como en la portada. Las demás páginas interiores usan una
- *      fotografía; esta habla de una persona y una idea, no de un lugar.
+ *   1. Un hero SIN FOTO — `FranjaHero`, teal a crema en vertical, con el
+ *      titular partido en dos colores como en la portada. Las páginas de
+ *      lugar usan una fotografía (`HeroPagina`); esta habla de una persona y
+ *      una idea. `FranjaHero` nació aquí y el 25/09/2026 se volvió el hero
+ *      obligatorio de TODA página interior — ver su propio archivo.
  *   2. Una cita destacada, aparte del cuerpo del texto, como una pull-quote
  *      de revista — no existe en ninguna otra página del sitio.
  *   3. Cuatro valores en tarjetas con número en vez de icono: no hay un
@@ -72,23 +75,13 @@ export default async function PaginaAbout({
 
   return (
     <>
-      <section className="about-hero">
-        {/* La rueda de carreta también aquí, más grande y sola: es la firma
-            de la página, no un adorno de fondo — por eso no sale de
-            DecoradosSeccion, que reparte piezas pequeñas por los bordes. */}
-        <span className="about-hero__rueda" aria-hidden="true">
-          <RuedaCarreta />
-        </span>
-
-        <div className="about-hero__interior">
-          <p className="about-hero__insignia">{p.heroInsignia}</p>
-          <h1 className="about-hero__titulo">
-            {p.heroTitulo}
-            <span className="about-hero__acento">{p.heroAcento}</span>
-          </h1>
-          <p className="about-hero__subtitulo">{p.heroSubtitulo}</p>
-        </div>
-      </section>
+      <FranjaHero
+        insignia={p.heroInsignia}
+        titulo={p.heroTitulo}
+        acento={p.heroAcento}
+        subtitulo={p.heroSubtitulo}
+        decoracion={<RuedaCarreta />}
+      />
 
       <section className="seccion con-adornos">
         <DecoradosSeccion variante="about" />
