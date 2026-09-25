@@ -4079,20 +4079,20 @@ p {
     transform: translate(0, -50%) scale(1);
   }
 
-  /* La pieza de marca remata el riel: es la marca, no un icono más. */
+  /* La pieza de marca remata el riel: es la marca, no un icono más.
+     Va sin fondo desde el 25/09/2026, a pedido del cliente: el círculo
+     turquesa, con `overflow: hidden`, además le recortaba los bordes a la
+     ola y a la tabla. El PNG ya trae transparencia real. */
   .social__marca {
     width: 2.4rem;
     height: 2.4rem;
     display: grid;
     place-items: center;
-    border-radius: 999px;
-    background-color: var(--color-turquesa);
-    overflow: hidden;
     margin-bottom: 0.25rem;
   }
 
   .social__marca img {
-    width: 2.1rem;
+    width: 2.4rem;
     height: auto;
   }
 
