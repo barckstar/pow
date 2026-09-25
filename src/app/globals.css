@@ -743,6 +743,17 @@ p {
   gap: 0.6rem;
 }
 
+/* Las redes de verdad de /comunidad, cuando existen. Una lista de un solo
+   botón hoy, varias mañana si se confirma Instagram o WhatsApp. */
+.redes-comunidad {
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 .dato-zona {
   margin: 1.5rem 0;
 }

@@ -19,7 +19,7 @@ Un hueco visible se arregla. Uno invisible se publica.
 | **Monto del depósito** de reserva | `DEPOSITO` en `sitio.ts`, y en Calendly | `/precios` no enseña cifra. Va en los dos sitios: Calendly cobra, el sitio lo anuncia |
 | **Biografía del profesor** | `bio` en el mismo archivo | Hoy dice lo genérico —costarricense en Suiza, enseña el español de allá—. Con un par de frases suyas de verdad, esa sección deja de ser una plantilla |
 | **Correo y teléfono** de contacto | `CONTACTO` en `sitio.ts` | El pie muestra la etiqueta de pendiente |
-| **Redes sociales** del negocio | `REDES` en `sitio.ts` | La barra lateral solo lleva la marca y el botón de compartir; `/comunidad` lo dice |
+| **WhatsApp e Instagram** del negocio | `REDES` en `sitio.ts` | Facebook ya está confirmado (grupo, 25/09/2026); estos dos siguen en `null`. La barra lateral y `/comunidad` solo muestran lo que existe |
 | **Dominio** | `URL_BASE` en `sitio.ts` | Provisional. Afecta a canónicas, `og:url` y sitemap |
 | **Qué destinos son de verdad** | `destinos.json` | Los cuatro de hoy son los que el cliente puso «por ejemplo». `/costa-rica` lo avisa antes de las tarjetas |
 | **Acuerdos con las escuelas** | `escuela.confirmada` en `destinos.json` | El nombre sale en la ficha con la etiqueta amarilla. El cliente escribió que «la info de las escuelas tengo que conseguirla bien» |

@@ -307,6 +307,8 @@ export const esquemaDiccionario = z
             titulo: z.string().min(1),
             intro: z.string().min(1),
             sinRedes: z.string().min(1),
+            /** El enlace visible al grupo de Facebook, cuando existe. */
+            facebookEnlace: z.string().min(1),
             archivoTitulo: z.string().min(1),
           })
           .strict(),

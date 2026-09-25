@@ -125,9 +125,15 @@ export const DEPOSITO: { monto: number; moneda: string } | null = null;
 
 /**
  * Redes sociales del negocio.
- * PENDIENTE: no se han confirmado. Una URL inventada manda al visitante al
- * perfil de otra persona, así que hasta tenerlas la barra social solo muestra
- * el botón de compartir.
+ *
+ * El cliente confirmó el grupo de Facebook el 25/09/2026:
+ * facebook.com/groups/1545158426962499. Es un GRUPO, no una página — la
+ * `BarraSocial` no distingue entre los dos porque para quien hace clic da
+ * igual, pero conviene saberlo si algún día hay que enlazarlo de otra forma
+ * (por ejemplo, un grupo no tiene botón de «Me gusta»).
+ *
+ * WhatsApp e Instagram siguen en `null`: no se han confirmado, y una URL
+ * inventada manda al visitante al perfil de otra persona.
  */
 export const REDES: {
   whatsapp: string | null;
@@ -136,7 +142,7 @@ export const REDES: {
 } = {
   whatsapp: null,
   instagram: null,
-  facebook: null,
+  facebook: "https://www.facebook.com/groups/1545158426962499",
 };
 
 /**

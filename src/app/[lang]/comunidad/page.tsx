@@ -55,7 +55,27 @@ export default async function PaginaComunidad({
         <h1 className="seccion__titulo">{t.paginas.comunidad.titulo}</h1>
         <p className="seccion__intro">{t.paginas.comunidad.intro}</p>
 
-        {hayRedes ? null : (
+        {hayRedes ? (
+          /*
+            Solo Facebook por ahora. Es un GRUPO —no una página— y por eso el
+            enlace es a "join", no a "seguir": la acción real es pedir
+            entrar, no darle a un botón de me gusta.
+          */
+          <ul className="redes-comunidad">
+            {REDES.facebook ? (
+              <li>
+                <a
+                  href={REDES.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="boton boton--primario"
+                >
+                  {t.paginas.comunidad.facebookEnlace}
+                </a>
+              </li>
+            ) : null}
+          </ul>
+        ) : (
           <div className="hueco">
             <span className="pendiente">{t.pendiente.etiqueta}</span>
             <p>{t.paginas.comunidad.sinRedes}</p>
