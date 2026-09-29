@@ -109,7 +109,7 @@ export default async function LayoutIdioma({
 
         <main id="contenido">{children}</main>
 
-        <BarraSocial t={t} />
+        <BarraSocial lang={idioma} t={t} />
         <Footer lang={idioma} t={t} />
       </body>
     </html>

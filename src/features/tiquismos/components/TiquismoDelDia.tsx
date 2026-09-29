@@ -2,7 +2,6 @@ import Link from "next/link";
 import { TIQUISMOS } from "../esquema";
 import { indiceDelDia } from "../lib/rotacion";
 import { rutas } from "@/shared/config/sitio";
-import { SelloTiquismos } from "@/shared/components/ui/SelloTiquismos";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 import type { Idioma } from "@/shared/i18n/config";
 import type { Diccionario } from "@/shared/i18n/esquema";
@@ -49,12 +48,6 @@ export function TiquismoDelDia({ lang, t }: { lang: Idioma; t: Diccionario }) {
 
       <article className="tiquismo__caja revelar">
         <span className="tiquismo__cinta" aria-hidden="true" />
-
-        <SelloTiquismos
-          lang={lang}
-          etiqueta={t.tiquismo.verTodos}
-          className="tiquismo__perezoso"
-        />
 
         <p className="tiquismo__etiqueta">{t.tiquismo.etiqueta}</p>
 

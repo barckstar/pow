@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { REDES } from "@/shared/config/sitio";
+import Link from "next/link";
+import { REDES, rutas } from "@/shared/config/sitio";
+import type { Idioma } from "@/shared/i18n/config";
 import type { Diccionario } from "@/shared/i18n/esquema";
 
 /**
@@ -26,7 +28,7 @@ type Red = {
   icono: React.ReactNode;
 };
 
-export function BarraSocial({ t }: { t: Diccionario }) {
+export function BarraSocial({ lang, t }: { lang: Idioma; t: Diccionario }) {
   const [visible, setVisible] = useState(false);
   const [copiado, setCopiado] = useState(false);
 
@@ -104,14 +106,20 @@ export function BarraSocial({ t }: { t: Diccionario }) {
 
   return (
     <aside className="social" data-visible={visible} aria-label={t.social.seguir}>
-      <div className="social__marca" aria-hidden="true">
+      <div className="social__marca">
         {/*
           177x150: la relación de aspecto real del logo nuevo (900x762,
           1,18:1), no la del recorte viejo (1,29:1). Con el número antiguo la
           imagen se habría estirado para llenar una caja que ya no le
           corresponde.
         */}
-        <Image src="/marca/perezoso.png" alt="" width={177} height={150} />
+        <Link
+          href={`${rutas.comunidad(lang)}#tiquismos`}
+          aria-label={t.tiquismo.verTodos}
+          title={t.tiquismo.verTodos}
+        >
+          <Image src="/marca/perezoso.png" alt="" width={177} height={150} />
+        </Link>
       </div>
 
       {redes.map((red) => (

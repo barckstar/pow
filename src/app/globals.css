@@ -3281,58 +3281,6 @@ p {
     color-mix(in srgb, var(--color-tinta) 80%, transparent);
 }
 
-/* El perezoso surfista: sello redondo que lleva a /community#tiquismos. */
-.sello-perezoso {
-  display: block;
-  width: 4rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #ffffff;
-  box-shadow:
-    0 0 0 2px var(--color-naranja),
-    0 10px 20px -8px color-mix(in srgb, var(--color-tinta) 55%, transparent);
-  transition: transform 0.25s ease;
-}
-
-.sello-perezoso img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 100% 30%;
-}
-
-.sello-perezoso:hover,
-.sello-perezoso:focus-visible {
-  transform: scale(1.08) rotate(-4deg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sello-perezoso {
-    transition: none;
-  }
-}
-
-.tiquismo__perezoso {
-  position: absolute;
-  top: 1.1rem;
-  right: 1.1rem;
-  z-index: 1;
-}
-
-@media (min-width: 640px) {
-  .tiquismo__perezoso {
-    top: 1.5rem;
-    right: 1.75rem;
-    width: 5.5rem;
-  }
-}
-
-.pie__sello {
-  margin-top: 1rem;
-  width: 4.5rem;
-}
-
 .tiquismo__cinta {
   position: absolute;
   inset: 0 0 auto 0;
@@ -4679,4 +4627,9 @@ p {
   .reserva__mas {
     display: none;
   }
+}
+
+/* El logo de la barra lateral es un enlace a /community#tiquismos. */
+.social__marca a {
+  display: block;
 }
