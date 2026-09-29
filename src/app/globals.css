@@ -3281,12 +3281,9 @@ p {
     color-mix(in srgb, var(--color-tinta) 80%, transparent);
 }
 
-/* El perezoso surfista: sello redondo arriba a la derecha que lleva a /community#tiquismos. */
-.tiquismo__perezoso {
-  position: absolute;
-  top: 1.1rem;
-  right: 1.1rem;
-  z-index: 1;
+/* El perezoso surfista: sello redondo que lleva a /community#tiquismos. */
+.sello-perezoso {
+  display: block;
   width: 4rem;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -3298,16 +3295,29 @@ p {
   transition: transform 0.25s ease;
 }
 
-.tiquismo__perezoso img {
+.sello-perezoso img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 100% 30%;
 }
 
-.tiquismo__perezoso:hover,
-.tiquismo__perezoso:focus-visible {
+.sello-perezoso:hover,
+.sello-perezoso:focus-visible {
   transform: scale(1.08) rotate(-4deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sello-perezoso {
+    transition: none;
+  }
+}
+
+.tiquismo__perezoso {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  z-index: 1;
 }
 
 @media (min-width: 640px) {
@@ -3318,10 +3328,9 @@ p {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .tiquismo__perezoso {
-    transition: none;
-  }
+.pie__sello {
+  margin-top: 1rem;
+  width: 4.5rem;
 }
 
 .tiquismo__cinta {

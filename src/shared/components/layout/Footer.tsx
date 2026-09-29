@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CONTACTO, NOMBRE_SITIO, rutas } from "@/shared/config/sitio";
+import { SelloTiquismos } from "@/shared/components/ui/SelloTiquismos";
 import type { Idioma } from "@/shared/i18n/config";
 import type { Diccionario } from "@/shared/i18n/esquema";
 
@@ -34,6 +35,11 @@ export function Footer({ lang, t }: Props) {
             className="pie__perezoso"
           />
           <p className="pie__lema">{t.footer.lema}</p>
+          <SelloTiquismos
+            lang={lang}
+            etiqueta={t.tiquismo.verTodos}
+            className="pie__sello"
+          />
           {/* CONTACTO está en null: el cliente aún no ha dado correo ni
               teléfono. Se muestra el aviso en vez de inventar datos. */}
           {CONTACTO.correo ? (
