@@ -349,6 +349,25 @@ en los dos sitios lo duplicaba.
 `scripts/verificar-metadatos.mjs` corre en `postbuild` sobre el HTML generado
 y **rompe el build** si algo falta.
 
+**SEO técnico (28/09/2026), al estilo de brasasyhumo y mascontractors:**
+
+- `shared/lib/jsonLd.tsx` (tipado con `schema-dts`): `EducationalOrganization` +
+  `WebSite` en el layout, `BreadcrumbList` en cada página interior y el
+  artículo, `Course` + `Person` en `/online`. **Solo datos confirmados**:
+  teléfono, dirección, precio y valoraciones siguen en `null` y no se emiten;
+  al confirmarlos en `sitio.ts` aparecen solos. `EtiquetaJsonLd` escapa `<`.
+- `metadatosDe()` emite `hreflang="x-default"` (→ inglés) y
+  `og:locale:alternate`. El sitemap también lleva `x-default`, incluye `/about`
+  y las `/solicitud/*`, y ya **no** pone `lastModified: new Date()` en lo que no
+  tiene fecha real.
+- `robots.ts` nombra los rastreadores de IA como permitidos; `llms.txt` es una
+  **ruta generada** (`app/llms.txt/route.ts`) y no un archivo estático, porque
+  el dominio es provisional y los artículos crecen. Está excluida del matcher de
+  `proxy.ts`: sin eso se redirigía a `/en/llms.txt`.
+- El verificador de `postbuild` comprueba además `x-default` + autorreferencia
+  de `hreflang`, que no haya `noindex` y que cada JSON-LD sea JSON válido.
+- Al fijar el dominio real: `URL_BASE` en el hosting y revisar `llms.txt`.
+
 ### Imágenes
 
 Siete fotografías vienen de **Unsplash** (licencia de uso comercial, sin
@@ -671,3 +690,13 @@ negocio. Se podría afinar reservando exactamente el alto en el que se queda,
 pero ese número cambia con la descripción del evento y con la cuenta —y la
 cuenta va a cambiar—, así que sería cuadrar dos números que se descuadran
 solos. 0,069 está dentro del «bueno» de Google, que es 0,1.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

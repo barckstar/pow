@@ -168,6 +168,50 @@ for (const ruta of paginas) {
     `${nombre}: twitter:card debe ser summary_large_image`
   );
 
+  // --- idiomas alternativos. Si la página declara `hreflang`, tiene que
+  //     incluirse a sí misma y llevar `x-default`: sin la autorreferencia
+  //     Google descarta el conjunto entero.
+  const alternos = [
+    ...html.matchAll(/<link[^>]+rel="alternate"[^>]+hreflang="([^"]+)"[^>]*>/gi),
+  ].map((m) => m[1]);
+  if (alternos.length > 0) {
+    const propio = html.match(/<html[^>]+lang="([a-z]{2})"/i)?.[1];
+    exigir(
+      alternos.includes("x-default"),
+      `${nombre}: declara hreflang pero sin x-default`
+    );
+    exigir(
+      !propio || alternos.includes(propio),
+      `${nombre}: hreflang no incluye su propio idioma (${propio})`
+    );
+  }
+
+  // --- no debe indexarse por accidente como noindex
+  exigir(
+    !/<meta[^>]+name="robots"[^>]+content="[^"]*noindex/i.test(html),
+    `${nombre}: tiene meta robots noindex`
+  );
+
+  // --- JSON-LD: cada bloque debe ser JSON válido con @context. Un error de
+  //     sintaxis aquí no se ve en la página: Google lo ignora en silencio.
+  const bloques = [
+    ...html.matchAll(
+      /<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi
+    ),
+  ];
+  exigir(bloques.length > 0, `${nombre}: sin JSON-LD`);
+  for (const [, cuerpo] of bloques) {
+    try {
+      const datos = JSON.parse(cuerpo);
+      exigir(
+        datos["@context"] === "https://schema.org",
+        `${nombre}: un bloque JSON-LD sin @context de schema.org`
+      );
+    } catch {
+      fallos.push(`${nombre}: un bloque JSON-LD no es JSON válido`);
+    }
+  }
+
   // --- lang
   exigir(/<html[^>]+lang="[a-z]{2}"/i.test(html), `${nombre}: <html> sin lang`);
 

@@ -4,6 +4,7 @@ import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
 import { rutas } from "@/shared/config/sitio";
+import { MigasJsonLd } from "@/shared/lib/jsonLd";
 import { SEO } from "@/shared/config/seo";
 import { DESTINOS } from "@/features/destinos/esquema";
 import { TarjetaDestino } from "@/features/destinos/components/TarjetaDestino";
@@ -79,6 +80,11 @@ export default async function PaginaCostaRica({
 
   return (
     <>
+      <MigasJsonLd
+        lang={idioma}
+        nombre={SEO.costaRica[idioma].titulo}
+        ruta={rutas.costaRica(idioma)}
+      />
       <HeroPagina
         foto={FOTO}
         fotoAlt={p.hero.fotoAlt}

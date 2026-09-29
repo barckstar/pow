@@ -5,6 +5,7 @@ import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
 import { DEPOSITO, rutas } from "@/shared/config/sitio";
+import { MigasJsonLd } from "@/shared/lib/jsonLd";
 import { SEO } from "@/shared/config/seo";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 import { FranjaHero } from "@/shared/components/ui/FranjaHero";
@@ -52,6 +53,11 @@ export default async function PaginaPrecios({
    */
   return (
     <>
+      <MigasJsonLd
+        lang={idioma}
+        nombre={SEO.precios[idioma].titulo}
+        ruta={rutas.precios(idioma)}
+      />
       <FranjaHero
         insignia={t.paginas.precios.heroInsignia}
         titulo={t.paginas.precios.titulo}

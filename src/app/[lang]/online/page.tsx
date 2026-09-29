@@ -5,11 +5,18 @@ import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
 import { rutas } from "@/shared/config/sitio";
+import {
+  EtiquetaJsonLd,
+  jsonLdCursoOnline,
+  jsonLdProfesor,
+  MigasJsonLd,
+} from "@/shared/lib/jsonLd";
 import { SEO } from "@/shared/config/seo";
 import { HeroPagina } from "@/shared/components/ui/HeroPagina";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 import { TiquismoDelDia } from "@/features/tiquismos/components/TiquismoDelDia";
 import { CLASES } from "@/features/online/esquema";
+import { PROFESORES } from "@/features/online/esquemaProfesores";
 import { Profesores } from "@/features/online/components/Profesores";
 
 /**
@@ -71,6 +78,27 @@ export default async function PaginaOnline({
 
   return (
     <>
+      <MigasJsonLd
+        lang={idioma}
+        nombre={SEO.online[idioma].titulo}
+        ruta={rutas.online(idioma)}
+      />
+      <EtiquetaJsonLd
+        datos={jsonLdCursoOnline({
+          lang: idioma,
+          nombre: SEO.online[idioma].titulo,
+          descripcion: SEO.online[idioma].descripcion,
+          ruta: rutas.online(idioma),
+          profesores: PROFESORES.map((prof) =>
+            jsonLdProfesor({
+              id: prof.id,
+              nombre: prof.nombre,
+              descripcion: prof.bio[idioma],
+              foto: prof.foto,
+            })
+          ),
+        })}
+      />
       <HeroPagina
         foto={FOTO}
         fotoAlt={p.hero.fotoAlt}

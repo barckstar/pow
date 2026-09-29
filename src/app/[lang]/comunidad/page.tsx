@@ -5,6 +5,7 @@ import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
 import { REDES, rutas } from "@/shared/config/sitio";
+import { MigasJsonLd } from "@/shared/lib/jsonLd";
 import { SEO } from "@/shared/config/seo";
 import { TIQUISMOS } from "@/features/tiquismos/esquema";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
@@ -65,6 +66,11 @@ export default async function PaginaComunidad({
 
   return (
     <>
+      <MigasJsonLd
+        lang={idioma}
+        nombre={SEO.comunidad[idioma].titulo}
+        ruta={rutas.comunidad(idioma)}
+      />
       <FranjaHero
         insignia={c.heroInsignia}
         titulo={c.titulo}

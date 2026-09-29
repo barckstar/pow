@@ -4,6 +4,7 @@ import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
 import { rutas } from "@/shared/config/sitio";
+import { MigasJsonLd } from "@/shared/lib/jsonLd";
 import { SEO } from "@/shared/config/seo";
 import { FormularioReserva } from "@/features/reservas/components/FormularioReserva";
 import { OPCIONES } from "@/features/solicitud/esquema";
@@ -65,6 +66,11 @@ export default async function PaginaReservar({
 
   return (
     <>
+      <MigasJsonLd
+        lang={idioma}
+        nombre={SEO.reservar[idioma].titulo}
+        ruta={rutas.reservar(idioma)}
+      />
       <FranjaHero
         insignia={r.insignia}
         titulo={r.titulo}

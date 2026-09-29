@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { IDIOMAS, LOCALE, type Idioma } from "@/shared/i18n/config";
+import {
+  IDIOMA_POR_DEFECTO,
+  IDIOMAS,
+  LOCALE,
+  type Idioma,
+} from "@/shared/i18n/config";
 import {
   NOMBRE_CORTO,
   NOMBRE_SITIO,
@@ -64,12 +69,26 @@ export function metadatosDe({
    */
   const tituloCompleto = `${titulo} | ${NOMBRE_CORTO}`;
 
-  const languages = Object.fromEntries(
+  const languages: Record<string, string> = Object.fromEntries(
     Object.entries(alternativas ?? { [lang]: ruta }).map(([idioma, r]) => [
       idioma,
       `${URL_BASE}${r}`,
     ])
   );
+
+  /*
+   * `x-default` es la versión para quien no encaja en ningún idioma declarado:
+   * aquí, la del idioma por defecto. Solo se emite si esa traducción existe
+   * de verdad — apuntarlo a una URL que no está sería el error que
+   * `alternativas` existe para evitar.
+   */
+  const porDefecto = languages[IDIOMA_POR_DEFECTO];
+  if (porDefecto) languages["x-default"] = porDefecto;
+
+  /* Los otros idiomas en que la página existe, para `og:locale:alternate`. */
+  const otrosLocales = Object.keys(languages)
+    .filter((i): i is Idioma => i !== lang && (IDIOMAS as readonly string[]).includes(i))
+    .map((i) => LOCALE[i]);
 
   return {
     metadataBase: new URL(URL_BASE),
@@ -86,6 +105,7 @@ export function metadatosDe({
       url,
       siteName: NOMBRE_SITIO,
       locale: LOCALE[lang],
+      ...(otrosLocales.length > 0 ? { alternateLocale: otrosLocales } : {}),
       images: [{ url: imagenAbsoluta, width: 1200, height: 630, alt: titulo }],
       ...(tipo === "article"
         ? { publishedTime: publicado, modifiedTime: modificado }

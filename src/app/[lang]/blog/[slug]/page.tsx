@@ -13,7 +13,12 @@ import {
   leerArticulos,
 } from "@/features/blog/lib/leer";
 import { renderizarMarkdown } from "@/features/blog/lib/markdown";
-import { NOMBRE_SITIO, rutas, URL_BASE } from "@/shared/config/sitio";
+import { rutas, URL_BASE } from "@/shared/config/sitio";
+import {
+  EtiquetaJsonLd,
+  ID_ORGANIZACION,
+  MigasJsonLd,
+} from "@/shared/lib/jsonLd";
 
 export async function generateStaticParams() {
   const todos = await Promise.all(
@@ -98,15 +103,18 @@ export default async function PaginaArticulo({
     dateModified: (articulo.actualizado ?? articulo.fecha).toISOString(),
     inLanguage: idioma,
     mainEntityOfPage: `${URL_BASE}${rutas.articulo(idioma, slug)}`,
-    publisher: { "@type": "Organization", name: NOMBRE_SITIO },
+    publisher: { "@id": ID_ORGANIZACION },
     ...(articulo.portada ? { image: `${URL_BASE}${articulo.portada}` } : {}),
   };
 
   return (
     <article className="articulo">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <EtiquetaJsonLd datos={jsonLd} />
+      <MigasJsonLd
+        lang={idioma}
+        intermedias={[{ nombre: t.blog.titulo, ruta: rutas.blog(idioma) }]}
+        nombre={articulo.titulo}
+        ruta={rutas.articulo(idioma, slug)}
       />
 
       <header className="articulo__cabecera">
