@@ -32,8 +32,27 @@ import type { Idioma } from "@/shared/i18n/config";
  * =========================================================
  */
 export const URL_BASE = normalizarBase(
-  process.env.URL_BASE?.trim() || "https://costaricaspanishexperience.com"
+  process.env.URL_BASE?.trim() ||
+    urlDeVercel() ||
+    "https://costaricaspanishexperience.com",
 );
+
+/**
+ * El dominio con el que Vercel sirve ESTE despliegue, si no hay `URL_BASE`.
+ *
+ * Sin esto, mientras el dominio real no exista, las canónicas y `og:image`
+ * apuntaban a costaricaspanishexperience.com — un sitio que no está — y
+ * WhatsApp no encontraba la imagen: el enlace salía sin foto. En producción
+ * Vercel da el dominio del proyecto; en una preview, el de la preview.
+ * Cuando haya dominio propio, `URL_BASE` manda sobre esto.
+ */
+function urlDeVercel(): string | null {
+  const host =
+    process.env.VERCEL_ENV === "production"
+      ? process.env.VERCEL_PROJECT_PRODUCTION_URL
+      : process.env.VERCEL_URL;
+  return host ? `https://${host}` : null;
+}
 
 /**
  * Quita la barra final y comprueba que sea una URL absoluta.
@@ -53,13 +72,13 @@ function normalizarBase(valor: string): string {
   } catch {
     throw new Error(
       `URL_BASE tiene que ser una URL absoluta con protocolo, y es: "${valor}". ` +
-        "Por ejemplo https://costaricaspanishexperience.com"
+        "Por ejemplo https://costaricaspanishexperience.com",
     );
   }
 
   if (url.protocol !== "https:" && url.hostname !== "localhost") {
     throw new Error(
-      `URL_BASE tiene que ir por https (salvo en localhost), y es: "${valor}"`
+      `URL_BASE tiene que ir por https (salvo en localhost), y es: "${valor}"`,
     );
   }
 
@@ -108,7 +127,6 @@ export const DEPOSITO: { monto: number; moneda: string } | null = null;
  * producción. `URL_BASE` sí cambia, y por eso se queda.
  * ===============================================================
  */
-
 
 /*
  * ============ QUIÉN DA LAS CLASES NO SE CONFIGURA AQUÍ ============

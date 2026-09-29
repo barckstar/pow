@@ -60,6 +60,6 @@ export const config = {
    * devolvería 404.
    */
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|icon.png|apple-icon.png|manifest.webmanifest|robots.txt|sitemap.xml|llms.txt|fotos|marca|blog/).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|icon.png|apple-icon.png|manifest.webmanifest|robots.txt|sitemap.xml|llms.txt|fotos|og|marca|blog/).*)",
   ],
 };

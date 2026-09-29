@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import type { Metadata } from "next";
 import {
   IDIOMA_POR_DEFECTO,
@@ -56,7 +58,7 @@ export function metadatosDe({
   alternativas?: Partial<Record<Idioma, string>>;
 }): Metadata {
   const url = `${URL_BASE}${ruta}`;
-  const imagenAbsoluta = `${URL_BASE}${imagen ?? OG_POR_DEFECTO}`;
+  const imagenAbsoluta = `${URL_BASE}${imagenSocial(imagen)}`;
 
   /*
    * El <title> se deja SIN sufijo: lo añade la plantilla `title.template` del
@@ -118,6 +120,24 @@ export function metadatosDe({
       images: [imagenAbsoluta],
     },
   };
+}
+
+/**
+ * La versión 1200x630 de una fotografía, para compartir.
+ *
+ * Las fotos de `/fotos` son de 2400x1800 y pesan hasta 870 KB: WhatsApp
+ * descarta las vistas previas de imágenes pesadas y recorta las que no son
+ * 1,91:1, así que el enlace salía sin imagen. `public/og/<mismo nombre>.jpg`
+ * es la misma foto recortada a 1200x630 y por debajo de 200 KB. Si no existe
+ * para una foto, se usa la imagen del sitio antes que una que no se vería.
+ */
+function imagenSocial(imagen?: string): string {
+  if (!imagen) return OG_POR_DEFECTO;
+  if (!imagen.startsWith("/fotos/")) return imagen;
+  const propia = imagen.replace("/fotos/", "/og/");
+  return existsSync(join(process.cwd(), "public", propia))
+    ? propia
+    : OG_POR_DEFECTO;
 }
 
 /** Mapa de traducciones para una ruta que existe en todos los idiomas. */
