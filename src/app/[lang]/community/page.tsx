@@ -152,7 +152,9 @@ export default async function PaginaComunidad({
             </div>
           )}
 
-          <h2 className="subseccion__titulo">{c.archivoTitulo}</h2>
+          <h2 className="subseccion__titulo" id="tiquismos">
+            {c.archivoTitulo}
+          </h2>
 
           <ul className="archivo-tiquismos">
             {TIQUISMOS.map((tiquismo) => (

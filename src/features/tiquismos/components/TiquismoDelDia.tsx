@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { TIQUISMOS } from "../esquema";
 import { indiceDelDia } from "../lib/rotacion";
@@ -48,6 +49,23 @@ export function TiquismoDelDia({ lang, t }: { lang: Idioma; t: Diccionario }) {
 
       <article className="tiquismo__caja revelar">
         <span className="tiquismo__cinta" aria-hidden="true" />
+
+        {/* El perezoso surfista: lleva al archivo completo. Solo imagen, así
+            que el nombre accesible sale del aria-label. */}
+        <Link
+          href={`${rutas.comunidad(lang)}#tiquismos`}
+          className="tiquismo__perezoso"
+          aria-label={t.tiquismo.verTodos}
+          title={t.tiquismo.verTodos}
+        >
+          <Image
+            src="/fotos/comunidad-perezoso-surf.jpg"
+            alt=""
+            width={160}
+            height={90}
+            sizes="96px"
+          />
+        </Link>
 
         <p className="tiquismo__etiqueta">{t.tiquismo.etiqueta}</p>
 

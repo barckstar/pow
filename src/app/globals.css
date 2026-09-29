@@ -724,6 +724,7 @@ p {
 }
 
 .subseccion__titulo {
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
   font-size: 1.35rem;
   color: var(--color-teal);
   margin: 2.5rem 0 0.9rem;
@@ -3278,6 +3279,49 @@ p {
   border: 1px solid color-mix(in srgb, var(--color-teal) 14%, transparent);
   box-shadow: 0 30px 60px -45px
     color-mix(in srgb, var(--color-tinta) 80%, transparent);
+}
+
+/* El perezoso surfista: sello redondo arriba a la derecha que lleva a /community#tiquismos. */
+.tiquismo__perezoso {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  z-index: 1;
+  width: 4rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #ffffff;
+  box-shadow:
+    0 0 0 2px var(--color-naranja),
+    0 10px 20px -8px color-mix(in srgb, var(--color-tinta) 55%, transparent);
+  transition: transform 0.25s ease;
+}
+
+.tiquismo__perezoso img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 100% 30%;
+}
+
+.tiquismo__perezoso:hover,
+.tiquismo__perezoso:focus-visible {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+@media (min-width: 640px) {
+  .tiquismo__perezoso {
+    top: 1.5rem;
+    right: 1.75rem;
+    width: 5.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tiquismo__perezoso {
+    transition: none;
+  }
 }
 
 .tiquismo__cinta {

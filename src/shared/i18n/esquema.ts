@@ -119,6 +119,7 @@ export const esquemaDiccionario = z
         significa: z.string().min(1),
         ejemplo: z.string().min(1),
         leerMas: z.string().min(1),
+        verTodos: z.string().min(1),
       })
       .strict(),
 
