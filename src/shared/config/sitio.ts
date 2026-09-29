@@ -183,9 +183,10 @@ export const rutas = {
   blog: (l: Idioma) => `/${l}/blog`,
   articulo: (l: Idioma, slug: string) => `/${l}/blog/${slug}`,
   etiqueta: (l: Idioma, tag: string) => `/${l}/blog/tag/${tag}`,
-  precios: (l: Idioma) => `/${l}/precios`,
-  comunidad: (l: Idioma) => `/${l}/comunidad`,
-  reservar: (l: Idioma) => `/${l}/reservar`,
+  precios: (l: Idioma) => `/${l}/pricing`,
+  comunidad: (l: Idioma) => `/${l}/community`,
+  reservar: (l: Idioma) => `/${l}/book`,
+  creditos: (l: Idioma) => `/${l}/credits`,
   /**
    * El formulario de solicitud de inmersión.
    *
@@ -206,5 +207,5 @@ export const rutas = {
    * ==================================================================
    */
   solicitud: (l: Idioma, destino?: string) =>
-    destino ? `/${l}/solicitud/${destino}` : `/${l}/solicitud`,
+    destino ? `/${l}/apply/${destino}` : `/${l}/apply`,
 } as const;

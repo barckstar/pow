@@ -62,7 +62,7 @@ export function Footer({ lang, t }: Props) {
           <h2 className="pie__titulo">{t.footer.legal}</h2>
           <ul>
             <li>
-              <Link href={`/${lang}/creditos`}>{t.footer.creditosFotos}</Link>
+              <Link href={rutas.creditos(lang)}>{t.footer.creditosFotos}</Link>
             </li>
           </ul>
         </div>

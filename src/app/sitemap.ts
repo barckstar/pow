@@ -35,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     rutas.about,
     (l) => rutas.solicitud(l),
     ...DESTINOS.map((d) => (l: Idioma) => rutas.solicitud(l, d.id)),
-    (l) => `/${l}/creditos`,
+    rutas.creditos,
   ];
 
   for (const construir of rutasFijas) {

@@ -27,7 +27,7 @@ Siete de las doce fotografías del sitio vienen de
 [Unsplash](https://unsplash.com) y se descargan con
 `node scripts/descargar-fotos.mjs`. El script deja la autoría de cada una en
 `src/shared/data/creditos-fotos.json`, que es una de las dos listas que pinta
-la página `/creditos`. Las otras cinco son las de clase — siguiente apartado.
+la página `/credits`. Las otras cinco son las de clase — siguiente apartado.
 
 ### Qué permite la Unsplash License
 
@@ -99,7 +99,7 @@ que corre.
 En las cinco hay caras reconocibles. **Ninguno de los dos permisos está por
 escrito todavía.** El cliente pidió publicarlas igual y asumió esa
 responsabilidad; queda anotado aquí, en `PENDIENTE.md` y en el propio dato
-(`"permisoConfirmado": false`), y `/creditos` lo muestra con la etiqueta
+(`"permisoConfirmado": false`), y `/credits` lo muestra con la etiqueta
 amarilla.
 
 Si alguna escuela reclama, la salida es quitar esa foto: la ficha del destino
@@ -167,6 +167,6 @@ herramienta, la fecha y el prompt.
 1. Comprobar la licencia **y el autor** (ojo con Unsplash+).
 2. Verificar que sea el lugar que dice ser.
 3. Añadirla a la lista de `scripts/descargar-fotos.mjs` y volver a correrlo. Eso
-   actualiza `creditos-fotos.json` solo, y con él la página `/creditos`.
+   actualiza `creditos-fotos.json` solo, y con él la página `/credits`.
 4. Escribir el `alt`. En `destinos.json` y en los heroes es **obligatorio por
    esquema**: una foto sin `alt` rompe el build antes de llegar a producción.
