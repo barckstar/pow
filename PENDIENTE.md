@@ -30,6 +30,13 @@ Un hueco visible se arregla. Uno invisible se publica.
 | **Toda la página «Quiénes somos»** | `paginas.about` en los diccionarios activos | Creada el 23/09/2026 con contenido **inventado**, a pedido explícito del cliente: «aun no tenemos informacion asi que puedes inventar». La página lo dice al pie con su propio aviso de pendiente. Reemplazar es traducir el mismo bloque de claves en `en.json`, `de.json` y `fr.json` — la estructura ya está |
 | **Foto de San José** | `foto` de `san-jose` en `destinos.json` | El cliente pidió usar una imagen suya de un edificio del centro de San José el 23/09/2026, pero el archivo no llegó a guardarse en el disco de esta sesión — no se pudo procesar. Sigue apuntando a `calle-san-jose.jpg`. Falta que la reenvíe |
 
+**Reservar sin Calendly (28/09/2026).** `/reservar` es ahora un formulario de
+contacto: Chris llama y agenda a mano. Captcha Cloudflare Turnstile, correo
+por Resend desde un Server Action (`features/reservas/actions.ts`). Faltan las
+claves reales en el hosting (ver `env.example`), el correo de Chris como
+`CORREO_DESTINO` y un aviso de privacidad —el checkbox de consentimiento ya
+está, la página no—. Calendly sigue en el repo, apagado.
+
 ## 1.1 Tres correcciones textuales que contradicen otro contenido del sitio
 
 El cliente pidió estos tres cambios de texto y se aplicaron **tal cual los

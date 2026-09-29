@@ -3324,7 +3324,8 @@ p {
 }
 
 .solicitud__campo input,
-.solicitud__campo select {
+.solicitud__campo select,
+.solicitud__campo textarea {
   font: inherit;
   /* Sin esto, un `<select>` se ensancha hasta caber su opción más larga y se
      lleva por delante la rejilla en un teléfono. */
@@ -3338,12 +3339,14 @@ p {
 }
 
 .solicitud__campo input:hover,
-.solicitud__campo select:hover {
+.solicitud__campo select:hover,
+.solicitud__campo textarea:hover {
   border-color: color-mix(in srgb, var(--color-teal) 45%, transparent);
 }
 
 .solicitud__campo input:focus-visible,
-.solicitud__campo select:focus-visible {
+.solicitud__campo select:focus-visible,
+.solicitud__campo textarea:focus-visible {
   border-color: var(--color-naranja);
 }
 
@@ -3369,6 +3372,60 @@ p {
   margin-top: 1rem;
   font-size: 0.85rem;
   color: color-mix(in srgb, var(--color-tinta) 66%, transparent);
+}
+
+/* Formulario de /reservar: opciones, consentimiento, trampa y error. */
+.solicitud__opciones {
+  border: 0;
+  padding: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.solicitud__opciones legend {
+  flex-basis: 100%;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-teal);
+  margin-bottom: 0.5rem;
+  padding: 0;
+}
+
+.solicitud__radio {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.95rem;
+  color: var(--color-tinta);
+}
+
+.solicitud__radio input {
+  margin-top: 0.25rem;
+  accent-color: var(--color-teal);
+}
+
+.solicitud__consentimiento {
+  margin: 0 0 1.25rem;
+  font-size: 0.85rem;
+}
+
+.solicitud__trampa {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.solicitud__error {
+  margin: 1rem 0;
+  color: var(--color-naranja);
+  font-weight: 600;
+}
+
+.solicitud .cf-turnstile {
+  margin-bottom: 1.25rem;
 }
 
 /* ==========================================================================
@@ -3996,5 +4053,399 @@ p {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   /RESERVAR — tarjeta de contacto sobre el hero
+   --------------------------------------------------------------------------
+   Todo lo que se mueve anima solo `transform` y `opacity`. El bloque global de
+   `prefers-reduced-motion` recorta las duraciones a casi cero.
+   ========================================================================== */
+
+.reserva {
+  padding: 0 1.25rem 5rem;
+}
+
+.reserva__tarjeta {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  max-width: 62rem;
+  margin: -6rem auto 0;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  background-color: #ffffff;
+  box-shadow:
+    0 2px 6px color-mix(in srgb, var(--color-tinta) 8%, transparent),
+    0 28px 60px -20px color-mix(in srgb, var(--color-teal) 45%, transparent);
+  animation: reserva-entrada 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (min-width: 900px) {
+  .reserva__tarjeta {
+    grid-template-columns: 19rem 1fr;
+  }
+}
+
+@keyframes reserva-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Panel lateral: teal con un velo de dorado en la esquina. Blanco y crema
+   sobre teal, los mismos pares ya medidos del hero. */
+.reserva__lateral {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2.5rem 1.75rem;
+  text-align: center;
+  color: var(--color-crema);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(in srgb, var(--color-dorado) 32%, transparent),
+      transparent 55%
+    ),
+    var(--color-teal);
+}
+
+.reserva__lateral p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.reserva__lateral-titulo {
+  margin: 0.4rem 0 0;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+.reserva__foto {
+  width: 7.5rem;
+  height: 7.5rem;
+  object-fit: cover;
+  object-position: 50% 18%;
+  border-radius: 50%;
+  border: 4px solid color-mix(in srgb, #ffffff 85%, transparent);
+  box-shadow: 0 12px 28px -8px rgb(0 0 0 / 0.4);
+  animation: reserva-flotar 6s ease-in-out infinite;
+}
+
+@keyframes reserva-flotar {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.reserva__flor {
+  position: absolute;
+  bottom: -2.5rem;
+  left: -2.5rem;
+  width: 10rem;
+  height: 10rem;
+  color: color-mix(in srgb, #ffffff 14%, transparent);
+  pointer-events: none;
+  animation: reserva-giro 60s linear infinite;
+}
+
+.reserva__flor svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes reserva-giro {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.reserva__formulario {
+  padding: 2rem 1.5rem 2.25rem;
+}
+
+@media (min-width: 640px) {
+  .reserva__formulario {
+    padding: 2.75rem 2.75rem 2.5rem;
+  }
+}
+
+/* Campos: entran escalonados, uno tras otro. */
+.reserva .solicitud__campos {
+  margin-top: 0;
+}
+
+.reserva .solicitud__campos > * {
+  animation: reserva-campo 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reserva .solicitud__campos > :nth-child(1) { animation-delay: 0.25s; }
+.reserva .solicitud__campos > :nth-child(2) { animation-delay: 0.32s; }
+.reserva .solicitud__campos > :nth-child(3) { animation-delay: 0.39s; }
+.reserva .solicitud__campos > :nth-child(4) { animation-delay: 0.46s; }
+.reserva .solicitud__campos > :nth-child(5) { animation-delay: 0.53s; }
+.reserva .solicitud__campos > :nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes reserva-campo {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Entradas rellenas, sin caja dura; el foco las enciende con un halo naranja. */
+.reserva .solicitud__campo input,
+.reserva .solicitud__campo select,
+.reserva .solicitud__campo textarea {
+  background-color: color-mix(in srgb, var(--color-crema) 60%, #ffffff);
+  border: 1.5px solid transparent;
+  border-radius: 0.9rem;
+  padding: 0.8rem 1rem;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-teal) 18%, transparent);
+  transition:
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.reserva .solicitud__campo input:hover,
+.reserva .solicitud__campo select:hover,
+.reserva .solicitud__campo textarea:hover {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-teal) 42%, transparent);
+}
+
+.reserva .solicitud__campo input:focus-visible,
+.reserva .solicitud__campo select:focus-visible,
+.reserva .solicitud__campo textarea:focus-visible {
+  outline: none;
+  background-color: #ffffff;
+  box-shadow:
+    inset 0 0 0 1.5px var(--color-naranja),
+    0 0 0 4px color-mix(in srgb, var(--color-naranja) 16%, transparent);
+}
+
+/* Modalidad: tres píldoras; la elegida se rellena de teal. */
+.reserva .solicitud__opciones {
+  gap: 0.6rem;
+}
+
+.reserva .solicitud__opciones .solicitud__radio {
+  flex: 1 1 8rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--color-teal);
+  background-color: color-mix(in srgb, var(--color-crema) 60%, #ffffff);
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--color-teal) 22%, transparent);
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.reserva .solicitud__opciones .solicitud__radio:hover {
+  transform: translateY(-2px);
+}
+
+.reserva .solicitud__opciones .solicitud__radio:has(input:checked) {
+  color: #ffffff;
+  background-color: var(--color-teal);
+  box-shadow: 0 10px 22px -10px var(--color-teal);
+}
+
+.reserva .solicitud__opciones .solicitud__radio:has(input:focus-visible) {
+  box-shadow:
+    inset 0 0 0 1.5px var(--color-naranja),
+    0 0 0 4px color-mix(in srgb, var(--color-naranja) 16%, transparent);
+}
+
+/* El círculo del radio sobra: la píldora ya dice cuál está elegida. */
+.reserva .solicitud__opciones .solicitud__radio input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reserva .solicitud__opciones .solicitud__radio {
+  position: relative;
+}
+
+/* Botón: ancho completo en móvil, con una flecha que avanza al pasar. */
+.reserva .solicitud button[type="submit"] {
+  width: 100%;
+  padding-block: 0.95rem;
+  font-size: 1.05rem;
+  border-radius: 999px;
+  box-shadow: 0 14px 28px -12px var(--color-naranja);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.reserva .solicitud button[type="submit"]::after {
+  content: "→";
+  display: inline-block;
+  margin-left: 0.6rem;
+  transition: transform 180ms ease;
+}
+
+.reserva .solicitud button[type="submit"]:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 32px -12px var(--color-naranja);
+}
+
+.reserva .solicitud button[type="submit"]:hover:not([disabled])::after {
+  transform: translateX(5px);
+}
+
+/* Enviando: no es «deshabilitado por no estar conectado», solo espera. */
+.reserva .solicitud button[disabled] {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+/* En móvil el panel es una banda compacta: foto a un lado, texto al otro. Si
+   no, empuja el formulario una pantalla entera hacia abajo. */
+@media (max-width: 899px) {
+  .reserva__lateral {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1rem;
+    row-gap: 0.15rem;
+    align-items: center;
+    padding: 1.25rem 1.25rem;
+    text-align: left;
+  }
+
+  .reserva__foto {
+    grid-row: 1 / span 2;
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .reserva__lateral-titulo {
+    margin: 0;
+    font-size: 1.1rem;
+    align-self: end;
+  }
+
+  .reserva__lateral p {
+    font-size: 0.85rem;
+    align-self: start;
+  }
+}
+
+/* Panel lateral: línea divisoria y los dos destinos. */
+.reserva__linea {
+  width: 100%;
+  margin: 1rem 0 0.5rem;
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-dorado-texto) 70%, transparent),
+    transparent
+  );
+}
+
+.reserva__lateral-titulo--lugares {
+  font-size: 1.05rem;
+  color: var(--color-dorado-texto);
+}
+
+.reserva__lugares {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reserva__lugar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  text-align: left;
+  text-decoration: none;
+  color: var(--color-crema);
+  border-radius: 1rem;
+  background-color: color-mix(in srgb, #ffffff 10%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff 16%, transparent);
+  transition:
+    transform 200ms ease,
+    background-color 200ms ease;
+}
+
+.reserva__lugar:hover,
+.reserva__lugar:focus-visible {
+  transform: translateY(-2px) translateX(2px);
+  background-color: color-mix(in srgb, #ffffff 18%, transparent);
+}
+
+.reserva__lugar-foto {
+  flex: none;
+  width: 3.4rem;
+  height: 3.4rem;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.reserva__lugar-texto {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.reserva__lugar-texto strong {
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.reserva__lugar-texto span {
+  font-size: 0.78rem;
+}
+
+.reserva__mas {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-dorado-texto);
+}
+
+.reserva .solicitud__campos > :nth-child(7) { animation-delay: 0.67s; }
+.reserva .solicitud__campos > :nth-child(8) { animation-delay: 0.74s; }
+.reserva .solicitud__campos > :nth-child(9) { animation-delay: 0.81s; }
+.reserva .solicitud__campos > :nth-child(10) { animation-delay: 0.88s; }
+
+/* En móvil los destinos se quedan fuera: la banda compacta no los aguanta y
+   el formulario es lo que importa ahí. */
+@media (max-width: 899px) {
+  .reserva__linea,
+  .reserva__lateral-titulo--lugares,
+  .reserva__lugares,
+  .reserva__mas {
+    display: none;
   }
 }

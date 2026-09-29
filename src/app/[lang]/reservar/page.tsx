@@ -3,10 +3,16 @@ import { notFound } from "next/navigation";
 import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
-import { rutas, ZONA_PROFESOR } from "@/shared/config/sitio";
+import { rutas } from "@/shared/config/sitio";
 import { SEO } from "@/shared/config/seo";
-import { Calendly } from "@/features/reservas/components/Calendly";
-import { CLASES } from "@/features/reservas/esquema";
+import { FormularioReserva } from "@/features/reservas/components/FormularioReserva";
+import { OPCIONES } from "@/features/solicitud/esquema";
+import Image from "next/image";
+import Link from "next/link";
+import { DESTINOS } from "@/features/destinos/esquema";
+import { PROFESORES } from "@/features/online/esquemaProfesores";
+import { FranjaHero } from "@/shared/components/ui/FranjaHero";
+import { Hibisco, Lapa } from "@/shared/components/ui/Decorados";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 
 export function generateStaticParams() {
@@ -55,84 +61,86 @@ export default async function PaginaReservar({
   const t = await getDiccionario(idioma);
   const r = t.reserva;
 
-  const pasos = [
-    { titulo: r.paso1Titulo, texto: r.paso1Texto },
-    { titulo: r.paso2Titulo, texto: r.paso2Texto },
-    { titulo: r.paso3Titulo, texto: r.paso3Texto },
-  ];
+  const profe = PROFESORES[0];
 
   return (
-    <section className="seccion con-adornos">
-      <DecoradosSeccion variante="reservar" />
+    <>
+      <FranjaHero
+        insignia={r.insignia}
+        titulo={r.titulo}
+        subtitulo={r.intro}
+        decoracion={<Lapa />}
+      />
 
       {/*
-        La columna ANCHA, no la estrecha.
-
-        El texto sigue midiendo lo de siempre —lo envuelve `reservar__texto`—
-        pero el calendario necesita sitio: Calendly pone el mes y la lista de
-        horas uno al lado del otro a partir de unos 1000 px, y por debajo los
-        apila y mete su propio scroll dentro de un hueco pequeño. En la columna
-        de 47 rem no cabía y se veía una ventanita con barra de desplazamiento.
+        La tarjeta SUBE sobre el final del hero (margen negativo): el degradado
+        teal→crema pasa por detrás y el formulario queda «dentro» del hero en
+        vez de empezar después de él. Es lo que le quita el aspecto de hoja
+        plana.
       */}
-      <div className="seccion__interior">
-        <div className="reservar__texto">
-          <h1 className="seccion__titulo">{r.titulo}</h1>
-          <p className="seccion__intro">{r.intro}</p>
+      <section className="reserva con-adornos">
+        <DecoradosSeccion variante="reservar" />
 
-          <ol className="pasos">
-            {pasos.map((paso, indice) => (
-              <li key={paso.titulo} className="paso">
-                <span className="paso__numero" aria-hidden="true">
-                  {indice + 1}
-                </span>
-                <div>
-                  <h2 className="paso__titulo">{paso.titulo}</h2>
-                  <p>{paso.texto}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        {/*
-          Sin cuenta de Calendly no se pinta un calendario de mentira: se dice
-          que no se puede reservar todavía. Es la misma regla que el resto del
-          sitio — un hueco visible se arregla, uno invisible se publica.
-        */}
-        {CLASES.length > 0 ? (
-          <>
-            {CLASES.length > 1 ? (
-              <h2 className="seccion__titulo reservar__texto">
-                {r.duracionTitulo}
-              </h2>
+        <div className="reserva__tarjeta">
+          <aside className="reserva__lateral">
+            <span className="reserva__flor" aria-hidden="true">
+              <Hibisco />
+            </span>
+            {profe?.foto ? (
+              <Image
+                src={profe.foto}
+                alt={profe.nombre}
+                width={160}
+                height={160}
+                className="reserva__foto"
+                sizes="120px"
+              />
             ) : null}
+            <h2 className="reserva__lateral-titulo">{r.paso2Titulo}</h2>
+            <p>{r.paso2Texto}</p>
 
-            <Calendly
-              clases={CLASES}
+            <hr className="reserva__linea" />
+
+            <h2 className="reserva__lateral-titulo reserva__lateral-titulo--lugares">
+              {r.lugaresTitulo}
+            </h2>
+            <ul className="reserva__lugares">
+              {DESTINOS.slice(0, 2).map((d) => (
+                <li key={d.id}>
+                  <Link href={rutas.solicitud(idioma, d.id)} className="reserva__lugar">
+                    <Image
+                      src={d.foto}
+                      alt=""
+                      width={120}
+                      height={120}
+                      sizes="60px"
+                      className="reserva__lugar-foto"
+                    />
+                    <span className="reserva__lugar-texto">
+                      <strong>{d.nombre}</strong>
+                      <span>{d.zona}</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link href={rutas.costaRica(idioma)} className="reserva__mas">
+              {r.lugaresEnlace} →
+            </Link>
+          </aside>
+
+          <div className="reserva__formulario">
+            <FormularioReserva
               lang={idioma}
-              avisoTerceros={r.avisoTerceros}
-              titulo={r.tituloWidget}
-              textoDuracion={r.duracionMin}
-              textoCambiar={r.duracionCambiar}
-              textoCargando={r.cargando}
-              textoAlternativa={r.alternativa}
-              textoAlternativaEnlace={r.alternativaEnlace}
+              t={r.form}
+              motivos={OPCIONES.motivo.map((o) => ({
+                id: o.id,
+                etiqueta: o.etiqueta[idioma],
+              }))}
             />
-          </>
-        ) : (
-          <div className="aviso-pendiente reservar__texto">
-            <p className="aviso-pendiente__titulo">
-              <span className="pendiente">{t.pendiente.etiqueta}</span>
-              <span>{r.pendienteTitulo}</span>
-            </p>
-            <p>{r.pendienteTexto}</p>
           </div>
-        )}
-
-        <p className="dato-zona reservar__texto">
-          <strong>{r.zonaHoraria}:</strong> {ZONA_PROFESOR.replace(/_/g, " ")}
-        </p>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }

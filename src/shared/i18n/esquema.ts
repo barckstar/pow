@@ -179,6 +179,48 @@ export const esquemaDiccionario = z
         zonaHoraria: z.string().min(1),
         deposito: z.string().min(1),
         depositoTexto: z.string().min(1),
+        /** El chip del `FranjaHero`. */
+        insignia: z.string().min(1),
+        /** Encabeza los dos destinos del panel lateral. */
+        lugaresTitulo: z.string().min(1),
+        lugaresEnlace: z.string().min(1),
+        /* El formulario de contacto que sustituye al calendario. */
+        form: z
+          .object({
+            nivel: z.string().min(1),
+            nivelCero: z.string().min(1),
+            nivelBasico: z.string().min(1),
+            nivelMedio: z.string().min(1),
+            nivelAvanzado: z.string().min(1),
+            preferencia: z.string().min(1),
+            prefWhatsapp: z.string().min(1),
+            prefLlamada: z.string().min(1),
+            prefCorreo: z.string().min(1),
+            pais: z.string().min(1),
+            hora: z.string().min(1),
+            horaManana: z.string().min(1),
+            horaTarde: z.string().min(1),
+            horaNoche: z.string().min(1),
+            nombre: z.string().min(1),
+            telefono: z.string().min(1),
+            correo: z.string().min(1),
+            motivo: z.string().min(1),
+            elegir: z.string().min(1),
+            modalidad: z.string().min(1),
+            online: z.string().min(1),
+            costaRica: z.string().min(1),
+            noSe: z.string().min(1),
+            mensaje: z.string().min(1),
+            consentimiento: z.string().min(1),
+            enviar: z.string().min(1),
+            enviando: z.string().min(1),
+            gracias: z.string().min(1),
+            graciasTexto: z.string().min(1),
+            errorInvalido: z.string().min(1),
+            errorCaptcha: z.string().min(1),
+            errorEnvio: z.string().min(1),
+          })
+          .strict(),
       })
       .strict(),
 
