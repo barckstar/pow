@@ -160,19 +160,19 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
   },
   precios: {
     en: {
-      titulo: "Lesson pricing",
+      titulo: "Spanish lesson packages and prices",
       descripcion:
-        "Pricing for online and in-person Spanish lessons, and for the booking deposit. No invented figures while they are not confirmed.",
+        "Clear prices for individual, couples and family, and group Spanish courses, plus conversation lessons and Spanish support for school students.",
     },
     de: {
-      titulo: "Preise für den Unterricht",
+      titulo: "Spanischkurse: Pakete und Preise",
       descripcion:
-        "Preise für Online- und Präsenzunterricht sowie für die Buchungsanzahlung. Keine erfundenen Zahlen, solange sie nicht bestätigt sind.",
+        "Klare Preise für Einzel-, Paar- und Familien- sowie Gruppenkurse in Spanisch, dazu Konversationsstunden und Spanischhilfe für Schülerinnen und Schüler.",
     },
     fr: {
-      titulo: "Tarifs des cours",
+      titulo: "Cours d'espagnol : forfaits et tarifs",
       descripcion:
-        "Tarifs des cours d'espagnol en ligne et en présentiel, et de l'acompte de réservation. Aucun chiffre inventé tant qu'il n'est pas confirmé.",
+        "Tarifs clairs pour les cours d'espagnol individuels, en couple, en famille et collectifs, plus les cours de conversation et le soutien scolaire.",
     },
   },
   comunidad: {
@@ -190,6 +190,29 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
       titulo: "Communauté et groupes de conversation",
       descripcion:
         "Groupes de conversation, réseaux sociaux de l'école et archive complète des tiquismos : expressions costariciennes expliquées une à une.",
+    },
+  },
+  /*
+   * Página del 23/10/2026. El título y la descripción del cliente se acortaron:
+   * «Volunteer in Costa Rica | Spanish Learning & Community Projects» ya mide
+   * 63 y el sufijo « | Costa Rica Spanish» le suma 21 — pasaba de 65. Y su
+   * descripción mide 176 contra un máximo de 165. Se dice lo mismo con menos.
+   */
+  voluntariado: {
+    en: {
+      titulo: "Volunteer in Costa Rica & Learn Spanish",
+      descripcion:
+        "Volunteer in Costa Rica: wildlife conservation, beach cleanups and community wellbeing, while you connect with local culture and learn Spanish.",
+    },
+    de: {
+      titulo: "Freiwilligenarbeit in Costa Rica",
+      descripcion:
+        "Freiwilligenarbeit in Costa Rica: Tierschutz, Strandreinigung und Gemeinschaftsprojekte – und nebenbei Spanisch lernen und die Kultur kennenlernen.",
+    },
+    fr: {
+      titulo: "Bénévolat au Costa Rica",
+      descripcion:
+        "Bénévolat au Costa Rica : protection de la faune, nettoyage de plages et bien-être des communautés, en découvrant la culture locale et en apprenant l'espagnol.",
     },
   },
   creditos: {

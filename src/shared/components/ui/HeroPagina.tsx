@@ -49,6 +49,7 @@ export function HeroPagina({
   subtitulo,
   cta,
   prioridad = true,
+  encuadre = "completo",
 }: {
   foto: string;
   fotoAlt: string;
@@ -57,9 +58,26 @@ export function HeroPagina({
   subtitulo: string;
   cta?: { href: string; texto: string };
   prioridad?: boolean;
+  /**
+   * `completo`: la foto cubre todo el hero y el velo de crema tapa su mitad
+   * izquierda, que es donde va el texto. Sirve cuando el motivo de la foto
+   * está a la derecha.
+   *
+   * `derecha`: la foto ocupa solo el lado derecho y se funde con la crema por
+   * su borde izquierdo. Para fotos cuyo motivo está más a la izquierda —el
+   * perezoso de `/volunteer` queda entre el 25 y el 45 % del ancho—, que con
+   * el velo completo se quedaba escondido bajo la crema.
+   */
+  encuadre?: "completo" | "derecha";
 }) {
   return (
-    <section className="hero-pagina">
+    <section
+      className={
+        encuadre === "derecha"
+          ? "hero-pagina hero-pagina--derecha"
+          : "hero-pagina"
+      }
+    >
       <div className="hero-pagina__foto">
         <Image
           src={foto}

@@ -40,10 +40,10 @@
       "fr": "À quelle heure ont lieu les cours en ligne ?"
     },
     "respuesta": {
-      "en": "The teacher lives in Switzerland, so there are slots that work for both Europe and the Americas. On the booking page, times are always shown in your own time zone and in Costa Rica's, so there is no confusion. One thing to watch: Europe changes the clocks twice a year and Costa Rica never does, so the difference between them is not fixed.",
-      "es": "El profesor vive en Suiza, así que hay franjas que funcionan tanto para Europa como para América. En la página de reserva los horarios se muestran siempre en tu zona horaria y en la de Costa Rica, para que no haya malentendidos. Ojo con una cosa: Europa cambia la hora dos veces al año y Costa Rica no, así que la diferencia entre ambas no es fija.",
-      "de": "Der Lehrer lebt in der Schweiz, deshalb gibt es Termine, die sowohl für Europa als auch für Amerika passen. Auf der Buchungsseite werden die Zeiten immer in deiner eigenen Zeitzone und in der von Costa Rica angezeigt, damit es keine Missverständnisse gibt. Eine Sache ist zu beachten: Europa stellt die Uhr zweimal im Jahr um, Costa Rica nie — der Unterschied zwischen beiden ist also nicht fest.",
-      "fr": "Le professeur vit en Suisse, il y a donc des créneaux adaptés aussi bien à l'Europe qu'aux Amériques. Sur la page de réservation, les horaires s'affichent toujours dans ton propre fuseau horaire et dans celui du Costa Rica, pour éviter toute confusion. Attention à un détail : l'Europe change d'heure deux fois par an, le Costa Rica jamais — la différence entre les deux n'est donc pas fixe."
+      "en": "We have Costa Rican teachers both in Europe and Latin America to better fit your time zone needs. Flexible schedules are always a plus to balance your learning and life.",
+      "es": "Tenemos profesores costarricenses tanto en Europa como en Latinoamérica para adaptarnos mejor a tu zona horaria. Los horarios flexibles siempre ayudan a equilibrar el aprendizaje y la vida.",
+      "de": "Wir haben costa-ricanische Lehrkräfte sowohl in Europa als auch in Lateinamerika, damit der Unterricht besser zu deiner Zeitzone passt. Flexible Zeiten helfen dir immer, Lernen und Alltag in Balance zu halten.",
+      "fr": "Nous avons des professeurs costariciens en Europe comme en Amérique latine, pour mieux nous adapter à ton fuseau horaire. Des horaires flexibles sont toujours un atout pour concilier apprentissage et vie quotidienne."
     },
     "pendiente": false
   },
@@ -72,12 +72,12 @@
       "fr": "Où ont lieu les cours en présentiel ?"
     },
     "respuesta": {
-      "en": "In Manuel Antonio, on the Pacific coast, and in La Fortuna, at the foot of the Arenal Volcano. The exact venues are not confirmed yet: we would rather say so than give an address that changes later.",
-      "es": "En Manuel Antonio, en la costa del Pacífico, y en La Fortuna, a los pies del Volcán Arenal. Las sedes exactas todavía no están confirmadas: preferimos decirlo a dar una dirección que después cambie.",
-      "de": "In Manuel Antonio an der Pazifikküste und in La Fortuna am Fuß des Vulkans Arenal. Die genauen Standorte stehen noch nicht fest: Wir sagen das lieber offen, statt eine Adresse zu nennen, die sich später ändert.",
-      "fr": "À Manuel Antonio, sur la côte Pacifique, et à La Fortuna, au pied du volcan Arenal. Les lieux exacts ne sont pas encore confirmés : on préfère le dire plutôt que de donner une adresse qui changerait ensuite."
+      "en": "Whether you prefer a relaxing learning experience at the beach in Manuel Antonio or Samara, a jungle adventure in Arenal, or exploring the authentic pura vida experience in the capital city of San Jose — we've got you covered.",
+      "es": "Ya sea que prefieras aprender con calma en la playa de Manuel Antonio o Sámara, vivir una aventura en la selva de Arenal o explorar la auténtica pura vida en la capital, San José, te tenemos cubierto.",
+      "de": "Ob du am liebsten entspannt am Strand von Manuel Antonio oder Samara lernst, ein Dschungelabenteuer in Arenal erlebst oder das authentische Pura-Vida-Gefühl in der Hauptstadt San José erkundest – wir haben das Passende für dich.",
+      "fr": "Que tu préfères apprendre en toute détente sur la plage à Manuel Antonio ou à Samara, vivre une aventure dans la jungle à Arenal, ou découvrir l'authentique pura vida dans la capitale, San José, on a ce qu'il te faut."
     },
-    "pendiente": true
+    "pendiente": false
   },
   {
     "id": "como-se-paga",
@@ -88,10 +88,10 @@
       "fr": "Comment paie-t-on ?"
     },
     "respuesta": {
-      "en": "You hold the lesson with a PayPal deposit and settle the rest directly with the teacher. The deposit amount and the lesson prices are not published yet.",
-      "es": "La clase se aparta con un depósito por PayPal y el resto se arregla directamente con el profesor. El monto del depósito y el precio de las clases todavía no están publicados.",
-      "de": "Die Stunde wird mit einer Anzahlung per PayPal gesichert, den Rest regelt man direkt mit dem Lehrer. Die Höhe der Anzahlung und die Preise der Stunden sind noch nicht veröffentlicht.",
-      "fr": "Le cours est réservé avec un acompte via PayPal, et le reste se règle directement avec le professeur. Le montant de l'acompte et le prix des cours ne sont pas encore publiés."
+      "en": "You hold the lesson with a PayPal deposit and settle the rest directly with the teacher. The deposit amount is not published yet; the course prices are on the Packages page.",
+      "es": "La clase se aparta con un depósito por PayPal y el resto se arregla directamente con el profesor. El monto del depósito todavía no está publicado; los precios de los cursos están en la página de paquetes.",
+      "de": "Die Stunde wird mit einer Anzahlung per PayPal gesichert, den Rest regelt man direkt mit dem Lehrer. Die Höhe der Anzahlung ist noch nicht veröffentlicht; die Kurspreise stehen auf der Seite „Pakete“.",
+      "fr": "Le cours est réservé avec un acompte via PayPal, et le reste se règle directement avec le professeur. Le montant de l'acompte n'est pas encore publié ; les tarifs des cours sont sur la page « Forfaits »."
     },
     "pendiente": true
   },
@@ -120,11 +120,11 @@
       "fr": "Les cours sont-ils individuels ou en groupe ?"
     },
     "respuesta": {
-      "en": "For now booking is set up for one-to-one lessons. Whether there will be conversation groups, and in what format, is not settled yet.",
-      "es": "Por ahora la reserva está pensada para clases individuales. Si habrá grupos de conversación y con qué formato es algo que aún no está cerrado.",
-      "de": "Im Moment ist die Buchung für Einzelunterricht ausgelegt. Ob es Gesprächsgruppen geben wird und in welchem Format, steht noch nicht fest.",
-      "fr": "Pour l'instant, la réservation est conçue pour des cours individuels. La question de savoir s'il y aura des groupes de conversation, et sous quelle forme, n'est pas encore tranchée."
+      "en": "Both. There are individual courses, courses for couples and families, and group courses of up to 10 students, which depend on group availability. See the Packages page for the details and prices.",
+      "es": "Las dos cosas. Hay cursos individuales, cursos para parejas y familias, y cursos en grupo de hasta 10 estudiantes, que dependen de la disponibilidad de cada grupo. En la página de paquetes están los detalles y los precios.",
+      "de": "Beides. Es gibt Einzelkurse, Kurse für Paare und Familien sowie Gruppenkurse mit bis zu 10 Teilnehmenden, die von der Verfügbarkeit der Gruppen abhängen. Details und Preise findest du auf der Seite „Pakete“.",
+      "fr": "Les deux. Il y a des cours individuels, des cours en couple et en famille, et des cours collectifs de 10 élèves maximum, qui dépendent de la disponibilité des groupes. Les détails et les tarifs sont sur la page « Forfaits »."
     },
-    "pendiente": true
+    "pendiente": false
   }
 ]

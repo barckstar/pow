@@ -1,0 +1,42 @@
+[
+  {
+    "id": "fauna",
+    "etiqueta": {
+      "en": "Wildlife and animal conservation",
+      "de": "Tier- und Artenschutz",
+      "fr": "Protection de la faune et des animaux"
+    }
+  },
+  {
+    "id": "playas",
+    "etiqueta": {
+      "en": "Beach cleaning and environmental protection",
+      "de": "Strandreinigung und Umweltschutz",
+      "fr": "Nettoyage des plages et protection de l'environnement"
+    }
+  },
+  {
+    "id": "bienestar",
+    "etiqueta": {
+      "en": "Mental health and wellbeing",
+      "de": "Psychische Gesundheit und Wohlbefinden",
+      "fr": "Santé mentale et bien-être"
+    }
+  },
+  {
+    "id": "social",
+    "etiqueta": {
+      "en": "Social assistance and community support",
+      "de": "Soziale Hilfe und Unterstützung der Gemeinschaft",
+      "fr": "Aide sociale et soutien à la communauté"
+    }
+  },
+  {
+    "id": "otro",
+    "etiqueta": {
+      "en": "Other",
+      "de": "Sonstiges",
+      "fr": "Autre"
+    }
+  }
+]

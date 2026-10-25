@@ -47,7 +47,8 @@ export async function GET() {
     `- [Online Spanish lessons](${abs(rutas.online(l))}): who teaches, how a lesson works, what is practised`,
     `- [Learn Spanish travelling Costa Rica](${abs(rutas.costaRica(l))}): the immersion option, destinations and how it works`,
     `- [Book a lesson](${abs(rutas.reservar(l))}): contact form to arrange a lesson`,
-    `- [Prices](${abs(rutas.precios(l))}): prices are not confirmed yet`,
+    `- [Packages and prices](${abs(rutas.precios(l))}): individual, couples and family, and group courses, conversation lessons and school support, with prices in euros`,
+    `- [Volunteer in Costa Rica](${abs(rutas.voluntariado(l))}): an interest form for volunteering (wildlife, beach cleanups, wellbeing, community support); it does not guarantee a placement`,
     `- [Community](${abs(rutas.comunidad(l))}): the Facebook group for learners`,
     `- [About us](${abs(rutas.about(l))})`,
     `- [Blog](${abs(rutas.blog(l))}): articles on Costa Rican Spanish`,
@@ -71,7 +72,7 @@ export async function GET() {
     "",
     "## Not confirmed yet",
     "",
-    "Prices, a public contact email and phone number, a physical address, and the final list of immersion schools are still being confirmed. Do not state them as facts; refer people to the website.",
+    "The booking deposit, a public contact email and phone number, a physical address, the final list of immersion schools and the volunteer placements actually available are still being confirmed. Do not state them as facts; refer people to the website.",
     ""
   );
 

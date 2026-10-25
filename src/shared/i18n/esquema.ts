@@ -44,6 +44,8 @@ export const esquemaDiccionario = z
         blog: z.string().min(1),
         precios: z.string().min(1),
         comunidad: z.string().min(1),
+        /** Página nueva, agregada el 23/10/2026 a pedido del cliente. */
+        voluntariado: z.string().min(1),
         reservar: z.string().min(1),
         abrirMenu: z.string().min(1),
         cerrarMenu: z.string().min(1),
@@ -67,6 +69,8 @@ export const esquemaDiccionario = z
         ctaPresencial: z.string().min(1),
         /** CTA de reserva para el resto de páginas. */
         ctaReservar: z.string().min(1),
+        /** El botón de la clase de prueba gratis, sobre la foto del hero. */
+        ctaDemo: z.string().min(1),
         insignia: z.string().min(1),
       })
       .strict(),
@@ -344,7 +348,19 @@ export const esquemaDiccionario = z
             heroInsignia: z.string().min(1),
             titulo: z.string().min(1),
             intro: z.string().min(1),
-            sinPrecios: z.string().min(1),
+            /** «clase» / «clases», tras el número de cada opción. */
+            clase: z.string().min(1),
+            clases: z.string().min(1),
+            /** La tabla comparativa del final. */
+            comparacionTitulo: z.string().min(1),
+            colCurso: z.string().min(1),
+            colClases: z.string().min(1),
+            colPrecio: z.string().min(1),
+            /** Lo único de dinero que sigue sin confirmar: el depósito. */
+            depositoPendiente: z.string().min(1),
+            /** El cierre, con el botón de la clase de prueba. */
+            demoTitulo: z.string().min(1),
+            demoTexto: z.string().min(1),
           })
           .strict(),
         comunidad: z
@@ -428,6 +444,61 @@ export const esquemaDiccionario = z
             cierreCta: z.string().min(1),
             /** El aviso de que esta página es un primer boceto. */
             cierrePendiente: z.string().min(1),
+          })
+          .strict(),
+        /**
+         * Voluntariado, agregada el 23/10/2026. El texto lo escribió el cliente
+         * (la introducción) y el resto sale de sus notas: nada de lo que dice
+         * esta página promete un puesto, y eso es deliberado — ver `salvaguarda`.
+         */
+        voluntariado: z
+          .object({
+            hero: esquemaHeroPagina,
+            /** El botón del hero: baja hasta el formulario. */
+            cta: z.string().min(1),
+            introTitulo: z.string().min(1),
+            intro1: z.string().min(1),
+            intro2: z.string().min(1),
+            intro3: z.string().min(1),
+            introCierre: z.string().min(1),
+            /** La cita de la cifra de biodiversidad. */
+            fuente: z.string().min(1),
+            areasTitulo: z.string().min(1),
+            areasIntro: z.string().min(1),
+            pasosTitulo: z.string().min(1),
+            paso1Titulo: z.string().min(1),
+            paso1Texto: z.string().min(1),
+            paso2Titulo: z.string().min(1),
+            paso2Texto: z.string().min(1),
+            paso3Titulo: z.string().min(1),
+            paso3Texto: z.string().min(1),
+            /** Lo que NO se promete: puesto garantizado y reglas de cada entidad. */
+            salvaguarda: z.string().min(1),
+            formTitulo: z.string().min(1),
+            formIntro: z.string().min(1),
+            form: z
+              .object({
+                requeridos: z.string().min(1),
+                nombre: z.string().min(1),
+                correo: z.string().min(1),
+                edad: z.string().min(1),
+                edadAyuda: z.string().min(1),
+                telefono: z.string().min(1),
+                intereses: z.string().min(1),
+                interesesAyuda: z.string().min(1),
+                otro: z.string().min(1),
+                sobreTi: z.string().min(1),
+                sobreTiAyuda: z.string().min(1),
+                consentimiento: z.string().min(1),
+                enviar: z.string().min(1),
+                enviando: z.string().min(1),
+                gracias: z.string().min(1),
+                graciasTexto: z.string().min(1),
+                errorInvalido: z.string().min(1),
+                errorCaptcha: z.string().min(1),
+                errorEnvio: z.string().min(1),
+              })
+              .strict(),
           })
           .strict(),
       })

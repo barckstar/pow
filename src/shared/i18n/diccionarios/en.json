@@ -7,6 +7,7 @@
     "blog": "Blog",
     "precios": "Packages",
     "comunidad": "Community",
+    "voluntariado": "Volunteer",
     "reservar": "Book",
     "abrirMenu": "Open menu",
     "cerrarMenu": "Close menu",
@@ -20,6 +21,7 @@
     "ctaOnline": "Learn Online",
     "ctaPresencial": "Learn in Costa Rica",
     "ctaReservar": "Book a lesson",
+    "ctaDemo": "Book your free demo class",
     "insignia": "More than a language. It's a journey."
   },
   "experiencias": {
@@ -210,9 +212,17 @@
     },
     "precios": {
       "heroInsignia": "No hidden fees",
-      "titulo": "Pricing",
-      "intro": "This is where pricing for online lessons, in-person lessons and the booking deposit will go.",
-      "sinPrecios": "No prices are published yet. We would rather leave the gap visible than post a figure that changes later."
+      "titulo": "Packages",
+      "intro": "Individual, couples and family, and group courses, plus Spanish support for school students. Pick the format that fits you.",
+      "clase": "class",
+      "clases": "classes",
+      "comparacionTitulo": "Complete price comparison",
+      "colCurso": "Course",
+      "colClases": "Number of classes",
+      "colPrecio": "Full price",
+      "depositoPendiente": "Booking deposit: not confirmed yet. For now you leave your details on the booking page and we contact you; nothing is charged online.",
+      "demoTitulo": "Not sure where to start?",
+      "demoTexto": "Book a free demo class and try a lesson before you decide."
     },
     "comunidad": {
       "heroInsignia": "Free to join",
@@ -281,6 +291,54 @@
       "avisoTitulo": "Sending is not connected yet",
       "avisoTexto": "You can see the whole form, but the button is disabled on purpose: we still have to decide where the data goes and publish a privacy notice. We would rather leave that visible than take your phone number without being able to tell you what happens to it.",
       "privacidad": "Once it is live, what you send will only be used to answer you about lessons. It is neither sold nor passed to third parties."
+    },
+    "voluntariado": {
+      "hero": {
+        "titulo": "Volunteer in",
+        "acento": "Costa Rica.",
+        "subtitulo": "Discover new experiences. Meet amazing people. Give something back.",
+        "fotoAlt": "Two smiling volunteers in green shirts and caps next to a two-toed sloth clinging to a branch in the forest"
+      },
+      "cta": "Tell us about yourself",
+      "introTitulo": "Beyond the usual tourist experience",
+      "intro1": "Costa Rica may be small, but it holds around 6% of the world's biodiversity. Its wildlife, beaches and forests are worth protecting — and local communities deserve support, too.",
+      "intro2": "Whether you're passionate about animals, love nature, enjoy helping others, or simply want to try something meaningful, volunteering is a wonderful way to connect with Costa Rica beyond the usual tourist experience.",
+      "intro3": "Already living in Costa Rica or Latin America? Or planning to visit while learning Spanish? There may be an opportunity for you!",
+      "introCierre": "Tell us a little about yourself, and let's find out what could be a good fit.",
+      "fuente": "Biodiversity figure: OECD environmental review of Costa Rica.",
+      "areasTitulo": "What can you help with?",
+      "areasIntro": "These are the kinds of volunteer work people ask us about. Which of them is available at a given moment depends on the organizations involved, and we confirm it with you directly.",
+      "pasosTitulo": "How it works",
+      "paso1Titulo": "Send your enquiry",
+      "paso1Texto": "Fill in the short form below. It takes about two minutes.",
+      "paso2Titulo": "We look for a fit",
+      "paso2Texto": "We read your enquiry and, privately, look for programs that suit your interests and your age.",
+      "paso3Titulo": "We get in touch",
+      "paso3Texto": "If there is a possible fit, we contact you to talk through the options.",
+      "salvaguarda": "Sending the form expresses interest; it does not guarantee a placement. Work with wildlife, mental health and social assistance depends on qualified, established organizations, and what you can do is set by each organization's supervision and eligibility rules.",
+      "formTitulo": "Explore volunteer opportunities",
+      "formIntro": "Tell us about yourself and your interests. This form expresses interest in volunteering; it does not guarantee a placement.",
+      "form": {
+        "requeridos": "Fields marked with * are required.",
+        "nombre": "Full name",
+        "correo": "Email address",
+        "edad": "Age",
+        "edadAyuda": "We use your age to find programs with suitable eligibility requirements.",
+        "telefono": "Phone number (with country code)",
+        "intereses": "What type of volunteer work interests you?",
+        "interesesAyuda": "Select all that apply.",
+        "otro": "Other — please specify",
+        "sobreTi": "Tell us about yourself",
+        "sobreTiAyuda": "Optional, but helpful when identifying potentially suitable opportunities.",
+        "consentimiento": "I agree that my details are used to answer my volunteer enquiry. They are used only for that.",
+        "enviar": "Send volunteer enquiry",
+        "enviando": "Sending…",
+        "gracias": "Thank you!",
+        "graciasTexto": "We got your enquiry. We will read it and get in touch if we find a possible fit.",
+        "errorInvalido": "Please check the fields and try again.",
+        "errorCaptcha": "We could not verify you are human. Please try again.",
+        "errorEnvio": "Something went wrong sending your enquiry. Please try again in a moment."
+      }
     }
   }
 }

@@ -154,6 +154,7 @@ export function Navbar({ lang, t }: Props) {
     { href: rutas.blog(lang), texto: t.nav.blog },
     { href: rutas.precios(lang), texto: t.nav.precios },
     { href: rutas.comunidad(lang), texto: t.nav.comunidad },
+    { href: rutas.voluntariado(lang), texto: t.nav.voluntariado },
   ];
 
   /*
@@ -306,7 +307,7 @@ export function Navbar({ lang, t }: Props) {
         </nav>
 
         {/*
-          El selector de arriba solo se ve a partir de 1100 px. Por debajo de
+          El selector de arriba solo se ve a partir de 1200 px. Por debajo de
           eso —o sea en cualquier teléfono— no había ninguna otra forma de
           cambiar de idioma: el enlace único de antes tampoco se veía en
           móvil. Se repite aquí, dentro del menú, para que exista al menos un

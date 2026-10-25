@@ -96,6 +96,22 @@ export function Hero({ lang, t }: { lang: Idioma; t: Diccionario }) {
           <Link href={rutas.costaRica(lang)} className="boton boton--acento">
             {t.hero.ctaPresencial}
           </Link>
+          {/*
+            La clase de prueba gratis. El cliente marcó con un círculo el
+            sitio exacto —abajo a la derecha, sobre la fotografía y justo
+            encima de las olas— y pidió que lleve al MISMO formulario que el
+            «Book» de la barra: `/book`.
+
+            En escritorio sale del flujo y se posa sobre la foto (ver
+            `.hero__demo`); en móvil no hay foto a la derecha donde ponerlo y
+            es un tercer botón en la fila, que es donde se encuentra.
+          */}
+          <Link
+            href={rutas.reservar(lang)}
+            className="boton boton--demo hero__demo"
+          >
+            {t.hero.ctaDemo}
+          </Link>
         </div>
 
         <p className="hero__insignia">{t.hero.insignia}</p>

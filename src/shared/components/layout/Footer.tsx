@@ -18,6 +18,7 @@ export function Footer({ lang, t }: Props) {
     { href: rutas.blog(lang), texto: t.nav.blog },
     { href: rutas.precios(lang), texto: t.nav.precios },
     { href: rutas.comunidad(lang), texto: t.nav.comunidad },
+    { href: rutas.voluntariado(lang), texto: t.nav.voluntariado },
   ];
 
   return (

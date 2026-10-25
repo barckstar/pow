@@ -1,0 +1,414 @@
+{
+  "grupos": [
+    {
+      "id": "individual",
+      "titulo": {
+        "en": "Individual courses",
+        "de": "Einzelkurse",
+        "fr": "Cours individuels"
+      },
+      "cursos": [
+        {
+          "id": "principiante",
+          "nombre": { "en": "Beginners", "de": "Anfänger", "fr": "Débutants" },
+          "nivel": "A1–A2",
+          "descripcion": {
+            "en": "Designed for complete beginners or learners with an A1 level. Build your foundations and work towards an A2 level by the end of the module.",
+            "de": "Für absolute Anfänger oder Lernende mit A1-Niveau. Baue dein Fundament auf und arbeite bis zum Ende des Moduls auf das Niveau A2 hin.",
+            "fr": "Conçu pour les débutants complets ou les apprenants de niveau A1. Pose tes bases et vise le niveau A2 à la fin du module."
+          },
+          "opciones": [
+            {
+              "id": "principiante-individual",
+              "etiqueta": {
+                "en": "Full module",
+                "de": "Komplettes Modul",
+                "fr": "Module complet"
+              },
+              "clases": 15,
+              "precio": 230,
+              "detalle": {
+                "en": "2 classes per week",
+                "de": "2 Stunden pro Woche",
+                "fr": "2 cours par semaine"
+              },
+              "fila": {
+                "en": "Beginners — individual",
+                "de": "Anfänger — einzeln",
+                "fr": "Débutants — individuel"
+              }
+            }
+          ]
+        },
+        {
+          "id": "intermedio",
+          "nombre": {
+            "en": "Intermediate",
+            "de": "Mittelstufe",
+            "fr": "Intermédiaire"
+          },
+          "nivel": "A2–B1",
+          "descripcion": {
+            "en": "For learners who already have an A2 level. Improve your fluency, grammar and confidence, working towards a solid B1 level.",
+            "de": "Für Lernende, die bereits A2-Niveau haben. Verbessere Sprachfluss, Grammatik und Selbstvertrauen und arbeite auf ein solides B1-Niveau hin.",
+            "fr": "Pour les apprenants qui ont déjà un niveau A2. Améliore ton aisance, ta grammaire et ta confiance, en visant un niveau B1 solide."
+          },
+          "opciones": [
+            {
+              "id": "intermedio-individual",
+              "etiqueta": {
+                "en": "Full module",
+                "de": "Komplettes Modul",
+                "fr": "Module complet"
+              },
+              "clases": 18,
+              "precio": 255,
+              "detalle": {
+                "en": "2 classes per week",
+                "de": "2 Stunden pro Woche",
+                "fr": "2 cours par semaine"
+              },
+              "fila": {
+                "en": "Intermediate — individual",
+                "de": "Mittelstufe — einzeln",
+                "fr": "Intermédiaire — individuel"
+              }
+            }
+          ]
+        },
+        {
+          "id": "conversacion",
+          "nombre": {
+            "en": "Conversational Spanish",
+            "de": "Konversationsspanisch",
+            "fr": "Espagnol conversationnel"
+          },
+          "nivel": "B1–B2",
+          "subtitulo": {
+            "en": "Flexible scheduling · Individual lessons",
+            "de": "Flexible Terminplanung · Einzelunterricht",
+            "fr": "Horaires flexibles · Cours individuels"
+          },
+          "descripcion": {
+            "en": "Ideal for learners who want to improve speaking skills and practise real-life Spanish without committing to a fixed weekly schedule. Choose when and how often you take lessons.",
+            "de": "Ideal für Lernende, die ihr Sprechen verbessern und alltagsnahes Spanisch üben möchten, ohne sich auf einen festen Wochenplan festzulegen. Du entscheidest, wann und wie oft du Stunden nimmst.",
+            "fr": "Idéal pour celles et ceux qui veulent améliorer leur expression orale et pratiquer l'espagnol de la vie réelle sans s'engager sur un rythme hebdomadaire fixe. Tu choisis quand et à quelle fréquence tu prends tes cours."
+          },
+          "opciones": [
+            {
+              "id": "conversacion-paquete",
+              "etiqueta": {
+                "en": "8-class package",
+                "de": "Paket mit 8 Stunden",
+                "fr": "Forfait de 8 cours"
+              },
+              "clases": 8,
+              "precio": 220,
+              "detalle": {
+                "en": "€27.50 per class",
+                "de": "27,50 € pro Stunde",
+                "fr": "27,50 € par cours"
+              },
+              "fila": {
+                "en": "Conversational Spanish",
+                "de": "Konversationsspanisch",
+                "fr": "Espagnol conversationnel"
+              }
+            },
+            {
+              "id": "conversacion-clase",
+              "etiqueta": {
+                "en": "Pay per class",
+                "de": "Pro Stunde bezahlen",
+                "fr": "Paiement au cours"
+              },
+              "clases": 1,
+              "precio": 28,
+              "fila": {
+                "en": "Conversational Spanish",
+                "de": "Konversationsspanisch",
+                "fr": "Espagnol conversationnel"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parejas",
+      "titulo": {
+        "en": "Couples & family courses",
+        "de": "Kurse für Paare und Familien",
+        "fr": "Cours en couple et en famille"
+      },
+      "intro": {
+        "en": "Learn together in the same online class. Prices cover the complete module for everyone participating.",
+        "de": "Lernt gemeinsam im selben Online-Kurs. Die Preise gelten für das komplette Modul und für alle Teilnehmenden.",
+        "fr": "Apprenez ensemble dans le même cours en ligne. Les tarifs couvrent le module complet pour tous les participants."
+      },
+      "nota": {
+        "en": "Both courses follow the same curriculum and weekly frequency as their individual equivalents: 2 classes per week.",
+        "de": "Beide Kurse folgen demselben Lehrplan und derselben Wochenfrequenz wie die jeweiligen Einzelkurse: 2 Stunden pro Woche.",
+        "fr": "Les deux cours suivent le même programme et le même rythme hebdomadaire que leurs équivalents individuels : 2 cours par semaine."
+      },
+      "cursos": [
+        {
+          "id": "principiante-parejas",
+          "nombre": { "en": "Beginners", "de": "Anfänger", "fr": "Débutants" },
+          "nivel": "A1–A2",
+          "opciones": [
+            {
+              "id": "principiante-2",
+              "etiqueta": {
+                "en": "2 people",
+                "de": "2 Personen",
+                "fr": "2 personnes"
+              },
+              "clases": 15,
+              "precio": 280,
+              "fila": {
+                "en": "Beginners — 2 people",
+                "de": "Anfänger — 2 Personen",
+                "fr": "Débutants — 2 personnes"
+              }
+            },
+            {
+              "id": "principiante-3",
+              "etiqueta": {
+                "en": "3 people",
+                "de": "3 Personen",
+                "fr": "3 personnes"
+              },
+              "clases": 15,
+              "precio": 330,
+              "fila": {
+                "en": "Beginners — 3 people",
+                "de": "Anfänger — 3 Personen",
+                "fr": "Débutants — 3 personnes"
+              }
+            }
+          ]
+        },
+        {
+          "id": "intermedio-parejas",
+          "nombre": {
+            "en": "Intermediate",
+            "de": "Mittelstufe",
+            "fr": "Intermédiaire"
+          },
+          "nivel": "A2–B1",
+          "opciones": [
+            {
+              "id": "intermedio-2",
+              "etiqueta": {
+                "en": "2 people",
+                "de": "2 Personen",
+                "fr": "2 personnes"
+              },
+              "clases": 18,
+              "precio": 310,
+              "fila": {
+                "en": "Intermediate — 2 people",
+                "de": "Mittelstufe — 2 Personen",
+                "fr": "Intermédiaire — 2 personnes"
+              }
+            },
+            {
+              "id": "intermedio-3",
+              "etiqueta": {
+                "en": "3 people",
+                "de": "3 Personen",
+                "fr": "3 personnes"
+              },
+              "clases": 18,
+              "precio": 350,
+              "fila": {
+                "en": "Intermediate — 3 people",
+                "de": "Mittelstufe — 3 Personen",
+                "fr": "Intermédiaire — 3 personnes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grupo",
+      "titulo": {
+        "en": "Group courses",
+        "de": "Gruppenkurse",
+        "fr": "Cours collectifs"
+      },
+      "intro": {
+        "en": "A more affordable way to learn Spanish alongside other students. Maximum 10 participants per group. Courses depend on group availability.",
+        "de": "Eine günstigere Art, gemeinsam mit anderen Spanisch zu lernen. Höchstens 10 Teilnehmende pro Gruppe. Die Kurse hängen von der Verfügbarkeit der Gruppen ab.",
+        "fr": "Une façon plus abordable d'apprendre l'espagnol avec d'autres élèves. 10 participants maximum par groupe. Les cours dépendent de la disponibilité des groupes."
+      },
+      "cursos": [
+        {
+          "id": "principiante-grupo-curso",
+          "nombre": {
+            "en": "Beginners Group",
+            "de": "Anfängergruppe",
+            "fr": "Groupe débutants"
+          },
+          "nivel": "A1–A2",
+          "destacado": {
+            "en": "Popular choice",
+            "de": "Beliebte Wahl",
+            "fr": "Choix populaire"
+          },
+          "descripcion": {
+            "en": "An affordable and interactive way to build your Spanish foundations and work towards A2.",
+            "de": "Eine günstige und interaktive Möglichkeit, dein Spanisch-Fundament aufzubauen und auf A2 hinzuarbeiten.",
+            "fr": "Une façon abordable et interactive de construire tes bases en espagnol et de viser le niveau A2."
+          },
+          "opciones": [
+            {
+              "id": "principiante-grupo",
+              "clases": 15,
+              "precio": 180,
+              "detalle": {
+                "en": "2 per week · Up to 10 students",
+                "de": "2 pro Woche · Bis zu 10 Teilnehmende",
+                "fr": "2 par semaine · Jusqu'à 10 élèves"
+              },
+              "fila": {
+                "en": "Beginners — group",
+                "de": "Anfänger — Gruppe",
+                "fr": "Débutants — groupe"
+              }
+            }
+          ]
+        },
+        {
+          "id": "intermedio-grupo-curso",
+          "nombre": {
+            "en": "Intermediate Group",
+            "de": "Mittelstufe-Gruppe",
+            "fr": "Groupe intermédiaire"
+          },
+          "nivel": "A2–B1",
+          "descripcion": {
+            "en": "Strengthen your Spanish and develop greater fluency in a collaborative group setting.",
+            "de": "Festige dein Spanisch und entwickle in einer kooperativen Gruppe mehr Sprachfluss.",
+            "fr": "Renforce ton espagnol et gagne en aisance dans un cadre de groupe collaboratif."
+          },
+          "opciones": [
+            {
+              "id": "intermedio-grupo",
+              "clases": 18,
+              "precio": 210,
+              "detalle": {
+                "en": "2 per week · Up to 10 students",
+                "de": "2 pro Woche · Bis zu 10 Teilnehmende",
+                "fr": "2 par semaine · Jusqu'à 10 élèves"
+              },
+              "fila": {
+                "en": "Intermediate — group",
+                "de": "Mittelstufe — Gruppe",
+                "fr": "Intermédiaire — groupe"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "escolar",
+      "titulo": {
+        "en": "Spanish support for school students",
+        "de": "Spanischhilfe für Schülerinnen und Schüler",
+        "fr": "Soutien en espagnol pour les élèves"
+      },
+      "cursos": [
+        {
+          "id": "escolar-curso",
+          "nombre": {
+            "en": "Kids & Teens — School Support",
+            "de": "Kinder & Jugendliche — Schulunterstützung",
+            "fr": "Enfants & ados — Soutien scolaire"
+          },
+          "subtitulo": {
+            "en": "Ages 11–18 · Elementary and high school",
+            "de": "11–18 Jahre · Grund- und weiterführende Schule",
+            "fr": "11–18 ans · Primaire et secondaire"
+          },
+          "descripcion": {
+            "en": "Personalized online support for students aged 11–18 who need help with Spanish homework, grammar, vocabulary, school assignments or exam preparation.",
+            "de": "Persönliche Online-Unterstützung für Schülerinnen und Schüler von 11 bis 18 Jahren, die Hilfe bei Spanisch-Hausaufgaben, Grammatik, Vokabeln, Schulaufgaben oder Prüfungsvorbereitung brauchen.",
+            "fr": "Un accompagnement en ligne personnalisé pour les élèves de 11 à 18 ans qui ont besoin d'aide pour leurs devoirs d'espagnol, la grammaire, le vocabulaire, les travaux scolaires ou la préparation aux examens."
+          },
+          "opciones": [
+            {
+              "id": "escolar-paquete",
+              "etiqueta": {
+                "en": "8-class package",
+                "de": "Paket mit 8 Stunden",
+                "fr": "Forfait de 8 cours"
+              },
+              "clases": 8,
+              "precio": 220,
+              "detalle": {
+                "en": "Single payment",
+                "de": "Einmalzahlung",
+                "fr": "Paiement unique"
+              },
+              "fila": {
+                "en": "School support",
+                "de": "Schulunterstützung",
+                "fr": "Soutien scolaire"
+              }
+            },
+            {
+              "id": "escolar-clase",
+              "etiqueta": {
+                "en": "Single class",
+                "de": "Einzelstunde",
+                "fr": "Cours à l'unité"
+              },
+              "clases": 1,
+              "precio": 28,
+              "detalle": {
+                "en": "Pay as you go",
+                "de": "Bezahlung pro Stunde",
+                "fr": "Paiement au fur et à mesure"
+              },
+              "fila": {
+                "en": "School support",
+                "de": "Schulunterstützung",
+                "fr": "Soutien scolaire"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "comparacion": [
+    "principiante-individual",
+    "principiante-2",
+    "principiante-3",
+    "principiante-grupo",
+    "intermedio-individual",
+    "intermedio-2",
+    "intermedio-3",
+    "intermedio-grupo",
+    "conversacion-paquete",
+    "conversacion-clase",
+    "escolar-paquete",
+    "escolar-clase"
+  ],
+  "notas": [
+    {
+      "en": "A2 and B1 are the learning goals of each module: levels to work towards, not official certifications.",
+      "de": "A2 und B1 sind die Lernziele des jeweiligen Moduls: Niveaus, auf die hingearbeitet wird, keine offiziellen Zertifikate.",
+      "fr": "A2 et B1 sont les objectifs d'apprentissage de chaque module : des niveaux à viser, et non des certifications officielles."
+    },
+    {
+      "en": "Group courses depend on availability and have a maximum of 10 students.",
+      "de": "Gruppenkurse hängen von der Verfügbarkeit ab und haben höchstens 10 Teilnehmende.",
+      "fr": "Les cours collectifs dépendent de la disponibilité et comptent 10 élèves au maximum."
+    }
+  ]
+}

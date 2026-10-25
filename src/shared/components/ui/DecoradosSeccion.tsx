@@ -79,7 +79,8 @@ export type VarianteDecorado =
   | "comunidad"
   | "reservar"
   | "blog"
-  | "about";
+  | "about"
+  | "voluntariado";
 
 type Pieza = Omit<Decorado, "children"> & { dibujo: React.ReactNode };
 
@@ -602,6 +603,56 @@ const RECETAS: Record<VarianteDecorado, Pieza[]> = {
       opacidad: 0.3,
       animacion: "destello",
       retraso: 0.8,
+    },
+  ],
+
+  /* Voluntariado: la mariposa y la hoja de monstera, que son la selva que se
+     quiere proteger. Cuatro piezas, menos que casi cualquier otra sección:
+     la página lleva una fotografía grande y no necesita más. */
+  voluntariado: [
+    {
+      dibujo: <Mariposa />,
+      x: 6,
+      y: 24,
+      tam: 6.5,
+      giro: -12,
+      color: TURQUESA,
+      opacidad: VIVO,
+      animacion: "flotar",
+      retraso: 0.6,
+      duracion: 9,
+    },
+    {
+      dibujo: <Monstera />,
+      x: 94,
+      y: 70,
+      tam: 9,
+      giro: 12,
+      color: TEAL,
+      opacidad: TENUE,
+      animacion: "vaiven",
+      duracion: 13,
+    },
+    {
+      dibujo: <HojaPalma />,
+      x: 93,
+      y: 18,
+      tam: 6,
+      giro: 20,
+      color: DORADO,
+      opacidad: VIVO,
+      animacion: "vaiven",
+      retraso: 2.4,
+    },
+    {
+      dibujo: <Estrella />,
+      x: 10,
+      y: 84,
+      tam: 1.8,
+      color: NARANJA,
+      opacidad: 0.3,
+      animacion: "destello",
+      retraso: 1.2,
     },
   ],
 };

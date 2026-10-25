@@ -7,6 +7,7 @@
     "blog": "Blog",
     "precios": "Pakete",
     "comunidad": "Community",
+    "voluntariado": "Freiwilligenarbeit",
     "reservar": "Buchen",
     "abrirMenu": "Menü öffnen",
     "cerrarMenu": "Menü schließen",
@@ -20,6 +21,7 @@
     "ctaOnline": "Online lernen",
     "ctaPresencial": "In Costa Rica lernen",
     "ctaReservar": "Stunde buchen",
+    "ctaDemo": "Buche deine kostenlose Probestunde",
     "insignia": "Mehr als eine Sprache. Es ist eine Reise."
   },
   "experiencias": {
@@ -210,9 +212,17 @@
     },
     "precios": {
       "heroInsignia": "Keine versteckten Kosten",
-      "titulo": "Preise",
-      "intro": "Hier stehen bald die Preise für Online-Unterricht, Präsenzunterricht und die Buchungsanzahlung.",
-      "sinPrecios": "Es sind noch keine Preise veröffentlicht. Wir lassen die Lücke lieber sichtbar, als eine Zahl zu nennen, die sich später ändert."
+      "titulo": "Pakete",
+      "intro": "Einzel-, Paar- und Familien- sowie Gruppenkurse, dazu Spanischhilfe für Schülerinnen und Schüler. Wähle das Format, das zu dir passt.",
+      "clase": "Stunde",
+      "clases": "Stunden",
+      "comparacionTitulo": "Alle Preise im Vergleich",
+      "colCurso": "Kurs",
+      "colClases": "Anzahl der Stunden",
+      "colPrecio": "Gesamtpreis",
+      "depositoPendiente": "Buchungsanzahlung: noch nicht festgelegt. Im Moment hinterlässt du deine Daten auf der Buchungsseite und wir melden uns bei dir; online wird nichts abgebucht.",
+      "demoTitulo": "Du weißt nicht, wo du anfangen sollst?",
+      "demoTexto": "Buche eine kostenlose Probestunde und probiere eine Stunde aus, bevor du dich entscheidest."
     },
     "comunidad": {
       "heroInsignia": "Kostenlos dabei",
@@ -281,6 +291,54 @@
       "avisoTitulo": "Der Versand ist noch nicht angebunden",
       "avisoTexto": "Du kannst das ganze Formular sehen, aber der Button ist absichtlich deaktiviert: Wir müssen erst festlegen, wohin die Daten gehen, und eine Datenschutzerklärung veröffentlichen. Das zeigen wir lieber offen, statt deine Telefonnummer zu nehmen, ohne dir sagen zu können, was damit passiert.",
       "privacidad": "Sobald es aktiv ist, werden deine Angaben nur verwendet, um dir zu den Stunden zu antworten. Sie werden weder verkauft noch an Dritte weitergegeben."
+    },
+    "voluntariado": {
+      "hero": {
+        "titulo": "Freiwilligenarbeit in",
+        "acento": "Costa Rica.",
+        "subtitulo": "Erlebe Neues. Lerne großartige Menschen kennen. Gib etwas zurück.",
+        "fotoAlt": "Zwei lächelnde Freiwillige in grünen Shirts und Kappen neben einem Zweifingerfaultier, das sich im Wald an einen Ast klammert"
+      },
+      "cta": "Erzähl uns von dir",
+      "introTitulo": "Mehr als der übliche Tourismus",
+      "intro1": "Costa Rica ist klein, beherbergt aber rund 6 % der weltweiten Artenvielfalt. Seine Tierwelt, Strände und Wälder sind es wert, geschützt zu werden – und auch die Menschen vor Ort verdienen Unterstützung.",
+      "intro2": "Ob du dich für Tiere begeisterst, die Natur liebst, gern anderen hilfst oder einfach etwas Sinnvolles ausprobieren möchtest: Freiwilligenarbeit ist eine wunderbare Möglichkeit, Costa Rica jenseits des üblichen Tourismus kennenzulernen.",
+      "intro3": "Du lebst schon in Costa Rica oder Lateinamerika? Oder planst du eine Reise und möchtest dabei Spanisch lernen? Vielleicht gibt es eine Möglichkeit für dich!",
+      "introCierre": "Erzähl uns ein wenig von dir, und wir finden heraus, was gut zu dir passen könnte.",
+      "fuente": "Zahl zur Artenvielfalt: Umweltprüfbericht der OECD zu Costa Rica.",
+      "areasTitulo": "Wobei kannst du helfen?",
+      "areasIntro": "Das sind die Arten von Freiwilligenarbeit, nach denen man uns fragt. Welche davon zu einem bestimmten Zeitpunkt möglich ist, hängt von den beteiligten Organisationen ab, und wir klären das direkt mit dir.",
+      "pasosTitulo": "So funktioniert es",
+      "paso1Titulo": "Schick uns deine Anfrage",
+      "paso1Texto": "Fülle das kurze Formular unten aus. Es dauert etwa zwei Minuten.",
+      "paso2Titulo": "Wir suchen, was passt",
+      "paso2Texto": "Wir lesen deine Anfrage und suchen intern nach Programmen, die zu deinen Interessen und deinem Alter passen.",
+      "paso3Titulo": "Wir melden uns",
+      "paso3Texto": "Wenn es eine mögliche Übereinstimmung gibt, melden wir uns bei dir und besprechen die Möglichkeiten.",
+      "salvaguarda": "Mit dem Formular bekundest du dein Interesse; einen Platz garantiert es nicht. Die Arbeit mit Tieren, im Bereich psychische Gesundheit und in der sozialen Hilfe hängt von qualifizierten, etablierten Organisationen ab, und was du tun kannst, bestimmen die Betreuungs- und Zulassungsregeln der jeweiligen Organisation.",
+      "formTitulo": "Entdecke Möglichkeiten für Freiwilligenarbeit",
+      "formIntro": "Erzähl uns von dir und deinen Interessen. Mit diesem Formular bekundest du dein Interesse an Freiwilligenarbeit; einen Platz garantiert es nicht.",
+      "form": {
+        "requeridos": "Mit * markierte Felder sind Pflichtfelder.",
+        "nombre": "Vollständiger Name",
+        "correo": "E-Mail-Adresse",
+        "edad": "Alter",
+        "edadAyuda": "Mit deinem Alter finden wir Programme mit passenden Teilnahmebedingungen.",
+        "telefono": "Telefonnummer (mit Ländervorwahl)",
+        "intereses": "Welche Art von Freiwilligenarbeit interessiert dich?",
+        "interesesAyuda": "Mehrfachauswahl möglich.",
+        "otro": "Sonstiges – bitte angeben",
+        "sobreTi": "Erzähl uns von dir",
+        "sobreTiAyuda": "Optional, hilft uns aber, passende Möglichkeiten zu finden.",
+        "consentimiento": "Ich bin einverstanden, dass meine Angaben zur Beantwortung meiner Anfrage verwendet werden. Sie werden nur dafür verwendet.",
+        "enviar": "Anfrage senden",
+        "enviando": "Wird gesendet …",
+        "gracias": "Danke!",
+        "graciasTexto": "Wir haben deine Anfrage erhalten. Wir lesen sie und melden uns, wenn wir eine mögliche Übereinstimmung finden.",
+        "errorInvalido": "Bitte prüfe die Felder und versuche es erneut.",
+        "errorCaptcha": "Wir konnten nicht bestätigen, dass du ein Mensch bist. Bitte versuche es erneut.",
+        "errorEnvio": "Beim Senden deiner Anfrage ist etwas schiefgelaufen. Bitte versuche es gleich noch einmal."
+      }
     }
   }
 }

@@ -7,6 +7,7 @@
     "blog": "Blog",
     "precios": "Forfaits",
     "comunidad": "Communauté",
+    "voluntariado": "Bénévolat",
     "reservar": "Réserver",
     "abrirMenu": "Ouvrir le menu",
     "cerrarMenu": "Fermer le menu",
@@ -20,6 +21,7 @@
     "ctaOnline": "Apprendre en ligne",
     "ctaPresencial": "Apprendre au Costa Rica",
     "ctaReservar": "Réserver un cours",
+    "ctaDemo": "Réserve ton cours d'essai gratuit",
     "insignia": "Plus qu'une langue. C'est un voyage."
   },
   "experiencias": {
@@ -210,9 +212,17 @@
     },
     "precios": {
       "heroInsignia": "Aucun frais caché",
-      "titulo": "Tarifs",
-      "intro": "C'est ici que figureront les tarifs des cours en ligne, des cours en présentiel et de l'acompte de réservation.",
-      "sinPrecios": "Aucun tarif n'est encore publié. On préfère laisser ce vide visible plutôt que d'afficher un chiffre qui changerait ensuite."
+      "titulo": "Forfaits",
+      "intro": "Cours individuels, en couple et en famille, cours collectifs, et soutien en espagnol pour les élèves. Choisis le format qui te convient.",
+      "clase": "cours",
+      "clases": "cours",
+      "comparacionTitulo": "Comparatif complet des tarifs",
+      "colCurso": "Cours",
+      "colClases": "Nombre de cours",
+      "colPrecio": "Prix total",
+      "depositoPendiente": "Acompte de réservation : pas encore confirmé. Pour l'instant, tu laisses tes coordonnées sur la page de réservation et on te contacte ; rien n'est prélevé en ligne.",
+      "demoTitulo": "Tu ne sais pas par où commencer ?",
+      "demoTexto": "Réserve un cours d'essai gratuit et teste une leçon avant de te décider."
     },
     "comunidad": {
       "heroInsignia": "Gratuit",
@@ -281,6 +291,54 @@
       "avisoTitulo": "L'envoi n'est pas encore connecté",
       "avisoTexto": "Tu peux voir le formulaire en entier, mais le bouton est désactivé exprès : il nous reste à décider où vont les données et à publier une politique de confidentialité. On préfère le montrer clairement plutôt que de prendre ton numéro de téléphone sans pouvoir te dire ce qui lui arrive.",
       "privacidad": "Une fois actif, ce que tu envoies ne servira qu'à te répondre au sujet des cours. Ce n'est ni vendu ni transmis à des tiers."
+    },
+    "voluntariado": {
+      "hero": {
+        "titulo": "Bénévolat au",
+        "acento": "Costa Rica.",
+        "subtitulo": "Découvre de nouvelles expériences. Rencontre des gens formidables. Donne quelque chose en retour.",
+        "fotoAlt": "Deux bénévoles souriants en t-shirt vert et casquette à côté d'un paresseux à deux doigts accroché à une branche dans la forêt"
+      },
+      "cta": "Parle-nous de toi",
+      "introTitulo": "Au-delà du tourisme habituel",
+      "intro1": "Le Costa Rica est petit, mais il abrite environ 6 % de la biodiversité mondiale. Sa faune, ses plages et ses forêts méritent d'être protégées — et les communautés locales méritent aussi du soutien.",
+      "intro2": "Que tu sois passionné(e) par les animaux, amoureux(se) de la nature, heureux(se) d'aider les autres, ou simplement curieux(se) de vivre quelque chose qui a du sens, le bénévolat est une belle façon de découvrir le Costa Rica au-delà du tourisme habituel.",
+      "intro3": "Tu vis déjà au Costa Rica ou en Amérique latine ? Ou tu prévois de venir tout en apprenant l'espagnol ? Il y a peut-être une opportunité pour toi !",
+      "introCierre": "Parle-nous un peu de toi, et voyons ce qui pourrait te convenir.",
+      "fuente": "Chiffre sur la biodiversité : examen environnemental du Costa Rica par l'OCDE.",
+      "areasTitulo": "Comment peux-tu aider ?",
+      "areasIntro": "Voici les types de bénévolat sur lesquels on nous interroge. Ce qui est disponible à un moment donné dépend des organisations concernées, et nous le confirmons directement avec toi.",
+      "pasosTitulo": "Comment ça marche",
+      "paso1Titulo": "Envoie ta demande",
+      "paso1Texto": "Remplis le court formulaire ci-dessous. Cela prend environ deux minutes.",
+      "paso2Titulo": "On cherche ce qui convient",
+      "paso2Texto": "On lit ta demande et on cherche, en interne, des programmes adaptés à tes centres d'intérêt et à ton âge.",
+      "paso3Titulo": "On te contacte",
+      "paso3Texto": "S'il y a une possibilité, on te contacte pour discuter des options.",
+      "salvaguarda": "Envoyer le formulaire exprime un intérêt ; cela ne garantit pas une place. Le travail avec la faune, la santé mentale et l'aide sociale dépend d'organisations qualifiées et établies, et ce que tu peux faire est fixé par les règles d'encadrement et d'admissibilité de chaque organisation.",
+      "formTitulo": "Découvre les possibilités de bénévolat",
+      "formIntro": "Parle-nous de toi et de tes centres d'intérêt. Ce formulaire exprime un intérêt pour le bénévolat ; il ne garantit pas une place.",
+      "form": {
+        "requeridos": "Les champs marqués d'un * sont obligatoires.",
+        "nombre": "Nom complet",
+        "correo": "Adresse e-mail",
+        "edad": "Âge",
+        "edadAyuda": "On utilise ton âge pour trouver des programmes dont les conditions d'admission te conviennent.",
+        "telefono": "Numéro de téléphone (avec l'indicatif du pays)",
+        "intereses": "Quel type de bénévolat t'intéresse ?",
+        "interesesAyuda": "Plusieurs choix possibles.",
+        "otro": "Autre — précise lequel",
+        "sobreTi": "Parle-nous de toi",
+        "sobreTiAyuda": "Facultatif, mais utile pour repérer des opportunités adaptées.",
+        "consentimiento": "J'accepte que mes données servent à répondre à ma demande de bénévolat. Elles ne sont utilisées que pour cela.",
+        "enviar": "Envoyer ma demande",
+        "enviando": "Envoi en cours…",
+        "gracias": "Merci !",
+        "graciasTexto": "On a bien reçu ta demande. On la lira et on te contactera si une possibilité se présente.",
+        "errorInvalido": "Vérifie les champs et réessaie.",
+        "errorCaptcha": "On n'a pas pu vérifier que tu es humain. Réessaie.",
+        "errorEnvio": "Un problème est survenu à l'envoi de ta demande. Réessaie dans un instant."
+      }
     }
   }
 }

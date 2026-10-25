@@ -7,6 +7,7 @@
     "blog": "Blog",
     "precios": "Precios",
     "comunidad": "Comunidad",
+    "voluntariado": "Voluntariado",
     "reservar": "Reservar",
     "abrirMenu": "Abrir el menú",
     "cerrarMenu": "Cerrar el menú",
@@ -20,6 +21,7 @@
     "ctaOnline": "Clases en línea",
     "ctaPresencial": "Ir a Costa Rica",
     "ctaReservar": "Reservar una clase",
+    "ctaDemo": "Reserva tu clase de prueba gratis",
     "insignia": "Más que un idioma. Es un viaje."
   },
   "experiencias": {
@@ -210,9 +212,17 @@
     },
     "precios": {
       "heroInsignia": "Sin letra pequeña",
-      "titulo": "Precios",
-      "intro": "Aquí van a ir los precios de las clases en línea, las presenciales y el depósito de reserva.",
-      "sinPrecios": "Todavía no hay precios publicados. Preferimos dejar el hueco visible a poner una cifra que después cambie."
+      "titulo": "Paquetes",
+      "intro": "Cursos individuales, en pareja y familia, y en grupo, además de apoyo en español para estudiantes de colegio. Elegí el formato que te convenga.",
+      "clase": "clase",
+      "clases": "clases",
+      "comparacionTitulo": "Comparación completa de precios",
+      "colCurso": "Curso",
+      "colClases": "Número de clases",
+      "colPrecio": "Precio total",
+      "depositoPendiente": "Depósito de reserva: todavía sin confirmar. Por ahora dejás tus datos en la página de reserva y te contactamos; no se cobra nada en línea.",
+      "demoTitulo": "¿No sabés por dónde empezar?",
+      "demoTexto": "Reservá una clase de prueba gratis y probá una lección antes de decidir."
     },
     "comunidad": {
       "heroInsignia": "Hablá con otros estudiantes",
@@ -272,6 +282,54 @@
       "avisoTitulo": "El envío todavía no está conectado",
       "avisoTexto": "Podés ver el formulario entero, pero el botón está desactivado a propósito: falta decidir a dónde llegan los datos y publicar el aviso de privacidad. Preferimos dejarlo a la vista antes que recoger tu teléfono sin poder decirte qué se hace con él.",
       "privacidad": "Cuando se active, los datos servirán solo para responderte sobre las clases. Ni se venden ni se ceden a terceros."
+    },
+    "voluntariado": {
+      "hero": {
+        "titulo": "Voluntariado en",
+        "acento": "Costa Rica.",
+        "subtitulo": "Descubrí experiencias nuevas. Conocé gente increíble. Devolvé algo.",
+        "fotoAlt": "Dos voluntarios sonrientes con camiseta verde y gorra junto a un perezoso de dos dedos agarrado a una rama en el bosque"
+      },
+      "cta": "Contanos sobre vos",
+      "introTitulo": "Más allá del turismo de siempre",
+      "intro1": "Costa Rica es pequeña, pero tiene alrededor del 6 % de la biodiversidad del mundo. Su fauna, sus playas y sus bosques merecen protegerse, y las comunidades locales también merecen apoyo.",
+      "intro2": "Ya sea que te apasionen los animales, ames la naturaleza, disfrutés ayudar a otros o simplemente quieras probar algo con sentido, el voluntariado es una forma estupenda de conectar con Costa Rica más allá del turismo de siempre.",
+      "intro3": "¿Ya vivís en Costa Rica o en América Latina? ¿O pensás visitarla mientras aprendés español? ¡Puede haber una oportunidad para vos!",
+      "introCierre": "Contanos un poco sobre vos y veamos qué podría encajar.",
+      "fuente": "Dato de biodiversidad: examen ambiental de Costa Rica de la OCDE.",
+      "areasTitulo": "¿En qué podés ayudar?",
+      "areasIntro": "Estos son los tipos de voluntariado por los que nos preguntan. Cuáles están disponibles en cada momento depende de las organizaciones involucradas, y lo confirmamos directamente con vos.",
+      "pasosTitulo": "Cómo funciona",
+      "paso1Titulo": "Mandá tu consulta",
+      "paso1Texto": "Completá el formulario corto de abajo. Toma unos dos minutos.",
+      "paso2Titulo": "Buscamos qué encaja",
+      "paso2Texto": "Leemos tu consulta y, en privado, buscamos programas que se ajusten a tus intereses y a tu edad.",
+      "paso3Titulo": "Te contactamos",
+      "paso3Texto": "Si hay una opción posible, te escribimos para conversar las alternativas.",
+      "salvaguarda": "Enviar el formulario expresa interés; no garantiza un puesto. El trabajo con fauna, salud mental y asistencia social depende de organizaciones calificadas y establecidas, y lo que podés hacer lo marcan las reglas de supervisión y requisitos de cada una.",
+      "formTitulo": "Explorá oportunidades de voluntariado",
+      "formIntro": "Contanos sobre vos y tus intereses. Este formulario expresa interés en hacer voluntariado; no garantiza un puesto.",
+      "form": {
+        "requeridos": "Los campos marcados con * son obligatorios.",
+        "nombre": "Nombre completo",
+        "correo": "Correo electrónico",
+        "edad": "Edad",
+        "edadAyuda": "Usamos tu edad para encontrar programas con requisitos adecuados.",
+        "telefono": "Número de teléfono (con código de país)",
+        "intereses": "¿Qué tipo de voluntariado te interesa?",
+        "interesesAyuda": "Marcá todos los que quieras.",
+        "otro": "Otro — especificá cuál",
+        "sobreTi": "Contanos sobre vos",
+        "sobreTiAyuda": "Opcional, pero ayuda a identificar oportunidades que puedan encajar.",
+        "consentimiento": "Acepto que mis datos se usen para responder a mi consulta de voluntariado. Se usan solo para eso.",
+        "enviar": "Enviar consulta de voluntariado",
+        "enviando": "Enviando…",
+        "gracias": "¡Gracias!",
+        "graciasTexto": "Recibimos tu consulta. La vamos a leer y te contactamos si encontramos algo que encaje.",
+        "errorInvalido": "Revisá los campos e intentá de nuevo.",
+        "errorCaptcha": "No pudimos verificar que sos una persona. Intentá de nuevo.",
+        "errorEnvio": "Algo falló al enviar tu consulta. Intentá de nuevo en un momento."
+      }
     }
   }
 }

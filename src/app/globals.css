@@ -500,7 +500,13 @@ span.navbar__idiomas-opcion {
   }
 }
 
-@media (min-width: 1100px) {
+/*
+ * 1200 y no 1100: con el enlace de voluntariado son siete, y en alemán
+ * («Freiwilligenarbeit») a 1100 px el nombre de la marca se apretaba hasta
+ * partirse en cuatro líneas. A 1200 cabe en dos, como siempre. Entre 1100 y
+ * 1199 se ve la hamburguesa, que es lo que ya pasa en cualquier tablet.
+ */
+@media (min-width: 1200px) {
   .navbar__contenido {
     padding: 0 1.5rem;
   }
@@ -514,7 +520,7 @@ span.navbar__idiomas-opcion {
     display: none;
   }
 
-  /* Por encima de 1100 px el `<button>` desaparece y con él la única forma de
+  /* Por encima de 1200 px el `<button>` desaparece y con él la única forma de
      abrir `#menu-movil`, así que el panel no puede quedarse montado. */
   .navbar__movil {
     display: none !important;
@@ -2140,6 +2146,50 @@ p {
   gap: 0.9rem;
 }
 
+/*
+ * ============ LA CLASE DE PRUEBA, SOBRE LA FOTO ============
+ * El cliente dibujó un círculo sobre la esquina inferior derecha del hero —la
+ * selva, justo encima de las olas— y dijo «aquí es donde tiene que ir el
+ * botón». Es el único sitio de la portada donde la fotografía se ve limpia,
+ * y el botón es lo que debe verse primero: por eso es el único con relleno
+ * dorado, distinto de los dos de la izquierda.
+ *
+ * Texto tinta sobre dorado: 9,3:1. El blanco sobre naranja de `--acento` se
+ * habría perdido contra el verde de la selva y contra el otro botón naranja.
+ *
+ * En escritorio `.hero__texto` deja de ser `position: relative` para que este
+ * botón se ancle al HERO y no a la columna de texto. Sigue por encima de las
+ * olas porque es un elemento de la rejilla con su propio `z-index`.
+ * ===========================================================
+ */
+.boton--demo {
+  background-color: var(--color-dorado);
+  color: var(--color-tinta);
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.22);
+}
+
+.boton--demo:hover {
+  background-color: var(--color-naranja);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .hero__texto {
+    position: static;
+  }
+
+  .hero__demo {
+    position: absolute;
+    z-index: 3;
+    right: clamp(1.5rem, 8vw, 9rem);
+    /* Las olas llegan a 11,5 rem en escritorio; un rem de aire por encima. */
+    bottom: 12.5rem;
+    font-size: 1.05rem;
+    padding: 1rem 1.9rem;
+  }
+}
+
 .hero__insignia {
   margin-top: 2rem;
   display: inline-block;
@@ -2255,6 +2305,67 @@ p {
       color-mix(in srgb, var(--color-crema) 55%, transparent) 60%,
       transparent 84%
     );
+  }
+}
+
+/*
+ * ============ LA FOTO SOLO A LA DERECHA ============
+ * El velo de crema normal cubre el 42 % izquierdo del hero. El perezoso de
+ * `/volunteer` está justo ahí, entre el 25 y el 45 % del ancho de la foto, y
+ * quedaba tapado: se veían las caras, que están a la derecha, y no el motivo
+ * de la foto. Aquí la foto ocupa el 60 % derecho del hero y solo se funde con
+ * la crema por su borde izquierdo, así que el texto sigue sobre crema lisa y
+ * la foto se ve entera.
+ *
+ * Solo en escritorio. En móvil es el mismo hero de siempre: texto abajo sobre
+ * un velo vertical, que no tapa nada por los lados.
+ * ===================================================
+ */
+/* MÓVIL: la foto va arriba como una banda, entera, y el texto debajo sobre
+   crema lisa. Con el velo vertical de siempre solo asomaba media cara. */
+@media (max-width: 767px) {
+  .hero-pagina--derecha {
+    display: block;
+    min-height: 0;
+  }
+
+  .hero-pagina--derecha .hero-pagina__foto {
+    position: relative;
+    inset: auto;
+    height: 15rem;
+  }
+
+  .hero-pagina--derecha .hero-pagina__foto::after,
+  .hero-pagina--derecha .hero-pagina__velo {
+    display: none;
+  }
+
+  .hero-pagina--derecha .hero-pagina__imagen {
+    object-position: center 38%;
+  }
+
+  .hero-pagina--derecha .hero-pagina__texto {
+    padding-top: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-pagina--derecha .hero-pagina__foto {
+    inset: 0 0 0 auto;
+    width: 60%;
+  }
+
+  .hero-pagina--derecha .hero-pagina__velo {
+    background: linear-gradient(
+      90deg,
+      var(--color-crema) 0%,
+      color-mix(in srgb, var(--color-crema) 60%, transparent) 12%,
+      transparent 32%
+    );
+  }
+
+  .hero-pagina--derecha .hero-pagina__imagen {
+    object-position: center 38%;
   }
 }
 
@@ -4632,4 +4743,349 @@ p {
 /* El logo de la barra lateral es un enlace a /community#tiquismos. */
 .social__marca a {
   display: block;
+}
+
+/* ==========================================================================
+   PAQUETES Y PRECIOS (/pricing)
+   --------------------------------------------------------------------------
+   Tarjetas blancas sobre la crema, con el precio en naranja —es el 10 % de la
+   paleta y el precio es lo que el ojo tiene que encontrar primero— y el nivel
+   en un chip teal. Naranja y teal sobre blanco: 5,30:1 y 5,49:1.
+   ========================================================================== */
+
+/* Más estrecho que el resto: a 1280 px la barra social fija se comía la
+   última columna de precios, que es justo lo que no puede taparse. */
+.seccion__interior--paquetes {
+  max-width: 72rem;
+}
+
+.paquetes {
+  margin-top: 3.5rem;
+}
+
+.paquetes:first-child {
+  margin-top: 0;
+}
+
+.paquetes__titulo {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-teal);
+}
+
+.paquetes__intro {
+  margin-top: 0.6rem;
+  max-width: 44rem;
+  color: color-mix(in srgb, var(--color-tinta) 80%, transparent);
+}
+
+.paquetes__rejilla {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1.25rem;
+  /* `auto-fit` y no un número de columnas: con una tarjeta sale ancha, con
+     tres se reparten, y no hay que tocar nada el día que haya una más. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+}
+
+.paquetes__nota {
+  margin-top: 1.1rem;
+  max-width: 44rem;
+  font-size: 0.92rem;
+  color: color-mix(in srgb, var(--color-tinta) 74%, transparent);
+}
+
+.paquete {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 12%, transparent);
+}
+
+.paquete[data-destacado="true"] {
+  border-color: var(--color-dorado);
+  box-shadow: 0 0.5rem 1.75rem
+    color-mix(in srgb, var(--color-dorado) 28%, transparent);
+}
+
+.paquete__cinta {
+  position: absolute;
+  top: -0.8rem;
+  left: 1.5rem;
+  margin: 0;
+  padding: 0.25rem 0.85rem;
+  border-radius: 999px;
+  background-color: var(--color-dorado);
+  color: var(--color-tinta);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.paquete__nombre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--color-teal);
+}
+
+.paquete__nivel {
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  background-color: color-mix(in srgb, var(--color-teal) 10%, #ffffff);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.paquete__subtitulo {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--color-tinta) 74%, transparent);
+}
+
+.paquete__descripcion {
+  margin: 0.85rem 0 0;
+  color: color-mix(in srgb, var(--color-tinta) 84%, transparent);
+}
+
+.paquete__opciones {
+  list-style: none;
+  margin: auto 0 0;
+  padding: 1.25rem 0 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.paquete__descripcion + .paquete__opciones,
+.paquete__subtitulo + .paquete__opciones,
+.paquete__nombre + .paquete__opciones {
+  margin-top: 1.25rem;
+}
+
+.paquete__opcion {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-teal) 14%, transparent);
+}
+
+.paquete__opcion-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.paquete__etiqueta {
+  font-weight: 700;
+  color: var(--color-tinta);
+}
+
+.paquete__meta {
+  font-size: 0.88rem;
+  color: color-mix(in srgb, var(--color-tinta) 74%, transparent);
+}
+
+.paquete__precio {
+  flex-shrink: 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-naranja);
+}
+
+/* La tabla comparativa. En un teléfono son tres columnas cortas: caben sin
+   desplazar, así que no hace falta un contenedor con scroll. */
+.tabla-precios {
+  margin-top: 1.25rem;
+  max-width: 52rem;
+  overflow-x: auto;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 12%, transparent);
+}
+
+.tabla-precios table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-precios th,
+.tabla-precios td {
+  padding: 0.8rem 1.1rem;
+  text-align: left;
+}
+
+.tabla-precios thead th {
+  background-color: var(--color-teal);
+  color: #ffffff;
+  font-size: 0.85rem;
+}
+
+.tabla-precios tbody th {
+  font-weight: 600;
+  color: var(--color-tinta);
+}
+
+.tabla-precios td:last-child,
+.tabla-precios thead th:last-child {
+  text-align: right;
+}
+
+.tabla-precios tbody td:last-child {
+  font-weight: 800;
+  color: var(--color-naranja);
+}
+
+.tabla-precios tbody tr + tr > * {
+  border-top: 1px solid color-mix(in srgb, var(--color-teal) 10%, transparent);
+}
+
+.tabla-precios tbody tr:nth-child(even) > * {
+  background-color: color-mix(in srgb, var(--color-crema) 55%, #ffffff);
+}
+
+.paquetes__notas {
+  margin: 1.1rem 0 0;
+  padding-left: 1.2rem;
+  max-width: 44rem;
+  font-size: 0.92rem;
+  color: color-mix(in srgb, var(--color-tinta) 74%, transparent);
+}
+
+.paquetes__cierre {
+  margin-top: 3.5rem;
+  padding: 2rem 1.75rem;
+  border-radius: 1.25rem;
+  background-color: var(--color-teal);
+  color: #ffffff;
+  text-align: center;
+}
+
+.paquetes__cierre-titulo {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  color: var(--color-dorado-texto);
+}
+
+.paquetes__cierre p {
+  margin: 0.6rem auto 1.4rem;
+  max-width: 34rem;
+}
+
+/* ==========================================================================
+   VOLUNTARIADO (/volunteer)
+   ========================================================================== */
+
+.voluntariado__texto {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 1rem;
+  font-size: 1.05rem;
+}
+
+.voluntariado__texto p {
+  margin: 0;
+}
+
+/* La frase que da paso al formulario, en el color de la marca. */
+.voluntariado__cierre {
+  font-weight: 700;
+  color: var(--color-teal);
+}
+
+.voluntariado__fuente {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--color-tinta) 66%, transparent);
+}
+
+/* Los cuatro tipos de trabajo: fichas bajas con icono, no tarjetas de venta.
+   No son productos —no hay ninguno confirmado—, son lo que se puede pedir. */
+.areas {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .areas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.area {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 1.25rem;
+  background-color: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 12%, transparent);
+}
+
+.area__icono {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.9rem;
+  background-color: color-mix(in srgb, var(--color-turquesa) 30%, transparent);
+  color: var(--color-teal);
+}
+
+.area__icono svg {
+  width: 1.55rem;
+  height: 1.55rem;
+}
+
+.area__titulo {
+  font-weight: 700;
+  color: var(--color-tinta);
+}
+
+/* Lo que NO se promete. Mismo filete dorado que el resto de avisos. */
+.voluntariado__salvaguarda {
+  margin-top: 2.5rem;
+  max-width: 46rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 1rem;
+  border-left: 4px solid var(--color-dorado);
+  background-color: color-mix(in srgb, var(--color-dorado) 14%, #ffffff);
+}
+
+/* Formulario: la nota de campos obligatorios y las casillas en columna. */
+.solicitud__requeridos {
+  margin: 1.5rem 0 0;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--color-tinta) 66%, transparent);
+}
+
+.solicitud__opciones--columna {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0.6rem;
+}
+
+.solicitud__opciones--columna .solicitud__ayuda {
+  margin-bottom: 0.25rem;
+}
+
+/* Las casillas del voluntariado son opciones para leer, no etiquetas de campo:
+   sin esto heredaban el teal en negrita de `.solicitud__campo label`. */
+.solicitud__opciones--columna .solicitud__radio {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--color-tinta);
 }

@@ -31,6 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     rutas.blog,
     rutas.precios,
     rutas.comunidad,
+    rutas.voluntariado,
     rutas.reservar,
     rutas.about,
     (l) => rutas.solicitud(l),

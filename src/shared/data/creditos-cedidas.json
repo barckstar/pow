@@ -62,5 +62,13 @@
     "licencia": "Ilustración de la propia marca, entregada por el cliente para esta web",
     "descripcion": "El perezoso con gafas de sol surfeando una ola al atardecer, con palmeras detrás y el nombre de la escuela. Encabeza la invitación al grupo de Facebook en /community.",
     "permisoConfirmado": true
+  },
+  {
+    "archivo": "/fotos/voluntariado-perezoso.jpg",
+    "autor": "Sin confirmar",
+    "fuente": "Enviada por el cliente por chat el 23/10/2026, sin URL de origen ni nombre de la organización",
+    "licencia": "Origen y licencia sin confirmar",
+    "descripcion": "Dos voluntarios sonrientes con camiseta verde y gorra junto a un perezoso de dos dedos que se agarra a una rama, en el bosque. Es el fondo de la página de voluntariado.",
+    "permisoConfirmado": false
   }
 ]

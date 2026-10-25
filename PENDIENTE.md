@@ -12,7 +12,11 @@ Un hueco visible se arregla. Uno invisible se publica.
 
 | Dato | Dónde va | Qué pasa mientras falta |
 |---|---|---|
-| **Precios** de las clases online y presenciales | `src/features/precios/` | `/pricing` muestra el aviso en vez de una tabla |
+| **Precios de la inmersión en Costa Rica** | `src/features/precios/data/paquetes.json` | Los de las clases online ya están (los dictó el cliente el 23/10/2026: individual, parejas y familia, grupo y apoyo escolar, en euros). Los de la inmersión —escuela, hospedaje, viaje— siguen sin dato y `/pricing` no los menciona |
+| **Redacción de «A2 y B1»** | `notas` de `paquetes.json` | El cliente escribió «GUARANTEED LEARNING GOALS, not guaranteed certifications» y la página dice «learning goals… not official certifications», sin el «guaranteed». Falta que confirme que ese es el sentido |
+| **Aviso de privacidad** | todavía no existe la página | `/book` y `/volunteer` recogen nombre, correo, teléfono y, en voluntariado, la **edad**. El consentimiento dice solo que se usan para responder; el cliente pidió «I have read the privacy notice», pero no hay aviso al que enlazar. Hace falta: quién recibe los datos, para qué, cuánto tiempo y cómo pedir acceso o borrado |
+| **Qué voluntariados existen de verdad** | `/volunteer` | La página recoge interés y **no promete puestos**: no nombra organizaciones, plazas, fechas ni precios porque no hay ninguno confirmado. El cliente mismo recomendó hacer el emparejamiento en privado. Antes de nombrar un tipo de voluntariado como disponible hay que verificarlo con la organización (y, para áreas protegidas, con los requisitos de SINAC) |
+| **Origen de la foto de voluntariado** | `creditos-cedidas.json` | La mandó el cliente por chat sin URL ni nombre de la organización; sale con `"permisoConfirmado": false` y aparece así en `/credits`. Hay personas reconocibles |
 | **Enlaces de Calendly del negocio** | `src/features/reservas/data/clases.json` | Hoy hay UNO y apunta a una cuenta de prueba personal. Antes de publicar tiene que apuntar a la cuenta **del cliente**, la que tiene el plan de pago. **Si no, las reservas caen en el calendario de otra persona** |
 | **Qué duraciones se ofrecen** | el mismo archivo | Hoy hay una, de **60 min**, leída del propio widget. Se habló de 1 h, 2 h y 5 h: cada una es un tipo de evento en Calendly con su enlace, y la página enseña el selector sola en cuanto haya más de una |
 | **Consentimiento de cookies** | `features/reservas/components/Calendly.tsx` | Al quitar el botón, el widget carga al bajar hasta él y Calendly deja cuatro cookies de terceros **sin que nadie haya consentido**. Con alumnos en Europa o Suiza hay que poner una puerta antes de publicar. Cuesta 22 puntos de «Prácticas» en `/book`, pero lo que importa es lo otro |
@@ -46,7 +50,9 @@ las dos versiones es la real. Necesitan que el cliente diga cuál se queda.
 
 | Lo que dice ahora | Dónde | Lo que contradice |
 |---|---|---|
-| «Private, group, and couples' lessons with local teachers» | `experiencias.onlineTexto` (EN) y el mismo giro en el hero | Hoy hay **un** profesor (`online/data/profesores.json`) y **un** tipo de clase, uno a uno (`reservas/data/clases.json`). La propia FAQ dice que lo de grupos «is not settled yet» |
+| «Private, group, and couples' lessons with local teachers» | `experiencias.onlineTexto` (EN) y el mismo giro en el hero | Hoy hay **un** profesor (`online/data/profesores.json`) y **un** tipo de clase, uno a uno (`reservas/data/clases.json`). La propia FAQ dice que lo de grupos «is not settled yet» — esa FAQ (`individual-o-grupo`) se reescribió el 23/10/2026 a partir de los precios que dio el cliente (individual, parejas y familia, grupos de hasta 10), porque `/pricing` ya los vende. Sigue sin decir **quién** da las clases en grupo |
+| «We have Costa Rican teachers both in Europe and Latin America…» | FAQ `horarios-zona` (23/10/2026) | `/online` y `/about` siguen diciendo que hay **un** profesor, en Suiza, y `profesores.json` solo tiene a Chris. La FAQ se cambió **textualmente** y borró la explicación de que las horas se ven en la zona de cada visitante y en la de Costa Rica |
+| «…the capital city of San Jose — we've got you covered» | FAQ `donde-presencial` (23/10/2026) | La FAQ ya no dice que las sedes sean «pendientes» y se quitó la etiqueta amarilla, porque el texto del cliente no afirma ninguna sede concreta. Pero `/costa-rica` sigue avisando de que la lista de destinos y las escuelas no están cerradas |
 | «Contact Us / Chat directly with a member of our team» | `confianza.reservaTitulo`/`reservaTexto` (EN) | No hay ningún canal de contacto directo montado — `CONTACTO.correo` y `.telefono` siguen en `null`. El resto del sitio (`/book`, `/online`) sigue describiendo el depósito por PayPal como el paso real |
 | — | — | Si la idea es ofrecer de verdad grupos, parejas y varios profesores, o un chat de contacto, son productos nuevos que hay que construir, no solo anunciar |
 
@@ -153,7 +159,7 @@ Es una decisión de diseño, no una optimización. Queda para el usuario.
 - Metadatos completos verificados por script en `postbuild` (26 páginas).
 - Paleta 70/30/10 con contraste WCAG AA medido y verificado por script.
 - Preguntas frecuentes con `<details>` nativos y JSON-LD de `FAQPage`.
-  Las cuatro preguntas cuya respuesta depende de un dato sin confirmar se
+  Las dos preguntas cuya respuesta depende de un dato sin confirmar se
   muestran con la etiqueta de pendiente y **quedan fuera del JSON-LD**.
 - Olas animadas cerrando el hero de la portada, en bucle sin costura y solo con
   `transform`.
@@ -168,6 +174,13 @@ Es una decisión de diseño, no una optimización. Queda para el usuario.
 - Formulario de solicitud con los ocho campos que dictó el cliente, en diez
   páginas estáticas (cuatro destinos + una genérica, por idioma). El envío,
   desactivado a propósito y con el aviso a la vista.
+- `/pricing` con los paquetes oficiales (23/10/2026): tarjetas por tipo de curso,
+  tabla comparativa generada de los mismos datos y botón a la clase de prueba.
+- `/volunteer` (23/10/2026): hero con la foto del cliente, texto suyo,
+  formulario de interés que envía por correo (mismo patrón que `/book`:
+  Turnstile + Resend) y SEO. Necesita las claves de `env.example` para enviar.
+- Botón «Book your free demo class» sobre la foto del hero de la portada,
+  hacia `/book`, donde el cliente lo marcó con un círculo.
 - Barra de scroll con los colores de la paleta.
 - Rotación diaria de tiquismos: baraja por ciclos, sin repetir ninguno
   antes de tres días.

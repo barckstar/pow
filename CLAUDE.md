@@ -64,7 +64,7 @@ src/
   proxy.ts                    / → /es | /en por Accept-Language
   app/[lang]/…                rutas
   features/{landing,online,tiquismos,faq,blog,destinos,solicitud,
-              reservas}/
+              reservas,precios,voluntariado}/
   shared/components/ui/
     Olas.tsx                olas del hero de la PORTADA, y solo de ahí
     HeroPagina.tsx          hero compartido de /online y /costa-rica
@@ -597,6 +597,52 @@ link está en español, no debería». Cinco rutas cambiaron: `comunidad` →
 desde `redirects()` en `next.config.ts`. Los identificadores del código
 (`rutas.comunidad`, `features/solicitud/`…) siguen en español, como todo el
 código: lo que se traduce es lo que ve el visitante.
+
+### Precios, clase de prueba y voluntariado (23/10/2026)
+
+El cliente mandó por WhatsApp cuatro cosas, y esto es lo que no se ve en el
+código:
+
+**Precios oficiales** en `features/precios/data/paquetes.json`: individual,
+parejas y familia, grupo (máximo 10) y apoyo escolar, en euros. **La tabla
+comparativa del final no repite cifras**: cada fila apunta por id a una opción
+de las tarjetas, así que un precio vive en un solo sitio (hay prueba que lo
+comprueba). El orden de la tabla es el del cliente y por eso es una lista de ids
+aparte. El depósito de reserva sigue sin confirmar y sale con la etiqueta de
+pendiente. «A2 y B1» se publicó como objetivos de aprendizaje, **no como
+certificaciones**, sin el «guaranteed» del original: ver `PENDIENTE.md`.
+
+**«Book your free demo class»** es el botón dorado del hero de la portada, en
+el sitio exacto que el cliente rodeó con un círculo (abajo a la derecha, sobre
+la foto) y hacia `/book`. En escritorio se ancla al hero —por eso
+`.hero__texto` deja de ser `position: relative` desde 768 px— y en móvil es un
+tercer botón de la fila. Es dorado y no naranja a propósito: junto al otro
+botón naranja se confundía, y sobre el panel teal de `/pricing` el naranja se
+hunde.
+
+**`/volunteer`** recoge interés y **no promete puestos**. No nombra
+organizaciones, plazas ni fechas porque no hay ninguna confirmada; el propio
+cliente recomendó hacer el emparejamiento en privado. Lleva el aviso de
+seguridad («depende de organizaciones calificadas y de sus reglas») en la
+página, no solo aquí. El formulario es el mismo patrón que `/book` —Server
+Action, honeypot, Turnstile, Resend— y comparte con él `shared/lib/correo.ts`.
+Esa función **no puede vivir dentro de un archivo `"use server"`**: cada función
+asíncrona que se exporta de ahí es un endpoint que el navegador puede llamar.
+La edad es obligatoria porque decide a qué programas encaja cada persona. «Al
+menos un interés» no existe en HTML: mientras no haya ninguna casilla marcada,
+**todas** son `required`.
+
+La foto de fondo (el perezoso con dos voluntarios) quedó con `HeroPagina` en
+modo `encuadre="derecha"`: con el velo de crema normal el perezoso, que está
+entre el 25 y el 45 % del ancho, quedaba **tapado** y solo se veían las caras.
+
+**El navbar de escritorio empieza a 1200 px, no a 1100.** Con el séptimo
+enlace, en alemán («Freiwilligenarbeit») la marca se partía en cuatro líneas a
+1100 px. Entre 1100 y 1199 se ve la hamburguesa.
+
+Dos textos de la FAQ se reemplazaron **tal cual los pidió el cliente** y
+contradicen otras páginas (hay profesores en Europa y Latinoamérica, frente a
+un solo profesor en Suiza en `/online`): está en `PENDIENTE.md` §1.1.
 
 ### Vercel no despliega las ramas de prueba
 

@@ -203,6 +203,7 @@ export const rutas = {
   etiqueta: (l: Idioma, tag: string) => `/${l}/blog/tag/${tag}`,
   precios: (l: Idioma) => `/${l}/pricing`,
   comunidad: (l: Idioma) => `/${l}/community`,
+  voluntariado: (l: Idioma) => `/${l}/volunteer`,
   reservar: (l: Idioma) => `/${l}/book`,
   creditos: (l: Idioma) => `/${l}/credits`,
   /**
