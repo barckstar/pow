@@ -90,8 +90,6 @@
     "pendienteTitulo": "Online booking is not live yet",
     "pendienteTexto": "The Calendly account that will run the schedule, the payments and the Zoom links still has to be connected. We would rather say so than show you a calendar that holds nothing. In the meantime, write to us and we will sort it by hand.",
     "zonaHoraria": "Teacher's timezone",
-    "deposito": "Deposit",
-    "depositoTexto": "Charged when you book, to hold the lesson. The rest is settled directly with your teacher.",
     "duracionTitulo": "How long do you want it?",
     "duracionMin": "min",
     "duracionCambiar": "Change the length",
@@ -172,12 +170,12 @@
       "titulo": "What an online lesson is like",
       "intro": "One-to-one video lessons with a Costa Rican teacher. He is based in Switzerland, so there are slots that work for both Europe and the Americas.",
       "pasosTitulo": "How it works",
-      "paso1Titulo": "Pick a slot",
-      "paso1Texto": "Times are shown in your own zone and in Costa Rica's, so there are no surprises.",
-      "paso2Titulo": "Hold your lesson",
-      "paso2Texto": "With a PayPal deposit. You settle the rest directly with your teacher.",
-      "paso3Titulo": "Show up",
-      "paso3Texto": "You get the video call link. Lessons are conversation from day one, not exercise filler.",
+      "paso1Titulo": "Tell us about you",
+      "paso1Texto": "Fill in the form below: how to reach you, why you want to learn Spanish and whether you prefer online lessons or learning in Costa Rica.",
+      "paso2Titulo": "Chris calls you",
+      "paso2Texto": "He will get in touch by phone or email to talk about what you need and answer your questions.",
+      "paso3Titulo": "Agree on your first lesson",
+      "paso3Texto": "Together you choose the day and time, and he sends you everything you need to connect.",
       "profesorTitulo": "Who teaches",
       "practicaTitulo": "What you practise",
       "practicaTexto": "Traditional teaching leans too heavily on the textbook, and plenty of people study for years and still freeze in an actual conversation. Here the weight sits on four things:",
@@ -220,7 +218,6 @@
       "colCurso": "Course",
       "colClases": "Number of classes",
       "colPrecio": "Full price",
-      "depositoPendiente": "Booking deposit: not confirmed yet. For now you leave your details on the booking page and we contact you; nothing is charged online.",
       "demoTitulo": "Not sure where to start?",
       "demoTexto": "Book a free demo class and try a lesson before you decide."
     },
@@ -270,8 +267,7 @@
       "valor4Texto": "Online lessons are live today; the immersion trips across Costa Rica are being built with the same care, one confirmed detail at a time.",
       "cierreTitulo": "Ready to hear the Spanish people actually speak?",
       "cierreTexto": "Book a one-to-one lesson and find out how different it sounds from a textbook.",
-      "cierreCta": "Book a lesson",
-      "cierrePendiente": "This page is a first draft: the school's own story is still being written and will replace this text."
+      "cierreCta": "Book a lesson"
     },
     "solicitud": {
       "titulo": "Tell us what you are after",
@@ -288,9 +284,13 @@
       "motivo": "Why you want to learn",
       "elegir": "Choose an option",
       "enviar": "Send the enquiry",
-      "avisoTitulo": "Sending is not connected yet",
-      "avisoTexto": "You can see the whole form, but the button is disabled on purpose: we still have to decide where the data goes and publish a privacy notice. We would rather leave that visible than take your phone number without being able to tell you what happens to it.",
-      "privacidad": "Once it is live, what you send will only be used to answer you about lessons. It is neither sold nor passed to third parties."
+      "consentimiento": "I agree that my details are used to answer my enquiry. They are used only for that.",
+      "enviando": "Sending…",
+      "gracias": "Thank you!",
+      "graciasTexto": "We got your enquiry. We will contact you soon to tell you which school and level suit you.",
+      "errorInvalido": "Please check the fields and try again.",
+      "errorCaptcha": "We could not verify you are human. Please try again.",
+      "errorEnvio": "Something went wrong sending your enquiry. Please try again in a moment."
     },
     "voluntariado": {
       "hero": {

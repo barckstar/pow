@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
-import { DEPOSITO, rutas } from "@/shared/config/sitio";
+import { rutas } from "@/shared/config/sitio";
 import { MigasJsonLd } from "@/shared/lib/jsonLd";
 import { SEO } from "@/shared/config/seo";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
@@ -44,11 +44,10 @@ export default async function PaginaPrecios({
   const t = await getDiccionario(idioma);
 
   /*
-   * Los precios los dictó el cliente el 23/09/2026 y viven en
-   * `features/precios/data/paquetes.json`. Lo que SIGUE sin confirmar es el
-   * depósito de reserva: mientras `DEPOSITO` sea `null` se dice, con la misma
-   * etiqueta de pendiente del resto del sitio, en vez de callarlo o inventar
-   * una cifra.
+   * Los precios los dictó el cliente el 23/10/2026 y viven en
+   * `features/precios/data/paquetes.json`. No hay depósito: por ahora el sitio
+   * solo genera contactos y no cobra nada por adelantado, así que la página no
+   * habla de él.
    *
    * El hero usa `FranjaHero` desde el 25/09/2026 — regla general para toda
    * página interior, no una excepción de «Quiénes somos». Ver ese componente
@@ -73,18 +72,6 @@ export default async function PaginaPrecios({
 
         <div className="seccion__interior seccion__interior--paquetes">
           <Paquetes lang={idioma} t={t} />
-
-          {DEPOSITO ? (
-            <p className="dato-zona">
-              <strong>{t.reserva.deposito}:</strong> {DEPOSITO.monto}{" "}
-              {DEPOSITO.moneda} — {t.reserva.depositoTexto}
-            </p>
-          ) : (
-            <div className="hueco">
-              <span className="pendiente">{t.pendiente.etiqueta}</span>
-              <p>{t.paginas.precios.depositoPendiente}</p>
-            </div>
-          )}
 
           <div className="paquetes__cierre">
             <h2 className="paquetes__cierre-titulo">

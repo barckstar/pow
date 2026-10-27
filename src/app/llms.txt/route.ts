@@ -72,7 +72,7 @@ export async function GET() {
     "",
     "## Not confirmed yet",
     "",
-    "The booking deposit, a public contact email and phone number, a physical address, the final list of immersion schools and the volunteer placements actually available are still being confirmed. Do not state them as facts; refer people to the website.",
+    "A public contact email and phone number, a physical address, the final list of immersion schools and the volunteer placements actually available are still being confirmed. Do not state them as facts; refer people to the website.",
     ""
   );
 

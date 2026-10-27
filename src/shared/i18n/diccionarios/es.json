@@ -47,8 +47,8 @@
     "profesorTexto": "Nacido y criado ahí. No es español de libro.",
     "horarioTitulo": "Horario flexible",
     "horarioTexto": "Vos elegís la franja; se muestra en tu hora.",
-    "reservaTitulo": "Reserva con depósito",
-    "reservaTexto": "Apartás la clase con un depósito por PayPal.",
+    "reservaTitulo": "Contactanos",
+    "reservaTexto": "Hablá directamente con alguien de nuestro equipo.",
     "culturaTitulo": "Cultura incluida",
     "culturaTexto": "Modismos, tono y costumbres, no solo gramática."
   },
@@ -90,8 +90,6 @@
     "pendienteTitulo": "Todavía no se puede reservar en línea",
     "pendienteTexto": "Falta conectar la cuenta de Calendly con la que se llevan los horarios, el cobro y los enlaces de Zoom. Preferimos decirlo antes que enseñarte un calendario que no aparta nada. Mientras tanto, escribinos y lo arreglamos a mano.",
     "zonaHoraria": "Zona horaria del profesor",
-    "deposito": "Depósito",
-    "depositoTexto": "Se cobra al reservar para apartar la clase. El resto se paga directamente con el profesor.",
     "duracionTitulo": "¿Cuánto querés que dure?",
     "duracionMin": "min",
     "duracionCambiar": "Cambiar la duración",
@@ -172,12 +170,12 @@
       "titulo": "Cómo son las clases en línea",
       "intro": "Clases uno a uno por videollamada con un profesor costarricense. Él está en Suiza, así que hay horarios que le sirven tanto a Europa como a América.",
       "pasosTitulo": "Cómo funciona",
-      "paso1Titulo": "Elegís la franja",
-      "paso1Texto": "Se te muestran los horarios en tu zona horaria y en la de Costa Rica, para que no haya sorpresas.",
-      "paso2Titulo": "Apartás la clase",
-      "paso2Texto": "Con un depósito por PayPal. El resto lo arreglás directamente con el profesor.",
-      "paso3Titulo": "Te conectás",
-      "paso3Texto": "Recibís el enlace de la videollamada. La clase es conversación desde el primer día, no relleno de ejercicios.",
+      "paso1Titulo": "Cuéntanos de ti",
+      "paso1Texto": "Llena el formulario: cómo contactarte, por qué quieres aprender español y si prefieres clases en línea o aprender en Costa Rica.",
+      "paso2Titulo": "Chris te llama",
+      "paso2Texto": "Se pone en contacto por teléfono o correo para hablar de lo que necesitas y resolver tus dudas.",
+      "paso3Titulo": "Acuerden la primera clase",
+      "paso3Texto": "Juntos eligen día y hora, y él te manda todo lo necesario para conectarte.",
       "profesorTitulo": "Quién da las clases",
       "practicaTitulo": "Qué se practica",
       "practicaTexto": "La enseñanza de siempre se apoya demasiado en el libro, y mucha gente estudia años y se queda trabada en cuanto tiene una conversación delante. Aquí el peso está en cuatro cosas:",
@@ -220,7 +218,6 @@
       "colCurso": "Curso",
       "colClases": "Número de clases",
       "colPrecio": "Precio total",
-      "depositoPendiente": "Depósito de reserva: todavía sin confirmar. Por ahora dejás tus datos en la página de reserva y te contactamos; no se cobra nada en línea.",
       "demoTitulo": "¿No sabés por dónde empezar?",
       "demoTexto": "Reservá una clase de prueba gratis y probá una lección antes de decidir."
     },
@@ -261,8 +258,7 @@
       "valor4Texto": "Las clases en línea ya están funcionando; los viajes de inmersión por Costa Rica se están armando con el mismo cuidado, un dato confirmado a la vez.",
       "cierreTitulo": "¿Listo para oír el español que de verdad se habla?",
       "cierreTexto": "Reservá una clase uno a uno y notá qué distinto suena de un libro de texto.",
-      "cierreCta": "Reservar una clase",
-      "cierrePendiente": "Esta página es un primer boceto: la historia real de la escuela todavía se está redactando y va a reemplazar este texto."
+      "cierreCta": "Reservar una clase"
     },
     "solicitud": {
       "titulo": "Contá qué buscás",
@@ -279,9 +275,13 @@
       "motivo": "Por qué querés aprender",
       "elegir": "Elegí una opción",
       "enviar": "Enviar la solicitud",
-      "avisoTitulo": "El envío todavía no está conectado",
-      "avisoTexto": "Podés ver el formulario entero, pero el botón está desactivado a propósito: falta decidir a dónde llegan los datos y publicar el aviso de privacidad. Preferimos dejarlo a la vista antes que recoger tu teléfono sin poder decirte qué se hace con él.",
-      "privacidad": "Cuando se active, los datos servirán solo para responderte sobre las clases. Ni se venden ni se ceden a terceros."
+      "consentimiento": "Acepto que mis datos se usen para responder a mi consulta. Se usan solo para eso.",
+      "enviando": "Enviando…",
+      "gracias": "¡Gracias!",
+      "graciasTexto": "Recibimos tu consulta. Te contactamos pronto para decirte qué escuela y qué nivel te convienen.",
+      "errorInvalido": "Revisá los campos e intentá de nuevo.",
+      "errorCaptcha": "No pudimos verificar que sos una persona. Intentá de nuevo.",
+      "errorEnvio": "Algo falló al enviar tu consulta. Intentá de nuevo en un momento."
     },
     "voluntariado": {
       "hero": {

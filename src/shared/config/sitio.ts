@@ -104,13 +104,6 @@ export const NOMBRE_CORTO = "Costa Rica Spanish";
  */
 export const ZONA_PROFESOR = "Europe/Zurich";
 
-/**
- * Depósito que se cobra para apartar una clase.
- * PENDIENTE: el monto no está confirmado por el cliente. Mientras sea `null`
- * la ruta de reserva muestra el aviso de pendiente y no ofrece pagar.
- */
-export const DEPOSITO: { monto: number; moneda: string } | null = null;
-
 /*
  * ============ EL CALENDARIO YA NO SE CONFIGURA AQUÍ ============
  * Estuvo la constante `CALENDLY`, leyendo `NEXT_PUBLIC_CALENDLY_URL`. Con una

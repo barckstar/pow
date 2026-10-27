@@ -125,9 +125,9 @@ export function jsonLdProfesor(profesor: {
 /**
  * Las clases en línea como `Course`.
  *
- * Sin `offers`: el precio está sin confirmar y un `Offer` sin precio es un
- * dato roto para Google. Cuando `DEPOSITO`/precios dejen de ser `null`, es
- * aquí donde se añade.
+ * Sin `offers` por ahora. Los precios ya existen en `features/precios`, pero
+ * son por módulo y por formato, y un `Offer` suelto elegiría uno por el
+ * visitante. Si se añaden, es aquí.
  */
 export function jsonLdCursoOnline({
   lang,

@@ -90,8 +90,6 @@
     "pendienteTitulo": "La réservation en ligne n'est pas encore active",
     "pendienteTexto": "Le compte Calendly qui gérera les créneaux, les paiements et les liens Zoom doit encore être connecté. On préfère te le dire plutôt que t'afficher un calendrier qui ne réserve rien. En attendant, écris-nous et on s'en occupe à la main.",
     "zonaHoraria": "Fuseau horaire du professeur",
-    "deposito": "Acompte",
-    "depositoTexto": "Prélevé lors de la réservation, pour garantir le cours. Le reste se règle directement avec ton professeur.",
     "duracionTitulo": "Combien de temps veux-tu ?",
     "duracionMin": "min",
     "duracionCambiar": "Changer la durée",
@@ -172,12 +170,12 @@
       "titulo": "À quoi ressemble un cours en ligne",
       "intro": "Cours individuels par vidéo avec un professeur costaricien. Il vit en Suisse, il y a donc des créneaux adaptés aussi bien à l'Europe qu'aux Amériques.",
       "pasosTitulo": "Comment ça marche",
-      "paso1Titulo": "Choisir un créneau",
-      "paso1Texto": "Les horaires s'affichent dans ton fuseau et dans celui du Costa Rica, pour qu'il n'y ait pas de surprise.",
-      "paso2Titulo": "Réserver ton cours",
-      "paso2Texto": "Avec un acompte via PayPal. Tu règles le reste directement avec ton professeur.",
-      "paso3Titulo": "Se présenter",
-      "paso3Texto": "Tu reçois le lien de l'appel vidéo. Les cours sont de la conversation dès le premier jour, pas des exercices de remplissage.",
+      "paso1Titulo": "Parlez-nous de vous",
+      "paso1Texto": "Remplissez le formulaire : comment vous joindre, pourquoi vous voulez apprendre l'espagnol et si vous préférez des cours en ligne ou apprendre au Costa Rica.",
+      "paso2Titulo": "Chris vous appelle",
+      "paso2Texto": "Il vous contacte par téléphone ou par e-mail pour parler de vos besoins et répondre à vos questions.",
+      "paso3Titulo": "Fixez votre premier cours",
+      "paso3Texto": "Vous choisissez ensemble le jour et l'heure, et il vous envoie tout ce qu'il faut pour vous connecter.",
       "profesorTitulo": "Qui enseigne",
       "practicaTitulo": "Ce que tu pratiques",
       "practicaTexto": "L'enseignement traditionnel s'appuie trop sur le manuel, et beaucoup de gens étudient pendant des années et restent quand même bloqués dans une vraie conversation. Ici, l'accent est mis sur quatre choses :",
@@ -220,7 +218,6 @@
       "colCurso": "Cours",
       "colClases": "Nombre de cours",
       "colPrecio": "Prix total",
-      "depositoPendiente": "Acompte de réservation : pas encore confirmé. Pour l'instant, tu laisses tes coordonnées sur la page de réservation et on te contacte ; rien n'est prélevé en ligne.",
       "demoTitulo": "Tu ne sais pas par où commencer ?",
       "demoTexto": "Réserve un cours d'essai gratuit et teste une leçon avant de te décider."
     },
@@ -270,8 +267,7 @@
       "valor4Texto": "Les cours en ligne sont déjà actifs ; les voyages d'immersion à travers le Costa Rica se construisent avec le même soin, un détail confirmé à la fois.",
       "cierreTitulo": "Prêt à entendre l'espagnol réellement parlé ?",
       "cierreTexto": "Réserve un cours individuel et découvre à quel point ça sonne différemment d'un manuel.",
-      "cierreCta": "Réserver un cours",
-      "cierrePendiente": "Cette page est une première ébauche : la propre histoire de l'école est encore en cours de rédaction et remplacera ce texte."
+      "cierreCta": "Réserver un cours"
     },
     "solicitud": {
       "titulo": "Dis-nous ce que tu recherches",
@@ -288,9 +284,13 @@
       "motivo": "Pourquoi tu veux apprendre",
       "elegir": "Choisis une option",
       "enviar": "Envoyer la demande",
-      "avisoTitulo": "L'envoi n'est pas encore connecté",
-      "avisoTexto": "Tu peux voir le formulaire en entier, mais le bouton est désactivé exprès : il nous reste à décider où vont les données et à publier une politique de confidentialité. On préfère le montrer clairement plutôt que de prendre ton numéro de téléphone sans pouvoir te dire ce qui lui arrive.",
-      "privacidad": "Une fois actif, ce que tu envoies ne servira qu'à te répondre au sujet des cours. Ce n'est ni vendu ni transmis à des tiers."
+      "consentimiento": "J'accepte que mes données servent à répondre à ma demande. Elles ne sont utilisées que pour cela.",
+      "enviando": "Envoi en cours…",
+      "gracias": "Merci !",
+      "graciasTexto": "On a bien reçu ta demande. On te contacte bientôt pour te dire quelle école et quel niveau te conviennent.",
+      "errorInvalido": "Vérifie les champs et réessaie.",
+      "errorCaptcha": "On n'a pas pu vérifier que tu es humain. Réessaie.",
+      "errorEnvio": "Un problème est survenu à l'envoi de ta demande. Réessaie dans un instant."
     },
     "voluntariado": {
       "hero": {

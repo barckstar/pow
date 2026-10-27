@@ -180,10 +180,8 @@ export const esquemaDiccionario = z
         /* Mientras no haya cuenta de Calendly. */
         pendienteTitulo: z.string().min(1),
         pendienteTexto: z.string().min(1),
-        /* Los usa `/precios` para el depósito y `/online` para la zona. */
+        /* Lo usa `/online` para la zona. */
         zonaHoraria: z.string().min(1),
-        deposito: z.string().min(1),
-        depositoTexto: z.string().min(1),
         /** El chip del `FranjaHero`. */
         insignia: z.string().min(1),
         /** Encabeza los dos destinos del panel lateral. */
@@ -337,9 +335,14 @@ export const esquemaDiccionario = z
             /** Primera opción de los desplegables. */
             elegir: z.string().min(1),
             enviar: z.string().min(1),
-            avisoTitulo: z.string().min(1),
-            avisoTexto: z.string().min(1),
-            privacidad: z.string().min(1),
+            /** La casilla de consentimiento y los textos del envío. */
+            consentimiento: z.string().min(1),
+            enviando: z.string().min(1),
+            gracias: z.string().min(1),
+            graciasTexto: z.string().min(1),
+            errorInvalido: z.string().min(1),
+            errorCaptcha: z.string().min(1),
+            errorEnvio: z.string().min(1),
           })
           .strict(),
         precios: z
@@ -356,8 +359,6 @@ export const esquemaDiccionario = z
             colCurso: z.string().min(1),
             colClases: z.string().min(1),
             colPrecio: z.string().min(1),
-            /** Lo único de dinero que sigue sin confirmar: el depósito. */
-            depositoPendiente: z.string().min(1),
             /** El cierre, con el botón de la clase de prueba. */
             demoTitulo: z.string().min(1),
             demoTexto: z.string().min(1),
@@ -409,11 +410,9 @@ export const esquemaDiccionario = z
          * eso — todo lo demás sigue la regla de no rellenar con suposiciones
          * lo que el cliente no ha confirmado.
          *
-         * Aun así lleva su propio aviso de pendiente al cierre
-         * (`cierrePendiente`), por la misma razón que el resto del sitio: un
-         * hueco visible se arregla, uno invisible se publica. Aquí el hueco
-         * es texto de mentira que puede acabar citado como si fuera la
-         * historia real de un negocio real.
+         * Llevó un aviso de «borrador» al cierre hasta el 26/10/2026, que el
+         * cliente pidió quitar. El texto sigue siendo inventado: ya no lo
+         * dice la página, solo `PENDIENTE.md`.
          * ==================================================================
          */
         about: z
@@ -442,8 +441,6 @@ export const esquemaDiccionario = z
             cierreTitulo: z.string().min(1),
             cierreTexto: z.string().min(1),
             cierreCta: z.string().min(1),
-            /** El aviso de que esta página es un primer boceto. */
-            cierrePendiente: z.string().min(1),
           })
           .strict(),
         /**

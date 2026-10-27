@@ -145,17 +145,17 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
     en: {
       titulo: "Book your Spanish lesson",
       descripcion:
-        "Pick a day and time in your own timezone, hold the lesson with a PayPal deposit, and get the video call link by email.",
+        "Book your Spanish lesson: leave your details and Chris will call you to agree a day and time. Nothing to pay now.",
     },
     de: {
       titulo: "Buche deine Spanischstunde",
       descripcion:
-        "Wähle Tag und Uhrzeit in deiner Zeitzone, sichere die Stunde mit einer PayPal-Anzahlung und erhalte den Videolink per E-Mail.",
+        "Buche deine Spanischstunde: Hinterlasse deine Daten, und Chris ruft dich an, um Tag und Uhrzeit zu vereinbaren. Jetzt ist nichts zu zahlen.",
     },
     fr: {
       titulo: "Réserve ton cours d'espagnol",
       descripcion:
-        "Choisis un jour et une heure dans ton fuseau horaire, réserve le cours avec un acompte PayPal et reçois le lien de l'appel vidéo par e-mail.",
+        "Réserve ton cours d'espagnol : laisse tes coordonnées et Chris t'appelle pour convenir d'un jour et d'une heure. Rien à payer maintenant.",
     },
   },
   precios: {

@@ -1948,16 +1948,6 @@ p {
   background-color: var(--color-teal);
 }
 
-.about-cierre__pendiente {
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.85rem;
-}
-
 /* ==========================================================================
    HERO
    ========================================================================== */

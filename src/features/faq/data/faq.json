@@ -88,12 +88,12 @@
       "fr": "Comment paie-t-on ?"
     },
     "respuesta": {
-      "en": "You hold the lesson with a PayPal deposit and settle the rest directly with the teacher. The deposit amount is not published yet; the course prices are on the Packages page.",
-      "es": "La clase se aparta con un depósito por PayPal y el resto se arregla directamente con el profesor. El monto del depósito todavía no está publicado; los precios de los cursos están en la página de paquetes.",
-      "de": "Die Stunde wird mit einer Anzahlung per PayPal gesichert, den Rest regelt man direkt mit dem Lehrer. Die Höhe der Anzahlung ist noch nicht veröffentlicht; die Kurspreise stehen auf der Seite „Pakete“.",
-      "fr": "Le cours est réservé avec un acompte via PayPal, et le reste se règle directement avec le professeur. Le montant de l'acompte n'est pas encore publié ; les tarifs des cours sont sur la page « Forfaits »."
+      "en": "You don't pay anything to book. Leave your details and we will contact you to talk about what you need and agree the next steps, including payment. Course prices are on the Packages page.",
+      "es": "Para reservar no se paga nada. Dejás tus datos y te contactamos para conversar lo que necesitás y acordar los siguientes pasos, incluido el pago. Los precios de los cursos están en la página de paquetes.",
+      "de": "Für die Buchung zahlst du nichts. Hinterlasse deine Daten, und wir melden uns, um zu besprechen, was du brauchst, und die nächsten Schritte, einschließlich der Zahlung, zu vereinbaren. Die Kurspreise stehen auf der Seite „Pakete“.",
+      "fr": "Réserver ne coûte rien. Laisse tes coordonnées et on te contacte pour parler de ce dont tu as besoin et convenir des prochaines étapes, y compris le paiement. Les tarifs des cours sont sur la page « Forfaits »."
     },
-    "pendiente": true
+    "pendiente": false
   },
   {
     "id": "cancelar",

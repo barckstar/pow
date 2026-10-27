@@ -37,10 +37,10 @@ export async function generateMetadata({
  * ============ CONTENIDO INVENTADO, DISEÑO PROPIO ============
  * El cliente lo pidió así: «aun no tenemos informacion asi que puedes
  * inventar». Es la única página del sitio con esa licencia — el resto sigue
- * la regla de no rellenar con suposiciones lo que no está confirmado. Aun así
- * lleva su aviso de pendiente al final (`cierrePendiente`): un texto de
- * mentira sobre un negocio real puede acabar citado, y eso hay que decirlo
- * donde se lee, no solo en un comentario del código.
+ * la regla de no rellenar con suposiciones lo que no está confirmado. El
+ * aviso de «borrador» que llevaba al final se quitó el 26/10/2026 a pedido del
+ * cliente («esto lo puedes quitar»): el texto sigue siendo inventado y se
+ * reemplaza cuando escriban el suyo.
  *
  * El diseño es distinto a propósito, no una plantilla más de `.seccion`:
  *   1. Un hero SIN FOTO — `FranjaHero`, teal a crema en vertical, con el
@@ -131,11 +131,6 @@ export default async function PaginaAbout({
           <Link href={rutas.reservar(idioma)} className="boton boton--primario">
             {p.cierreCta}
           </Link>
-
-          <p className="about-cierre__pendiente">
-            <span className="pendiente">{t.pendiente.etiqueta}</span>
-            <span>{p.cierrePendiente}</span>
-          </p>
         </div>
       </section>
     </>

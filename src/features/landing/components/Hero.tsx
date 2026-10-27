@@ -88,8 +88,7 @@ export function Hero({ lang, t }: { lang: Idioma; t: Diccionario }) {
           </Link>
           {/*
             Lleva a los DESTINOS, no a reservar.
-            Reservar es el flujo de las clases en línea, que se pagan con
-            depósito. La vía presencial es inmersión en Costa Rica y su primer
+            Reservar es el flujo de las clases en línea. La vía presencial es inmersión en Costa Rica y su primer
             paso es elegir a cuál de los cuatro sitios se quiere ir; el
             formulario viene después, ya con el destino puesto.
           */}

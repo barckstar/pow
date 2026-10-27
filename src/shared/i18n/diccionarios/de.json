@@ -90,8 +90,6 @@
     "pendienteTitulo": "Online-Buchung ist noch nicht aktiv",
     "pendienteTexto": "Das Calendly-Konto, über das Termine, Zahlungen und Zoom-Links laufen werden, muss noch verbunden werden. Wir sagen das lieber offen, statt dir einen Kalender zu zeigen, der nichts reserviert. Schreib uns in der Zwischenzeit, und wir kümmern uns von Hand darum.",
     "zonaHoraria": "Zeitzone des Lehrers",
-    "deposito": "Anzahlung",
-    "depositoTexto": "Wird bei der Buchung abgebucht, um die Stunde zu sichern. Der Rest wird direkt mit deinem Lehrer geregelt.",
     "duracionTitulo": "Wie lange soll sie dauern?",
     "duracionMin": "Min.",
     "duracionCambiar": "Dauer ändern",
@@ -172,12 +170,12 @@
       "titulo": "So läuft eine Online-Stunde ab",
       "intro": "Einzelunterricht per Video mit einem costa-ricanischen Lehrer. Er lebt in der Schweiz, deshalb gibt es Termine, die sowohl für Europa als auch für Amerika passen.",
       "pasosTitulo": "So funktioniert's",
-      "paso1Titulo": "Termin wählen",
-      "paso1Texto": "Die Zeiten werden in deiner eigenen Zeitzone und in der von Costa Rica angezeigt, damit es keine Überraschungen gibt.",
-      "paso2Titulo": "Stunde sichern",
-      "paso2Texto": "Mit einer Anzahlung per PayPal. Den Rest regelst du direkt mit deinem Lehrer.",
-      "paso3Titulo": "Erscheinen",
-      "paso3Texto": "Du bekommst den Link zur Videokonferenz. Der Unterricht ist von Anfang an Konversation, keine Lückenfüller-Übungen.",
+      "paso1Titulo": "Erzähl uns von dir",
+      "paso1Texto": "Fülle das Formular aus: wie wir dich erreichen, warum du Spanisch lernen möchtest und ob du Online-Unterricht oder Lernen in Costa Rica bevorzugst.",
+      "paso2Titulo": "Chris ruft dich an",
+      "paso2Texto": "Er meldet sich telefonisch oder per E-Mail, spricht mit dir über deine Ziele und beantwortet deine Fragen.",
+      "paso3Titulo": "Ersten Termin vereinbaren",
+      "paso3Texto": "Gemeinsam legt ihr Tag und Uhrzeit fest, und er schickt dir alles, was du für die Verbindung brauchst.",
       "profesorTitulo": "Wer unterrichtet",
       "practicaTitulo": "Was du übst",
       "practicaTexto": "Traditioneller Unterricht stützt sich zu stark auf das Lehrbuch, und viele Leute lernen jahrelang und stehen trotzdem in einem echten Gespräch auf dem Schlauch. Hier liegt das Gewicht auf vier Dingen:",
@@ -220,7 +218,6 @@
       "colCurso": "Kurs",
       "colClases": "Anzahl der Stunden",
       "colPrecio": "Gesamtpreis",
-      "depositoPendiente": "Buchungsanzahlung: noch nicht festgelegt. Im Moment hinterlässt du deine Daten auf der Buchungsseite und wir melden uns bei dir; online wird nichts abgebucht.",
       "demoTitulo": "Du weißt nicht, wo du anfangen sollst?",
       "demoTexto": "Buche eine kostenlose Probestunde und probiere eine Stunde aus, bevor du dich entscheidest."
     },
@@ -270,8 +267,7 @@
       "valor4Texto": "Der Online-Unterricht läuft schon heute; die Immersionsreisen durch Costa Rica werden mit derselben Sorgfalt aufgebaut, ein bestätigtes Detail nach dem anderen.",
       "cierreTitulo": "Bereit, das Spanisch zu hören, das wirklich gesprochen wird?",
       "cierreTexto": "Buche eine Einzelstunde und hör selbst, wie anders sie klingt als im Lehrbuch.",
-      "cierreCta": "Stunde buchen",
-      "cierrePendiente": "Diese Seite ist ein erster Entwurf: Die eigene Geschichte der Schule wird noch geschrieben und ersetzt diesen Text."
+      "cierreCta": "Stunde buchen"
     },
     "solicitud": {
       "titulo": "Sag uns, was du suchst",
@@ -288,9 +284,13 @@
       "motivo": "Warum du lernen möchtest",
       "elegir": "Wähle eine Option",
       "enviar": "Anfrage senden",
-      "avisoTitulo": "Der Versand ist noch nicht angebunden",
-      "avisoTexto": "Du kannst das ganze Formular sehen, aber der Button ist absichtlich deaktiviert: Wir müssen erst festlegen, wohin die Daten gehen, und eine Datenschutzerklärung veröffentlichen. Das zeigen wir lieber offen, statt deine Telefonnummer zu nehmen, ohne dir sagen zu können, was damit passiert.",
-      "privacidad": "Sobald es aktiv ist, werden deine Angaben nur verwendet, um dir zu den Stunden zu antworten. Sie werden weder verkauft noch an Dritte weitergegeben."
+      "consentimiento": "Ich bin einverstanden, dass meine Angaben zur Beantwortung meiner Anfrage verwendet werden. Sie werden nur dafür verwendet.",
+      "enviando": "Wird gesendet …",
+      "gracias": "Danke!",
+      "graciasTexto": "Wir haben deine Anfrage erhalten. Wir melden uns bald bei dir und sagen dir, welche Schule und welches Niveau zu dir passen.",
+      "errorInvalido": "Bitte prüfe die Felder und versuche es erneut.",
+      "errorCaptcha": "Wir konnten nicht bestätigen, dass du ein Mensch bist. Bitte versuche es erneut.",
+      "errorEnvio": "Beim Senden deiner Anfrage ist etwas schiefgelaufen. Bitte versuche es gleich noch einmal."
     },
     "voluntariado": {
       "hero": {

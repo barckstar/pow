@@ -183,12 +183,13 @@ cuánto tiempo planea estar (15 días / 1 mes / mes y medio / 2 meses) y motivo
 (idiomas / trabajo / viajes / cultura / familia). Las dos listas viven en
 `features/solicitud/data/opciones.json`, validadas.
 
-**El botón está `disabled` a propósito y no es un olvido.** En cuanto un
-teléfono y un correo viajen a algún sitio, esto pasa a tratar datos personales:
-hay que elegir dónde se guardan, cuánto tiempo y quién los ve, y publicar aviso
-de privacidad y consentimiento. Ni siquiera hay correo de contacto confirmado.
-El formulario se ve entero y encima lleva el aviso de por qué. Conectarlo es
-añadir el `action` y quitar dos líneas.
+**Ya envía (26/10/2026).** Estuvo con el botón `disabled` y un aviso porque pide
+teléfono y correo y no había dónde mandarlos. El cliente dijo que por ahora el
+negocio es **generar contactos** y que **todos los formularios llevan
+Cloudflare**: `/apply`, `/book` y `/volunteer` comparten Server Action,
+honeypot, Turnstile y `shared/lib/correo.ts`. Si se añade un formulario nuevo,
+lleva lo mismo. Sin las claves en el hosting (`env.example`) el envío termina
+en error, a propósito: nunca manda «a un sitio provisional».
 
 **El destino va en la RUTA, no en la query.** Estuvo como `?destino=…` y leer
 `searchParams` en el servidor obliga a Next a renderizar bajo demanda: sin HTML
@@ -525,10 +526,9 @@ con esa licencia — el resto sigue la regla de no rellenar con suposiciones lo
 que el cliente no ha confirmado, y aquí se rompe a propósito porque el propio
 cliente lo autorizó.
 
-Aun así lleva su aviso de pendiente al cierre (`cierrePendiente`, con el
-mismo componente `pendiente` del resto del sitio): un texto inventado sobre
-un negocio real puede acabar citado como si fuera la historia oficial, y eso
-hay que decirlo donde se lee, no solo en un comentario del código.
+Llevaba un aviso de pendiente al cierre (`cierrePendiente`), y **el cliente
+pidió quitarlo el 26/10/2026**: «esto lo puedes quitar». Ya no se ve en la
+página; el texto sigue siendo inventado y solo `PENDIENTE.md` lo recuerda.
 
 El diseño es propio, no la maqueta de `.seccion` que usan las demás páginas
 interiores:
@@ -608,8 +608,8 @@ parejas y familia, grupo (máximo 10) y apoyo escolar, en euros. **La tabla
 comparativa del final no repite cifras**: cada fila apunta por id a una opción
 de las tarjetas, así que un precio vive en un solo sitio (hay prueba que lo
 comprueba). El orden de la tabla es el del cliente y por eso es una lista de ids
-aparte. El depósito de reserva sigue sin confirmar y sale con la etiqueta de
-pendiente. «A2 y B1» se publicó como objetivos de aprendizaje, **no como
+aparte. **No hay depósito**: por ahora el sitio solo genera contactos (leads) y
+no cobra nada por adelantado, así que `/pricing` no habla de él. «A2 y B1» se publicó como objetivos de aprendizaje, **no como
 certificaciones**, sin el «guaranteed» del original: ver `PENDIENTE.md`.
 
 **«Book your free demo class»** es el botón dorado del hero de la portada, en

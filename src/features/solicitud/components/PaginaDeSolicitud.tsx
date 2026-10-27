@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { FormularioSolicitud } from "./FormularioSolicitud";
+import { DESTINOS } from "@/features/destinos/esquema";
+import { OPCIONES } from "../esquema";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
 import { rutas } from "@/shared/config/sitio";
 import type { Idioma } from "@/shared/i18n/config";
@@ -37,7 +39,20 @@ export function PaginaDeSolicitud({
         </h1>
         <p className="seccion__intro">{p.intro}</p>
 
-        <FormularioSolicitud lang={lang} t={t} destinoElegido={destino?.id} />
+        <FormularioSolicitud
+          lang={lang}
+          t={p}
+          destinos={DESTINOS.map((d) => ({ id: d.id, etiqueta: d.nombre }))}
+          estancias={OPCIONES.estancia.map((o) => ({
+            id: o.id,
+            etiqueta: o.etiqueta[lang],
+          }))}
+          motivos={OPCIONES.motivo.map((o) => ({
+            id: o.id,
+            etiqueta: o.etiqueta[lang],
+          }))}
+          destinoElegido={destino?.id}
+        />
 
         <p className="seccion__enlace-suelto">
           <Link href={rutas.costaRica(lang)} className="seccion__enlace">
