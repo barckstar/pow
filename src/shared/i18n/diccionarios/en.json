@@ -146,7 +146,9 @@
     "privacidad": "Privacy",
     "terminos": "Terms",
     "creditosFotos": "Photo credits",
-    "derechos": "All rights reserved."
+    "derechos": "All rights reserved.",
+    "voluntariado": "Give something back: volunteer in Costa Rica",
+    "sinac": "Protected areas have their own programme:"
   },
   "social": {
     "compartir": "Share",
@@ -301,11 +303,11 @@
       },
       "cta": "Tell us about yourself",
       "introTitulo": "Beyond the usual tourist experience",
-      "intro1": "Costa Rica may be small, but it holds around 6% of the world's biodiversity. Its wildlife, beaches and forests are worth protecting — and local communities deserve support, too.",
+      "intro1": "Costa Rica may be small, but it is home to about 6% of the world's known species. Its wildlife, beaches and forests are worth protecting — and local communities deserve support, too.",
       "intro2": "Whether you're passionate about animals, love nature, enjoy helping others, or simply want to try something meaningful, volunteering is a wonderful way to connect with Costa Rica beyond the usual tourist experience.",
       "intro3": "Already living in Costa Rica or Latin America? Or planning to visit while learning Spanish? There may be an opportunity for you!",
       "introCierre": "Tell us a little about yourself, and let's find out what could be a good fit.",
-      "fuente": "Biodiversity figure: OECD environmental review of Costa Rica.",
+      "fuente": "Source for the 6% figure:",
       "areasTitulo": "What can you help with?",
       "areasIntro": "These are the kinds of volunteer work people ask us about. Which of them is available at a given moment depends on the organizations involved, and we confirm it with you directly.",
       "pasosTitulo": "How it works",
@@ -338,7 +340,8 @@
         "errorInvalido": "Please check the fields and try again.",
         "errorCaptcha": "We could not verify you are human. Please try again.",
         "errorEnvio": "Something went wrong sending your enquiry. Please try again in a moment."
-      }
+      },
+      "fuenteEnlace": "OECD Environmental Performance Reviews: Costa Rica 2023"
     }
   }
 }

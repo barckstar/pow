@@ -244,6 +244,9 @@ export const esquemaDiccionario = z
         terminos: z.string().min(1),
         creditosFotos: z.string().min(1),
         derechos: z.string().min(1),
+        /** La leyenda de voluntariado de la columna de marca y su nota sobre SINAC. */
+        voluntariado: z.string().min(1),
+        sinac: z.string().min(1),
       })
       .strict(),
 
@@ -458,8 +461,9 @@ export const esquemaDiccionario = z
             intro2: z.string().min(1),
             intro3: z.string().min(1),
             introCierre: z.string().min(1),
-            /** La cita de la cifra de biodiversidad. */
+            /** La cita de la cifra del 6 %: el rótulo y el texto del enlace. */
             fuente: z.string().min(1),
+            fuenteEnlace: z.string().min(1),
             areasTitulo: z.string().min(1),
             areasIntro: z.string().min(1),
             pasosTitulo: z.string().min(1),

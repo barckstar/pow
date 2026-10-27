@@ -146,7 +146,9 @@
     "privacidad": "Datenschutz",
     "terminos": "Nutzungsbedingungen",
     "creditosFotos": "Bildnachweise",
-    "derechos": "Alle Rechte vorbehalten."
+    "derechos": "Alle Rechte vorbehalten.",
+    "voluntariado": "Gib etwas zurück: Freiwilligenarbeit in Costa Rica",
+    "sinac": "Schutzgebiete haben ihr eigenes Programm:"
   },
   "social": {
     "compartir": "Teilen",
@@ -301,11 +303,11 @@
       },
       "cta": "Erzähl uns von dir",
       "introTitulo": "Mehr als der übliche Tourismus",
-      "intro1": "Costa Rica ist klein, beherbergt aber rund 6 % der weltweiten Artenvielfalt. Seine Tierwelt, Strände und Wälder sind es wert, geschützt zu werden – und auch die Menschen vor Ort verdienen Unterstützung.",
+      "intro1": "Costa Rica ist klein, beherbergt aber rund 6 % der weltweit bekannten Arten. Seine Tierwelt, Strände und Wälder sind es wert, geschützt zu werden – und auch die Menschen vor Ort verdienen Unterstützung.",
       "intro2": "Ob du dich für Tiere begeisterst, die Natur liebst, gern anderen hilfst oder einfach etwas Sinnvolles ausprobieren möchtest: Freiwilligenarbeit ist eine wunderbare Möglichkeit, Costa Rica jenseits des üblichen Tourismus kennenzulernen.",
       "intro3": "Du lebst schon in Costa Rica oder Lateinamerika? Oder planst du eine Reise und möchtest dabei Spanisch lernen? Vielleicht gibt es eine Möglichkeit für dich!",
       "introCierre": "Erzähl uns ein wenig von dir, und wir finden heraus, was gut zu dir passen könnte.",
-      "fuente": "Zahl zur Artenvielfalt: Umweltprüfbericht der OECD zu Costa Rica.",
+      "fuente": "Quelle für die 6 %:",
       "areasTitulo": "Wobei kannst du helfen?",
       "areasIntro": "Das sind die Arten von Freiwilligenarbeit, nach denen man uns fragt. Welche davon zu einem bestimmten Zeitpunkt möglich ist, hängt von den beteiligten Organisationen ab, und wir klären das direkt mit dir.",
       "pasosTitulo": "So funktioniert es",
@@ -338,7 +340,8 @@
         "errorInvalido": "Bitte prüfe die Felder und versuche es erneut.",
         "errorCaptcha": "Wir konnten nicht bestätigen, dass du ein Mensch bist. Bitte versuche es erneut.",
         "errorEnvio": "Beim Senden deiner Anfrage ist etwas schiefgelaufen. Bitte versuche es gleich noch einmal."
-      }
+      },
+      "fuenteEnlace": "OECD Environmental Performance Reviews: Costa Rica 2023"
     }
   }
 }

@@ -5079,3 +5079,43 @@ p {
   font-weight: 400;
   color: var(--color-tinta);
 }
+
+/* Leyenda de voluntariado del pie: un enlace y una nota, sin tarjeta. */
+.pie__voluntariado {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  max-width: 22rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-crema) 22%, transparent);
+}
+
+.pie__voluntariado-enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  font-weight: 600;
+  color: var(--color-dorado-texto);
+}
+
+.pie__voluntariado-icono {
+  flex-shrink: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.pie__voluntariado-nota {
+  margin: 0.25rem 0 0;
+  font-size: 0.82rem;
+}
+
+.pie__voluntariado-nota a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.voluntariado__fuente a {
+  color: var(--color-teal);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}

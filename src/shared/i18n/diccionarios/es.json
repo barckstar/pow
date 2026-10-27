@@ -146,7 +146,9 @@
     "privacidad": "Privacidad",
     "terminos": "Términos",
     "creditosFotos": "Créditos de las fotos",
-    "derechos": "Todos los derechos reservados."
+    "derechos": "Todos los derechos reservados.",
+    "voluntariado": "Devolvé algo: voluntariado en Costa Rica",
+    "sinac": "Las áreas protegidas tienen su propio programa:"
   },
   "social": {
     "compartir": "Compartir",
@@ -292,11 +294,11 @@
       },
       "cta": "Contanos sobre vos",
       "introTitulo": "Más allá del turismo de siempre",
-      "intro1": "Costa Rica es pequeña, pero tiene alrededor del 6 % de la biodiversidad del mundo. Su fauna, sus playas y sus bosques merecen protegerse, y las comunidades locales también merecen apoyo.",
+      "intro1": "Costa Rica es pequeña, pero alberga alrededor del 6 % de las especies conocidas del mundo. Su fauna, sus playas y sus bosques merecen protegerse, y las comunidades locales también merecen apoyo.",
       "intro2": "Ya sea que te apasionen los animales, ames la naturaleza, disfrutés ayudar a otros o simplemente quieras probar algo con sentido, el voluntariado es una forma estupenda de conectar con Costa Rica más allá del turismo de siempre.",
       "intro3": "¿Ya vivís en Costa Rica o en América Latina? ¿O pensás visitarla mientras aprendés español? ¡Puede haber una oportunidad para vos!",
       "introCierre": "Contanos un poco sobre vos y veamos qué podría encajar.",
-      "fuente": "Dato de biodiversidad: examen ambiental de Costa Rica de la OCDE.",
+      "fuente": "Fuente de la cifra del 6 %:",
       "areasTitulo": "¿En qué podés ayudar?",
       "areasIntro": "Estos son los tipos de voluntariado por los que nos preguntan. Cuáles están disponibles en cada momento depende de las organizaciones involucradas, y lo confirmamos directamente con vos.",
       "pasosTitulo": "Cómo funciona",
@@ -329,7 +331,8 @@
         "errorInvalido": "Revisá los campos e intentá de nuevo.",
         "errorCaptcha": "No pudimos verificar que sos una persona. Intentá de nuevo.",
         "errorEnvio": "Algo falló al enviar tu consulta. Intentá de nuevo en un momento."
-      }
+      },
+      "fuenteEnlace": "OECD Environmental Performance Reviews: Costa Rica 2023"
     }
   }
 }

@@ -165,6 +165,22 @@ export const CONTACTO: { correo: string | null; telefono: string | null } = {
   telefono: null,
 };
 
+/**
+ * Enlaces de referencia de `/volunteer` y del pie.
+ *
+ * - OCDE: la cifra del 6 % de las especies conocidas está en el capítulo 3 de
+ *   su examen ambiental de Costa Rica (2023), verificada leyendo el informe
+ *   completo el 27/10/2026. Se enlaza por DOI, que es estable.
+ * - SINAC: página de su Programa de Voluntariado, la que salió en la
+ *   búsqueda. NO se pudo abrir desde aquí —su certificado no valida—, así que
+ *   el enlace está sin comprobar a mano.
+ */
+export const FUENTES = {
+  ocdeCostaRica: "https://doi.org/10.1787/ec94fd4e-en",
+  sinacVoluntariado:
+    "https://www.sinac.go.cr/ES/partciudygober/ales/Paginas/Voluntariado.aspx",
+} as const;
+
 /** Imagen por defecto para Open Graph cuando una ruta no trae la suya. */
 export const OG_POR_DEFECTO = "/og/por-defecto.jpg";
 

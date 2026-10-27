@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CONTACTO, NOMBRE_SITIO, rutas } from "@/shared/config/sitio";
+import { CONTACTO, FUENTES, NOMBRE_SITIO, rutas } from "@/shared/config/sitio";
 import type { Idioma } from "@/shared/i18n/config";
 import type { Diccionario } from "@/shared/i18n/esquema";
 
@@ -46,6 +46,34 @@ export function Footer({ lang, t }: Props) {
               {t.pendiente.etiqueta}
             </span>
           )}
+
+          {/*
+            Una línea y una nota, sin tarjeta: el pie es el sitio donde esto
+            se encuentra cuando se busca, no donde tiene que gritar. El enlace
+            va a `/volunteer`; la nota manda a SINAC, que tiene su propio
+            programa para las áreas protegidas — lo que la página nuestra no
+            sustituye ni promete.
+          */}
+          <div className="pie__voluntariado">
+            <Link
+              href={rutas.voluntariado(lang)}
+              className="pie__voluntariado-enlace"
+            >
+              <IconoHoja />
+              <span>{t.footer.voluntariado}</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+            <p className="pie__voluntariado-nota">
+              {t.footer.sinac}{" "}
+              <a
+                href={FUENTES.sinacVoluntariado}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                SINAC<span aria-hidden="true"> ↗</span>
+              </a>
+            </p>
+          </div>
         </div>
 
         <nav className="pie__navegacion" aria-label={t.footer.navegacion}>
@@ -73,5 +101,24 @@ export function Footer({ lang, t }: Props) {
         © {anio} {NOMBRE_SITIO}. {t.footer.derechos}
       </p>
     </footer>
+  );
+}
+
+/** Una hoja de línea: lo mínimo que dice «naturaleza» sin ser un adorno más. */
+function IconoHoja() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="pie__voluntariado-icono"
+    >
+      <path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14" />
+      <path d="M5 19c3-4 6-7 10-9" />
+    </svg>
   );
 }

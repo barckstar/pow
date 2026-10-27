@@ -146,7 +146,9 @@
     "privacidad": "Confidentialité",
     "terminos": "Conditions",
     "creditosFotos": "Crédits photo",
-    "derechos": "Tous droits réservés."
+    "derechos": "Tous droits réservés.",
+    "voluntariado": "Donne quelque chose en retour : bénévolat au Costa Rica",
+    "sinac": "Les aires protégées ont leur propre programme :"
   },
   "social": {
     "compartir": "Partager",
@@ -301,11 +303,11 @@
       },
       "cta": "Parle-nous de toi",
       "introTitulo": "Au-delà du tourisme habituel",
-      "intro1": "Le Costa Rica est petit, mais il abrite environ 6 % de la biodiversité mondiale. Sa faune, ses plages et ses forêts méritent d'être protégées — et les communautés locales méritent aussi du soutien.",
+      "intro1": "Le Costa Rica est petit, mais il abrite environ 6 % des espèces connues dans le monde. Sa faune, ses plages et ses forêts méritent d'être protégées — et les communautés locales méritent aussi du soutien.",
       "intro2": "Que tu sois passionné(e) par les animaux, amoureux(se) de la nature, heureux(se) d'aider les autres, ou simplement curieux(se) de vivre quelque chose qui a du sens, le bénévolat est une belle façon de découvrir le Costa Rica au-delà du tourisme habituel.",
       "intro3": "Tu vis déjà au Costa Rica ou en Amérique latine ? Ou tu prévois de venir tout en apprenant l'espagnol ? Il y a peut-être une opportunité pour toi !",
       "introCierre": "Parle-nous un peu de toi, et voyons ce qui pourrait te convenir.",
-      "fuente": "Chiffre sur la biodiversité : examen environnemental du Costa Rica par l'OCDE.",
+      "fuente": "Source du chiffre de 6 % :",
       "areasTitulo": "Comment peux-tu aider ?",
       "areasIntro": "Voici les types de bénévolat sur lesquels on nous interroge. Ce qui est disponible à un moment donné dépend des organisations concernées, et nous le confirmons directement avec toi.",
       "pasosTitulo": "Comment ça marche",
@@ -338,7 +340,8 @@
         "errorInvalido": "Vérifie les champs et réessaie.",
         "errorCaptcha": "On n'a pas pu vérifier que tu es humain. Réessaie.",
         "errorEnvio": "Un problème est survenu à l'envoi de ta demande. Réessaie dans un instant."
-      }
+      },
+      "fuenteEnlace": "OECD Environmental Performance Reviews: Costa Rica 2023"
     }
   }
 }

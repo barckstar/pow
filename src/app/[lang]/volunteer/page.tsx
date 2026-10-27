@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { esIdioma, IDIOMAS, type Idioma } from "@/shared/i18n/config";
 import { getDiccionario } from "@/shared/i18n/diccionario";
 import { metadatosDe, mismaRutaEnTodosLosIdiomas } from "@/shared/lib/sitio";
-import { rutas } from "@/shared/config/sitio";
+import { FUENTES, rutas } from "@/shared/config/sitio";
 import { MigasJsonLd } from "@/shared/lib/jsonLd";
 import { SEO } from "@/shared/config/seo";
 import { HeroPagina } from "@/shared/components/ui/HeroPagina";
@@ -103,7 +103,16 @@ export default async function PaginaVoluntariado({
             <p>{p.intro3}</p>
             <p className="voluntariado__cierre">{p.introCierre}</p>
           </div>
-          <p className="voluntariado__fuente">{p.fuente}</p>
+          <p className="voluntariado__fuente">
+            {p.fuente}{" "}
+            <a
+              href={FUENTES.ocdeCostaRica}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {p.fuenteEnlace}
+            </a>
+          </p>
         </div>
       </section>
 
