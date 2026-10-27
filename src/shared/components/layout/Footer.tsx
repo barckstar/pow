@@ -35,17 +35,11 @@ export function Footer({ lang, t }: Props) {
             className="pie__perezoso"
           />
           <p className="pie__lema">{t.footer.lema}</p>
-          {/* CONTACTO está en null: el cliente aún no ha dado correo ni
-              teléfono. Se muestra el aviso en vez de inventar datos. */}
           {CONTACTO.correo ? (
             <a href={`mailto:${CONTACTO.correo}`} className="pie__contacto">
               {CONTACTO.correo}
             </a>
-          ) : (
-            <span className="pendiente" data-pendiente>
-              {t.pendiente.etiqueta}
-            </span>
-          )}
+          ) : null}
 
           {/*
             Una línea y una nota, sin tarjeta: el pie es el sitio donde esto
@@ -59,7 +53,7 @@ export function Footer({ lang, t }: Props) {
               href={rutas.voluntariado(lang)}
               className="pie__voluntariado-enlace"
             >
-              <IconoHoja />
+              <IconoCorazon />
               <span>{t.footer.voluntariado}</span>
               <span aria-hidden="true">→</span>
             </Link>
@@ -104,21 +98,20 @@ export function Footer({ lang, t }: Props) {
   );
 }
 
-/** Una hoja de línea: lo mínimo que dice «naturaleza» sin ser un adorno más. */
-function IconoHoja() {
+/** Un corazón de línea, el mismo trazo que el resto de iconos del sitio. */
+function IconoCorazon() {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.7"
+      strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
       className="pie__voluntariado-icono"
     >
-      <path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14" />
-      <path d="M5 19c3-4 6-7 10-9" />
+      <path d="M12 20.5s-8-4.7-8-10.2A4.5 4.5 0 0 1 12 7.6a4.5 4.5 0 0 1 8 2.7c0 5.5-8 10.2-8 10.2z" />
     </svg>
   );
 }

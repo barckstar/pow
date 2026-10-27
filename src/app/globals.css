@@ -5099,8 +5099,9 @@ p {
 
 .pie__voluntariado-icono {
   flex-shrink: 0;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  color: var(--color-coral);
 }
 
 .pie__voluntariado-nota {
