@@ -55,7 +55,6 @@ export function Footer({ lang, t }: Props) {
             >
               <IconoCorazon />
               <span>{t.footer.voluntariado}</span>
-              <span aria-hidden="true">→</span>
             </Link>
             <p className="pie__voluntariado-nota">
               {t.footer.sinac}{" "}

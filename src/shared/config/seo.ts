@@ -145,17 +145,17 @@ export const SEO: Record<string, Record<Idioma, Textos>> = {
     en: {
       titulo: "Book your Spanish lesson",
       descripcion:
-        "Book your Spanish lesson: leave your details and Chris will call you to agree a day and time. Nothing to pay now.",
+        "Book your Spanish lesson: leave your details and we will contact you to agree a day and time. Nothing to pay now.",
     },
     de: {
       titulo: "Buche deine Spanischstunde",
       descripcion:
-        "Buche deine Spanischstunde: Hinterlasse deine Daten, und Chris ruft dich an, um Tag und Uhrzeit zu vereinbaren. Jetzt ist nichts zu zahlen.",
+        "Buche deine Spanischstunde: Hinterlasse deine Daten, und wir melden uns, um Tag und Uhrzeit zu vereinbaren. Jetzt ist nichts zu zahlen.",
     },
     fr: {
       titulo: "Réserve ton cours d'espagnol",
       descripcion:
-        "Réserve ton cours d'espagnol : laisse tes coordonnées et Chris t'appelle pour convenir d'un jour et d'une heure. Rien à payer maintenant.",
+        "Réserve ton cours d'espagnol : laisse tes coordonnées et on te contacte pour convenir d'un jour et d'une heure. Rien à payer maintenant.",
     },
   },
   precios: {

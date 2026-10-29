@@ -5080,28 +5080,77 @@ p {
   color: var(--color-tinta);
 }
 
-/* Leyenda de voluntariado del pie: un enlace y una nota, sin tarjeta. */
+/*
+ * ============ EL BOTÓN DE VOLUNTARIADO DEL PIE ============
+ * El cliente lo pidió en un audio: tiene que ir donde estaba la etiqueta
+ * «Pending», justo debajo del perezoso y el lema, y «hacerlo llamativo» como
+ * el botón de la clase de prueba. Por eso es el mismo dorado y no un enlace
+ * de texto: tinta sobre dorado, 9,3:1.
+ *
+ * Late tres veces y se para —solo `transform` y `opacity`, como el halo de
+ * `/community`— y nada si la persona pidió menos movimiento.
+ * ==========================================================
+ */
 .pie__voluntariado {
   margin-top: 1.25rem;
-  padding-top: 1rem;
   max-width: 22rem;
-  border-top: 1px solid color-mix(in srgb, var(--color-crema) 22%, transparent);
 }
 
 .pie__voluntariado-enlace {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0;
-  font-weight: 600;
-  color: var(--color-dorado-texto);
+  gap: 0.6rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  background-color: var(--color-dorado);
+  color: var(--color-tinta);
+  font-weight: 700;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.22);
+  transition: transform 180ms ease, background-color 180ms ease,
+    color 180ms ease;
+}
+
+.pie__voluntariado-enlace::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--color-dorado);
+  pointer-events: none;
+  animation: halo-voluntariado 2.4s ease-out 3 1s;
+  opacity: 0;
+}
+
+@keyframes halo-voluntariado {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.25, 1.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pie__voluntariado-enlace::after {
+    animation: none;
+  }
+}
+
+/* `.pie a:hover` subraya; en un botón sobra. */
+.pie a.pie__voluntariado-enlace:hover {
+  background-color: var(--color-crema);
+  text-decoration: none;
+  transform: translateY(-2px);
 }
 
 .pie__voluntariado-icono {
   flex-shrink: 0;
-  width: 1.4rem;
-  height: 1.4rem;
-  color: var(--color-coral);
+  width: 1.3rem;
+  height: 1.3rem;
+  color: var(--color-naranja);
 }
 
 .pie__voluntariado-nota {
