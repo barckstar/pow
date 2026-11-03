@@ -82,7 +82,7 @@
     "paso1Titulo": "Cuéntanos de ti",
     "paso1Texto": "Llena el formulario: cómo contactarte, por qué quieres aprender español y si prefieres clases en línea o aprender en Costa Rica.",
     "paso2Titulo": "Te contactamos",
-    "paso2Texto": "Nos ponemos en contacto por teléfono o correo para conversar lo que necesitás y resolver tus dudas.",
+    "paso2Texto": "Nuestro equipo de experiencia al cliente se pondrá en contacto por teléfono o correo para conversar lo que necesitás y resolver tus dudas.",
     "paso3Titulo": "Acuerden la primera clase",
     "paso3Texto": "Entre todos elegimos el día y la hora, y te mandamos todo lo que necesitás para conectarte.",
     "avisoTerceros": "El calendario lo lleva Calendly, que es una empresa aparte. Se carga desde sus servidores al llegar hasta aquí, y recibe lo que escribas ahí: nombre, correo y los datos del pago. El resto de la página no le pide nada.",
@@ -132,7 +132,8 @@
     },
     "insignia": "Hablemos",
     "lugaresTitulo": "Aprende en Costa Rica",
-    "lugaresEnlace": "Ver todos los destinos"
+    "lugaresEnlace": "Ver todos los destinos",
+    "equipoFotoAlt": "Un profesor en videollamada y una estudiante sonriendo frente a su computadora en una mesa de café"
   },
   "pendiente": {
     "etiqueta": "Pendiente",
@@ -175,7 +176,7 @@
       "paso1Titulo": "Cuéntanos de ti",
       "paso1Texto": "Llena el formulario: cómo contactarte, por qué quieres aprender español y si prefieres clases en línea o aprender en Costa Rica.",
       "paso2Titulo": "Te contactamos",
-      "paso2Texto": "Nos ponemos en contacto por teléfono o correo para conversar lo que necesitás y resolver tus dudas.",
+      "paso2Texto": "Nuestro equipo de experiencia al cliente se pondrá en contacto por teléfono o correo para conversar lo que necesitás y resolver tus dudas.",
       "paso3Titulo": "Acuerden la primera clase",
       "paso3Texto": "Entre todos elegimos el día y la hora, y te mandamos todo lo que necesitás para conectarte.",
       "profesorTitulo": "Quién da las clases",

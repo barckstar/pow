@@ -11,7 +11,6 @@ import { OPCIONES } from "@/features/solicitud/esquema";
 import Image from "next/image";
 import Link from "next/link";
 import { DESTINOS } from "@/features/destinos/esquema";
-import { PROFESORES } from "@/features/online/esquemaProfesores";
 import { FranjaHero } from "@/shared/components/ui/FranjaHero";
 import { Hibisco, Lapa } from "@/shared/components/ui/Decorados";
 import { DecoradosSeccion } from "@/shared/components/ui/DecoradosSeccion";
@@ -62,8 +61,6 @@ export default async function PaginaReservar({
   const t = await getDiccionario(idioma);
   const r = t.reserva;
 
-  const profe = PROFESORES[0];
-
   return (
     <>
       <MigasJsonLd
@@ -92,16 +89,20 @@ export default async function PaginaReservar({
             <span className="reserva__flor" aria-hidden="true">
               <Hibisco />
             </span>
-            {profe?.foto ? (
-              <Image
-                src={profe.foto}
-                alt={profe.nombre}
-                width={160}
-                height={160}
-                className="reserva__foto"
-                sizes="120px"
-              />
-            ) : null}
+            {/*
+              La foto del panel ya NO es el retrato del profesor. Quien contesta
+              aquí es el equipo —«somos una compañía», dijo el cliente—, así que
+              va una imagen de las dos partes de una clase: quien enseña y quien
+              aprende. El retrato de Chris sigue en `/online`, donde sí es él.
+            */}
+            <Image
+              src="/fotos/contacto-equipo.jpg"
+              alt={r.equipoFotoAlt}
+              width={160}
+              height={160}
+              className="reserva__foto"
+              sizes="120px"
+            />
             <h2 className="reserva__lateral-titulo">{r.paso2Titulo}</h2>
             <p>{r.paso2Texto}</p>
 

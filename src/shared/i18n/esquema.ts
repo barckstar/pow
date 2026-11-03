@@ -187,6 +187,8 @@ export const esquemaDiccionario = z
         /** Encabeza los dos destinos del panel lateral. */
         lugaresTitulo: z.string().min(1),
         lugaresEnlace: z.string().min(1),
+        /** El `alt` de la foto redonda del panel lateral de `/book`. */
+        equipoFotoAlt: z.string().min(10),
         /* El formulario de contacto que sustituye al calendario. */
         form: z
           .object({

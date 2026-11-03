@@ -82,7 +82,7 @@
     "paso1Titulo": "Tell us about you",
     "paso1Texto": "Fill in the form below: how to reach you, why you want to learn Spanish and whether you prefer online lessons or learning in Costa Rica.",
     "paso2Titulo": "We contact you",
-    "paso2Texto": "We get in touch by phone or email to talk about what you need and answer your questions.",
+    "paso2Texto": "Our customer experience team will get in touch by phone or email to talk about what you need and answer your questions.",
     "paso3Titulo": "Agree on your first lesson",
     "paso3Texto": "Together we choose the day and time, and we send you everything you need to connect.",
     "avisoTerceros": "The calendar is run by Calendly, a separate company. It loads from their servers when you scroll down to it, and they receive whatever you type in there: name, email and payment details. The rest of the page asks them for nothing.",
@@ -132,7 +132,8 @@
     },
     "insignia": "Let's talk",
     "lugaresTitulo": "Learn in Costa Rica",
-    "lugaresEnlace": "See all destinations"
+    "lugaresEnlace": "See all destinations",
+    "equipoFotoAlt": "A teacher on a video call, and a student smiling at her laptop at a café table"
   },
   "pendiente": {
     "etiqueta": "Pending",
@@ -175,7 +176,7 @@
       "paso1Titulo": "Tell us about you",
       "paso1Texto": "Fill in the form below: how to reach you, why you want to learn Spanish and whether you prefer online lessons or learning in Costa Rica.",
       "paso2Titulo": "We contact you",
-      "paso2Texto": "We get in touch by phone or email to talk about what you need and answer your questions.",
+      "paso2Texto": "Our customer experience team will get in touch by phone or email to talk about what you need and answer your questions.",
       "paso3Titulo": "Agree on your first lesson",
       "paso3Texto": "Together we choose the day and time, and we send you everything you need to connect.",
       "profesorTitulo": "Who teaches",
