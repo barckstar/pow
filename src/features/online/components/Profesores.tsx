@@ -66,7 +66,7 @@ export function Profesores({
 
         <ul className="profesores">
           {PROFESORES.map((profesor) => (
-            <li key={profesor.id} className="profesor">
+            <li key={profesor.id} className="profesor revelar">
               <div className="profesor__retrato">
                 {profesor.foto ? (
                   <Image
@@ -92,7 +92,7 @@ export function Profesores({
                       En escritorio son 16 rem clavados, y ahí pedir un ancho
                       de pantalla sería tirar bytes.
                     */
-                    sizes="(min-width: 768px) 16rem, calc(100vw - 3rem)"
+                    sizes="(min-width: 768px) 12rem, calc(100vw - 3rem)"
                     className="profesor__foto"
                   />
                 ) : (
