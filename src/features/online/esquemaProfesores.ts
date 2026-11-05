@@ -6,7 +6,7 @@ import datos from "./data/profesores.json";
  * Quién da las clases.
  *
  * ============ UNA LISTA, AUNQUE HOY SEA UNO ============
- * Hoy está Chris Pow y nadie más. Es una lista igualmente porque el cliente lo
+ * Hoy están Amanda Garro y Chris Arias. Es una lista igualmente porque el cliente lo
  * dijo así —«por el momento solo tenemos a Chris»— y porque la diferencia
  * entre un objeto y un array de uno es esta línea, mientras que cambiarlo
  * después toca el esquema, el componente, la hoja de estilos y los dos

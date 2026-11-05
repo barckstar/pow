@@ -179,7 +179,7 @@
       "paso2Texto": "Notre équipe d'expérience client te contactera par téléphone ou par e-mail pour parler de ce dont tu as besoin et répondre à tes questions.",
       "paso3Titulo": "Fixez votre premier cours",
       "paso3Texto": "Ensemble, on choisit le jour et l'heure, et on t'envoie tout ce qu'il faut pour te connecter.",
-      "profesorTitulo": "Qui enseigne",
+      "profesorTitulo": "Professeurs locaux",
       "practicaTitulo": "Ce que tu pratiques",
       "practicaTexto": "L'enseignement traditionnel s'appuie trop sur le manuel, et beaucoup de gens étudient pendant des années et restent quand même bloqués dans une vraie conversation. Ici, l'accent est mis sur quatre choses :",
       "situacionesTexto": "Et les cours entraînent des situations que tu vivras vraiment, pas des exercices de remplissage :",
@@ -189,7 +189,8 @@
       "leerArticulo": "Lire l'article complet",
       "profesorFotoAlt": "{nombre}, le professeur",
       "profesorFotoPendiente": "Portrait manquant",
-      "profesorEntrada": "Les cours ne sont pas donnés par une plateforme. Ils sont donnés par de vraies personnes."
+      "profesorEntrada": "Deux professeurs costariciens installés dans différentes parties du monde, ce qui facilite l'adaptation à ton emploi du temps et à tes besoins d'apprentissage.",
+      "profesorTexto": "Avec nous, tu apprends l'espagnol réellement parlé au Costa Rica – du voseo et de l'argot local aux expressions du quotidien et à la façon authentique de parler des Costariciens. Pas seulement la grammaire du manuel, mais un vrai espagnol utilisable dans la vie réelle."
     },
     "costaRica": {
       "hero": {

@@ -179,7 +179,7 @@
       "paso2Texto": "Unser Customer-Experience-Team nimmt telefonisch oder per E-Mail Kontakt mit dir auf, um zu besprechen, was du brauchst, und deine Fragen zu beantworten.",
       "paso3Titulo": "Ersten Termin vereinbaren",
       "paso3Texto": "Gemeinsam legen wir Tag und Uhrzeit fest, und wir schicken dir alles, was du zum Verbinden brauchst.",
-      "profesorTitulo": "Wer unterrichtet",
+      "profesorTitulo": "Einheimische Lehrkräfte",
       "practicaTitulo": "Was du übst",
       "practicaTexto": "Traditioneller Unterricht stützt sich zu stark auf das Lehrbuch, und viele Leute lernen jahrelang und stehen trotzdem in einem echten Gespräch auf dem Schlauch. Hier liegt das Gewicht auf vier Dingen:",
       "situacionesTexto": "Und die Stunden üben Situationen, in denen du wirklich stecken wirst, keine Lückenfüller-Übungen:",
@@ -189,7 +189,8 @@
       "leerArticulo": "Den ganzen Artikel lesen",
       "profesorFotoAlt": "{nombre}, der Lehrer",
       "profesorFotoPendiente": "Porträt fehlt noch",
-      "profesorEntrada": "Der Unterricht wird nicht von einer Plattform gegeben. Er wird von echten Menschen gegeben."
+      "profesorEntrada": "Zwei costa-ricanische Lehrkräfte an verschiedenen Orten der Welt, damit sich dein Zeitplan und dein individueller Lernbedarf leichter vereinbaren lassen.",
+      "profesorTexto": "Bei uns lernst du das Spanisch, das in Costa Rica wirklich gesprochen wird – vom Voseo und der lokalen Umgangssprache bis zu Alltagsausdrücken und der authentischen costa-ricanischen Sprechweise. Nicht nur Lehrbuchgrammatik, sondern echtes Spanisch für den Alltag."
     },
     "costaRica": {
       "hero": {

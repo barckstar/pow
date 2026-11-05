@@ -286,6 +286,7 @@ export const esquemaDiccionario = z
             profesorTitulo: z.string().min(1),
             /** La línea bajo el título de la franja. */
             profesorEntrada: z.string().min(1),
+            profesorTexto: z.string().min(1),
             /** Plantilla del `alt` del retrato. Lleva `{nombre}` dentro. */
             profesorFotoAlt: z.string().min(1),
             /** Lo que dice el marco mientras no hay retrato. */

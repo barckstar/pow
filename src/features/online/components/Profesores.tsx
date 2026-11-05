@@ -36,6 +36,7 @@ export function Profesores({
   lang,
   titulo,
   entrada,
+  texto,
   etiquetaPendiente,
   fotoPendiente,
   fotoAlt,
@@ -47,6 +48,8 @@ export function Profesores({
   titulo: string;
   /** Una línea debajo del título. Da contexto antes del nombre. */
   entrada: string;
+  /** El párrafo largo que explica qué se aprende con ellos. */
+  texto: string;
   /** La insignia amarilla de «Pendiente», compartida con el resto del sitio. */
   etiquetaPendiente: string;
   /** Lo que dice el marco mientras no hay retrato. */
@@ -62,7 +65,11 @@ export function Profesores({
     <section className="profesores-banda">
       <div className="profesores-banda__interior">
         <h2 className="profesores-banda__titulo">{titulo}</h2>
+        <p className="profesores-banda__nombres">
+          {PROFESORES.map((p) => p.nombre).join(" & ")}
+        </p>
         <p className="profesores-banda__entrada">{entrada}</p>
+        <p className="profesores-banda__texto">{texto}</p>
 
         <ul className="profesores">
           {PROFESORES.map((profesor) => (

@@ -115,6 +115,7 @@ export default async function PaginaOnline({
         lang={idioma}
         titulo={p.profesorTitulo}
         entrada={p.profesorEntrada}
+        texto={p.profesorTexto}
         etiquetaPendiente={t.pendiente.etiqueta}
         fotoPendiente={p.profesorFotoPendiente}
         fotoAlt={p.profesorFotoAlt}

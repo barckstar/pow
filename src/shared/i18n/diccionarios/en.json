@@ -179,7 +179,7 @@
       "paso2Texto": "Our customer experience team will get in touch by phone or email to talk about what you need and answer your questions.",
       "paso3Titulo": "Agree on your first lesson",
       "paso3Texto": "Together we choose the day and time, and we send you everything you need to connect.",
-      "profesorTitulo": "Who teaches",
+      "profesorTitulo": "Local teachers",
       "practicaTitulo": "What you practise",
       "practicaTexto": "Traditional teaching leans too heavily on the textbook, and plenty of people study for years and still freeze in an actual conversation. Here the weight sits on four things:",
       "situacionesTexto": "And the lessons rehearse situations you will actually be in, not filler exercises:",
@@ -189,7 +189,8 @@
       "leerArticulo": "Read the full article",
       "profesorFotoAlt": "{nombre}, the teacher",
       "profesorFotoPendiente": "Portrait still missing",
-      "profesorEntrada": "The classes are not run by a platform. They are run by real people."
+      "profesorEntrada": "Two Costa Rican teachers based in different parts of the world, making it easier to accommodate your schedule and individual learning needs.",
+      "profesorTexto": "With us, you'll learn the Spanish that's actually spoken in Costa Rica — from voseo and local slang to everyday expressions and the authentic Costa Rican way of speaking. Not just textbook grammar, but real Spanish you can use in real life."
     },
     "costaRica": {
       "hero": {

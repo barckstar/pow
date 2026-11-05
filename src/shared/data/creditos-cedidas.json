@@ -40,11 +40,11 @@
     "permisoConfirmado": false
   },
   {
-    "archivo": "/fotos/chris-pow.jpg",
-    "autor": "Chris Pow",
+    "archivo": "/fotos/chris-arias.jpg",
+    "autor": "Chris Arias",
     "fuente": "Cedida por el cliente",
     "licencia": "Retrato propio, cedido para esta web",
-    "descripcion": "Chris Pow en su estudio, con camisa vaquera y micrófono, sonriendo a cámara ante dos pantallas con una videollamada y una lámina de gramática.",
+    "descripcion": "Chris Arias en su estudio, con camisa vaquera y micrófono, sonriendo a cámara ante dos pantallas con una videollamada y una lámina de gramática.",
     "permisoConfirmado": true
   },
   {
@@ -80,11 +80,11 @@
     "permisoConfirmado": false
   },
   {
-    "archivo": "/fotos/kristy.jpg",
+    "archivo": "/fotos/amanda-garro.jpg",
     "autor": "Sin confirmar",
     "fuente": "Enviada por el cliente por chat el 05/11/2026, sin URL de origen",
     "licencia": "Origen y licencia sin confirmar",
-    "descripcion": "Retrato de Kristy, profesora: una joven sonriente con la mano en la mejilla frente a un portátil, en una terraza de madera con plantas. Ficha de /online.",
+    "descripcion": "Retrato de Amanda Garro, profesora: una joven sonriente con la mano en la mejilla frente a un portátil, en una terraza de madera con plantas. Ficha de /online.",
     "permisoConfirmado": false
   }
 ]
