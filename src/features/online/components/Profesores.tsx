@@ -125,7 +125,7 @@ export function Profesores({
                     serían dos copias que se separan.
                   */}
                   <li className="profesor__dato profesor__dato--zona">
-                    {etiquetaZona}: {ZONA_PROFESOR.replace(/_/g, " ")}
+                    {etiquetaZona}: {(profesor.zona ?? ZONA_PROFESOR).replace(/_/g, " ")}
                   </li>
                 </ul>
 

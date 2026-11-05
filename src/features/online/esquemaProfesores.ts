@@ -48,6 +48,8 @@ const esquemaProfesor = z
      * abajo.
      */
     foto: z.string().startsWith("/").nullable(),
+    /** Zona horaria propia; si falta, la de `ZONA_PROFESOR`. */
+    zona: z.string().optional(),
     /** La línea de encima del nombre. Corta: es una etiqueta, no un cargo. */
     papel: localizado(z.string().min(1)),
     bio: localizado(z.string().min(1)),

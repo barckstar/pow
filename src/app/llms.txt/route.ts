@@ -34,7 +34,7 @@ export async function GET() {
     "",
     "## What is offered",
     "",
-    "- **Online lessons**: one-to-one, by video call, taught from Switzerland by Chris Pow, a Costa Rican teacher. This is the main product and it is available now.",
+    "- **Online lessons**: one-to-one, by video call, taught by Chris Pow (from Switzerland) and Kristy (from Costa Rica), both Costa Rican teachers. This is the main product and it is available now.",
     "- **Immersion in Costa Rica**: a morning lesson at a local school, lodging arranged through the school, and the rest of the day practising while travelling. Stays of 15 days to 2 months. This is in preparation: the list of destinations and the agreements with each school are not final.",
     "",
     "## Languages of the site",

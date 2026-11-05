@@ -304,7 +304,7 @@ sobre crema, y una sección más del mismo color pegada al hero no se lee como
 «aquí empieza algo». El teal es el 30 % de la paleta y su trabajo es ese; la
 portada ya hace el mismo gesto con `.confianza`.
 
-**Es una lista aunque hoy solo esté Chris Pow**, porque el cliente dijo que
+**Es una lista y desde el 05/11/2026 hay dos: Chris y Kristy** (Kristy, con datos inventados, ver `PENDIENTE.md`; `zona` opcional por profesor), porque el cliente dijo que
 habrá más. La rejilla es `auto-fit`: con uno sale una ficha ancha —retrato a un
 lado, texto al otro— y con dos o tres se reparten en columnas sin tocar la hoja
 de estilos.

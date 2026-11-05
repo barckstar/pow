@@ -44,5 +44,52 @@
         }
       }
     ]
+  },
+  {
+    "id": "kristy",
+    "nombre": "Kristy",
+    "foto": "/fotos/kristy.jpg",
+    "papel": {
+      "en": "Costa Rican teacher",
+      "es": "Profesora costarricense",
+      "de": "Costa-ricanische Lehrerin",
+      "fr": "Professeure costaricienne"
+    },
+    "bio": {
+      "en": "A Costa Rican from Guanacaste who teaches from Costa Rica itself. Her classes are conversation first: the everyday Spanish you need to order, joke and get around like a local.",
+      "es": "Una costarricense de Guanacaste que da clases desde Costa Rica. Sus clases son ante todo conversación: el español de todos los días para pedir, bromear y moverse como una local.",
+      "de": "Eine Costa-Ricanerin aus Guanacaste, die direkt aus Costa Rica unterrichtet. Ihr Unterricht ist vor allem Konversation: das Alltagsspanisch, mit dem man bestellt, scherzt und sich wie ein Einheimischer zurechtfindet.",
+      "fr": "Une Costaricienne de Guanacaste qui enseigne depuis le Costa Rica même. Ses cours sont avant tout de la conversation : l'espagnol de tous les jours pour commander, plaisanter et se débrouiller comme une locale."
+    },
+    "zona": "America/Costa_Rica",
+    "datos": [
+      {
+        "id": "origen",
+        "etiqueta": {
+          "en": "Tica, from Guanacaste",
+          "es": "Tica, de Guanacaste",
+          "de": "Tica, aus Guanacaste",
+          "fr": "Tica, originaire de Guanacaste"
+        }
+      },
+      {
+        "id": "donde",
+        "etiqueta": {
+          "en": "Teaches from Costa Rica",
+          "es": "Da clases desde Costa Rica",
+          "de": "Unterrichtet aus Costa Rica",
+          "fr": "Enseigne depuis le Costa Rica"
+        }
+      },
+      {
+        "id": "enfoque",
+        "etiqueta": {
+          "en": "Everyday conversation",
+          "es": "Conversación del día a día",
+          "de": "Alltagskonversation",
+          "fr": "Conversation de tous les jours"
+        }
+      }
+    ]
   }
 ]
